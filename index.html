@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>वाकीभ संतसाहित्य - मराठी संत साहित्याचा डिजिटल ठेवा</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="वाकीभ संतसाहित्य - महाराष्ट्रातील थोर संत ज्ञानेश्वर, संत तुकाराम आणि इतर संतांच्या अभंग, ओव्या, आरती आणि पवित्र ग्रंथांचा डिजिटल संग्रह.">
+  <meta name="keywords" content="संतसाहित्य, अभंग, ओवी, ज्ञानेश्वरी, तुकाराम गाथा, दासबोध, मराठी संत, विठ्ठल, वारकरी">
+  <meta name="author" content="वाकीभ संतसाहित्य">
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Vakibh/css/style.css?v=3">
+
+  <!-- JS Script (Deferred) -->
+  <script src="Vakibh/js/main.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Header / Sticky Navigation -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="मुख्य मेनू उघडा">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="index.html" class="active">गृहपृष्ठ</a></li>
+          <li><a href="#granth">ग्रंथ</a></li>
+          <li><a href="#abhangs">अभंग/भजन</a></li>
+          <li><a href="#saints">संत</a></li>
+          <li><a href="#categories">विभाग</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="शोध उघडा">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="lang-switch" id="langSwitch">मराठी</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Banner Section -->
+    <section class="hero" id="heroBanner">
+      <div class="hero-content">
+        <h1 class="heading-traditional">वाकीभ संतसाहित्य</h1>
+        <p class="subtitle">अभंग, ओव्या, गाथा आणि बरेच काही पवित्र साहित्याचा एकत्रित संग्रह</p>
+
+        <!-- Search bar -->
+        <div class="hero-search-container">
+          <input type="text" class="hero-search-input" id="heroSearchInput" placeholder="उदा. अभंग, संत किंवा ग्रंथ..."
+            aria-label="शोध पर्याय">
+          <button class="hero-search-btn" id="heroSearchBtn">शोधा</button>
+        </div>
+
+        <!-- Read Start CTA -->
+        <a href="#granth" class="hero-cta-btn">वाचा</a>
+      </div>
+
+      <!-- Audio Playbar -->
+      <div class="hero-player-wrap">
+        <div class="hero-player">
+          <div class="player-controls">
+            <button class="play-pause-btn" id="playPauseBtn" aria-label="चालू किंवा बंद करा">
+              <i class="fas fa-play"></i>
+            </button>
+            <div class="player-info">
+              <div class="player-title">वाकीभ ऑडिओ संग्रह</div>
+              <div class="player-subtitle">संत साहित्याचा मधुर रस</div>
+            </div>
+          </div>
+
+          <div class="player-progress-container">
+            <div class="progress-bar-bg" id="progressBg">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="time-display">
+              <span id="timeCurrent">0:00</span> / <span id="timeDuration">5:01</span>
+            </div>
+          </div>
+
+          <div class="player-volume-container">
+            <button class="volume-btn" id="volumeBtn" aria-label="आवाज बंद किंवा सुरू करा">
+              <i class="fas fa-volume-up"></i>
+            </button>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Sant Parampara (संत परंपरा) -->
+    <section class="saints-section" id="saints">
+      <div class="section-title-container">
+        <h2 class="heading-traditional">संत परंपरा</h2>
+        <p>महाराष्ट्रातील थोर संत</p>
+        <div class="see-all-container">
+          <a href="#quickLinks" class="see-all-btn">सर्व पहा</a>
+        </div>
+      </div>
+
+      <div class="saints-grid">
+        <!-- 1 -->
+        <a href="sants/dnyaneshwar/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant dnyaneshwar.png" alt="संत ज्ञानेश्वर">
+          </div>
+          <h3 class="saint-name">संत ज्ञानेश्वर</h3>
+          <span class="saint-period">१२७५ - १२९६</span>
+          <p class="saint-desc">भक्ती आणि ज्ञानपरंपरेतील महान संत.</p>
+        </a>
+        <!-- 2 -->
+        <a href="sants/tukaram/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant tukaram.png" alt="संत तुकाराम">
+          </div>
+          <h3 class="saint-name">संत तुकाराम</h3>
+          <span class="saint-period">१६०८ - १६५०</span>
+          <p class="saint-desc">विठ्ठलभक्तीचे ओजस्वी अभंगकार.</p>
+        </a>
+        <!-- 3 -->
+        <a href="sants/namdev/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant namdev.png" alt="संत नामदेव">
+          </div>
+          <h3 class="saint-name">संत नामदेव</h3>
+          <span class="saint-period">१२७० - १३५०</span>
+          <p class="saint-desc">नामस्मरण व भक्तीचा अखंड प्रवाह.</p>
+        </a>
+        <!-- 4 -->
+        <a href="sants/eknath/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant eknaath.png" alt="संत एकनाथ">
+          </div>
+          <h3 class="saint-name">संत एकनाथ</h3>
+          <span class="saint-period">१५३३ - १५९९</span>
+          <p class="saint-desc">समाजप्रबोधन करणारे संतकवी.</p>
+        </a>
+        <!-- 5 -->
+        <a href="sants/nivruttinath/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant nirutti maharaj.png" alt="संत निवृत्ती महाराज">
+          </div>
+          <h3 class="saint-name">संत निवृत्ती महाराज</h3>
+          <span class="saint-period">१२७३ - १२९७</span>
+          <p class="saint-desc">ज्ञानेश्वरांचे मार्गदर्शक व थोर संत.</p>
+        </a>
+        <!-- 6 -->
+        <a href="sants/muktabai/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant muktabai.png" alt="संत मुक्ताबाई">
+          </div>
+          <h3 class="saint-name">संत मुक्ताबाई</h3>
+          <span class="saint-period">१२७९ - १२९७</span>
+          <p class="saint-desc">वारकरी संप्रदायातील थोर संत कवयित्री.</p>
+        </a>
+        <!-- 7 -->
+        <a href="sants/sopandev/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/संत सोपान काका महाराज.png" alt="संत सोपानदेव">
+          </div>
+          <h3 class="saint-name">संत सोपानदेव</h3>
+          <span class="saint-period">१२७७ - १२९६</span>
+          <p class="saint-desc">ज्ञानदेवांचे कनिष्ठ बंधू व महान योगसिद्ध संत.</p>
+        </a>
+        <!-- 8 -->
+        <a href="sants/chokhamela/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/संत चोखामेळा महाराज.png" alt="संत चोखामेळा">
+          </div>
+          <h3 class="saint-name">संत चोखामेळा</h3>
+          <span class="saint-period">१३ वे शतक</span>
+          <p class="saint-desc">शुद्ध अंतःकरणाचे विठ्ठलभक्त.</p>
+        </a>
+        <!-- 9 -->
+        <a href="sants/janabai/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/संत जनाबाई महाराज.png" alt="संत जनाबाई">
+          </div>
+          <h3 class="saint-name">संत जनाबाई</h3>
+          <span class="saint-period">१३ वे शतक</span>
+          <p class="saint-desc">नामदेवांच्या सहवासातील महान संत कवयित्री.</p>
+        </a>
+        <!-- 10 -->
+        <a href="sants/gora-kumbhar/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/संत गोरा कुंभार.png" alt="संत गोरा कुंभार">
+          </div>
+          <h3 class="saint-name">संत गोरा कुंभार</h3>
+          <span class="saint-period">१२६७ - १३१७</span>
+          <p class="saint-desc">विठ्ठलप्रेमाने ओतप्रोत कुंभार संत.</p>
+        </a>
+        <!-- 11 -->
+        <a href="sants/savata-mali/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/sant savta maharaj.png" alt="संत सावता माळी">
+          </div>
+          <h3 class="saint-name">संत सावता माळी</h3>
+          <span class="saint-period">१२५० - १२९५</span>
+          <p class="saint-desc">शेतात विठ्ठल पाहणारे वारकरी संत.</p>
+        </a>
+        <!-- 12 -->
+        <a href="sants/rohidas/index.html" class="saint-card" style="text-decoration:none;">
+          <div class="saint-img-wrap">
+            <img src="Vakibh/sant/संत रोहिदास महाराज.png" alt="संत रोहिदास महाराज">
+          </div>
+          <h3 class="saint-name">संत रोहिदास महाराज</h3>
+          <span class="saint-period">१५ वे शतक</span>
+          <p class="saint-desc">भक्ती आणि सामाजिक समतेचे पुरस्कर्ते.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Book Collection (ग्रंथ संग्रह) -->
+    <section class="granth-section" id="granth">
+      <div class="granth-inner-container">
+        <div class="section-title-container">
+          <h2 class="heading-traditional">ग्रंथ संग्रह</h2>
+        </div>
+        <div class="granth-grid">
+          <!-- Card 1 -->
+          <div class="granth-card">
+            <div class="granth-img-container">
+              <img src="Vakibh/grantha/dnyaneshwari.png" alt="ज्ञानेश्वरी ग्रंथ">
+            </div>
+            <div class="granth-info">
+              <h3 class="granth-title">ज्ञानेश्वरी</h3>
+              <p class="granth-author">संत ज्ञानेश्वर</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="granth-card">
+            <div class="granth-img-container">
+              <img src="Vakibh/grantha/tukaram gaatha.png" alt="तुकाराम गाथा ग्रंथ">
+            </div>
+            <div class="granth-info">
+              <h3 class="granth-title">तुकाराम गाथा</h3>
+              <p class="granth-author">संत तुकाराम</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="granth-card">
+            <div class="granth-img-container">
+              <img src="Vakibh/grantha/namdev gaatha.png" alt="नामदेव गाथा ग्रंथ">
+            </div>
+            <div class="granth-info">
+              <h3 class="granth-title">नामदेव गाथा</h3>
+              <p class="granth-author">संत नामदेव</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="granth-card">
+            <div class="granth-img-container">
+              <img src="Vakibh/grantha/eknaathi bhagwat.png" alt="एकनाथी भागवत ग्रंथ">
+            </div>
+            <div class="granth-info">
+              <h3 class="granth-title">एकनाथी भागवत</h3>
+              <p class="granth-author">संत एकनाथ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Featured Abhang (वैशिष्ट्यपूर्ण अभंग) -->
+    <section class="abhang-section" id="abhangs">
+      <div class="section-title-container">
+        <h2 class="heading-traditional">वैशिष्ट्यपूर्ण अभंग</h2>
+        <p>(निवडक रचना)</p>
+        <div class="see-all-container">
+          <a href="#quickLinks" class="see-all-btn">सर्व पहा</a>
+        </div>
+      </div>
+
+      <div class="abhang-grid">
+        <!-- Card 1 -->
+        <div class="abhang-card">
+          <div>
+            <span class="abhang-tag">अभंग - संत ज्ञानेश्वर</span>
+            <h3 class="abhang-card-title">रूप पाहता लोचनीं</h3>
+            <p class="abhang-content">रूप पाहतां लोचनीं । सुख जालें वो साजणी ॥१॥
+              तो हा विठ्ठल बरवा । तो हा माधव बरवा ॥२॥
+              बहुतां सुकृतांची जोडी । म्हणुनि विठ्ठलीं आवडी ॥३॥
+              सर्व सुखाचे आगर । बाप रखुमादेवीवर ॥४॥</p>
+          </div>
+          <div class="abhang-card-footer">
+            <div class="abhang-actions-left">
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
+              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
+                  class="fas fa-share-alt"></i></button>
+            </div>
+            <div class="abhang-card-player">
+              <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
+              <span class="audio-status-text">ऑडिओ ऐका</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="abhang-card">
+          <div>
+            <span class="abhang-tag">अभंग - संत तुकाराम</span>
+            <h3 class="abhang-card-title">वृक्षवल्ली आम्हां सोयरे</h3>
+            <p class="abhang-content">वृक्ष वल्ली आम्हां सोयरीं वनचरें ।
+              पक्षी ही सुस्वरें आळविती ॥१॥
+              येणें सुखें रुचे एकांताचा वास ।
+              नाहीं गुण दोष अंगा येत ॥२॥
+              आकाश मंडप पृथ्वी आसन ।
+              रमे तेथे मन क्रीडा करी ॥३॥</p>
+          </div>
+          <div class="abhang-card-footer">
+            <div class="abhang-actions-left">
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
+              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
+                  class="fas fa-share-alt"></i></button>
+            </div>
+            <div class="abhang-card-player">
+              <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
+              <span class="audio-status-text">ऑडिओ ऐका</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="abhang-card">
+          <div>
+            <span class="abhang-tag">अभंग - संत नामदेव</span>
+            <h3 class="abhang-card-title">पंढरीचे भूत</h3>
+            <p class="abhang-content">पंढरीचे भूत लागले माथा ।
+              विसरली आता देवधर्म ॥
+              सदा विठोबाचे नाम मुखी गाता ।
+              विसरली चिंता संसाराची ॥</p>
+          </div>
+          <div class="abhang-card-footer">
+            <div class="abhang-actions-left">
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
+              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
+                  class="fas fa-share-alt"></i></button>
+            </div>
+            <div class="abhang-card-player">
+              <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
+              <span class="audio-status-text">ऑडिओ ऐका</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="abhang-card">
+          <div>
+            <span class="abhang-tag">अभंग - संत ज्ञानेश्वर</span>
+            <h3 class="abhang-card-title">पसायदान</h3>
+            <p class="abhang-content">आतां विश्वात्मके देवे ।
+              येणे वाग्यज्ञे तोषावे ।
+              तोषोनि मज द्यावे ।
+              पसायदान हे ॥१॥
+              जे खळांची व्यंकटी सांडो ।
+              तया सत्कर्मी रती वाढो ।
+              भूतां परस्परें पडो ।
+              मैत्र जीवांचे ॥२॥</p>
+          </div>
+          <div class="abhang-card-footer">
+            <div class="abhang-actions-left">
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
+              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
+                  class="fas fa-share-alt"></i></button>
+            </div>
+            <div class="abhang-card-player">
+              <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
+              <span class="audio-status-text">ऑडिओ ऐका</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 5: Vibhag (विभाग) -->
+    <section class="categories-section" id="categories">
+      <div class="categories-inner-container">
+        <div class="section-title-container">
+          <h2 class="heading-traditional">विभाग</h2>
+          <p>साहित्यानुसार वर्गीकरण</p>
+        </div>
+
+        <div class="categories-row">
+          <!-- Card 1 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/illustrations/category-book.svg" alt="ग्रंथ चिन्ह">
+            </div>
+            <h3 class="category-name">ग्रंथ</h3>
+            <span class="category-count">१२+ ग्रंथ</span>
+          </div>
+          <!-- Card 2 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/veena.svg" alt="अभंग चिन्ह">
+            </div>
+            <h3 class="category-name">अभंग</h3>
+            <span class="category-count">५०+ अभंग</span>
+          </div>
+          <!-- Card 3 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/tabla.svg" alt="भजन चिन्ह">
+            </div>
+            <h3 class="category-name">भजन</h3>
+            <span class="category-count">२५+ भजन</span>
+          </div>
+          <!-- Card 4 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/illustrations/category-diya.svg" alt="आरती चिन्ह">
+            </div>
+            <h3 class="category-name">आरती</h3>
+            <span class="category-count">१५+ आरत्या</span>
+          </div>
+          <!-- Card 5 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/illustrations/category-lotus.svg" alt="प्रार्थना चिन्ह">
+            </div>
+            <h3 class="category-name">प्रार्थना</h3>
+            <span class="category-count">१०+ प्रार्थना</span>
+          </div>
+          <!-- Card 6 -->
+          <div class="category-card">
+            <div class="category-icon-wrap">
+              <img src="Vakibh/illustrations/category-rudraksha.svg" alt="ओव्या चिन्ह">
+            </div>
+            <h3 class="category-name">ओव्या</h3>
+            <span class="category-count">४०+ ओव्या</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Recent Arrivals (नवीन आवक) -->
+    <section class="new-arrivals-section" id="newArrivals">
+      <div class="section-title-container">
+        <h2 class="heading-traditional">नवीन आवक</h2>
+        <p>(नवीन साहित्य)</p>
+        <div class="see-all-container">
+          <a href="#quickLinks" class="see-all-btn">सर्व पहा</a>
+        </div>
+      </div>
+
+      <div class="new-arrivals-grid">
+        <!-- 1 -->
+        <div class="arrival-card">
+          <div>
+            <div class="arrival-header">
+              <span class="arrival-tag">अभंग</span>
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+            </div>
+            <h3 class="arrival-title">सुंदर ते ध्यान उभे विटेवरी</h3>
+            <p class="arrival-excerpt">सुंदर ते ध्यान उभे विटेवरी । कर कटावरी ठेवोनिया ॥
+              तुळसीहार गळा कासे पीतांबर । आवडे निरंतर हेचि रूप ॥</p>
+          </div>
+          <div class="arrival-author">संत तुकाराम</div>
+        </div>
+        <!-- 2 -->
+        <div class="arrival-card">
+          <div>
+            <div class="arrival-header">
+              <span class="arrival-tag">ग्रंथ</span>
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+            </div>
+            <h3 class="arrival-title">मनाचे श्लोक</h3>
+            <p class="arrival-excerpt">मना सज्जना भक्तीपंथेचि जावे । तरी श्रीहरी पाविजेतो स्वभावे ॥
+              जनीं निंद्य ते सर्व सोडूनि द्यावे । जनीं वंद्य ते सर्व भावे करावे ॥</p>
+          </div>
+          <div class="arrival-author">संत रामदास</div>
+        </div>
+        <!-- 3 -->
+        <div class="arrival-card">
+          <div>
+            <div class="arrival-header">
+              <span class="arrival-tag">आरती</span>
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+            </div>
+            <h3 class="arrival-title">ज्ञानराजाची आरती</h3>
+            <p class="arrival-excerpt">आरती ज्ञानराजा । महाकैवल्यतेजा ॥
+              लोपले ज्ञान जगीं । हित सांगावयासी ॥ आरती ज्ञानराजा ॥</p>
+          </div>
+          <div class="arrival-author">संत ज्ञानेश्वर</div>
+        </div>
+        <!-- 4 -->
+        <div class="arrival-card">
+          <div>
+            <div class="arrival-header">
+              <span class="arrival-tag">भजन</span>
+              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+            </div>
+            <h3 class="arrival-title">कानडा राजा पंढरीचा</h3>
+            <p class="arrival-excerpt">कानडा राजा पंढरीचा । वेदांनाही नाही कळला अंत याचा ॥
+              निराकार तो निर्गुण ईश्वर । झालासे साकार सावळा हा विठ्ठल ॥</p>
+          </div>
+          <div class="arrival-author">संत चोखामेळा</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+          <h3>वाकीभ</h3>
+        </div>
+        <p>दैनिक पवित्र, अभंग आणि ओव्यांचे पवित्र मराठी संग्रह. महाराष्ट्राच्या समृद्ध वारकरी परंपरेचे जतन आणि प्रचार.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link" aria-label="ट्विटर"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="इंस्टाग्राम"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>मेनू</h4>
+        <ul>
+          <li><a href="index.html">गृहपृष्ठ</a></li>
+          <li><a href="#granth">ग्रंथ</a></li>
+          <li><a href="#saints">संत</a></li>
+          <li><a href="#abhangs">अभंग</a></li>
+          <li><a href="#categories">विभाग</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>संपर्क</h4>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-envelope"></i> vaakibh.mauli@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +९१ (८००) १२३-४५६७</li>
+          <li><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; २०२६ वाकीभ. सर्व हक्क सुरक्षित.</p>
+      <button class="scroll-top-btn" id="scrollTopBtn" aria-label="वर जा">
+        <i class="fas fa-chevron-up"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Icon -->
+  <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="व्हाट्सॲप वर संपर्क करा">
+    <img src="Vakibh/whatsapp_icon.svg" alt="व्हाट्सॲप">
+  </a>
+
+  <!-- Toast Alert Container (inserted by JS, styles handled in CSS) -->
+
+</body>
+
+</html>

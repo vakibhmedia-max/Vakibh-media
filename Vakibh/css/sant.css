@@ -1,0 +1,523 @@
+/* ═══════════════════════════════════════════════════════════════
+   sant.css  –  Sant & Abhang Pages
+   Layout matches source: orange headings, blue link columns,
+   while using Vakibh header/footer.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ─────────────────────────────────────────────── */
+.sant-page-main {
+  min-height: 80vh;
+  background: #fff;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LISTING PAGE
+══════════════════════════════════════════════════════════════ */
+
+/* ── Title section ────────────────────────────────────────────── */
+.sant-title-section {
+  border-bottom: 1px solid #e0c89a;
+  padding: 1.8rem 1.5rem 1.5rem;
+  text-align: center;
+  background: #fff;
+}
+
+.sant-title-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Main H1 – orange, centered, like source */
+.sant-page-h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #ed8208;
+  margin-bottom: 1.2rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* Three quick-links: centered, orange, no bullets */
+.sant-quick-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sant-quick-link {
+  color: #ed8208;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.15s;
+}
+
+.sant-quick-link:hover,
+.sant-quick-link.active {
+  color: #c06000;
+  text-decoration: underline;
+}
+
+/* ── Search bar ───────────────────────────────────────────────── */
+.sant-search-bar-section {
+  background: #f9f5ef;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.sant-search-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sant-search-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.sant-search-wrap:focus-within {
+  border-color: #ed8208;
+  box-shadow: 0 0 0 2px rgba(237,130,8,0.15);
+}
+
+.sant-search-wrap i {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.sant-search-wrap input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  color: #333;
+  outline: none;
+}
+
+.count-pill {
+  background: #fff3e0;
+  color: #ed8208;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  border: 1px solid #f0c070;
+  white-space: nowrap;
+}
+
+/* ── Abhang section ───────────────────────────────────────────── */
+.abhang-grid-section {
+  padding: 2rem 1.5rem 4rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* "संत जनाबाई अभंग" heading — centered, orange, like source */
+.abhang-grid-heading {
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: #ed8208;
+  border-top: 1px solid #e0c89a;
+  border-bottom: 1px solid #e0c89a;
+  padding: 0.7rem 0;
+  margin: 0 0 1.5rem 0;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* 6-column grid wrapper */
+.abhang-columns {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  align-items: start;
+}
+
+/* Each column = one <ul> */
+.abhang-col-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item */
+.abhang-col-list li {
+  padding: 0;
+  text-align: center;
+}
+
+/* Links — dark red, bold, centered, no underline by default */
+.abhang-col-list li a {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.95rem;
+  color: #a00000;           /* deep red/burgundy */
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.6;
+  word-break: break-word;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  transition: color 0.12s;
+}
+
+.abhang-col-list li a:visited {
+  color: #a00000;           /* keep same color for visited */
+}
+
+.abhang-col-list li a:hover {
+  color: #ed8208;
+  text-decoration: underline;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INDIVIDUAL ABHANG PAGE  – exact source layout
+══════════════════════════════════════════════════════════════ */
+
+.abhang-post-main {
+  background: #fff;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────── */
+.sant-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0.6rem 1.5rem;
+  background: #f9f5ef;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.88rem;
+  color: #777;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.sant-breadcrumb a {
+  color: #ed8208;
+  text-decoration: none;
+}
+.sant-breadcrumb a:hover { text-decoration: underline; }
+
+.bc-sep { color: #aaa; }
+
+.sant-breadcrumb span { color: #333; }
+
+/* ── Post article wrapper ─────────────────────────────────────── */
+.abhang-post {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* ── Featured image – full width like source ──────────────────── */
+.post-thumb {
+  margin: 0 -1.5rem 1.5rem;
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.post-thumb-img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+/* ── Post header ──────────────────────────────────────────────── */
+.post-header {
+  margin-bottom: 1.5rem;
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+}
+
+.post-category-link {
+  color: #777;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.post-category-link:hover {
+  background: #ed8208;
+  color: #fff;
+  border-color: #ed8208;
+}
+
+/* ── Post content – mirrors the source entry-content ─────────── */
+.post-content {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  color: #333;
+}
+
+.post-content h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.6rem;
+}
+
+.post-content h2 span {
+  font-size: 16px;
+}
+
+/* ── HR lines – thin, like source ────────────────────────────── */
+.post-hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1rem 0;
+}
+
+/* ── The abhang verse text ────────────────────────────────────── */
+.abhang-verse {
+  font-size: 1.05rem;
+  line-height: 2.0;
+  color: #1a1a1a;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  margin: 0.5rem 0;
+}
+
+/* ── Action buttons ───────────────────────────────────────────── */
+.abhang-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.abhang-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #f9f5ef;
+  color: #555;
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.abhang-action-btn:hover {
+  background: #fff3e0;
+  border-color: #ed8208;
+  color: #ed8208;
+}
+
+.abhang-action-btn.liked {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
+/* ── Meaning box ──────────────────────────────────────────────── */
+.abhang-meaning-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.abhang-meaning-inner {
+  background: #fdfaf5;
+  border: 1px solid #e0c89a;
+  border-left: 4px solid #ed8208;
+  padding: 1.5rem 2rem;
+}
+
+.meaning-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ed8208;
+  margin-bottom: 0.8rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.abhang-meaning-inner p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* ── Post Navigation ──────────────────────────────────────────── */
+.post-navigation {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-previous, .nav-next, .nav-center {
+  flex: 1;
+}
+
+.nav-previous { text-align: left; }
+.nav-center { text-align: center; }
+.nav-next { text-align: right; }
+
+.post-navigation a {
+  color: #ed8208;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  transition: color 0.15s;
+}
+
+.post-navigation a:hover {
+  color: #c06000;
+  text-decoration: underline;
+}
+
+.nav-center .nav-list-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #e0c89a;
+  background: #fdfaf5;
+  border-radius: 4px;
+  color: #555;
+  font-weight: 400;
+}
+
+.nav-center .nav-list-btn:hover {
+  color: #ed8208;
+  border-color: #ed8208;
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .abhang-columns { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .abhang-columns { grid-template-columns: repeat(3, 1fr); }
+  .abhang-banner-title { font-size: 1.3rem; }
+}
+
+@media (max-width: 560px) {
+  .abhang-columns { grid-template-columns: repeat(2, 1fr); }
+  .abhang-text-card { padding: 1.2rem 1rem; }
+  .abhang-nav-row { flex-direction: column; align-items: stretch; }
+  .abhang-nav-btn { justify-content: center; }
+  .abhang-banner-overlay { padding: 1.2rem 1rem; }
+}
+
+
+/* Dnyaneshwar Categorized Landing Page */
+.dnyaneshwar-landing-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-left: 1px solid #ff9900;
+  border-right: 1px solid #ff9900;
+  border-bottom: 1px solid #ff9900;
+  border-top: 2px solid #5a3a22; /* dark top border */
+}
+
+.dnyaneshwar-col {
+  padding: 40px 20px;
+  border-right: 1px solid #ff9900;
+  text-align: center;
+}
+.dnyaneshwar-col:last-child {
+  border-right: none;
+}
+
+.dnyaneshwar-heading {
+  color: #a02020;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.dnyaneshwar-subheading {
+  color: #a02020;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.dnyaneshwar-links-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 10px;
+  text-align: center;
+}
+
+.dnyaneshwar-links-1col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.dnyaneshwar-link {
+  color: #8b0000;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.dnyaneshwar-link:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .dnyaneshwar-landing-container {
+    grid-template-columns: 1fr;
+  }
+  .dnyaneshwar-col {
+    border-right: none;
+    border-bottom: 1px solid #ff9900;
+  }
+  .dnyaneshwar-col:last-child {
+    border-bottom: none;
+  }
+}
