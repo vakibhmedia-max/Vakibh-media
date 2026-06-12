@@ -86,7 +86,7 @@ img {
 }
 
 /* Header & Sticky Navigation */
-header {
+body > header {
   background-color: var(--bg-white);
   border-bottom: 1px solid var(--border-color);
   position: sticky;

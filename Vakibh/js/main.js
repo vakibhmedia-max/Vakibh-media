@@ -1,4 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Dynamically Inject Missing Navbar (for 1000+ static files) ---
+  const headerContainer = document.querySelector('.header-container');
+  if (headerContainer && !document.querySelector('#navMenu')) {
+    const logoLink = document.querySelector('.logo-link');
+    const homePath = logoLink ? logoLink.getAttribute('href') : 'index.html';
+    
+    const navHTML = `
+      <button class="menu-toggle" id="menuToggle" aria-label="मेनू">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="navMenu">
+        <ul>
+          <li><a href="${homePath}">गृहपृष्ठ</a></li>
+          <li><a href="${homePath}#granth">ग्रंथ</a></li>
+          <li><a href="${homePath}#abhangs">अभंग/भजन</a></li>
+          <li><a href="${homePath}#saints" class="active">संत</a></li>
+          <li><a href="${homePath}#categories">विभाग</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="शोध">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="lang-switch" id="langSwitch">मराठी</button>
+      </div>
+    `;
+    headerContainer.insertAdjacentHTML('beforeend', navHTML);
+  }
+
   // --- Mobile Menu Toggle ---
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('nav');
