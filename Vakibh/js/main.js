@@ -212,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Audio Player Logic ---
   const audio = new Audio();
   audio.src = 'Vakibh/vaakibh_audio.mp3';
+  const heroVideo = document.querySelector('.hero-bg-video');
 
   // Hero player DOM
   const playPauseBtn = document.getElementById('playPauseBtn');
@@ -231,6 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  const syncPlayPauseIcon = () => {
+    if (playIcon) {
+      playIcon.className = audio.paused ? 'fas fa-play' : 'fas fa-pause';
+    }
+  };
+
+  const syncHeroVideoState = () => {
+    if (!heroVideo) return;
+
+    if (audio.paused) {
+      heroVideo.pause();
+    } else {
+      heroVideo.play().catch(err => {
+        console.error('Hero video playback error: ', err);
+      });
+    }
+  };
+
   // Play/Pause State
   const togglePlay = () => {
     if (audio.paused) {
@@ -238,7 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
       stopAllCardAudio();
       
       audio.play().then(() => {
-        if (playIcon) playIcon.className = 'fas fa-pause';
+        syncPlayPauseIcon();
+        syncHeroVideoState();
         showToast('ऑडिओ सुरू झाला.');
       }).catch(err => {
         console.error("Audio playback error: ", err);
@@ -246,7 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       audio.pause();
-      if (playIcon) playIcon.className = 'fas fa-play';
+      syncHeroVideoState();
+      syncPlayPauseIcon();
       showToast('ऑडिओ थांबवला.');
     }
   };
@@ -268,8 +289,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timeDuration) timeDuration.textContent = formatTime(audio.duration);
   });
 
+  audio.addEventListener('play', () => {
+    syncPlayPauseIcon();
+    syncHeroVideoState();
+  });
+
+  audio.addEventListener('pause', () => {
+    syncPlayPauseIcon();
+    syncHeroVideoState();
+  });
+
   audio.addEventListener('ended', () => {
-    if (playIcon) playIcon.className = 'fas fa-play';
+    syncPlayPauseIcon();
+    syncHeroVideoState();
     if (progressFill) progressFill.style.width = '0%';
     if (timeCurrent) timeCurrent.textContent = '0:00';
   });
@@ -336,7 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Stop main player if active
       if (!audio.paused) {
         audio.pause();
-        if (playIcon) playIcon.className = 'fas fa-play';
+        syncHeroVideoState();
+        syncPlayPauseIcon();
       }
 
       const isPlaying = btn.classList.contains('playing');
@@ -367,5 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cardAudioIndicator.style.color = '';
       }
     });
+  }
+
+  syncPlayPauseIcon();
+  if (heroVideo) {
+    heroVideo.pause();
   }
 });
