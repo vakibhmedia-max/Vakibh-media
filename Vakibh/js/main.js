@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+  if (!document.querySelector('link[data-font-awesome]')) {
+    const fontAwesomeLink = document.createElement('link');
+    fontAwesomeLink.rel = 'stylesheet';
+    fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    fontAwesomeLink.dataset.fontAwesome = 'true';
+    document.head.appendChild(fontAwesomeLink);
+  }
+
   // --- Dynamically Inject Missing Navbar (for 1000+ static files) ---
   const headerContainer = document.querySelector('.header-container');
   if (headerContainer && !document.querySelector('#navMenu')) {
@@ -201,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   const createAbhangPostActions = () => {
-    const abhangPosts = document.querySelectorAll('.abhang-post');
+    const abhangPosts = document.querySelectorAll('.abhang-post, .post-article');
     abhangPosts.forEach((post) => {
       const existingActions = post.querySelector('.abhang-post-actions');
       const legacyActions = post.querySelector('.post-actions');
@@ -218,9 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (post.querySelector('.abhang-post-actions')) return;
 
-      const postHeader = post.querySelector('.post-header');
       const postContent = post.querySelector('.post-content');
-      if (!postHeader || !postContent) return;
+      if (!postContent) return;
 
       postContent.insertAdjacentHTML('afterbegin', getAbhangPostActionsMarkup());
     });
@@ -229,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createAbhangPostActions();
 
   const createIndividualAbhangActions = () => {
-    const abhangEntries = document.querySelectorAll('.abhang-post .entry-content');
+    const abhangEntries = document.querySelectorAll('.abhang-post .entry-content, .post-article .entry-content, .post-article [itemprop="text"]');
 
     abhangEntries.forEach((entryContent, postIndex) => {
       const paragraphs = Array.from(entryContent.querySelectorAll('p'));
@@ -272,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return verseLines.slice(1).join('\n');
     }
 
-    const verseContainer = scope.querySelector('.abhang-verse');
+    const verseContainer = scope.querySelector('.abhang-verse, .verse_style');
     return normalizeText(verseContainer?.innerText || scope.querySelector('.post-content')?.innerText || '');
   };
 
@@ -280,13 +287,14 @@ document.addEventListener('DOMContentLoaded', () => {
     element.closest('.abhang-item-actions') ||
     element.closest('.abhang-card') ||
     element.closest('.arrival-card') ||
-    element.closest('.abhang-post')
+    element.closest('.abhang-post') ||
+    element.closest('.post-article')
   );
 
   const getAbhangShareData = (scope) => {
     const shareTargetId = scope?.dataset?.shareTarget;
     const shareTarget = shareTargetId ? document.getElementById(shareTargetId) : null;
-    const abhangPost = scope?.closest('.abhang-post');
+    const abhangPost = scope?.closest('.abhang-post, .post-article');
     const itemLabel = normalizeText(scope?.dataset?.shareLabel || shareTarget?.dataset?.abhangNumber || '');
     const title = normalizeText(
       (shareTarget && abhangPost?.querySelector('.post-title')?.innerText
@@ -313,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const pageUrl = scope?.classList?.contains('abhang-item-actions') && shareTarget?.id
       ? `${getPageShareUrl()}#${shareTarget.id}`
-      : scope?.classList?.contains('abhang-post')
+      : (scope?.classList?.contains('abhang-post') || scope?.classList?.contains('post-article'))
       ? getPageShareUrl()
       : `${getPageShareUrl()}#abhangs`;
     const formattedText = [title, author, body, 'वाकीभ संतसाहित्य', pageUrl]
