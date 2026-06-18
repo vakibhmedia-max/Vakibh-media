@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="mr">
 
 <head>
@@ -17,10 +17,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="Vakibh/css/style.css?v=3">
+  <link rel="stylesheet" href="Vakibh/css/style.css?v=5">
 
   <!-- JS Script (Deferred) -->
-  <script src="Vakibh/js/main.js" defer></script>
+  <script src="Vakibh/js/main.js?v=6" defer></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 
       <nav id="navMenu">
         <ul>
-          <li><a href="index.html" class="active">गृहपृष्ठ</a></li>
+          <li><a href="index.html" class="active">मुखपृष्ठ</a></li>
           <li><a href="#granth">ग्रंथ</a></li>
           <li><a href="#abhangs">अभंग/भजन</a></li>
           <li><a href="#saints">संत</a></li>
@@ -63,18 +63,6 @@
       </video>
       <div class="hero-video-overlay" aria-hidden="true"></div>
       <div class="hero-content">
-        <h1 class="heading-traditional">वाकीभ संतसाहित्य</h1>
-        <p class="subtitle">अभंग, ओव्या, गाथा आणि बरेच काही पवित्र साहित्याचा एकत्रित संग्रह</p>
-
-        <!-- Search bar -->
-        <div class="hero-search-container">
-          <input type="text" class="hero-search-input" id="heroSearchInput" placeholder="उदा. अभंग, संत किंवा ग्रंथ..."
-            aria-label="शोध पर्याय">
-          <button class="hero-search-btn" id="heroSearchBtn">शोधा</button>
-        </div>
-
-        <!-- Read Start CTA -->
-        <a href="#granth" class="hero-cta-btn">वाचा</a>
       </div>
 
       <!-- Audio Playbar -->
@@ -85,8 +73,8 @@
               <i class="fas fa-play"></i>
             </button>
             <div class="player-info">
-              <div class="player-title">वाकीभ ऑडिओ संग्रह</div>
-              <div class="player-subtitle">संत साहित्याचा मधुर रस</div>
+              <div class="player-title">वाकीभ व्हिडिओ</div>
+              <div class="player-subtitle">मूळ व्हिडिओ ध्वनी</div>
             </div>
           </div>
 
@@ -305,10 +293,13 @@
           </div>
           <div class="abhang-card-footer">
             <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
-              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
-                  class="fas fa-share-alt"></i></button>
+              <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
+              <div class="abhang-share-group">
+                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+              </div>
             </div>
             <div class="abhang-card-player">
               <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
@@ -331,10 +322,13 @@
           </div>
           <div class="abhang-card-footer">
             <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
-              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
-                  class="fas fa-share-alt"></i></button>
+              <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
+              <div class="abhang-share-group">
+                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+              </div>
             </div>
             <div class="abhang-card-player">
               <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
@@ -355,10 +349,13 @@
           </div>
           <div class="abhang-card-footer">
             <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
-              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
-                  class="fas fa-share-alt"></i></button>
+              <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
+              <div class="abhang-share-group">
+                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+              </div>
             </div>
             <div class="abhang-card-player">
               <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
@@ -383,10 +380,13 @@
           </div>
           <div class="abhang-card-footer">
             <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="पसंत करा"><i class="far fa-heart"></i></button>
-              <button class="abhang-btn share-abhang-btn" aria-label="शेअर करा"><i
-                  class="fas fa-share-alt"></i></button>
+              <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang"><i class="far fa-copy"></i></button>
+              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
+              <div class="abhang-share-group">
+                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+              </div>
             </div>
             <div class="abhang-card-player">
               <button class="abhang-card-play-btn" aria-label="अभंग ऑडिओ ऐका"><i class="fas fa-play"></i></button>
@@ -460,7 +460,7 @@
     </section>
 
     <!-- Section 6: Recent Arrivals (नवीन आवक) -->
-    <section class="new-arrivals-section" id="newArrivals">
+    <section class="new-arrivals-section" id="newArrivals" hidden>
       <div class="section-title-container">
         <h2 class="heading-traditional">नवीन आवक</h2>
         <p>(नवीन साहित्य)</p>
@@ -475,7 +475,14 @@
           <div>
             <div class="arrival-header">
               <span class="arrival-tag">अभंग</span>
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+                <div class="abhang-share-group">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                  <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                  <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+                </div>
+              </div>
             </div>
             <h3 class="arrival-title">सुंदर ते ध्यान उभे विटेवरी</h3>
             <p class="arrival-excerpt">सुंदर ते ध्यान उभे विटेवरी । कर कटावरी ठेवोनिया ॥
@@ -488,7 +495,14 @@
           <div>
             <div class="arrival-header">
               <span class="arrival-tag">ग्रंथ</span>
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+                <div class="abhang-share-group">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                  <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                  <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+                </div>
+              </div>
             </div>
             <h3 class="arrival-title">मनाचे श्लोक</h3>
             <p class="arrival-excerpt">मना सज्जना भक्तीपंथेचि जावे । तरी श्रीहरी पाविजेतो स्वभावे ॥
@@ -501,7 +515,14 @@
           <div>
             <div class="arrival-header">
               <span class="arrival-tag">आरती</span>
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+                <div class="abhang-share-group">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                  <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                  <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+                </div>
+              </div>
             </div>
             <h3 class="arrival-title">ज्ञानराजाची आरती</h3>
             <p class="arrival-excerpt">आरती ज्ञानराजा । महाकैवल्यतेजा ॥
@@ -514,7 +535,14 @@
           <div>
             <div class="arrival-header">
               <span class="arrival-tag">भजन</span>
-              <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" aria-label="कॉपी करा"><i class="far fa-copy"></i></button>
+                <div class="abhang-share-group">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                  <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></button>
+                  <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram"><i class="fab fa-instagram"></i></button>
+                </div>
+              </div>
             </div>
             <h3 class="arrival-title">कानडा राजा पंढरीचा</h3>
             <p class="arrival-excerpt">कानडा राजा पंढरीचा । वेदांनाही नाही कळला अंत याचा ॥
@@ -546,7 +574,7 @@
       <div class="footer-links">
         <h4>मेनू</h4>
         <ul>
-          <li><a href="index.html">गृहपृष्ठ</a></li>
+          <li><a href="index.html">मुखपृष्ठ</a></li>
           <li><a href="#granth">ग्रंथ</a></li>
           <li><a href="#saints">संत</a></li>
           <li><a href="#abhangs">अभंग</a></li>
@@ -582,3 +610,5 @@
 </body>
 
 </html>
+
+

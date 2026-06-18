@@ -6,9 +6,9 @@
   <title>दूत विनविती कर – संत जनाबाई अभंग – २४१ – वाकीभ</title>
   <meta name="description" content="दूत विनविती कर – संत जनाबाई अभंग – २४१ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -87,19 +87,23 @@
 गुडी उभवी वसिष्‍ठ ॥८॥<br>
 येथुनी हरिश्चंद्र आख्यान ।<br>
 नामयाची जनी म्हण ॥९॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -163,65 +167,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `दूत विनविती कर जोडुनी ।
-
-म्हणती आरुढावें विमानीं ॥१॥
-
-ऋषि म्हणे न घडे ऐसें ।
-
-ह्याची तृप्ति नाहीं आस ॥२॥
-
-पटावरोनी काढिला ।
-
-पटीं बैसवीन ह्याला ॥३॥
-
-थोर वाजत गाजत ।
-
-विप्र मंत्रघोष करीत ॥४॥
-
-विजयी झाला हरिश्चंद्र ।
-
-आडवा पावला परिवार ॥५॥
-
-लक्षानुलक्ष आरत्या करिती ।
-
-नगरनारी वोवाळिती ॥६॥
-
-ऋषि अभिषेकिती रायाला ।
-
-थोर मनीं आनंदाला ॥७॥
-
-राया प्राप्‍ती जाला पट ।
-
-गुडी उभवी वसिष्‍ठ ॥८॥
-
-येथुनी हरिश्चंद्र आख्यान ।
-
-नामयाची जनी म्हण ॥९॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'दूत विनविती कर – संत जनाबाई अभंग – २४१', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

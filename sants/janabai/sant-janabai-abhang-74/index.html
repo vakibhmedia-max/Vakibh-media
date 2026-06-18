@@ -6,9 +6,9 @@
   <title>पदक विठ्‌ठलाचें गेलें – संत जनाबाई अभंग – ७४ – वाकीभ</title>
   <meta name="description" content="पदक विठ्‌ठलाचें गेलें – संत जनाबाई अभंग – ७४ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -95,19 +95,23 @@
 जनी म्हणे विठो मेला ॥१२॥<br>
 तंव सुळाचें झालें पाणी ।<br>
 धन्य म्हणे दासी जनी ॥१३॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -171,81 +175,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `पदक विठ्‌ठलाचें गेलें ।
-
-ब्राह्मण म्हणती जनीनें नेलें ॥१॥
-
-अगे शिंपियाचे जनी ।
-
-नेलें पदक दे आणुनी ॥२॥
-
-देवासमोर तुझें घर ।
-
-तुझें येणें निरंतर ॥३॥
-
-म्यां नेलें नाहीं जाण ।
-
-सख्या विठोबाची आण ॥४॥
-
-धोतर झाडूनि पाहती ।
-
-पडलें पदक घेऊनि जाती ॥५॥
-
-जनी वरी आली चोरी ।
-
-ब्राह्मण करिती मारा मारी ॥६॥
-
-धाविन्नले चाळीस गडी ।
-
-जनीवरी पडली उडी ॥७॥
-
-दंडीं लाविल्या काढण्या ।
-
-विठो धांवरे धावण्या ॥८॥
-
-चंद्रभागे रोविला शूळ ।
-
-जनाबाईस आलें मूळ ॥९॥
-
-हातीं टाळी वाजविती ।
-
-मुखीं विठ्‌ठल बोलती ॥१०॥
-
-विलंब लागला ते वेळीं ।
-
-म्हणती जनिला द्यारे सुळीं ॥११॥
-
-ऐसा येळकोट केला ।
-
-जनी म्हणे विठो मेला ॥१२॥
-
-तंव सुळाचें झालें पाणी ।
-
-धन्य म्हणे दासी जनी ॥१३॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'पदक विठ्‌ठलाचें गेलें – संत जनाबाई अभंग – ७४', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

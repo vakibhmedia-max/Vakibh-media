@@ -6,9 +6,9 @@
   <title>येतां देखोनिया बाळ – संत जनाबाई अभंग – २३५ – वाकीभ</title>
   <meta name="description" content="येतां देखोनिया बाळ – संत जनाबाई अभंग – २३५ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -95,19 +95,23 @@
 व्यर्थ मुकलों तपासी ॥१२॥<br>
 मार्गी तिघें एक झालीं ।<br>
 दासी जनी आनंदली ॥१३॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -171,81 +175,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `येतां देखोनिया बाळ ।
-
-ऋषि धांवला तात्काळ ॥१॥
-
-कडे घेऊनि तयाला ।
-
-ऋषि आश्रमासी आला ॥२॥
-
-तुझें मायबापीं प्रेम ।
-
-होय पाहोनी आराम ॥३॥
-
-सुखें करुनी भोजन ।
-
-सुवासित उदकपान ॥४॥
-
-करुनी क्रमियेलें पंथा ।
-
-तिहीं सांगितली वार्ता ॥५॥
-
-बाळ येतसे मागून ।
-
-त्याचा परामर्ष करणें ॥६॥
-
-म्हणोनी सारिलें विंदान ।
-
-पुढें वाढिलें दिव्यान्न ॥७॥
-
-रडे मोकलुनी धाय ।
-
-येथें कल्पांतीं न राहे ॥८॥
-
-पुढें लागला पंथासी ।
-
-ऋषि तटस्थ मानसीं ॥९॥
-
-वदनीं बोट घाली वोजा ।
-
-ऋषि करीतसे चोजा ॥१०॥
-
-ऐसें सत्त्वादिकांपुढें ।
-
-तप खद्योत बापुडें ॥११॥
-
-काय करणें ऐशियांसी ।
-
-व्यर्थ मुकलों तपासी ॥१२॥
-
-मार्गी तिघें एक झालीं ।
-
-दासी जनी आनंदली ॥१३॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'येतां देखोनिया बाळ – संत जनाबाई अभंग – २३५', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

@@ -6,9 +6,9 @@
   <title>वेष धरोनी ब्राम्हण – संत जनाबाई अभंग – २३९ – वाकीभ</title>
   <meta name="description" content="वेष धरोनी ब्राम्हण – संत जनाबाई अभंग – २३९ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -95,19 +95,23 @@
 मांस कवळें घाली मुखीं ॥१२॥<br>
 येऊनियां नगरनारी ।<br>
 जनी म्हणे शंख करी ॥१३॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -171,81 +175,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `वेष धरोनी ब्राम्हण ।
-
-तिसी करी संभाषण ॥१॥
-
-खेद न करीं मानसीं ।
-
-काय करणें होणारासी ॥२॥
-
-वेगीं संस्कारीं याला ।
-
-दिवसा मागतीं जा कामाला ॥३॥
-
-घेऊनियां प्रेतासी ।
-
-वेगीं चेतवी अग्नीसी ॥४॥
-
-ज्वाळा अवलोकितां नयनीं ।
-
-राव आला तत्‌क्षणीं ॥५॥
-
-म्हणे कोण गे तूं येथें ।
-
-येरी म्हणे तुमचा सुत ॥६॥
-
-कैचा सुत कैसा काय ।
-
-आमचा हक कोठें आहे ॥७॥
-
-करुणा ग्लानी करी त्याची ।
-
-म्हणे गोष्‍ट हे तों कैंची ॥८॥
-
-बरेपणें जांई आतां ।
-
-दंड बैसतलि माथां ॥९॥
-
-घेंई प्रेत ओसंगळी ।
-
-वेगें प्रवेशे देउळीं ॥१०॥
-
-आडवें प्रेत झोपीं जाय ।
-
-ऋषि धांवे लवलाहे ॥११॥
-
-उदर चिरोनियां नखीं ।
-
-मांस कवळें घाली मुखीं ॥१२॥
-
-येऊनियां नगरनारी ।
-
-जनी म्हणे शंख करी ॥१३॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'वेष धरोनी ब्राम्हण – संत जनाबाई अभंग – २३९', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

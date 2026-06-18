@@ -271,6 +271,25 @@
   border-color: #ed8208;
 }
 
+.abhang-post-actions {
+  justify-content: flex-start;
+  padding: 0.85rem 1rem;
+  margin: 0 0 1.25rem;
+  background: #fff8ef;
+  border: 1px solid #f0d5ab;
+  border-radius: 12px;
+}
+
+.abhang-item-actions {
+  justify-content: flex-start;
+  padding: 0.45rem 0;
+  margin: 0.25rem 0 1rem;
+  background: transparent;
+  border: none;
+  border-top: 1px dashed #e4c89d;
+  border-radius: 0;
+}
+
 /* ── Post content – mirrors the source entry-content ─────────── */
 .post-content {
   font-family: Arial, Helvetica, Verdana, sans-serif;
@@ -520,4 +539,20 @@
   .dnyaneshwar-col:last-child {
     border-bottom: none;
   }
+}
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
+
+.sant-page-main,
+.sant-page-main div,
+.sant-page-main p,
+.sant-page-main span,
+.sant-page-main a,
+.sant-page-main li,
+.sant-page-main h1,
+.sant-page-main h2,
+.sant-page-main h3,
+.sant-page-main h4,
+.sant-page-main input,
+.sant-page-main button {
+  font-family: 'Mukta', sans-serif;
 }

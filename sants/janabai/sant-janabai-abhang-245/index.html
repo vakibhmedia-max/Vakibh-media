@@ -6,9 +6,9 @@
   <title>ताट विस्तारी रुक्मिणी – संत जनाबाई अभंग – २४५ – वाकीभ</title>
   <meta name="description" content="ताट विस्तारी रुक्मिणी – संत जनाबाई अभंग – २४५ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -87,19 +87,23 @@
 नयनीं कोंदला प्रकाशे ॥८॥<br>
 पाहतां आनंदली मनीं ।<br>
 म्हणे नामयाची जनी ॥९॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -163,65 +167,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `ताट विस्तारी रुक्मिणी ।
-
-देव बैसले भोजनीं ॥१॥
-
-इतुक्यामध्यें अकस्मात्‌ ।
-
-ध्वनि उमटली कानांत ॥२॥
-
-धांवा ऐकतां श्रवणीं ।
-
-ताट लोटी चक्रपाणी ॥३॥
-
-उठिला खडबडोनि कैसा ।
-
-पावे बहिणीचिया क्लेशा ॥४॥
-
-उभी वृंदावनीं बाळा ।
-
-पुढें देखिला सांवळा ॥५॥
-
-मुगुट कुंडलें मेखळा ।
-
-वैजयंति वनमाळा ॥६॥
-
-शंख चक्र आयुधें करीं ।
-
-दिसे घवघवीत हरी ॥७॥
-
-झळके पीतांबर कासे ।
-
-नयनीं कोंदला प्रकाशे ॥८॥
-
-पाहतां आनंदली मनीं ।
-
-म्हणे नामयाची जनी ॥९॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'ताट विस्तारी रुक्मिणी – संत जनाबाई अभंग – २४५', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

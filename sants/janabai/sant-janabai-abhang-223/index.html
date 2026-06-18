@@ -6,9 +6,9 @@
   <title>नाना वाजंत्र्यांच्या ध्वनी – संत जनाबाई अभंग – २२३ – वाकीभ</title>
   <meta name="description" content="नाना वाजंत्र्यांच्या ध्वनी – संत जनाबाई अभंग – २२३ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -107,19 +107,23 @@
 मारा बाहेर घाला याशीं ॥१८॥<br>
 रक्तवइन आश्रमासी ।<br>
 म्हणे नामयाची दासी ॥१९॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -183,105 +187,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `नाना वाजंत्र्यांच्या ध्वनी ।
-
-राजा आरुढला वहनीं ॥१॥
-
-राव प्रवेशला वनीं ।
-
-अवघीं श्वापदें मारुनी ॥२॥
-
-आश्रमीं आणायासी राव ।
-
-केलें ऋषीनें लाघव ॥३॥
-
-मृग कनकाचा साजरा ।
-
-आला रायाच्या सामोरा ॥४॥
-
-गुणीं लाविलासे वाण ।
-
-घेऊं पाहे त्याचा प्राण ॥५॥
-
-येरु कीलान मारुनी जाय ।
-
-धरणीं न ठेवितो पाय ॥६॥
-
-राव लागे तया पाठीं ।
-
-दम न समावे पोठीं ॥७॥
-
-प्रवेशला तये वनीं ।
-
-देखे अपूर्व नयनीं ॥८॥
-
-धेनुव्याघ्र एके स्थानीं ।
-
-चाटी एकमेकां दोन्हीं ॥९॥
-
-निर्वैर श्वापदगण ।
-
-राव विस्मय करी देखोन ॥१०॥
-
-पुढें जातीं सुगंध पाणी ।
-
-राव स्नानातें करुनी ॥११॥
-
-भावें पूजिला गिरिजावर ।
-
-नमन केलें जोडुनी कर ॥१२॥
-
-विश्वामित्रें तया वनीं ।
-
-दोघी रुपसा नयनीं ॥१३॥
-
-रायापुढें नृत्य करी ।
-
-टाळ विणा झणत्कारी ॥१४॥
-
-द्रव्य आणविलें अपारे ।
-
-राव देतो आपुल्या करें ॥१५॥
-
-नाहीं द्रव्यासी कारण ।
-
-तुझ्या स्वरुपासी लीन ॥१६॥
-
-बोले मुनिवर्य दासी ।
-
-राजा कोपला मानसीं ॥१७॥
-
-आज्ञा केली प्रधानासी ।
-
-मारा बाहेर घाला याशीं ॥१८॥
-
-रक्तवइन आश्रमासी ।
-
-म्हणे नामयाची दासी ॥१९॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'नाना वाजंत्र्यांच्या ध्वनी – संत जनाबाई अभंग – २२३', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

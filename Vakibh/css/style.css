@@ -115,13 +115,6 @@ body > header {
 .logo-img {
   height: 110px;
   width: 110px;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: var(--transition);
-}
-
-.logo-img:hover {
-  transform: rotate(15deg) scale(1.05);
 }
 
 nav ul {
@@ -199,6 +192,7 @@ nav ul li a.active::after {
   border-color: var(--primary);
 }
 
+
 .menu-toggle {
   display: none;
   background: none;
@@ -212,17 +206,13 @@ nav ul li a.active::after {
 .hero {
   position: relative;
   background: #000 url('../hero-bg.jpg') no-repeat center center/cover;
-  padding: 8rem 0 5rem;
+  padding: 0;
   color: var(--bg-white);
   text-align: center;
-  min-height: 520px;
+  min-height: 0;
   width: 100%;
   max-width: none;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   overflow: hidden;
 }
 
@@ -233,24 +223,24 @@ nav ul li a.active::after {
 }
 
 .hero-bg-video {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
   object-position: center;
   z-index: 0;
+  background: #000;
 }
 
 .hero-video-overlay {
   background: linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.68));
   z-index: 1;
+  pointer-events: none;
 }
 
 .hero-content {
-  max-width: 800px;
-  margin: auto;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 2;
+  display: none;
 }
 
 .hero h1 {
@@ -332,17 +322,18 @@ nav ul li a.active::after {
 
 /* Hero Audio Player */
 .hero-player-wrap {
-  width: 100%;
+  width: calc(100% - 3rem);
   max-width: 900px;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin: 0;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 0.8rem 1.5rem;
-  margin-top: 2rem;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
   z-index: 2;
 }
 
@@ -464,7 +455,7 @@ section {
   margin: 0 auto;
 }
 
-/* Section 1: Links / Category Grid (मुबलक संग्रह) */
+/* Section 1: Links / Category Grid (à¤®à¥à¤¬à¤²à¤• à¤¸à¤‚à¤—à¥à¤°à¤¹) */
 .quick-links-section {
   border-bottom: 1px dashed var(--border-color);
 }
@@ -511,7 +502,7 @@ section {
   color: var(--primary-dark);
 }
 
-/* Section 2: Granth Sangrah (ग्रंथ संग्रह) */
+/* Section 2: Granth Sangrah (à¤—à¥à¤°à¤‚à¤¥ à¤¸à¤‚à¤—à¥à¤°à¤¹) */
 .granth-section {
   background-color: var(--bg-white);
   max-width: 100%;
@@ -591,7 +582,7 @@ section {
   font-weight: 500;
 }
 
-/* Section 3: Featured Abhang (वैशिष्ट्यपूर्ण अभंग) */
+/* Section 3: Featured Abhang (à¤µà¥ˆà¤¶à¤¿à¤·à¥à¤Ÿà¥à¤¯à¤ªà¥‚à¤°à¥à¤£ à¤…à¤­à¤‚à¤—) */
 .abhang-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -674,6 +665,13 @@ section {
 .abhang-actions-left {
   display: flex;
   gap: 1.2rem;
+  align-items: center;
+}
+
+.abhang-share-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
 .abhang-btn {
@@ -697,6 +695,18 @@ section {
 
 .abhang-btn.active {
   color: var(--primary-dark);
+}
+
+.whatsapp-share-btn {
+  color: #25d366;
+}
+
+.facebook-share-btn {
+  color: #1877f2;
+}
+
+.instagram-share-btn {
+  color: #e1306c;
 }
 
 .abhang-card-player {
@@ -731,7 +741,7 @@ section {
   transform: scale(1.1);
 }
 
-/* Section 4: Sant Parampara (संत परंपरा) */
+/* Section 4: Sant Parampara (à¤¸à¤‚à¤¤ à¤ªà¤°à¤‚à¤ªà¤°à¤¾) */
 .saints-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -804,7 +814,7 @@ section {
   line-height: 1.5;
 }
 
-/* Section 5: Vibhag (विभाग) */
+/* Section 5: Vibhag (à¤µà¤¿à¤­à¤¾à¤—) */
 .categories-section {
   background-color: var(--bg-white);
   max-width: 100%;
@@ -882,7 +892,7 @@ section {
   font-weight: 500;
 }
 
-/* Section 6: Recent Arrivals (नवीन आवक) */
+/* Section 6: Recent Arrivals (à¤¨à¤µà¥€à¤¨ à¤†à¤µà¤•) */
 .new-arrivals-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1158,6 +1168,186 @@ footer::before {
   transition: var(--transition);
 }
 
+.search-results-panel {
+  width: min(760px, calc(100% - 3rem));
+  margin: -0.5rem auto 1.5rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text-dark);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  text-align: left;
+}
+
+.search-results-panel[hidden] {
+  display: none;
+}
+
+.search-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.search-results-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.search-results-close {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.search-results-list {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  display: block;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: rgba(255, 122, 0, 0.08);
+}
+
+.search-result-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.search-result-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.search-result-saint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-transform: capitalize;
+}
+
+.search-result-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.search-result-description {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.search-empty-state {
+  padding: 1.25rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.header-search-modal[hidden] {
+  display: none;
+}
+
+.header-search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.header-search-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.header-search-dialog {
+  position: relative;
+  width: min(920px, calc(100% - 2rem));
+  margin: 6rem auto 0;
+  background: var(--bg-white);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+.header-search-topbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.header-search-input {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+}
+
+.header-search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.12);
+}
+
+.header-search-submit,
+.header-search-close {
+  border: none;
+  cursor: pointer;
+}
+
+.header-search-submit {
+  background: var(--primary);
+  color: var(--bg-white);
+  border-radius: 14px;
+  padding: 0.9rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.header-search-close {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 0.7rem 0.8rem;
+}
+
+.header-search-results {
+  max-height: min(70vh, 640px);
+  overflow: hidden;
+}
+
 .floating-whatsapp img {
   width: 48px;
   height: 48px;
@@ -1262,6 +1452,19 @@ footer::before {
     font-size: 1.15rem;
   }
 
+  .search-results-panel {
+    width: calc(100% - 2.4rem);
+  }
+
+  .header-search-dialog {
+    margin-top: 4.5rem;
+  }
+
+  .search-result-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .hero-player {
     flex-direction: column;
     align-items: stretch;
@@ -1293,6 +1496,24 @@ footer::before {
 
   .quick-links-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-results-panel {
+    width: calc(100% - 2rem);
+  }
+
+  .header-search-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .header-search-submit {
+    width: 100%;
+  }
+
+  .header-search-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
   }
 
   .granth-grid {

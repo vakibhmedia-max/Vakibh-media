@@ -6,9 +6,9 @@
   <title>धर्मशिळे आली राणी – संत जनाबाई अभंग – २२९ – वाकीभ</title>
   <meta name="description" content="धर्मशिळे आली राणी – संत जनाबाई अभंग – २२९ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -113,19 +113,23 @@
 मृगजळाचा हेलावा ॥२१॥<br>
 तिघेजणें एक झालीं ।<br>
 दासी जनी आनंदली ॥२२॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -189,117 +193,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `धर्मशिळे आली राणी ।
-
-ऋषि दचकला मनीं ॥१॥
-
-अग्नि विझवोनी अंगें ।
-
-सतीपुढें आला रागें ॥२॥
-
-म्हणे कवणाची कवण ।
-
-अग्नि खासी कवण्या गुणें ॥३॥
-
-येरी म्हणे पांथिकातें ।
-
-पति बाळ चुकले मातें ॥४॥
-
-तुम्हीं असतील देखिले ।
-
-मज सांगा जी वहिले ॥५॥
-
-ऋषि बोले तिजलागून ।
-
-मेले अग्नींत जळून ॥६॥
-
-तारामती नेउनी तेथें ।
-
-दाखविलीं दोन्ही प्रेतें ॥७॥
-
-त्वचा अंगींची जळाली ।
-
-हात पाय गोळा झालीं ॥८॥
-
-देखे नृपाचें तें मढें ।
-
-पाहें वल्लभा मजकडे ॥९॥
-
-रुसूं नका बोला वेगें ।
-
-गुजगोष्‍टी मजसंगें ॥१०॥
-
-रोहिदास कवळी पोटीं ।
-
-लावी लल्लाट लल्लाटीं ॥११॥
-
-शोक करी तारामती ।
-
-अस्त झाला तो गभस्ती ॥१२॥
-
-प्रेत कवळी कां निर्फळ ।
-
-गेला गेला हंसनीळ ॥१३॥
-
-आतां प्राप्त झाली निशी ।
-
-व्याघ्र भक्षील तिघांसी ॥१४॥
-
-सति पुढोनियां प्रेत ।
-
-नेलें ओढोनी परत ॥१५॥
-
-उदर फोडोनी त्वरीत ।
-
-टाकियेलें काढुनी आर्त ॥१६॥
-
-रागें गुरगुरी तो जाणा ।
-
-भय दावी क्षणक्षणा ॥१७॥
-
-येरी नेत्र झांकियेले ।
-
-पंचप्राण आकर्षिले ॥१८॥
-
-तारामती सांडील प्राण ।
-
-लटिकें प्रतिज्ञा वचन ॥१९॥
-
-पतिपुत्र दोघेजण ।
-
-आला घेउना ब्राम्हण ॥२०॥
-
-नाहीं व्याघ्र ना वणवा ।
-
-मृगजळाचा हेलावा ॥२१॥
-
-तिघेजणें एक झालीं ।
-
-दासी जनी आनंदली ॥२२॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'धर्मशिळे आली राणी – संत जनाबाई अभंग – २२९', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+

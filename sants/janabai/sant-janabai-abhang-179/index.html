@@ -6,9 +6,9 @@
   <title>संसारीं निधान लाधलें जनां – संत जनाबाई अभंग – १७९ – वाकीभ</title>
   <meta name="description" content="संसारीं निधान लाधलें जनां – संत जनाबाई अभंग – १७९ – वाकीभ संतसाहित्यावर वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css">
-  <script src="../../../Vakibh/js/main.js" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=5">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=6">
+  <script src="../../../Vakibh/js/main.js?v=6" defer></script>
 </head>
 <body>
 
@@ -85,19 +85,23 @@
 सद्रुरुवरिष्‍ठ तोचि जाणा ॥७॥<br>
 तया उत्तीर्णता व्हावया पदार्था ।<br>
 न देखों सर्वथा जनी म्हणे ॥८॥</p>
-      <hr class="post-hr">
-
-      <!-- Action buttons: कॉपी | शेअर | आवडले -->
-      <div class="post-actions">
-        <button class="post-action-btn" id="copyBtn" onclick="copyAbhang()">
-          <i class="far fa-copy"></i> कॉपी
-        </button>
-        <button class="post-action-btn" onclick="shareAbhang()">
-          <i class="fas fa-share-alt"></i> शेअर
-        </button>
-        <button class="post-action-btn like-btn" id="likeBtn" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i> आवडले
-        </button>
+      <hr class="post-hr">      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -161,61 +165,6 @@
   <a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="../../../Vakibh/whatsapp_icon.svg" alt="WhatsApp">
   </a>
-
-<script>
-  function copyAbhang() {
-    const t = `संसारीं निधान लाधलें जनां ।
-
-सद्‌गुरुचरणा सेवीं बापा ॥१॥
-
-कायावाचामनें तयास देवावीं ।
-
-वस्तु मागून घ्यावी अगोचर ॥२॥
-
-तें गोचर नव्हे जाण गुरुकृपेवीण ।
-
-एर्‍हवी तें आपणा माजी आहे ॥३॥
-
-असतां सम्यक परि जना चुकामुक ।
-
-भुललीं निष्‍टंक मंत्रतंत्रें ॥४॥
-
-माळ वेष्‍टण करीं टापोर घेती शिरीं ।
-
-नेम अष्‍टोत्तरीं करिताती ॥५॥
-
-जो माळ करविता वाचेसि वदविता ।
-
-तया ह्रुदयस्था नेणे कोणी ॥६॥
-
-सोहं आत्मा प्रगट जो दाखवी वाट ।
-
-सद्रुरुवरिष्‍ठ तोचि जाणा ॥७॥
-
-तया उत्तीर्णता व्हावया पदार्था ।
-
-न देखों सर्वथा जनी म्हणे ॥८॥`;
-    navigator.clipboard.writeText(t).then(() => {
-      const btn = document.getElementById('copyBtn');
-      btn.innerHTML = '<i class="fas fa-check"></i> कॉपी झाले';
-      setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i> कॉपी', 2000);
-    });
-  }
-  function shareAbhang() {
-    if (navigator.share) {
-      navigator.share({ title: 'संसारीं निधान लाधलें जनां – संत जनाबाई अभंग – १७९', url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('लिंक कॉपी झाली!');
-    }
-  }
-  function toggleLike(btn) {
-    btn.classList.toggle('liked');
-    btn.innerHTML = btn.classList.contains('liked')
-      ? '<i class="fas fa-heart"></i> आवडले'
-      : '<i class="far fa-heart"></i> आवडले';
-  }
-</script>
-
 </body>
 </html>
+
