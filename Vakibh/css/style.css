@@ -158,6 +158,12 @@ nav ul li a.active::after {
   gap: 1.2rem;
 }
 
+.lang-switch-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .search-trigger-btn {
   background: none;
   border: none;
@@ -175,15 +181,25 @@ nav ul li a.active::after {
 }
 
 .lang-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.95rem;
   font-weight: 600;
   border: 1px solid var(--border-color);
-  padding: 0.3rem 0.8rem;
+  padding: 0.38rem 0.9rem;
   border-radius: 20px;
   background-color: var(--bg-cream);
   color: var(--primary-dark);
   cursor: pointer;
   transition: var(--transition);
+}
+
+.lang-switch.active {
+  background-color: var(--primary);
+  color: var(--bg-white);
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(230, 92, 0, 0.18);
 }
 
 .lang-switch:hover {
@@ -325,10 +341,9 @@ nav ul li a.active::after {
   width: calc(100% - 3rem);
   max-width: 900px;
   margin: 0;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   padding: 0.8rem 1.5rem;
   position: absolute;
   left: 50%;
@@ -455,7 +470,7 @@ section {
   margin: 0 auto;
 }
 
-/* Section 1: Links / Category Grid (à¤®à¥à¤¬à¤²à¤• à¤¸à¤‚à¤—à¥à¤°à¤¹) */
+/* Section 1: Links / Category Grid (मुबलक संग्रह) */
 .quick-links-section {
   border-bottom: 1px dashed var(--border-color);
 }
@@ -502,7 +517,7 @@ section {
   color: var(--primary-dark);
 }
 
-/* Section 2: Granth Sangrah (à¤—à¥à¤°à¤‚à¤¥ à¤¸à¤‚à¤—à¥à¤°à¤¹) */
+/* Section 2: Granth Sangrah (ग्रंथ संग्रह) */
 .granth-section {
   background-color: var(--bg-white);
   max-width: 100%;
@@ -582,7 +597,7 @@ section {
   font-weight: 500;
 }
 
-/* Section 3: Featured Abhang (à¤µà¥ˆà¤¶à¤¿à¤·à¥à¤Ÿà¥à¤¯à¤ªà¥‚à¤°à¥à¤£ à¤…à¤­à¤‚à¤—) */
+/* Section 3: Featured Abhang (वैशिष्ट्यपूर्ण अभंग) */
 .abhang-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -741,7 +756,7 @@ section {
   transform: scale(1.1);
 }
 
-/* Section 4: Sant Parampara (à¤¸à¤‚à¤¤ à¤ªà¤°à¤‚à¤ªà¤°à¤¾) */
+/* Section 4: Sant Parampara (संत परंपरा) */
 .saints-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -814,7 +829,7 @@ section {
   line-height: 1.5;
 }
 
-/* Section 5: Vibhag (à¤µà¤¿à¤­à¤¾à¤—) */
+/* Section 5: Vibhag (विभाग) */
 .categories-section {
   background-color: var(--bg-white);
   max-width: 100%;
@@ -892,7 +907,7 @@ section {
   font-weight: 500;
 }
 
-/* Section 6: Recent Arrivals (à¤¨à¤µà¥€à¤¨ à¤†à¤µà¤•) */
+/* Section 6: Recent Arrivals (नवीन आवक) */
 .new-arrivals-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1008,7 +1023,7 @@ footer::before {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1.2fr 1fr;
   gap: 4rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding-bottom: 3rem;
@@ -1109,6 +1124,11 @@ footer::before {
   padding-left: 5px;
 }
 
+.footer-blog-links ul li a {
+  display: inline-block;
+  line-height: 1.55;
+}
+
 .footer-contact-list {
   list-style: none;
   display: flex;
@@ -1132,13 +1152,18 @@ footer::before {
   max-width: 1200px;
   margin: 1.5rem auto 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 0.95rem;
   opacity: 0.75;
 }
 
 .scroll-top-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 20px;
+  z-index: 998;
   background-color: var(--accent);
   color: var(--text-dark);
   border: none;
@@ -1158,14 +1183,107 @@ footer::before {
   transform: translateY(-3px);
 }
 
+.blog-page-main {
+  padding-top: 84px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fffaf4 0%, #f7ede1 100%);
+}
+
+.blog-hero {
+  padding: 4.5rem 1.5rem 2.5rem;
+}
+
+.blog-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blog-hero-inner h1 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.blog-hero-inner p {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.blog-list-section {
+  padding: 0 1.5rem 4.5rem;
+}
+
+.blog-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.blog-card {
+  gap: 1rem;
+}
+
+.arrival-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.blog-card .arrival-title a {
+  color: inherit;
+}
+
+.blog-card .arrival-title a:hover {
+  color: var(--primary);
+}
+
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.read-more-btn:hover {
+  background: var(--primary);
+  color: var(--bg-white);
+}
+
 /* Floating Widgets */
+.floating-veena,
 .floating-whatsapp {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  bottom: 92px;
   z-index: 999;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: var(--transition);
+}
+
+.floating-veena {
+  left: 20px;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.floating-whatsapp {
+  right: 20px;
 }
 
 .search-results-panel {
@@ -1348,14 +1466,27 @@ footer::before {
   overflow: hidden;
 }
 
+.floating-veena img,
 .floating-whatsapp img {
   width: 48px;
   height: 48px;
   display: block;
 }
 
+.floating-veena img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 6px 10px rgba(230, 92, 0, 0.18));
+}
+
+.floating-veena:hover,
+.floating-veena.is-playing,
 .floating-whatsapp:hover {
   transform: scale(1.08);
+}
+
+.floating-veena.is-playing {
+  box-shadow: none;
 }
 
 /* Toast Notification Styles */
@@ -1475,6 +1606,18 @@ footer::before {
     text-align: center;
   }
 
+  .player-info,
+  .player-progress-container,
+  .player-volume-container {
+    display: none;
+  }
+
+  .player-controls,
+  .hero-player {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   .abhang-grid {
     grid-template-columns: 1fr;
   }
@@ -1486,6 +1629,10 @@ footer::before {
   .footer-container {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1558,13 +1705,31 @@ footer::before {
     width: 100%;
   }
 
+  .floating-veena {
+    left: 15px;
+    bottom: 70px;
+    width: 64px;
+    height: 64px;
+  }
+
   .floating-whatsapp {
+    right: 15px;
+    bottom: 70px;
+  }
+
+  .scroll-top-btn {
     right: 15px;
     bottom: 15px;
   }
 
+  .floating-veena img,
   .floating-whatsapp img {
     width: 40px;
     height: 40px;
+  }
+
+  .floating-veena img {
+    width: 56px;
+    height: 56px;
   }
 }

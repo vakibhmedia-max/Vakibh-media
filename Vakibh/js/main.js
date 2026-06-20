@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   if (!document.querySelector('link[data-font-awesome]')) {
     const fontAwesomeLink = document.createElement('link');
     fontAwesomeLink.rel = 'stylesheet';
@@ -27,10 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
       </nav>
       <div class="header-actions">
+        <div class="lang-switch-group" aria-label="भाषा निवडा">
+          <button class="lang-switch active" type="button" data-language="marathi">मराठी</button>
+        </div>
         <button class="search-trigger-btn" id="searchTrigger" aria-label="शोध">
           <i class="fas fa-search"></i>
         </button>
-        <button class="lang-switch" id="langSwitch">मराठी</button>
       </div>
     `;
     headerContainer.insertAdjacentHTML('beforeend', navHTML);
@@ -41,6 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoImg = document.querySelector('.logo-img');
   const homePath = logoLink ? logoLink.getAttribute('href') : 'index.html';
   const logoSrc = logoImg ? logoImg.getAttribute('src') : 'Vakibh/vaakibh_logo.svg';
+  const mediaBasePath = logoSrc.replace(/vaakibh_logo\.svg(?:\?.*)?$/, '');
+  const siteBasePath = homePath.replace(/index\.html(?:#.*)?$/, '');
+  const sharedAudioSrc = `${mediaBasePath}vaakibh_audio.mp3`;
+  const sharedVeenaSrc = `${mediaBasePath}veena.svg`;
+  const sharedVeenaAudioSrc = `${siteBasePath}assests/vaakibh_audio.mp3`;
+  const blogPath = homePath.replace(/index\.html(?:#.*)?$/, 'blog/index.html');
   let footer = document.querySelector('footer');
 
   if (!footer) {
@@ -53,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  footer.dataset.standardized = 'true';
   footer.dataset.standardized = 'true';
   footer.innerHTML = `
     <div class="footer-container">
@@ -81,6 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <li><a href="${homePath}#abhangs">अभंग/भजन</a></li>
           <li><a href="${homePath}#saints">संत</a></li>
           <li><a href="${homePath}#categories">विभाग</a></li>
+          <li><a href="${blogPath}">ब्लॉग</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links footer-blog-links">
+        <h4>ब्लॉग</h4>
+        <ul>
+          <li><a href="${blogPath.replace('index.html', 'namasmaran-mahatva/index.html')}">वारकरी परंपरेतील नामस्मरणाचे महत्त्व</a></li>
+          <li><a href="${blogPath.replace('index.html', 'abhang-vachan-man-sthir/index.html')}">अभंग वाचन मनाला कसे स्थिर करते</a></li>
+          <li><a href="${blogPath.replace('index.html', 'digital-sant-sahitya-jatan/index.html')}">डिजिटल युगात संत साहित्य जतन का आवश्यक आहे</a></li>
         </ul>
       </div>
 
@@ -101,6 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
       </button>
     </div>
   `;
+
+  let floatingVeena = document.querySelector('.floating-veena');
+  const floatingWhatsapp = document.querySelector('.floating-whatsapp');
+
+  if (!floatingVeena) {
+    floatingVeena = document.createElement('button');
+    floatingVeena.type = 'button';
+    floatingVeena.className = 'floating-veena';
+    floatingVeena.setAttribute('aria-label', 'वीणेचा नाद ऐका');
+    floatingVeena.innerHTML = `<img src="${sharedVeenaSrc}" alt="वीणा">`;
+
+    if (floatingWhatsapp?.parentNode) {
+      floatingWhatsapp.parentNode.insertBefore(floatingVeena, floatingWhatsapp);
+    } else {
+      document.body.appendChild(floatingVeena);
+    }
+  } else {
+    const veenaImg = floatingVeena.querySelector('img');
+    if (veenaImg) {
+      veenaImg.src = sharedVeenaSrc;
+      veenaImg.alt = 'वीणा';
+    }
+  }
 
   // --- Mobile Menu Toggle ---
   const menuToggle = document.querySelector('.menu-toggle');
@@ -134,6 +174,245 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 3000);
   };
+
+  const languageButtons = Array.from(document.querySelectorAll('.lang-switch'));
+  const translations = {
+    marathi: {
+      nav: ['मुखपृष्ठ', 'ग्रंथ', 'अभंग/भजन', 'संत', 'विभाग'],
+      searchLabel: 'शोध',
+      footerMenu: 'मेन्यू',
+      footerBlog: 'ब्लॉग',
+      footerContact: 'संपर्क',
+      footerText: 'संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.',
+      footerLinks: ['मुखपृष्ठ', 'ग्रंथ', 'अभंग/भजन', 'संत', 'विभाग', 'ब्लॉग'],
+      footerBlogLinks: [
+        'वारकरी परंपरेतील नामस्मरणाचे महत्त्व',
+        'अभंग वाचन मनाला कसे स्थिर करते',
+        'डिजिटल युगात संत साहित्य जतन का आवश्यक आहे'
+      ],
+      contactPrefix: ['ईमेल', 'फोन', 'पत्ता'],
+      searchButtonLabel: 'शोध',
+      saintsHeading: 'संत परंपरा',
+      saintsSubtitle: 'महाराष्ट्रातील थोर संत',
+      seeAll: 'सर्व पहा',
+      saintNames: [
+        'संत ज्ञानेश्वर',
+        'संत तुकाराम',
+        'संत नामदेव',
+        'संत एकनाथ',
+        'संत निवृत्ती महाराज',
+        'संत मुक्ताबाई',
+        'संत सोपानदेव',
+        'संत चोखामेळा',
+        'संत जनाबाई',
+        'संत गोरा कुंभार',
+        'संत सावता माळी',
+        'संत रोहिदास महाराज'
+      ],
+      saintDescs: [
+        'भक्ती आणि ज्ञानपरंपरेतील महान संत.',
+        'विठ्ठलभक्तीचे ओजस्वी अभंगकार.',
+        'नामस्मरण व भक्तीचा अखंड प्रवाह.',
+        'समाजप्रबोधन करणारे संतकवी.',
+        'ज्ञानेश्वरांचे मार्गदर्शक व थोर संत.',
+        'वारकरी संप्रदायातील थोर संत कवयित्री.',
+        'ज्ञानदेवांचे कनिष्ठ बंधू व महान योगसिद्ध संत.',
+        'शुद्ध अंतःकरणाचे विठ्ठलभक्त.',
+        'नामदेवांच्या सहवासातील महान संत कवयित्री.',
+        'विठ्ठलप्रेमाने ओतप्रोत कुंभार संत.',
+        'शेतात विठ्ठल पाहणारे वारकरी संत.',
+        'भक्ती आणि सामाजिक समतेचे पुरस्कर्ते.'
+      ],
+      blogTitles: [
+        'वारकरी परंपरेतील नामस्मरणाचे महत्त्व',
+        'अभंग वाचन मनाला कसे स्थिर करते',
+        'डिजिटल युगात संत साहित्य जतन का आवश्यक आहे'
+      ],
+      blogTags: ['वारकरी परंपरा', 'अभंग चिंतन', 'डिजिटल जतन'],
+      blogAuthor: 'वाकीभ संपादकीय मंडळ',
+      selectedToast: 'मराठी आवृत्ती निवडली आहे.'
+    },
+    english: {
+      nav: ['Home', 'Books', 'Abhang/Bhajan', 'Saints', 'Categories'],
+      searchLabel: 'Search',
+      footerMenu: 'Menu',
+      footerBlog: 'Blog',
+      footerContact: 'Contact',
+      footerText: 'A rich Marathi collection of saint literature, abhangs, ovis and sacred texts. Our effort is to preserve, nurture and share the Warkari tradition.',
+      footerLinks: ['Home', 'Books', 'Abhang/Bhajan', 'Saints', 'Categories', 'Blog'],
+      footerBlogLinks: [
+        'The Importance of Namasmaran in the Warkari Tradition',
+        'How Abhang Reading Steadies the Mind',
+        'Why Preserving Sant Literature Matters in the Digital Age'
+      ],
+      contactPrefix: ['Email', 'Phone', 'Address'],
+      searchButtonLabel: 'Search',
+      saintsHeading: 'Saint Tradition',
+      saintsSubtitle: 'Great saints of Maharashtra',
+      seeAll: 'See All',
+      saintNames: [
+        'Sant Dnyaneshwar',
+        'Sant Tukaram',
+        'Sant Namdev',
+        'Sant Eknath',
+        'Sant Nivrutti Maharaj',
+        'Sant Muktabai',
+        'Sant Sopandev',
+        'Sant Chokhamela',
+        'Sant Janabai',
+        'Sant Gora Kumbhar',
+        'Sant Savata Mali',
+        'Sant Rohidas Maharaj'
+      ],
+      saintDescs: [
+        'A great saint in the traditions of devotion and wisdom.',
+        'A powerful abhang poet of Vitthal devotion.',
+        'An unbroken stream of chanting and devotion.',
+        'A saint-poet who inspired social awakening.',
+        'Guide of Dnyaneshwar and a revered saint.',
+        'A great saint-poetess of the Warkari tradition.',
+        'Younger brother of Dnyandev and a great realized saint.',
+        'A pure-hearted devotee of Vitthal.',
+        'A great saint-poetess in the company of Namdev.',
+        'A potter saint overflowing with love for Vitthal.',
+        'A Warkari saint who saw Vitthal in the fields.',
+        'A proponent of devotion and social equality.'
+      ],
+      blogTitles: [
+        'The Importance of Namasmaran in the Warkari Tradition',
+        'How Abhang Reading Steadies the Mind',
+        'Why Preserving Sant Literature Matters in the Digital Age'
+      ],
+      blogTags: ['Warkari Tradition', 'Abhang Reflection', 'Digital Preservation'],
+      blogAuthor: 'Vakibh Editorial Team',
+      selectedToast: 'English view enabled for common labels.'
+    }
+  };
+
+  const applyLanguageSelection = (language) => {
+    const selectedLanguage = translations[language] ? language : 'marathi';
+    const languagePack = translations[selectedLanguage];
+
+    languageButtons.forEach((button) => {
+      button.dataset.language = selectedLanguage;
+      button.textContent = selectedLanguage === 'english' ? 'English' : 'मराठी';
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('title', selectedLanguage === 'english' ? 'Click to switch language' : 'भाषा बदलण्यासाठी क्लिक करा');
+    });
+
+    document.documentElement.lang = selectedLanguage === 'english' ? 'en' : 'mr';
+
+    const navLinks = Array.from(document.querySelectorAll('#navMenu ul li a')).slice(0, 5);
+    navLinks.forEach((link, index) => {
+      if (languagePack.nav[index]) {
+        link.textContent = languagePack.nav[index];
+      }
+    });
+
+    const searchButton = document.getElementById('searchTrigger');
+    if (searchButton) {
+      searchButton.setAttribute('aria-label', languagePack.searchLabel);
+      searchButton.setAttribute('title', languagePack.searchLabel);
+    }
+
+    const footerMenuHeading = Array.from(document.querySelectorAll('.footer-links h4'))[0];
+    const footerBlogHeading = Array.from(document.querySelectorAll('.footer-links h4'))[1];
+    const footerContactHeading = document.querySelector('.footer-contact h4');
+    const footerBrandText = document.querySelector('.footer-brand p');
+    const footerMenuLinks = Array.from(document.querySelectorAll('.footer-links ul li a')).slice(0, 6);
+    const footerBlogLinks = Array.from(document.querySelectorAll('.footer-blog-links ul li a')).slice(0, 3);
+    const footerContactItems = Array.from(document.querySelectorAll('.footer-contact-list li'));
+    const saintsHeading = document.querySelector('.saints-section .section-title-container h2');
+    const saintsSubtitle = document.querySelector('.saints-section .section-title-container p');
+    const saintsSeeAll = document.querySelector('.saints-section .see-all-btn');
+    const saintNames = Array.from(document.querySelectorAll('.saints-section .saint-name')).slice(0, 12);
+    const saintDescs = Array.from(document.querySelectorAll('.saints-section .saint-desc')).slice(0, 12);
+    const blogCardTitles = Array.from(document.querySelectorAll('.blog-card .arrival-title a')).slice(0, 3);
+    const blogCardTags = Array.from(document.querySelectorAll('.blog-card .arrival-tag')).slice(0, 3);
+    const blogCardAuthors = Array.from(document.querySelectorAll('.blog-card .arrival-author')).slice(0, 3);
+
+    if (footerMenuHeading) footerMenuHeading.textContent = languagePack.footerMenu;
+    if (footerBlogHeading) footerBlogHeading.textContent = languagePack.footerBlog;
+    if (footerContactHeading) footerContactHeading.textContent = languagePack.footerContact;
+    if (footerBrandText) footerBrandText.textContent = languagePack.footerText;
+
+    footerMenuLinks.forEach((link, index) => {
+      if (languagePack.footerLinks[index]) {
+        link.textContent = languagePack.footerLinks[index];
+      }
+    });
+
+    footerBlogLinks.forEach((link, index) => {
+      if (languagePack.footerBlogLinks[index]) {
+        link.textContent = languagePack.footerBlogLinks[index];
+      }
+    });
+
+    footerContactItems.forEach((item, index) => {
+      const icon = item.querySelector('i');
+      const textNode = item.childNodes[item.childNodes.length - 1];
+      const currentText = (textNode?.textContent || '').trim();
+      const value = currentText.replace(/^[^:]+:\s*/, '');
+      if (textNode && languagePack.contactPrefix[index]) {
+        textNode.textContent = ` ${languagePack.contactPrefix[index]}: ${value}`;
+      } else if (!textNode && icon && languagePack.contactPrefix[index]) {
+        item.append(` ${languagePack.contactPrefix[index]}: ${value}`);
+      }
+    });
+
+    if (saintsHeading) saintsHeading.textContent = languagePack.saintsHeading;
+    if (saintsSubtitle) saintsSubtitle.textContent = languagePack.saintsSubtitle;
+    if (saintsSeeAll) saintsSeeAll.textContent = languagePack.seeAll;
+
+    saintNames.forEach((item, index) => {
+      if (languagePack.saintNames[index]) {
+        item.textContent = languagePack.saintNames[index];
+      }
+    });
+
+    saintDescs.forEach((item, index) => {
+      if (languagePack.saintDescs[index]) {
+        item.textContent = languagePack.saintDescs[index];
+      }
+    });
+
+    blogCardTitles.forEach((item, index) => {
+      if (languagePack.blogTitles[index]) {
+        item.textContent = languagePack.blogTitles[index];
+      }
+    });
+
+    blogCardTags.forEach((item, index) => {
+      if (languagePack.blogTags[index]) {
+        item.textContent = languagePack.blogTags[index];
+      }
+    });
+
+    blogCardAuthors.forEach((item) => {
+      item.textContent = languagePack.blogAuthor;
+    });
+  };
+
+  if (languageButtons.length) {
+    const storedLanguage = localStorage.getItem('vakibh-language');
+    applyLanguageSelection(storedLanguage === 'english' ? 'english' : 'marathi');
+
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const currentLanguage = button.dataset.language === 'english' ? 'english' : 'marathi';
+        const nextLanguage = currentLanguage === 'english' ? 'marathi' : 'english';
+        applyLanguageSelection(nextLanguage);
+        localStorage.setItem('vakibh-language', nextLanguage);
+
+        if (nextLanguage === 'english') {
+          showToast(translations.english.selectedToast);
+        } else {
+          showToast(translations.marathi.selectedToast);
+        }
+      });
+    });
+  }
 
   const normalizeText = (value) => (value || '').replace(/\s+\n/g, '\n').replace(/\n\s+/g, '\n').trim();
 
@@ -169,17 +448,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const getAbhangPostActionsMarkup = () => `
     <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
       <div class="abhang-actions-left">
-        <button class="abhang-btn copy-abhang-btn" aria-label="Copy Abhang">
+        <button class="abhang-btn copy-abhang-btn" aria-label="अभंग कॉपी करा">
           <i class="far fa-copy"></i>
         </button>
         <div class="abhang-share-group">
-          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा">
             <i class="fab fa-whatsapp"></i>
           </button>
-          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा">
             <i class="fab fa-facebook-f"></i>
           </button>
-          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy for Instagram">
+          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा">
             <i class="fab fa-instagram"></i>
           </button>
         </div>
@@ -190,17 +469,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const getAbhangItemActionsMarkup = (targetId, itemLabel) => `
     <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="${targetId}" data-share-label="${itemLabel}">
       <div class="abhang-actions-left">
-        <button class="abhang-btn copy-abhang-btn" aria-label="Copy this Abhang">
+        <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा">
           <i class="far fa-copy"></i>
         </button>
         <div class="abhang-share-group">
-          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="Share this Abhang on WhatsApp">
+          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा">
             <i class="fab fa-whatsapp"></i>
           </button>
-          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="Share this Abhang on Facebook">
+          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा">
             <i class="fab fa-facebook-f"></i>
           </button>
-          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="Copy this Abhang for Instagram">
+          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा">
             <i class="fab fa-instagram"></i>
           </button>
         </div>
@@ -300,10 +579,13 @@ document.addEventListener('DOMContentLoaded', () => {
       (shareTarget && abhangPost?.querySelector('.post-title')?.innerText
         ? `${abhangPost.querySelector('.post-title').innerText} - ${itemLabel}`
         : '') ||
+      shareTarget?.querySelector('.abhang-card-title')?.innerText ||
+      shareTarget?.querySelector('.arrival-title')?.innerText ||
+      shareTarget?.querySelector('.post-title')?.innerText ||
       scope?.querySelector('.abhang-card-title')?.innerText ||
       scope?.querySelector('.arrival-title')?.innerText ||
       scope?.querySelector('.post-title')?.innerText ||
-      'Vakibh Sant Sahitya'
+      'वाकीभ'
     );
     const body = normalizeText(
       shareTarget?.innerText ||
@@ -314,6 +596,9 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const author = normalizeText(
       abhangPost?.querySelector('.post-category-link')?.innerText ||
+      shareTarget?.querySelector('.abhang-tag')?.innerText ||
+      shareTarget?.querySelector('.arrival-author')?.innerText ||
+      shareTarget?.querySelector('.post-category-link')?.innerText ||
       scope?.querySelector('.abhang-tag')?.innerText ||
       scope?.querySelector('.arrival-author')?.innerText ||
       scope?.querySelector('.post-category-link')?.innerText ||
@@ -324,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
       : (scope?.classList?.contains('abhang-post') || scope?.classList?.contains('post-article'))
       ? getPageShareUrl()
       : `${getPageShareUrl()}#abhangs`;
-    const formattedText = [title, author, body, 'वाकीभ संतसाहित्य', pageUrl]
+    const formattedText = [title, author, body, 'वाकीभ', pageUrl]
       .filter(Boolean)
       .join('\n\n');
 
@@ -349,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const copied = await copyTextToClipboard(shareData.formattedText);
       if (copied) {
-        showToast('Abhang copied successfully!');
+        showToast('अभंग यशस्वीपणे कॉपी झाला.');
         const icon = btn.querySelector('i');
         if (icon) {
           icon.className = 'fas fa-check';
@@ -360,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 2000);
         }
       } else {
-        showToast('Copy failed. Please try again.');
+        showToast('कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
       }
     });
   });
@@ -376,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.toggle('active');
         if (btn.classList.contains('active')) {
           icon.style.color = '#e74c3c';
-          showToast('Added to favorites!');
+          showToast('आवडीत जोडले.');
         } else {
           icon.style.color = '';
         }
@@ -414,9 +699,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (platform === 'instagram') {
         const copied = await copyTextToClipboard(shareData.formattedText);
         if (copied) {
-          showToast('Instagram caption copied. Paste it into Instagram.');
+          showToast('इंस्टाग्रामसाठी मजकूर कॉपी झाला.');
         } else {
-          showToast('Open Instagram and paste the Abhang manually.');
+          showToast('इंस्टाग्राम उघडून अभंग स्वतः पेस्ट करा.');
         }
         window.open('https://www.instagram.com/', '_blank', 'noopener');
       }
@@ -456,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const performSearch = () => {
     const query = searchInput?.value.trim().toLowerCase();
     if (!query) {
-      showToast('कृपया शोधण्यासाठी काहीतरी टाइप करा.');
+      showToast('कृपया शोधण्यासाठी शब्द टाका.');
       return;
     }
 
@@ -479,9 +764,9 @@ document.addEventListener('DOMContentLoaded', () => {
       matchedElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
       matchedElement.style.borderColor = 'var(--primary)';
       matchedElement.style.boxShadow = '0 0 15px rgba(255, 122, 0, 0.6)';
-      showToast(`à¤¶à¥‹à¤§ à¤œà¥à¤³à¤²à¤¾: ${query}`);
+      showToast(`सापडले: ${query}`);
     } else {
-      showToast('à¤•à¥‹à¤£à¤¤à¥€à¤¹à¥€ à¤œà¥à¤³à¤£à¥€ à¤¸à¤¾à¤ªà¤¡à¤²à¥€ à¤¨à¤¾à¤¹à¥€.');
+      showToast('जुळणारे साहित्य सापडले नाही.');
     }
   };
 
@@ -498,19 +783,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let siteSearchInput = document.getElementById('heroSearchInput');
   let siteSearchBtn = document.getElementById('heroSearchBtn');
   const searchTrigger = document.getElementById('searchTrigger');
-  const langSwitch = document.getElementById('langSwitch');
   const searchResults = document.getElementById('searchResults');
   const searchResultsList = document.getElementById('searchResultsList');
   const searchResultsTitle = document.getElementById('searchResultsTitle');
   const searchResultsClose = document.getElementById('searchResultsClose');
   const homepageSearchIndexUrl = 'Vakibh/data/search-index.json';
   let searchIndexPromise = null;
-  const savedLanguage = window.localStorage.getItem('vakibh-language');
-  let currentLanguage = savedLanguage === 'en' ? 'en' : 'mr';
   let headerSearchInput = null;
   let headerSearchResultsTitle = null;
   let headerSearchResultsList = null;
   let headerSearchModal = null;
+
+  document.documentElement.lang = 'mr';
+  window.localStorage.removeItem('vakibh-language');
 
   if (siteSearchInput && siteSearchBtn) {
     const replacementInput = siteSearchInput.cloneNode(true);
@@ -587,17 +872,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!searchResults || !searchResultsList || !searchResultsTitle) return;
 
     searchResults.hidden = false;
-    searchResultsTitle.textContent = `"${query}" à¤¸à¤¾à¤ à¥€ ${results.length} à¤¨à¤¿à¤•à¤¾à¤²`;
+    searchResultsTitle.textContent = `"${query}" \u0938\u093e\u0920\u0940 ${results.length} \u0928\u093f\u0915\u093e\u0932`;
 
     if (!results.length) {
-      searchResultsList.innerHTML = '<div class="search-empty-state">à¤œà¥à¤³à¤£à¤¾à¤°à¥‡ à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯ à¤¸à¤¾à¤ªà¤¡à¤²à¥‡ à¤¨à¤¾à¤¹à¥€.</div>';
+      searchResultsList.innerHTML = '<div class="search-empty-state">जुळणारे संत साहित्य सापडले नाही.</div>';
       return;
     }
 
     searchResultsList.innerHTML = results.map(result => `
       <a class="search-result-item" href="${escapeHtml(result.path)}">
         <div class="search-result-topline">
-          <span class="search-result-type">${escapeHtml(result.type || 'à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯')}</span>
+          <span class="search-result-type">${escapeHtml(result.type || 'साहित्य')}</span>
           <span class="search-result-saint">${escapeHtml(result.saint || '')}</span>
         </div>
         <div class="search-result-title">${escapeHtml(result.title || result.heading || 'Vakibh')}</div>
@@ -609,17 +894,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderResultList = (query, results, titleNode, listNode) => {
     if (!titleNode || !listNode) return;
 
-    titleNode.textContent = `"${query}" à¤¸à¤¾à¤ à¥€ ${results.length} à¤¨à¤¿à¤•à¤¾à¤²`;
+    titleNode.textContent = `"${query}" \u0938\u093e\u0920\u0940 ${results.length} \u0928\u093f\u0915\u093e\u0932`;
 
     if (!results.length) {
-      listNode.innerHTML = '<div class="search-empty-state">à¤œà¥à¤³à¤£à¤¾à¤°à¥‡ à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯ à¤¸à¤¾à¤ªà¤¡à¤²à¥‡ à¤¨à¤¾à¤¹à¥€.</div>';
+      listNode.innerHTML = '<div class="search-empty-state">जुळणारे संत साहित्य सापडले नाही.</div>';
       return;
     }
 
     listNode.innerHTML = results.map(result => `
       <a class="search-result-item" href="${escapeHtml(result.path)}">
         <div class="search-result-topline">
-          <span class="search-result-type">${escapeHtml(result.type || 'à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯')}</span>
+          <span class="search-result-type">${escapeHtml(result.type || 'साहित्य')}</span>
           <span class="search-result-saint">${escapeHtml(result.saint || '')}</span>
         </div>
         <div class="search-result-title">${escapeHtml(result.title || result.heading || 'Vakibh')}</div>
@@ -632,7 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = siteSearchInput?.value.trim();
     if (!query) {
       closeSearchResults();
-      showToast('à¤¶à¥‹à¤§à¤£à¥à¤¯à¤¾à¤¸à¤¾à¤ à¥€ à¤•à¤¾à¤¹à¥€à¤¤à¤°à¥€ à¤Ÿà¤¾à¤‡à¤ª à¤•à¤°à¤¾.');
+      showToast('कृपया शोधण्यासाठी शब्द टाका.');
       return;
     }
 
@@ -653,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Search failed:', error);
       closeSearchResults();
-      showToast('à¤¶à¥‹à¤§ à¤¸à¤§à¥à¤¯à¤¾ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¾à¤¹à¥€.');
+      showToast('शोध करता आला नाही.');
     }
   };
 
@@ -672,17 +957,17 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.hidden = true;
     modal.innerHTML = `
       <div class="header-search-backdrop" data-close-search-modal="true"></div>
-      <div class="header-search-dialog" role="dialog" aria-modal="true" aria-label="Site search">
+      <div class="header-search-dialog" role="dialog" aria-modal="true" aria-label="साहित्य शोध">
         <div class="header-search-topbar">
-          <input type="text" class="header-search-input" id="headerSearchInput" placeholder="संपूर्ण संत साहित्य शोधा..." aria-label="संपूर्ण संत साहित्य शोधा">
-          <button class="header-search-submit" id="headerSearchSubmit" type="button">शोधा</button>
-          <button class="header-search-close" id="headerSearchClose" type="button" aria-label="Close search">
+          <input type="text" class="header-search-input" id="headerSearchInput" placeholder="\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0938\u0902\u0924 \u0938\u093e\u0939\u093f\u0924\u094d\u092f \u0936\u094b\u0927\u093e..." aria-label="\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0938\u0902\u0924 \u0938\u093e\u0939\u093f\u0924\u094d\u092f \u0936\u094b\u0927\u093e">
+          <button class="header-search-submit" id="headerSearchSubmit" type="button">\u0936\u094b\u0927\u093e</button>
+          <button class="header-search-close" id="headerSearchClose" type="button" aria-label="शोध बंद करा">
             <i class="fas fa-times"></i>
           </button>
         </div>
         <div class="header-search-results">
           <div class="search-results-header">
-            <span class="search-results-title" id="headerSearchResultsTitle">शोध परिणाम</span>
+            <span class="search-results-title" id="headerSearchResultsTitle">\u0936\u094b\u0927 \u092a\u0930\u093f\u0923\u093e\u092e</span>
           </div>
           <div class="search-results-list" id="headerSearchResultsList"></div>
         </div>
@@ -706,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('headerSearchSubmit')?.addEventListener('click', async () => {
       const query = headerSearchInput?.value.trim();
       if (!query) {
-        showToast('शोधण्यासाठी काहीतरी टाइप करा.');
+        showToast('कृपया शोधण्यासाठी शब्द टाका.');
         return;
       }
 
@@ -723,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderResultList(query, results, headerSearchResultsTitle, headerSearchResultsList);
       } catch (error) {
         console.error('Header search failed:', error);
-        showToast('शोध सध्या उपलब्ध नाही.');
+        showToast('शोध करता आला नाही.');
       }
     });
 
@@ -772,137 +1057,11 @@ document.addEventListener('DOMContentLoaded', () => {
       performSiteSearch();
     }
   }
-
-
-
-  // --- Built-in Language Toggle ---
-  const setLanguageButtonLabel = () => {
-    if (!langSwitch) return;
-    langSwitch.textContent = currentLanguage === 'mr' ? 'English' : '\u092e\u0930\u093e\u0920\u0940';
-  };
-
-  const setStoredLanguage = (language) => {
-    currentLanguage = language === 'en' ? 'en' : 'mr';
-    window.localStorage.setItem('vakibh-language', currentLanguage);
-    setLanguageButtonLabel();
-  };
-
-  const uiTranslations = {
-    '\u092e\u0941\u0916\u092a\u0943\u0937\u094d\u0920': 'Home',
-    '\u0917\u094d\u0930\u0902\u0925': 'Books',
-    '\u0905\u092d\u0902\u0917/\u092d\u091c\u0928': 'Abhang/Bhajan',
-    '\u0938\u0902\u0924': 'Saints',
-    '\u0935\u093f\u092d\u093e\u0917': 'Categories',
-    '\u092e\u0947\u0928\u094d\u092f\u0942': 'Menu',
-    '\u0938\u0902\u092a\u0930\u094d\u0915': 'Contact',
-    '\u0935\u093e\u0915\u0940\u092d': 'Vakibh',
-    '\u0938\u0902\u0924 \u0938\u093e\u0939\u093f\u0924\u094d\u092f, \u0905\u092d\u0902\u0917, \u0913\u0935\u094d\u092f\u093e \u0906\u0923\u093f \u0917\u094d\u0930\u0902\u0925\u093e\u0902\u091a\u093e \u0938\u092e\u0943\u0926\u094d\u0927 \u092e\u0930\u093e\u0920\u0940 \u0938\u0902\u0917\u094d\u0930\u0939. \u0935\u093e\u0930\u0915\u0930\u0940 \u092a\u0930\u0902\u092a\u0930\u0947\u091a\u0947 \u091c\u0924\u0928, \u0938\u0902\u0935\u0930\u094d\u0927\u0928 \u0906\u0923\u093f \u092a\u094d\u0930\u0938\u093e\u0930 \u0939\u093e \u0906\u092e\u091a\u093e \u092a\u094d\u0930\u092f\u0924\u094d\u0928.': 'A rich Marathi collection of saint literature, abhangs, ovi, and books. Our effort is to preserve, promote, and share the Varkari tradition.',
-    '\u0935\u0948\u0936\u093f\u0937\u094d\u091f\u094d\u092f\u092a\u0942\u0930\u094d\u0923 \u0905\u092d\u0902\u0917': 'Featured Abhangs',
-    '(\u0928\u093f\u0935\u0921\u0915 \u0930\u091a\u0928\u093e)': '(Selected compositions)',
-    '\u0938\u0930\u094d\u0935 \u092a\u0939\u093e': 'View all',
-    '\u0936\u094b\u0927': 'Search',
-    '\u0938\u0902\u092a\u0942\u0930\u094d\u0923 \u0938\u0902\u0924 \u0938\u093e\u0939\u093f\u0924\u094d\u092f \u0936\u094b\u0927\u093e...': 'Search full saint literature...',
-    '\u0911\u0921\u093f\u0913 \u0910\u0915\u093e': 'Listen audio',
-    '\u0935\u0930 \u091c\u093e': 'Back to top',
-    '\u092b\u0947\u0938\u092c\u0941\u0915': 'Facebook',
-    '\u091f\u094d\u0935\u093f\u091f\u0930': 'Twitter',
-    '\u0907\u0902\u0938\u094d\u091f\u093e\u0917\u094d\u0930\u093e\u092e': 'Instagram',
-    '\u092a\u0941\u0923\u0947, \u092e\u0939\u093e\u0930\u093e\u0937\u094d\u091f\u094d\u0930': 'Pune, Maharashtra',
-    '? \u0968\u0966\u0968\u096c \u0935\u093e\u0915\u0940\u092d. \u0938\u0930\u094d\u0935 \u0939\u0915\u094d\u0915 \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924.': '? 2026 Vakibh. All rights reserved.',
-    '\u0968\u0966\u0968\u096c \u0935\u093e\u0915\u0940\u092d. \u0938\u0930\u094d\u0935 \u0939\u0915\u094d\u0915 \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924.': '2026 Vakibh. All rights reserved.'
-  };
-
-  const textNodeOriginals = [];
-  const attributeOriginals = [];
-
-  const rememberTextNode = (node) => {
-    if (!textNodeOriginals.some((entry) => entry.node === node)) {
-      textNodeOriginals.push({ node, original: node.textContent });
-    }
-  };
-
-  const rememberAttribute = (element, attributeName, originalValue) => {
-    if (!attributeOriginals.some((entry) => entry.element === element && entry.attributeName === attributeName)) {
-      attributeOriginals.push({ element, attributeName, original: originalValue });
-    }
-  };
-
-  const applyMappedTranslations = () => {
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode(node) {
-        if (!node.parentElement) return NodeFilter.FILTER_REJECT;
-        const parentTag = node.parentElement.tagName;
-        if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'IFRAME', 'SVG'].includes(parentTag)) {
-          return NodeFilter.FILTER_REJECT;
-        }
-        if (!uiTranslations[node.textContent.trim()]) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      const originalText = node.textContent;
-      const trimmed = originalText.trim();
-      const translated = uiTranslations[trimmed];
-      if (!translated) continue;
-      rememberTextNode(node);
-      node.textContent = originalText.replace(trimmed, translated);
-    }
-
-    document.querySelectorAll('[placeholder], [aria-label], [title]').forEach((element) => {
-      ['placeholder', 'aria-label', 'title'].forEach((attributeName) => {
-        const value = element.getAttribute(attributeName);
-        if (!value) return;
-        const translated = uiTranslations[value.trim()];
-        if (!translated) return;
-        rememberAttribute(element, attributeName, value);
-        element.setAttribute(attributeName, value.replace(value.trim(), translated));
-      });
-    });
-
-    document.documentElement.lang = 'en';
-    setStoredLanguage('en');
-  };
-
-  const restoreOriginalLanguage = () => {
-    textNodeOriginals.forEach(({ node, original }) => {
-      node.textContent = original;
-    });
-
-    attributeOriginals.forEach(({ element, attributeName, original }) => {
-      element.setAttribute(attributeName, original);
-    });
-
-    document.documentElement.lang = 'mr';
-    setStoredLanguage('mr');
-  };
-
-  const applySelectedLanguage = (language) => {
-    if (language === 'en') {
-      applyMappedTranslations();
-      return;
-    }
-    restoreOriginalLanguage();
-  };
-
-  if (langSwitch) {
-    setLanguageButtonLabel();
-    langSwitch.addEventListener('click', () => {
-      const nextLanguage = currentLanguage === 'mr' ? 'en' : 'mr';
-      applySelectedLanguage(nextLanguage);
-    });
-  }
-
-  if (currentLanguage === 'en') {
-    applyMappedTranslations();
-  }
-
-
-
   // --- Media Player Logic ---
   const heroVideo = document.querySelector('.hero-bg-video');
-  const audio = heroVideo || new Audio('Vakibh/vaakibh_audio.mp3');
+  const audio = heroVideo || new Audio(sharedAudioSrc);
+  const veenaAudio = new Audio(sharedVeenaAudioSrc);
+  veenaAudio.preload = 'auto';
 
   if (heroVideo) {
     heroVideo.muted = true;
@@ -946,30 +1105,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const stopVeenaAudio = () => {
+    veenaAudio.pause();
+    veenaAudio.currentTime = 0;
+    floatingVeena?.classList.remove('is-playing');
+  };
+
   // Play/Pause State
   const togglePlay = () => {
     if (audio.paused) {
       // Pause any running card audio players
       stopAllCardAudio();
+      stopVeenaAudio();
       
       audio.play().then(() => {
         syncPlayPauseIcon();
         syncHeroVideoState();
-        showToast('à¤‘à¤¡à¤¿à¤“ à¤¸à¥à¤°à¥‚ à¤à¤¾à¤²à¤¾.');
       }).catch(err => {
         console.error("Audio playback error: ", err);
-        showToast('à¤‘à¤¡à¤¿à¤“ à¤šà¤¾à¤²à¥‚ à¤•à¤°à¥‚ à¤¶à¤•à¤¤ à¤¨à¤¾à¤¹à¥€.');
+        showToast('ऑडिओ सुरू करता आला नाही.');
       });
     } else {
       audio.pause();
       syncHeroVideoState();
       syncPlayPauseIcon();
-      showToast('à¤‘à¤¡à¤¿à¤“ à¤¥à¤¾à¤‚à¤¬à¤µà¤²à¤¾.');
     }
   };
 
   if (playPauseBtn) {
     playPauseBtn.addEventListener('click', togglePlay);
+  }
+
+  const categoryAudioTrigger = document.querySelector('[data-audio-trigger="hero-audio"]');
+  if (categoryAudioTrigger) {
+    categoryAudioTrigger.style.cursor = 'pointer';
+    categoryAudioTrigger.addEventListener('click', togglePlay);
+    categoryAudioTrigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        togglePlay();
+      }
+    });
+  }
+
+  if (floatingVeena) {
+    const toggleVeenaAudio = () => {
+      if (veenaAudio.paused) {
+        stopAllCardAudio();
+        if (!audio.paused) {
+          audio.pause();
+          syncHeroVideoState();
+          syncPlayPauseIcon();
+        }
+
+        veenaAudio.play().then(() => {
+          floatingVeena.classList.add('is-playing');
+        }).catch(() => {
+          showToast('वीणेचा ऑडिओ सापडला नाही. `veena_audio.mp3` जोडा.');
+        });
+      } else {
+        stopVeenaAudio();
+      }
+    };
+
+    floatingVeena.addEventListener('click', toggleVeenaAudio);
   }
 
   // Audio Events
@@ -988,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   audio.addEventListener('play', () => {
     syncPlayPauseIcon();
     syncHeroVideoState();
+    floatingVeena?.classList.remove('is-playing');
   });
 
   audio.addEventListener('pause', () => {
@@ -1000,6 +1200,14 @@ document.addEventListener('DOMContentLoaded', () => {
     syncHeroVideoState();
     if (progressFill) progressFill.style.width = '0%';
     if (timeCurrent) timeCurrent.textContent = '0:00';
+  });
+
+  veenaAudio.addEventListener('pause', () => {
+    floatingVeena?.classList.remove('is-playing');
+  });
+
+  veenaAudio.addEventListener('ended', () => {
+    floatingVeena?.classList.remove('is-playing');
   });
 
   // Seeking on Progress Bar Click
@@ -1084,12 +1292,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('playing');
         btn.innerHTML = '<i class="fas fa-pause"></i>';
         if (cardAudioIndicator) {
-          cardAudioIndicator.textContent = 'à¤šà¤¾à¤²à¥‚ à¤†à¤¹à¥‡...';
+          cardAudioIndicator.textContent = 'ऑडिओ सुरू...';
           cardAudioIndicator.style.color = 'var(--primary-dark)';
         }
-        showToast(`à¤…à¤­à¤‚à¤— ${index + 1} à¤‘à¤¡à¤¿à¤“ à¤¸à¥à¤°à¥‚ à¤à¤¾à¤²à¤¾.`);
+        showToast(`अभंग ${index + 1} ऑडिओ सुरू झाला.`);
       } else {
-        showToast(`à¤…à¤­à¤‚à¤— ${index + 1} à¤‘à¤¡à¤¿à¤“ à¤¥à¤¾à¤‚à¤¬à¤µà¤²à¤¾.`);
+        showToast(`अभंग ${index + 1} ऑडिओ थांबवला.`);
       }
     });
   });
@@ -1101,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = btn.closest('.abhang-card');
       const cardAudioIndicator = card?.querySelector('.audio-status-text');
       if (cardAudioIndicator) {
-        cardAudioIndicator.textContent = 'à¤‘à¤¡à¤¿à¤“ à¤à¤•à¤¾';
+        cardAudioIndicator.textContent = 'ऑडिओ ऐका';
         cardAudioIndicator.style.color = '';
       }
     });

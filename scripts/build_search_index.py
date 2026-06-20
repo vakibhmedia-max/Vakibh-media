@@ -72,7 +72,7 @@ def build_search_index() -> list[dict[str, str]]:
 
         entries.append(
             {
-                "title": title or heading or saint_name or "Vakibh",
+                "title": title or heading or saint_name or "वाकीभ",
                 "heading": heading or title,
                 "description": description,
                 "excerpt": excerpt,
