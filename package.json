@@ -1,0 +1,24 @@
+{
+  "name": "vakibh-media-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node/Express backend and admin dashboard for the Vakibh blog",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.3",
+    "sanitize-html": "^2.13.0",
+    "slugify": "^1.6.6"
+  }
+}

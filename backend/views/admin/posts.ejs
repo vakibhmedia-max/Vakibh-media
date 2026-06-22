@@ -1,0 +1,136 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div>
+          <strong>वाकीभ</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>">
+        <i class="fas fa-newspaper"></i>
+        Blogs
+      </a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
+        <i class="fas fa-plus-circle"></i>
+        Add Blog
+      </a>
+      <a href="/blog/index.html" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Public Blog
+      </a>
+      <a href="/index.html" target="_blank">
+        <i class="fas fa-home"></i>
+        Frontend Home
+      </a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb">Blog management</p>
+        <h1>सर्व लेख</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-primary" href="/admin/posts/new">
+          <i class="fas fa-plus"></i>
+          Add blog
+        </a>
+        <form method="post" action="/admin/logout">
+          <button class="admin-button admin-button-ghost" type="submit">
+            <i class="fas fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <% if (notice) { %>
+      <div class="admin-alert admin-alert-success"><%= notice %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="admin-alert admin-alert-error"><%= error %></div>
+    <% } %>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header">
+        <div>
+          <h3>Blog list</h3>
+          <p>Create, update, publish, and delete.</p>
+        </div>
+        <a href="/blog/index.html" target="_blank" class="admin-text-link">Open public blog</a>
+      </header>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table admin-table-large">
+          <thead>
+            <tr>
+              <th>Post</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Order</th>
+              <th>Published</th>
+              <th>Updated</th>
+              <th class="admin-actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!posts || !posts.length) { %>
+              <tr>
+                <td colspan="7">
+                  <div class="admin-empty-inline">
+                    ब्लॉग रिकामा आहे. पहिला लेख add करा.
+                  </div>
+                </td>
+              </tr>
+            <% } else { %>
+              <% posts.forEach((post) => { %>
+                <tr>
+                  <td>
+                    <div class="admin-post-cell">
+                      <img src="<%= post.featured_image %>" alt="" class="admin-thumb">
+                      <div>
+                        <strong><%= post.title %></strong>
+                        <small><%= post.slug %></small>
+                        <% if (post.is_protected) { %>
+                          <span class="admin-legacy-badge">Legacy preserved</span>
+                        <% } %>
+                      </div>
+                    </div>
+                  </td>
+                  <td><%= post.category %></td>
+                  <td>
+                    <span class="admin-status-pill <%= post.status %>"><%= post.status %></span>
+                  </td>
+                  <td><%= post.sort_order %></td>
+                  <td><%= formatDate(post.published_at) || '-' %></td>
+                  <td><%= formatDate(post.updated_at) %></td>
+                  <td>
+                    <div class="admin-row-actions">
+                      <a class="admin-action-link" href="/blog/<%= post.slug %>/index.html" target="_blank">View</a>
+                      <a class="admin-action-link" href="/admin/posts/<%= post.id %>/edit">Edit</a>
+                      <% if (!post.is_protected) { %>
+                        <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
+                          <button type="submit" class="admin-action-link danger">Delete</button>
+                        </form>
+                      <% } %>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
