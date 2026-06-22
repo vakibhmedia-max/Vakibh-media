@@ -701,6 +701,7 @@ section {
   justify-content: center;
   padding: 0.3rem;
   border-radius: 50%;
+  text-decoration: none;
 }
 
 .abhang-btn:hover {
