@@ -49,6 +49,11 @@
   const sharedVeenaSrc = `${mediaBasePath}veena.svg`;
   const sharedVeenaAudioSrc = `${siteBasePath}assests/vaakibh_audio.mp3`;
   const blogPath = homePath.replace(/index\.html(?:#.*)?$/, 'blog/index.html');
+  const socialProfiles = {
+    facebook: 'https://www.facebook.com/vaakibh',
+    instagram:
+      'https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr'
+  };
   let footer = document.querySelector('footer');
 
   if (!footer) {
@@ -74,9 +79,8 @@
           वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.
         </p>
         <div class="footer-socials">
-          <a href="#" class="social-link" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link" aria-label="ट्विटर"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link" aria-label="इंस्टाग्राम"><i class="fab fa-instagram"></i></a>
+          <a href="${socialProfiles.facebook}" class="social-link" aria-label="फेसबुक" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+          <a href="${socialProfiles.instagram}" class="social-link" aria-label="इंस्टाग्राम" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
 
