@@ -5,10 +5,15 @@ const DB_HOST = process.env.DB_HOST || '127.0.0.1';
 const DB_PORT = Number(process.env.DB_PORT || 3306);
 const DB_USER = process.env.DB_USER || 'root';
 const DB_PASSWORD = process.env.DB_PASSWORD || 'root';
+const DB_CREATE_DATABASE_ON_STARTUP = String(
+  process.env.DB_CREATE_DATABASE_ON_STARTUP || 'true'
+).toLowerCase() !== 'false';
 
 let pool = null;
 
 async function ensureDatabase() {
+  if (!DB_CREATE_DATABASE_ON_STARTUP) return;
+
   const connection = await mysql.createConnection({
     host: DB_HOST,
     port: DB_PORT,

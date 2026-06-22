@@ -1,8 +1,6 @@
-CREATE DATABASE IF NOT EXISTS vakibh
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE vakibh;
+-- Import this file into the selected Hostinger database:
+-- u474067912_vakibh
+-- Do not run CREATE DATABASE or USE on shared hosting.
 
 CREATE TABLE IF NOT EXISTS admin_users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
