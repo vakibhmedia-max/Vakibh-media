@@ -1,0 +1,68 @@
+<header>
+  <div class="header-container">
+    <a href="/index.html" class="logo-link">
+      <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+    </a>
+  </div>
+</header>
+
+<main class="post-main blog-post-main">
+  <nav class="sant-breadcrumb" aria-label="Breadcrumb">
+    <a href="/index.html">गृहपृष्ठ</a>
+    <span class="bc-sep"> &rsaquo; </span>
+    <a href="/blog/index.html">ब्लॉग</a>
+    <span class="bc-sep"> &rsaquo; </span>
+    <span><%= post.title %></span>
+  </nav>
+
+  <article class="post-article blog-post-card abhang-post" id="post-<%= post.id %>">
+    <div class="blog-post-thumb">
+      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
+    </div>
+
+    <div class="blog-post-body">
+      <header class="post-header">
+        <div class="blog-post-kicker">
+          <a href="/blog/index.html" class="post-category-link"><%= post.category %></a>
+          <span class="arrival-date"><%= formatDate(post.published_at) || post.card_label || 'वाकीभ ब्लॉग' %></span>
+        </div>
+        <h1 class="post-title"><%= post.title %></h1>
+        <p class="arrival-author"><%= post.author_name %></p>
+      </header>
+
+      <div class="post-content blog-post-content">
+        <%- post.content_html %>
+      </div>
+
+      <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
+        <div class="abhang-actions-left">
+          <button class="abhang-btn copy-abhang-btn" aria-label="लेख कॉपी करा">
+            <i class="far fa-copy"></i>
+          </button>
+          <div class="abhang-share-group">
+            <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-post-footer">
+        <a class="blog-back-link" href="/blog/index.html">
+          <i class="fas fa-arrow-left"></i>
+          ब्लॉगवर परत
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="व्हॉट्सअॅप वर संपर्क करा">
+  <img src="/Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
+</a>

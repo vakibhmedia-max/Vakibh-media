@@ -1,0 +1,57 @@
+<div class="admin-login-shell">
+  <section class="admin-login-hero">
+    <div class="admin-login-hero-inner">
+      <span class="admin-eyebrow">वाकीभ व्यवस्थापन</span>
+      <h1>ब्लॉग, प्रतिमा आणि प्रकाशन नियंत्रण एकाच ठिकाणी.</h1>
+      <p>
+        वारकरी परंपरेच्या सौंदर्याशी सुसंगत असा admin panel. लेख add, update, delete,
+        featured image control आणि public blog structure preview.
+      </p>
+
+      <div class="admin-login-points">
+        <div class="admin-login-point">
+          <i class="fas fa-pen-nib"></i>
+          <span>क्लीन लेख संपादन</span>
+        </div>
+        <div class="admin-login-point">
+          <i class="fas fa-image"></i>
+          <span>प्रतिमा upload किंवा URL</span>
+        </div>
+        <div class="admin-login-point">
+          <i class="fas fa-sitemap"></i>
+          <span>Frontend blog structure शी जुळणारा preview</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-login-card">
+    <div class="admin-card-badge">Admin Login</div>
+    <h2>डॅशबोर्डमध्ये प्रवेश करा</h2>
+    <p class="admin-login-subtitle">default credentials तुमच्या `.env` मधून ठरतील.</p>
+
+    <% if (notice) { %>
+      <div class="admin-alert admin-alert-success"><%= notice %></div>
+    <% } %>
+
+    <% if (error) { %>
+      <div class="admin-alert admin-alert-error"><%= error %></div>
+    <% } %>
+
+    <form class="admin-form" method="post" action="/admin/login">
+      <label class="admin-field">
+        <span>ईमेल</span>
+        <input type="email" name="email" value="<%= email || '' %>" placeholder="admin@vakibh.local" required>
+      </label>
+
+      <label class="admin-field">
+        <span>पासवर्ड</span>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </label>
+
+      <button class="admin-button admin-button-primary admin-button-block" type="submit">
+        डॅशबोर्ड उघडा
+      </button>
+    </form>
+  </section>
+</div>
