@@ -546,12 +546,6 @@ async function deleteBlogPost(id) {
   const existingPost = await getPostById(id);
   if (!existingPost) return false;
 
-  if (existingPost.is_protected) {
-    const error = new Error('Legacy blog data is protected and cannot be deleted.');
-    error.statusCode = 403;
-    throw error;
-  }
-
   await pool.query('DELETE FROM blog_posts WHERE id = ?', [id]);
   deleteManagedUpload(existingPost.featured_image);
   await syncStaticBlogPages();

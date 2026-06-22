@@ -171,7 +171,7 @@
           </div>
         </form>
 
-        <% if (mode === 'edit' && post?.id && !post?.is_protected) { %>
+        <% if (mode === 'edit' && post?.id) { %>
           <form class="admin-delete-form" method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
             <button type="submit" class="admin-button admin-button-danger">
               <i class="fas fa-trash"></i>
