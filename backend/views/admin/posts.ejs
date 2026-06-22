@@ -118,11 +118,9 @@
                     <div class="admin-row-actions">
                       <a class="admin-action-link" href="/blog/<%= post.slug %>/index.html" target="_blank">View</a>
                       <a class="admin-action-link" href="/admin/posts/<%= post.id %>/edit">Edit</a>
-                      <% if (!post.is_protected) { %>
-                        <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
-                          <button type="submit" class="admin-action-link danger">Delete</button>
-                        </form>
-                      <% } %>
+                      <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
+                        <button type="submit" class="admin-action-link danger">Delete</button>
+                      </form>
                     </div>
                   </td>
                 </tr>

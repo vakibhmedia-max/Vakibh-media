@@ -395,9 +395,6 @@ app.post('/admin/posts/:id/delete', requireAdmin, async (req, res, next) => {
     }
     res.redirect('/admin/posts?notice=Blog%20deleted%20successfully.');
   } catch (error) {
-    if (error.statusCode === 403) {
-      return res.redirect('/admin/posts?error=Legacy%20blog%20data%20is%20protected%20and%20cannot%20be%20deleted.');
-    }
     next(error);
   }
 });
