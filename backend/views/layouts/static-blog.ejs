@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<%
+  const pageLang = typeof lang !== 'undefined' ? lang : 'mr';
+  const pageTitle = typeof title !== 'undefined' ? title : 'वाकीभ';
+  const pageDescription = typeof description !== 'undefined' ? description : '';
+  const pageBodyClass = typeof bodyClass !== 'undefined' ? bodyClass : '';
+  const pageBodyStyle = typeof bodyStyle !== 'undefined' ? bodyStyle : '';
+  const layoutSiteRootHref = typeof siteRootHref !== 'undefined' ? siteRootHref : '..';
+  const layoutExtraHead = typeof extraHead !== 'undefined' ? extraHead : '';
+%>
+<html lang="<%= pageLang %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= pageTitle %></title>
+  <% if (pageDescription) { %>
+    <meta name="description" content="<%= pageDescription %>">
+  <% } %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="<%= layoutSiteRootHref %>/Vakibh/css/style.css?v=7">
+  <link rel="stylesheet" href="<%= layoutSiteRootHref %>/Vakibh/css/sant.css?v=7">
+  <script src="<%= layoutSiteRootHref %>/Vakibh/js/main.js?v=8" defer></script>
+  <% if (layoutExtraHead) { %>
+    <%- layoutExtraHead %>
+  <% } %>
+</head>
+<body class="<%= pageBodyClass %>" style="<%= pageBodyStyle %>">
+  <%- body %>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<header>
+  <div class="header-container">
+    <a href="<%= siteRootHref %>/index.html" class="logo-link">
+      <img src="<%= siteRootHref %>/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+    </a>
+  </div>
+</header>
+
+<main class="blog-page-main">
+  <section class="blog-hero">
+    <div class="blog-hero-inner">
+      <span class="section-badge">वाकीभ ब्लॉग</span>
+      <h1>संत साहित्य, साधना आणि वारकरी भावनेवरील लेख</h1>
+      <p>
+        अभ्यासी, वाचक आणि भक्त यांच्यासाठी उपयुक्त ठरतील असे चिंतनशील लेख येथे दिसतील.
+        प्रत्येक लेख तुम्ही कॉपी करू शकता किंवा सोशल मीडियावर लगेच शेअर करू शकता.
+      </p>
+    </div>
+  </section>
+
+  <section class="blog-list-section">
+    <% if (!posts || !posts.length) { %>
+      <div class="blog-empty-state">
+        <h2>सध्या कोणतेही प्रकाशित लेख नाहीत.</h2>
+        <p>Admin panel मधून पहिला लेख प्रकाशित झाल्यावर तो येथे दिसेल.</p>
+      </div>
+    <% } else { %>
+      <div class="blog-grid">
+        <% posts.forEach((post, index) => { %>
+          <article class="arrival-card blog-card" id="blog-<%= post.id %>">
+            <a class="blog-card-media" href="<%= post.slug %>/index.html" aria-label="ब्लॉग प्रतिमा">
+              <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
+            </a>
+            <div class="arrival-header">
+              <span class="arrival-tag"><%= post.category %></span>
+              <span class="arrival-date"><%= post.card_label || (`लेख ${index + 1}`) %></span>
+            </div>
+            <h2 class="arrival-title">
+              <a href="<%= post.slug %>/index.html"><%= post.title %></a>
+            </h2>
+            <p class="arrival-author"><%= post.author_name %></p>
+            <p class="arrival-excerpt"><%= post.excerpt %></p>
+            <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="blog-<%= post.id %>" data-share-label="<%= post.card_label || (`लेख ${index + 1}`) %>">
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा">
+                  <i class="far fa-copy"></i>
+                </button>
+                <div class="abhang-share-group">
+                  <a class="abhang-btn whatsapp-share-btn" href="https://wa.me/918001234567" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅपवर संपर्क करा">
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                  <a class="abhang-btn facebook-share-btn" href="https://www.facebook.com/vaakibh" target="_blank" rel="noopener noreferrer" aria-label="फेसबुक पेजला भेट द्या">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a class="abhang-btn instagram-share-btn" href="https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="इंस्टाग्राम प्रोफाइलला भेट द्या">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<a href="https://wa.me/918001234567" class="floating-whatsapp" target="_blank" aria-label="व्हॉट्सअॅप वर संपर्क करा">
+  <img src="<%= siteRootHref %>/Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
+</a>
