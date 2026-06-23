@@ -123,6 +123,26 @@
     </div>
   `;
 
+  const isOviReadingPage =
+    document.querySelector('.abhang-post-main .ovi') ||
+    document.querySelector('.abhang-post-main .oviar');
+
+  if (isOviReadingPage) {
+    document.querySelectorAll('.elementor-section').forEach((section) => {
+      const sectionText = (section.textContent || '').replace(/\s+/g, ' ').trim();
+      const hasEmbeddedAudio = section.querySelector('audio.wp-audio-shortcode');
+      const isAudioOnlyNote =
+        !hasEmbeddedAudio &&
+        !section.querySelector('.ovi') &&
+        !section.querySelector('.oviar') &&
+        /(ध्वनीमुद्रण|ऑडिओ|audio)/i.test(sectionText);
+
+      if (hasEmbeddedAudio || isAudioOnlyNote) {
+        section.remove();
+      }
+    });
+  }
+
   let floatingVeena = document.querySelector('.floating-veena');
   const floatingWhatsapp = document.querySelector('.floating-whatsapp');
 

@@ -126,6 +126,14 @@
   margin: 0 auto;
 }
 
+.abhang-grid-card {
+  background: #fff;
+  border: 1px solid #f0e6d2;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 1.25rem 1.75rem;
+}
+
 /* "संत जनाबाई अभंग" heading — centered, orange, like source */
 .abhang-grid-heading {
   text-align: center;
@@ -189,6 +197,7 @@
 
 .abhang-post-main {
   background: #fff;
+  padding-top: 0.75rem;
 }
 
 /* ── Breadcrumb ───────────────────────────────────────────────── */
@@ -528,7 +537,46 @@
   text-decoration: underline;
 }
 
+.dnyaneshwar-landing-single {
+  max-width: 1500px;
+  width: calc(100% - 40px);
+  display: block;
+}
+
+.dnyaneshwar-col-single {
+  width: 100%;
+  border-right: none;
+  box-sizing: border-box;
+}
+
+.dnyaneshwar-card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.dnyaneshwar-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 92px;
+  padding: 16px 12px;
+  text-align: center;
+  line-height: 1.25;
+  border: 1px solid #f0d5ab;
+  border-radius: 18px;
+  background: #fff8ef;
+  box-shadow: 0 10px 24px rgba(160, 32, 32, 0.08);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 @media (max-width: 900px) {
+  .abhang-post-main {
+    padding-top: 1rem;
+  }
+
   .dnyaneshwar-landing-container {
     grid-template-columns: 1fr;
   }
@@ -538,6 +586,37 @@
   }
   .dnyaneshwar-col:last-child {
     border-bottom: none;
+  }
+
+  .dnyaneshwar-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dnyaneshwar-landing-single {
+    width: calc(100% - 24px);
+    margin: 28px auto;
+  }
+
+  .dnyaneshwar-col-single {
+    padding: 28px 14px;
+  }
+
+  .dnyaneshwar-heading {
+    margin-bottom: 28px;
+    font-size: 1.2rem;
+  }
+
+  .dnyaneshwar-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .dnyaneshwar-card-link {
+    min-height: 84px;
+    padding: 14px 10px;
+    font-size: 0.98rem;
   }
 }
 
@@ -634,4 +713,86 @@
 .sant-page-main input,
 .sant-page-main button {
   font-family: 'Mukta', sans-serif;
+}
+
+.abhang-verse .ovi,
+.abhang-verse .ovi *,
+.abhang-verse .ovi span,
+.abhang-verse .ovi strong {
+  color: #111111 !important;
+}
+
+.verse_style .ovi,
+.verse_style .ovi *,
+.verse_style .ovi span,
+.verse_style .ovi strong,
+.post-content .ovi,
+.post-content .ovi *,
+.post-content .ovi span,
+.post-content .ovi strong {
+  color: #111111 !important;
+}
+
+.janabai-abhang-grid .abhang-grid-card {
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #fffdf9 0%, #fff7ec 100%);
+}
+
+.janabai-abhang-grid .abhang-columns {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+
+.janabai-abhang-grid .abhang-col-list {
+  display: contents;
+}
+
+.janabai-abhang-grid .abhang-col-list li {
+  display: block;
+}
+
+.janabai-abhang-grid .abhang-col-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 116px;
+  padding: 1.1rem 1rem;
+  text-align: center;
+  background: #fff8ef;
+  border: 1px solid #efcf9e;
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(160, 92, 0, 0.08);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.janabai-abhang-grid .abhang-col-list li a:hover {
+  background: #fff2dc;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+  .janabai-abhang-grid .abhang-columns {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .janabai-abhang-grid .abhang-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .janabai-abhang-grid .abhang-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .janabai-abhang-grid .abhang-col-list li a {
+    min-height: 92px;
+    font-size: 0.98rem;
+    border-radius: 20px;
+  }
 }

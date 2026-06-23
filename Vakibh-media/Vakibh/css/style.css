@@ -1043,11 +1043,11 @@ footer::before {
 }
 
 .footer-logo img {
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background-color: var(--accent);
-  padding: 2px;
+  background-color: transparent;
+  padding: 0;
 }
 
 .footer-logo h3 {
@@ -1545,7 +1545,12 @@ footer::before {
 
 @media (max-width: 900px) {
   .header-container {
-    padding: 0.8rem 1.2rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .logo-img {
+    width: 86px;
+    height: 86px;
   }
 
   .menu-toggle {
@@ -1638,6 +1643,20 @@ footer::before {
 }
 
 @media (max-width: 600px) {
+  .header-container {
+    padding: 0.65rem 0.9rem;
+  }
+
+  .logo-img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .footer-logo img {
+    width: 64px;
+    height: 64px;
+  }
+
   section {
     padding: 3.5rem 1rem;
   }
