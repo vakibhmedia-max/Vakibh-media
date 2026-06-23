@@ -5,10 +5,12 @@
 ═══════════════════════════════════════════════════════════════ */
 
 /* ── Page wrapper ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
+
 .sant-page-main {
   min-height: 80vh;
   background: #fff;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -34,7 +36,7 @@
   font-weight: 400;
   color: #ed8208;
   margin-bottom: 1.2rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 /* Three quick-links: centered, orange, no bullets */
@@ -103,7 +105,7 @@
   border: none;
   background: transparent;
   font-size: 1rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   color: #333;
   outline: none;
 }
@@ -144,7 +146,7 @@
   border-bottom: 1px solid #e0c89a;
   padding: 0.7rem 0;
   margin: 0 0 1.5rem 0;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 /* 6-column grid wrapper */
@@ -178,7 +180,7 @@
   font-weight: 600;
   line-height: 1.6;
   word-break: break-word;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   transition: color 0.12s;
 }
 
@@ -211,7 +213,7 @@
   border-bottom: 1px solid #ddd;
   font-size: 0.88rem;
   color: #777;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 .sant-breadcrumb a {
@@ -258,7 +260,7 @@
   color: #1a1a1a;
   line-height: 1.3;
   margin-bottom: 0.5rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 .post-meta {
@@ -301,7 +303,7 @@
 
 /* ── Post content – mirrors the source entry-content ─────────── */
 .post-content {
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   color: #333;
 }
 
@@ -328,7 +330,7 @@
   font-size: 1.05rem;
   line-height: 2.0;
   color: #1a1a1a;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   margin: 0.5rem 0;
 }
 
@@ -350,7 +352,7 @@
   background: #f9f5ef;
   color: #555;
   font-size: 0.9rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
@@ -386,7 +388,7 @@
   font-weight: 700;
   color: #ed8208;
   margin-bottom: 0.8rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 .abhang-meaning-inner p {
@@ -394,7 +396,7 @@
   line-height: 1.8;
   color: #333;
   margin: 0;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 /* ── Post Navigation ──────────────────────────────────────────── */
@@ -425,7 +427,7 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: 'Mukta', sans-serif;
   transition: color 0.15s;
 }
 
@@ -787,7 +789,7 @@
 
 @media (max-width: 700px) {
   .janabai-abhang-grid .abhang-columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .janabai-abhang-grid .abhang-col-list li a {
