@@ -284,11 +284,11 @@
 
 .abhang-post-actions {
   justify-content: flex-start;
-  padding: 0.85rem 1rem;
-  margin: 0 0 1.25rem;
-  background: #fff8ef;
-  border: 1px solid #f0d5ab;
-  border-radius: 12px;
+  padding: 0.35rem 0 0.75rem;
+  margin: 0 0 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .abhang-item-actions {
@@ -316,6 +316,11 @@
 
 .post-content h2 span {
   font-size: 16px;
+}
+
+.abhang-post-main .entry-content hr,
+.abhang-post-main .abhang-verse hr {
+  display: none;
 }
 
 /* ── HR lines – thin, like source ────────────────────────────── */
@@ -757,14 +762,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 116px;
+  min-height: 92px;
   padding: 1.1rem 1rem;
   text-align: center;
   background: #fff8ef;
   border: 1px solid #efcf9e;
   border-radius: 24px;
   box-shadow: 0 10px 24px rgba(160, 92, 0, 0.08);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.45;
 }
@@ -794,7 +799,7 @@
 
   .janabai-abhang-grid .abhang-col-list li a {
     min-height: 92px;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     border-radius: 20px;
   }
 }

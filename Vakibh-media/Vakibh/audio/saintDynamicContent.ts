@@ -1,4 +1,3 @@
-import devotionalAudio from "@/Vakibh/vaakibh_audio.mp3";
 import { saints } from "@/data/mockData";
 import { getSantBySlug, santContent, type SantContentItem } from "@/data/santContent";
 
@@ -179,7 +178,7 @@ export const saintsDynamicJsonSample: { saints: SaintDynamicData[] } = {
         "त्यांची वाणी लोकभाषेतून बोलते, म्हणून ती भक्तांच्या दैनंदिन जीवनाशी सहज जोडली जाते. त्यांच्या रचनांत भक्तीबरोबरच सामाजिक जागृती आणि अंतर्मुखतेचा सुंदर समन्वय दिसतो.",
       ].join("\n\n"),
       abhang: [
-        makeItem("tukaram-abhang-1", "विठ्ठल नाम स्मरण", "विठ्ठलाच्या नामस्मरणाने अंतःकरण निर्मळ होते.", devotionalAudio),
+        makeItem("tukaram-abhang-1", "विठ्ठल नाम स्मरण", "विठ्ठलाच्या नामस्मरणाने अंतःकरण निर्मळ होते."),
         makeItem("tukaram-abhang-2", "भक्तीचा मार्ग", "निष्काम भक्ती हाच खरा जीवनमार्ग आहे."),
         makeItem("tukaram-abhang-3", "संत संगती", "संतसंगाने मनाला स्थैर्य आणि प्रकाश मिळतो."),
       ],
@@ -279,7 +278,7 @@ saintsDynamicJsonSample.saints.forEach((saint) => {
       `${saint.slug}-extra`,
       saint.name,
       saint.abhang,
-      saint.slug === "tukaram" ? devotionalAudio : undefined
+      undefined
     ),
   });
 });

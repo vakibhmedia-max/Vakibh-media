@@ -45,7 +45,6 @@
   const logoSrc = logoImg ? logoImg.getAttribute('src') : 'Vakibh/vaakibh_logo.svg';
   const mediaBasePath = logoSrc.replace(/vaakibh_logo\.svg(?:\?.*)?$/, '');
   const siteBasePath = homePath.replace(/index\.html(?:#.*)?$/, '');
-  const sharedAudioSrc = `${mediaBasePath}vaakibh_audio.mp3`;
   const sharedVeenaSrc = `${mediaBasePath}veena.svg`;
   const sharedVeenaAudioSrc = `${siteBasePath}assests/vaakibh_audio.mp3`;
   const blogPath = homePath.replace(/index\.html(?:#.*)?$/, 'blog/index.html');
@@ -123,11 +122,9 @@
     </div>
   `;
 
-  const isOviReadingPage =
-    document.querySelector('.abhang-post-main .ovi') ||
-    document.querySelector('.abhang-post-main .oviar');
+  const isSaintDetailPage = document.querySelector('.abhang-post-main');
 
-  if (isOviReadingPage) {
+  if (isSaintDetailPage) {
     document.querySelectorAll('.elementor-section').forEach((section) => {
       const sectionText = (section.textContent || '').replace(/\s+/g, ' ').trim();
       const hasEmbeddedAudio = section.querySelector('audio.wp-audio-shortcode');
@@ -139,6 +136,42 @@
 
       if (hasEmbeddedAudio || isAudioOnlyNote) {
         section.remove();
+      }
+    });
+
+    document.querySelectorAll('.abhang-post-main audio').forEach((audioEl) => {
+      const label = audioEl.previousElementSibling;
+      const wrapper = audioEl.parentElement;
+      const labelText = (label?.textContent || '').replace(/\s+/g, ' ').trim();
+      const wrapperText = (wrapper?.textContent || '').replace(/\s+/g, ' ').trim();
+
+      if (label && /(ध्वनीमुद्रण|ऑडिओ|audio)/i.test(labelText)) {
+        label.remove();
+      }
+
+      if (
+        wrapper &&
+        wrapper !== audioEl &&
+        !wrapper.querySelector('.ovi') &&
+        !wrapper.querySelector('.oviar') &&
+        wrapper.querySelector('audio') &&
+        /(ध्वनीमुद्रण|ऑडिओ|audio)/i.test(wrapperText)
+      ) {
+        wrapper.remove();
+        return;
+      }
+
+      audioEl.remove();
+    });
+
+    document.querySelectorAll('.abhang-post-main p, .abhang-post-main div').forEach((node) => {
+      const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!text || node.querySelector('.ovi') || node.querySelector('.oviar') || node.querySelector('audio')) {
+        return;
+      }
+
+      if (/(ध्वनीमुद्रण|ऑडिओ|audio)/i.test(text)) {
+        node.remove();
       }
     });
   }
@@ -1083,7 +1116,7 @@
   }
   // --- Media Player Logic ---
   const heroVideo = document.querySelector('.hero-bg-video');
-  const audio = heroVideo || new Audio(sharedAudioSrc);
+  const audio = heroVideo || new Audio();
   const veenaAudio = new Audio(sharedVeenaAudioSrc);
   veenaAudio.preload = 'auto';
 
