@@ -1,0 +1,238 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div>
+          <strong>वाकीभ</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>">
+        <i class="fas fa-newspaper"></i>
+        Blogs
+      </a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
+        <i class="fas fa-plus-circle"></i>
+        Add Blog
+      </a>
+      <a href="/blog/index.html" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Public Blog
+      </a>
+      <a href="/index.html" target="_blank">
+        <i class="fas fa-home"></i>
+        Frontend Home
+      </a>
+    </nav>
+  </aside>
+
+  <main class="admin-main admin-editor-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb">
+          <a href="/admin">Dashboard</a>
+          <span>/</span>
+          <a href="/admin/posts">Blogs</a>
+          <span>/</span>
+          <span><%= mode === 'edit' ? 'Edit' : 'New' %></span>
+        </p>
+        <h1><%= mode === 'edit' ? 'लेख संपादित करा' : 'नवीन लेख तयार करा' %></h1>
+        <% if (mode === 'edit' && post?.is_protected) { %>
+          <span class="admin-legacy-badge">Legacy preserved</span>
+        <% } %>
+      </div>
+      <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-secondary" href="/admin/posts">
+          <i class="fas fa-arrow-left"></i>
+          Back to list
+        </a>
+        <% if (post?.slug) { %>
+          <a class="admin-button admin-button-ghost" href="/blog/<%= post.slug %>/index.html" target="_blank">
+            <i class="fas fa-eye"></i>
+            Preview public
+          </a>
+        <% } %>
+      </div>
+    </header>
+
+    <% if (error) { %>
+      <div class="admin-alert admin-alert-error"><%= error %></div>
+    <% } %>
+    <% if (notice) { %>
+      <div class="admin-alert admin-alert-success"><%= notice %></div>
+    <% } %>
+
+    <div class="admin-editor-grid" data-blog-editor>
+      <section class="admin-panel admin-editor-panel">
+        <header class="admin-panel-header">
+          <div>
+            <h3><%= mode === 'edit' ? 'Update post' : 'Create post' %></h3>
+            <p>कार्ड, hero image आणि article body यासाठी same fields वापरा.</p>
+          </div>
+        </header>
+
+        <form class="admin-form admin-post-form" method="post" action="<%= actionUrl %>" enctype="multipart/form-data">
+          <div class="admin-form-grid">
+            <label class="admin-field admin-field-wide">
+              <span>Title</span>
+              <input type="text" name="title" value="<%= post.title || '' %>" required data-preview-field="title" data-autoslug-source>
+            </label>
+
+            <label class="admin-field">
+              <span>Slug</span>
+              <input type="text" name="slug" value="<%= post.slug || '' %>" placeholder="namasmaran-mahatva" required data-preview-field="slug" data-autoslug-target>
+              <small>English transliteration recommended. Blank input gets a fallback slug.</small>
+            </label>
+
+            <label class="admin-field">
+              <span>Category / Tag</span>
+              <input type="text" name="category" value="<%= post.category || 'वाकीभ ब्लॉग' %>" required data-preview-field="category">
+            </label>
+
+            <label class="admin-field">
+              <span>Author</span>
+              <input type="text" name="author_name" value="<%= post.author_name || 'वाकीभ संपादकीय मंडळ' %>" required data-preview-field="author">
+            </label>
+
+            <label class="admin-field">
+              <span>Card label</span>
+              <input type="text" name="card_label" value="<%= post.card_label || '' %>" placeholder="लेख १" data-preview-field="label">
+            </label>
+
+            <label class="admin-field">
+              <span>Status</span>
+              <select name="status" required data-preview-field="status">
+                <option value="draft" <%= post.status === 'draft' ? 'selected' : '' %>>draft</option>
+                <option value="published" <%= post.status === 'published' ? 'selected' : '' %>>published</option>
+              </select>
+            </label>
+
+            <label class="admin-field">
+              <span>Sort order</span>
+              <input type="number" name="sort_order" value="<%= post.sort_order ?? nextSortOrder %>" min="0" step="1" required data-preview-field="order">
+            </label>
+
+            <label class="admin-field">
+              <span>Published at</span>
+              <input type="datetime-local" name="published_at" value="<%= typeof publishedAtValue !== 'undefined' ? publishedAtValue : '' %>">
+            </label>
+
+            <label class="admin-field admin-field-wide">
+              <span>Excerpt</span>
+              <textarea name="excerpt" rows="4" required data-preview-field="excerpt"><%= post.excerpt || '' %></textarea>
+            </label>
+
+            <label class="admin-field admin-field-wide">
+              <span>Meta description</span>
+              <textarea name="meta_description" rows="3" data-preview-field="meta"><%= post.meta_description || '' %></textarea>
+            </label>
+
+            <div class="admin-field admin-field-wide">
+              <span>Featured image</span>
+              <div class="admin-image-grid">
+                <label class="admin-field">
+                  <span>Image URL</span>
+                  <input type="text" name="featured_image" value="<%= post.featured_image || '' %>" placeholder="/assests/pandharpur.webp" data-preview-field="image-url">
+                </label>
+
+                <label class="admin-field">
+                  <span>Upload new image</span>
+                  <input type="file" name="featured_image_file" accept="image/*" data-image-upload>
+                </label>
+              </div>
+              <small>Local uploads will be served from `/uploads/blog/`.</small>
+            </div>
+
+            <label class="admin-field admin-field-wide">
+              <span>Featured image alt</span>
+              <input type="text" name="featured_image_alt" value="<%= post.featured_image_alt || '' %>" placeholder="वैकल्पिक प्रतिमा वर्णन" data-preview-field="image-alt">
+            </label>
+
+            <label class="admin-field admin-field-wide">
+              <span>Content HTML</span>
+              <textarea name="content_html" rows="18" required data-preview-field="content"><%= post.content_html || '' %></textarea>
+              <small>Bold, paragraphs, headings, lists, links supported in HTML.</small>
+            </label>
+          </div>
+
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-button admin-button-primary">
+              <i class="fas fa-floppy-disk"></i>
+              <%= mode === 'edit' ? 'Update blog' : 'Save blog' %>
+            </button>
+          </div>
+        </form>
+
+        <% if (mode === 'edit' && post?.id) { %>
+          <form class="admin-delete-form" method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
+            <button type="submit" class="admin-button admin-button-danger">
+              <i class="fas fa-trash"></i>
+              Delete this post
+            </button>
+          </form>
+        <% } %>
+      </section>
+
+      <aside class="admin-panel admin-preview-panel">
+        <header class="admin-panel-header">
+          <div>
+            <h3>Live preview</h3>
+            <p>हे public blog card आणि article page चे रूप आहे.</p>
+          </div>
+        </header>
+
+        <div class="admin-preview-card">
+          <article class="arrival-card blog-card admin-preview-blog-card" id="preview-card">
+            <a class="blog-card-media" href="#" aria-label="Preview image">
+              <img src="<%= post.featured_image || '/assests/hero-bg.jpg' %>" alt="<%= post.featured_image_alt || post.title || 'Preview image' %>" data-preview-image>
+            </a>
+            <div class="arrival-header">
+              <span class="arrival-tag" data-preview-tag><%= post.category || 'वाकीभ ब्लॉग' %></span>
+              <span class="arrival-date" data-preview-label><%= post.card_label || ('लेख ' + (post.sort_order || nextSortOrder || 1)) %></span>
+            </div>
+            <h2 class="arrival-title">
+              <a href="#" data-preview-title><%= post.title || 'लेख शीर्षक' %></a>
+            </h2>
+            <p class="arrival-author" data-preview-author><%= post.author_name || 'वाकीभ संपादकीय मंडळ' %></p>
+            <p class="arrival-excerpt" data-preview-excerpt><%= post.excerpt || 'इथे excerpt preview दिसेल.' %></p>
+            <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="preview-card" data-share-label="preview">
+              <div class="abhang-actions-left">
+                <button class="abhang-btn copy-abhang-btn" type="button" aria-label="Copy preview">
+                  <i class="far fa-copy"></i>
+                </button>
+                <div class="abhang-share-group">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा">
+                    <i class="fab fa-whatsapp"></i>
+                  </button>
+                  <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा">
+                    <i class="fab fa-instagram"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="admin-article-preview">
+          <div class="admin-article-preview-header">
+            <span class="admin-article-preview-pill" data-preview-status><%= post.status || 'draft' %></span>
+            <span class="admin-article-preview-meta" data-preview-order>Order <%= post.sort_order || nextSortOrder || 1 %></span>
+          </div>
+          <h4 data-preview-title-full><%= post.title || 'लेख शीर्षक' %></h4>
+          <div class="admin-article-preview-content" data-preview-content><%- post.content_html || '<p>HTML preview येथे दिसेल.</p>' %></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>

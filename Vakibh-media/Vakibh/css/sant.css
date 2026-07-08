@@ -1,0 +1,2063 @@
+﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   sant.css  â€“  Sant & Abhang Pages
+   Layout matches source: orange headings, blue link columns,
+   while using Vakibh header/footer.
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* â”€â”€ Page wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.sant-page-main {
+  min-height: 80vh;
+  background: #fff;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   LISTING PAGE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* â”€â”€ Title section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.sant-title-section {
+  border-bottom: 1px solid #e0c89a;
+  padding: 1.8rem 1.5rem 1.5rem;
+  text-align: center;
+  background: #fff;
+}
+
+.sant-title-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Main H1 â€“ orange, centered, like source */
+.sant-page-h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #ed8208;
+  margin-bottom: 1.2rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* Three quick-links: centered, orange, no bullets */
+.sant-quick-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sant-quick-link {
+  color: #ed8208;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.15s;
+}
+
+.sant-quick-link:hover,
+.sant-quick-link.active {
+  color: #c06000;
+  text-decoration: underline;
+}
+
+/* â”€â”€ Search bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.sant-search-bar-section {
+  background: #f9f5ef;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.sant-search-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sant-search-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.sant-search-wrap:focus-within {
+  border-color: #ed8208;
+  box-shadow: 0 0 0 2px rgba(237,130,8,0.15);
+}
+
+.sant-search-wrap i {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.sant-search-wrap input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  color: #333;
+  outline: none;
+}
+
+.count-pill {
+  background: #fff3e0;
+  color: #ed8208;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  border: 1px solid #f0c070;
+  white-space: nowrap;
+}
+
+/* â”€â”€ Abhang section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.abhang-grid-section {
+  padding: 2rem 1.5rem 4rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* "à¤¸à¤‚à¤¤ à¤œà¤¨à¤¾à¤¬à¤¾à¤ˆ à¤…à¤­à¤‚à¤—" heading â€” centered, orange, like source */
+.abhang-grid-heading {
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: #ed8208;
+  border-top: 1px solid #e0c89a;
+  border-bottom: 1px solid #e0c89a;
+  padding: 0.7rem 0;
+  margin: 0 0 1.5rem 0;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* 6-column grid wrapper */
+.abhang-columns {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  align-items: start;
+}
+
+/* Each column = one <ul> */
+.abhang-col-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item */
+.abhang-col-list li {
+  padding: 0;
+  text-align: center;
+}
+
+/* Links â€” dark red, bold, centered, no underline by default */
+.abhang-col-list li a {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.95rem;
+  color: #a00000;           /* deep red/burgundy */
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.6;
+  word-break: break-word;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  transition: color 0.12s;
+}
+
+.abhang-col-list li a:visited {
+  color: #a00000;           /* keep same color for visited */
+}
+
+.abhang-col-list li a:hover {
+  color: #ed8208;
+  text-decoration: underline;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   INDIVIDUAL ABHANG PAGE  â€“ exact source layout
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.abhang-post-main {
+  background: #fff;
+}
+
+/* â”€â”€ Breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.sant-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  padding: 0.6rem 1.5rem;
+  background: #f9f5ef;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.88rem;
+  color: #777;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.sant-breadcrumb a {
+  color: #ed8208;
+  text-decoration: none;
+}
+.sant-breadcrumb a:hover { text-decoration: underline; }
+
+.bc-sep { color: #aaa; }
+
+.sant-breadcrumb span { color: #333; }
+
+/* â”€â”€ Post article wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.abhang-post {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* â”€â”€ Featured image â€“ full width like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.post-thumb {
+  margin: 0 -1.5rem 1.5rem;
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.post-thumb-img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+/* â”€â”€ Post header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.post-header {
+  margin-bottom: 1.5rem;
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+}
+
+.post-category-link {
+  color: #777;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.post-category-link:hover {
+  background: #ed8208;
+  color: #fff;
+  border-color: #ed8208;
+}
+
+.abhang-post-actions {
+  justify-content: flex-start;
+  padding: 0.85rem 1rem;
+  margin: 0 0 1.25rem;
+  background: #fff8ef;
+  border: 1px solid #f0d5ab;
+  border-radius: 12px;
+}
+
+.abhang-item-actions {
+  justify-content: flex-start;
+  padding: 0.45rem 0;
+  margin: 0.25rem 0 1rem;
+  background: transparent;
+  border: none;
+  border-top: 1px dashed #e4c89d;
+  border-radius: 0;
+}
+
+/* â”€â”€ Post content â€“ mirrors the source entry-content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.post-content {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  color: #333;
+}
+
+.post-content h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.6rem;
+}
+
+.post-content h2 span {
+  font-size: 16px;
+}
+
+/* â”€â”€ HR lines â€“ thin, like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.post-hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1rem 0;
+}
+
+/* â”€â”€ The abhang verse text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.abhang-verse {
+  font-size: 1.05rem;
+  line-height: 2.0;
+  color: #1a1a1a;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  margin: 0.5rem 0;
+}
+
+/* â”€â”€ Action buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.abhang-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.abhang-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #f9f5ef;
+  color: #555;
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.abhang-action-btn:hover {
+  background: #fff3e0;
+  border-color: #ed8208;
+  color: #ed8208;
+}
+
+.abhang-action-btn.liked {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
+/* â”€â”€ Meaning box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.abhang-meaning-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.abhang-meaning-inner {
+  background: #fdfaf5;
+  border: 1px solid #e0c89a;
+  border-left: 4px solid #ed8208;
+  padding: 1.5rem 2rem;
+}
+
+.meaning-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ed8208;
+  margin-bottom: 0.8rem;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.abhang-meaning-inner p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+/* â”€â”€ Post Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.post-navigation {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.nav-previous, .nav-next, .nav-center {
+  flex: 1;
+}
+
+.nav-previous { text-align: left; }
+.nav-center { text-align: center; }
+.nav-next { text-align: right; }
+
+.post-navigation a {
+  color: #ed8208;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  transition: color 0.15s;
+}
+
+.post-navigation a:hover {
+  color: #c06000;
+  text-decoration: underline;
+}
+
+.nav-center .nav-list-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #e0c89a;
+  background: #fdfaf5;
+  border-radius: 4px;
+  color: #555;
+  font-weight: 400;
+}
+
+.nav-center .nav-list-btn:hover {
+  color: #ed8208;
+  border-color: #ed8208;
+  text-decoration: none;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+@media (max-width: 1100px) {
+  .abhang-columns { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .abhang-columns { grid-template-columns: repeat(3, 1fr); }
+  .abhang-banner-title { font-size: 1.3rem; }
+}
+
+@media (max-width: 560px) {
+  .abhang-columns { grid-template-columns: repeat(2, 1fr); }
+  .abhang-text-card { padding: 1.2rem 1rem; }
+  .abhang-nav-row { flex-direction: column; align-items: stretch; }
+  .abhang-nav-btn { justify-content: center; }
+  .abhang-banner-overlay { padding: 1.2rem 1rem; }
+}
+
+
+/* Dnyaneshwar Categorized Landing Page */
+.dnyaneshwar-landing-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-left: 1px solid #ff9900;
+  border-right: 1px solid #ff9900;
+  border-bottom: 1px solid #ff9900;
+  border-top: 2px solid #5a3a22; /* dark top border */
+}
+
+.dnyaneshwar-col {
+  padding: 40px 20px;
+  border-right: 1px solid #ff9900;
+  text-align: center;
+}
+.dnyaneshwar-col:last-child {
+  border-right: none;
+}
+
+.dnyaneshwar-heading {
+  color: #a02020;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.dnyaneshwar-subheading {
+  color: #a02020;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.dnyaneshwar-links-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 10px;
+  text-align: center;
+}
+
+.dnyaneshwar-links-1col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.dnyaneshwar-link {
+  color: #8b0000;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.dnyaneshwar-link:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .dnyaneshwar-landing-container {
+    grid-template-columns: 1fr;
+  }
+  .dnyaneshwar-col {
+    border-right: none;
+    border-bottom: 1px solid #ff9900;
+  }
+  .dnyaneshwar-col:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Reusable saint landing page card UI */
+.sant-page-main > .tukaram-landing-container {
+  max-width: 1500px !important;
+  width: min(1500px, calc(100% - 40px)) !important;
+  margin: 40px auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
+}
+
+.sant-page-main > .tukaram-landing-container > .tukaram-col,
+.sant-page-main > .tukaram-landing-container > .eknath-section,
+.sant-page-main > .tukaram-landing-container > .chokhamela-section,
+.sant-page-main > .tukaram-landing-container > .gora-kumbhar-section {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+  padding: 34px 26px !important;
+  background: #fff !important;
+  border: 1px solid #f0b35a !important;
+  box-shadow: 0 18px 40px rgba(160, 32, 32, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.sant-page-main > .tukaram-landing-container .tukaram-heading {
+  margin-bottom: 26px !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  text-align: center !important;
+  font-size: clamp(1.7rem, 2.5vw, 2.35rem) !important;
+  color: #a02020 !important;
+}
+
+.sant-page-main > .tukaram-landing-container .tukaram-links-grid,
+.sant-page-main > .tukaram-landing-container .tukaram-links-1col,
+.sant-page-main > .tukaram-landing-container .tukaram-links-2col {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.sant-page-main > .tukaram-landing-container .tukaram-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 92px !important;
+  padding: 16px 14px !important;
+  text-align: center !important;
+  border: 1px solid #f0d5ab !important;
+  border-radius: 22px !important;
+  background: #fff8ef !important;
+  box-shadow: 0 10px 24px rgba(160, 32, 32, 0.08) !important;
+}
+
+.sant-page-main > .tukaram-landing-container .tukaram-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(160, 32, 32, 0.12) !important;
+}
+
+@media (max-width: 900px) {
+  .sant-page-main > .tukaram-landing-container {
+    width: calc(100% - 24px) !important;
+    gap: 18px !important;
+  }
+
+  .sant-page-main > .tukaram-landing-container > .tukaram-col,
+  .sant-page-main > .tukaram-landing-container > .eknath-section,
+  .sant-page-main > .tukaram-landing-container > .chokhamela-section,
+  .sant-page-main > .tukaram-landing-container > .gora-kumbhar-section {
+    padding: 24px 16px !important;
+  }
+
+  .sant-page-main > .tukaram-landing-container .tukaram-links-grid,
+  .sant-page-main > .tukaram-landing-container .tukaram-links-1col,
+  .sant-page-main > .tukaram-landing-container .tukaram-links-2col {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  }
+}
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
+
+.sant-page-main,
+.sant-page-main div,
+.sant-page-main p,
+.sant-page-main span,
+.sant-page-main a,
+.sant-page-main li,
+.sant-page-main h1,
+.sant-page-main h2,
+.sant-page-main h3,
+.sant-page-main h4,
+.sant-page-main input,
+.sant-page-main button {
+  font-family: 'Mukta', sans-serif;
+}
+
+/* Full-width centered post layout */
+.abhang-post-main .abhang-post {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 32px 56px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-header,
+.abhang-post-main .post-content,
+.abhang-post-main .entry-content,
+.abhang-post-main .entry-content p,
+.abhang-post-main .entry-content h1,
+.abhang-post-main .entry-content h2,
+.abhang-post-main .entry-content h3,
+.abhang-post-main .entry-content h4 {
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-verse {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 24px 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+.abhang-post-main .abhang-post-actions {
+  justify-content: center !important;
+}
+
+.abhang-post-main .abhang-actions-left {
+  justify-content: center !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-post {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Hide post category chips under titles */
+.abhang-post-main .post-meta {
+  display: none !important;
+}
+
+/* Match the plain Sant Sahitya reading placement: black body text */
+.abhang-post-main .post-content,
+.abhang-post-main .post-content p,
+.abhang-post-main .post-content span,
+.abhang-post-main .post-content strong,
+.abhang-post-main .post-content em,
+.abhang-post-main .post-content li,
+.abhang-post-main .post-content div,
+.abhang-post-main .post-content h2,
+.abhang-post-main .post-content h3,
+.abhang-post-main .post-content h4,
+.abhang-post-main .entry-content,
+.abhang-post-main .entry-content * {
+  color: #000 !important;
+}
+
+.abhang-post-main .post-content a:not(.abhang-btn):not(.social-share-btn) {
+  color: #000 !important;
+}
+
+.abhang-post-main .post-title {
+  color: #a02020 !important;
+}
+
+.abhang-post-main .post-content hr,
+.abhang-post-main .entry-content hr {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0 !important;
+  border-top: 1px solid #e2e2e2 !important;
+  margin: 24px 0 !important;
+}
+
+/* Keep Arth/meaning labels and reading body in normal weight */
+.abhang-post-main .post-content,
+.abhang-post-main .post-content p,
+.abhang-post-main .post-content span,
+.abhang-post-main .post-content strong,
+.abhang-post-main .post-content b,
+.abhang-post-main .post-content h2,
+.abhang-post-main .post-content h3,
+.abhang-post-main .post-content h4,
+.abhang-post-main .entry-content,
+.abhang-post-main .entry-content * {
+  font-weight: 400 !important;
+}
+
+.abhang-post-main .post-title {
+  font-weight: 700 !important;
+}
+
+/* Final reading layout: left aligned, article-style placement */
+.abhang-post-main .abhang-post {
+  width: 100% !important;
+  max-width: 1040px !important;
+  margin: 0 auto !important;
+  padding: 0 36px 64px !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .post-header,
+.abhang-post-main .post-content,
+.abhang-post-main .post-content p,
+.abhang-post-main .post-content span,
+.abhang-post-main .post-content strong,
+.abhang-post-main .post-content em,
+.abhang-post-main .post-content div,
+.abhang-post-main .post-content h1,
+.abhang-post-main .post-content h2,
+.abhang-post-main .post-content h3,
+.abhang-post-main .post-content h4,
+.abhang-post-main .entry-content,
+.abhang-post-main .entry-content p,
+.abhang-post-main .entry-content span,
+.abhang-post-main .entry-content h1,
+.abhang-post-main .entry-content h2,
+.abhang-post-main .entry-content h3,
+.abhang-post-main .entry-content h4 {
+  text-align: left !important;
+}
+
+.abhang-post-main .post-content,
+.abhang-post-main .entry-content {
+  max-width: 100% !important;
+  color: #202735 !important;
+}
+
+.abhang-post-main .post-content p,
+.abhang-post-main .entry-content p {
+  margin: 0 0 24px !important;
+  line-height: 1.85 !important;
+  font-size: 1.12rem !important;
+  color: #202735 !important;
+  font-weight: 400 !important;
+}
+
+.abhang-post-main .abhang-verse {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 18px 0 !important;
+  text-align: left !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.abhang-post-main .post-content p[style*="font-weight: 600"] {
+  color: #ff6a00 !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  line-height: 1.55 !important;
+}
+
+.abhang-post-main .post-content p[style*="font-weight: 400"] {
+  color: #202735 !important;
+  font-weight: 400 !important;
+}
+
+.abhang-post-main .abhang-post-actions {
+  max-width: 100% !important;
+  justify-content: center !important;
+  margin-bottom: 18px !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-post {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .abhang-post-main .post-content p,
+  .abhang-post-main .entry-content p {
+    font-size: 1.02rem !important;
+  }
+}
+
+/* Mixed verse/Arth paragraphs must stay normal because the source keeps them together */
+.abhang-post-main .post-content p[style*="font-weight: 600"] {
+  color: #202735 !important;
+  font-weight: 400 !important;
+  font-size: 1.12rem !important;
+  line-height: 1.85 !important;
+}
+
+/* Structured Abhang display layout */
+.abhang-post-main .abhang-readable-list {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: #fff !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-item {
+  margin: 0 0 48px !important;
+  padding: 0 !important;
+  background: #fff !important;
+  color: #202735 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-number {
+  display: block !important;
+  margin: 0 0 16px !important;
+  color: #202735 !important;
+  font-size: 1.18rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-verses {
+  margin: 0 0 34px !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-verses p {
+  margin: 0 0 12px !important;
+  color: #ff6600 !important;
+  font-size: 1.22rem !important;
+  font-weight: 700 !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-meaning-title {
+  margin: 0 0 22px !important;
+  color: #202735 !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-meaning {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #202735 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-meaning p {
+  margin: 0 0 24px !important;
+  color: #202735 !important;
+  font-size: 1.12rem !important;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-readable-list {
+    max-width: 100% !important;
+  }
+
+  .abhang-post-main .abhang-readable-verses p {
+    font-size: 1.08rem !important;
+  }
+
+  .abhang-post-main .abhang-readable-meaning p {
+    font-size: 1.02rem !important;
+  }
+}
+
+/* Use normal text color for structured Abhang content */
+.abhang-post-main .abhang-readable-verses p {
+  color: #202735 !important;
+  font-weight: 400 !important;
+}
+
+/* Center bold black Abhang verse blocks */
+.abhang-post-main .abhang-readable-number {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-verses,
+.abhang-post-main .abhang-readable-verses p {
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-verses p {
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+
+/* Keep meaning/explanation text normal weight */
+.abhang-post-main .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .abhang-readable-meaning span,
+.abhang-post-main .abhang-readable-meaning strong,
+.abhang-post-main .abhang-readable-meaning b {
+  font-weight: 400 !important;
+}
+
+/* Force all generated meaning text to normal weight */
+.abhang-post-main .abhang-readable-list .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-list .abhang-readable-meaning * {
+  font-weight: 400 !important;
+  color: #202735 !important;
+}
+
+/* Final: only Arth heading is bold; meaning body is normal */
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning-title {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning p,
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning span,
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning strong,
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning b,
+.abhang-post-main .abhang-readable-item .abhang-readable-meaning * {
+  color: #202735 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+}
+
+body.is-dnyaneshwar-page .abhang-post-main .post-title {
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  body.is-dnyaneshwar-page .abhang-post-main .post-title {
+    margin-top: 1.4rem;
+  }
+}
+/* Full Width Sant And Arth Layout */
+.sant-page-main,
+.abhang-post-main {
+  width: 100%;
+}
+
+.sant-title-inner,
+.sant-filter-inner,
+.sant-list-section,
+.dnyaneshwar-landing-container,
+.sant-page-main > .tukaram-landing-container {
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: clamp(1rem, 3vw, 3rem) !important;
+  padding-right: clamp(1rem, 3vw, 3rem) !important;
+  box-sizing: border-box !important;
+}
+
+.abhang-post-main .abhang-post {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: clamp(1rem, 3vw, 3rem) !important;
+  padding-right: clamp(1rem, 3vw, 3rem) !important;
+  box-sizing: border-box !important;
+}
+
+.abhang-post-main .post-header,
+.abhang-post-main .post-content,
+.abhang-post-main .entry-content,
+.abhang-post-main .abhang-readable-list,
+.abhang-post-main .abhang-readable-item,
+.abhang-post-main .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .abhang-meaning-section {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.abhang-post-main .abhang-readable-list,
+.abhang-post-main .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .entry-content p,
+.abhang-post-main .post-content p {
+  text-align: left !important;
+}
+
+.abhang-post-main .abhang-post-actions {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-post {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+/* Center Aligned Abhang Verse Blocks */
+.abhang-post-main .abhang-readable-number,
+.abhang-post-main .abhang-readable-verses,
+.abhang-post-main .abhang-readable-verses p,
+.abhang-post-main .abhang-verse,
+.abhang-post-main .abhang-verse p,
+.abhang-post-main .post-content p[style*="font-weight: 600"] {
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-verses,
+.abhang-post-main .abhang-verse {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.abhang-post-main .abhang-readable-number {
+  display: block !important;
+  width: 100% !important;
+}
+
+.abhang-post-main .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .abhang-readable-meaning span,
+.abhang-post-main .abhang-readable-meaning strong,
+.abhang-post-main .abhang-readable-meaning b,
+.abhang-post-main .abhang-readable-meaning-title {
+  text-align: left !important;
+}
+/* Inline Verse Number Layout */
+.abhang-post-main .abhang-readable-item {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto 2.5rem !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-number {
+  display: none !important;
+}
+
+.abhang-post-main .abhang-readable-verses {
+  width: auto !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-verses p {
+  text-align: center !important;
+  margin: 0 0 0.35rem !important;
+}
+
+.abhang-post-main .abhang-readable-verses p:first-child::before {
+  content: attr(data-verse-number) '.  ';
+  display: inline !important;
+  margin-right: 0.45rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.abhang-post-main .abhang-readable-meaning-title,
+.abhang-post-main .abhang-readable-meaning,
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .abhang-readable-meaning span,
+.abhang-post-main .abhang-readable-meaning strong,
+.abhang-post-main .abhang-readable-meaning b {
+  text-align: left !important;
+}
+
+.devotional-numbered-verse {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto 1.7rem !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  text-align: center !important;
+}
+
+.devotional-verse-number {
+  display: inline !important;
+  margin-right: 0.45rem;
+  white-space: nowrap !important;
+}
+
+.devotional-verse-content {
+  display: inline !important;
+  max-width: none !important;
+  text-align: center !important;
+}
+
+.devotional-verse-content br {
+  line-height: 1.9 !important;
+}
+/* Traditional Marathi Granth reading layout */
+.abhang-post-main {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.abhang-post-main .abhang-post {
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  padding: clamp(28px, 5vw, 64px) clamp(16px, 4vw, 52px) 72px !important;
+}
+
+.abhang-post-main .post-header {
+  margin: 0 auto clamp(32px, 5vw, 56px) !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-title,
+body.is-dnyaneshwar-page .abhang-post-main .post-title,
+.abhang-post-main .post-header .post-title,
+.abhang-post-main .post-content .hdr1,
+.abhang-post-main .post-content .hdr2,
+.abhang-post-main .post-content .hdr3,
+.abhang-post-main .post-content .hdr4 {
+  display: block !important;
+  margin: 0 auto clamp(18px, 3vw, 32px) !important;
+  color: #000 !important;
+  font-family: 'Mukta', sans-serif !important;
+  font-size: clamp(32px, 3.4vw, 40px) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-content .hdr1 *,
+.abhang-post-main .post-content .hdr2 *,
+.abhang-post-main .post-content .hdr3 *,
+.abhang-post-main .post-content .hdr4 * {
+  color: #000 !important;
+  font-weight: 800 !important;
+}
+
+.abhang-post-main .post-content,
+.abhang-post-main .entry-content,
+.abhang-post-main .abhang-verse {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
+}
+
+.abhang-post-main .ovi,
+.abhang-post-main .abhang-readable-verses,
+.abhang-post-main .devotional-numbered-verse {
+  max-width: 780px !important;
+  margin: 0 auto 14px !important;
+  color: #000 !important;
+  font-family: 'Mukta', sans-serif !important;
+  font-size: clamp(1.2rem, 1.45vw, 1.45rem) !important;
+  font-weight: 700 !important;
+  line-height: 2.05 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .ovi,
+.abhang-post-main .ovi *,
+.abhang-post-main .abhang-readable-verses p,
+.abhang-post-main .devotional-numbered-verse,
+.abhang-post-main .devotional-numbered-verse * {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .oviar,
+.abhang-post-main .abhang-readable-meaning {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 clamp(38px, 5vw, 64px) !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-family: 'Mukta', sans-serif !important;
+  font-size: clamp(1.06rem, 1.16vw, 1.18rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+.abhang-post-main .oviar::before {
+  content: '\0905\0930\094d\0925';
+  display: block;
+  width: max-content;
+  min-width: 96px;
+  margin: 18px auto 22px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+  color: #000;
+  font-family: 'Mukta', sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.abhang-post-main .abhang-readable-meaning-title {
+  width: max-content !important;
+  min-width: 96px !important;
+  margin: 22px auto 24px !important;
+  padding: 0 0 10px !important;
+  border-bottom: 2px solid #000 !important;
+  color: #000 !important;
+  font-family: 'Mukta', sans-serif !important;
+  font-size: clamp(1.35rem, 2vw, 1.75rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-readable-meaning-title::after {
+  content: none !important;
+}
+
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .oviar,
+.abhang-post-main .oviar *,
+.abhang-post-main .post-content p[style*="font-weight: 400"],
+.abhang-post-main .entry-content p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4) {
+  color: #000 !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: justify !important;
+}
+
+.abhang-post-main .abhang-readable-item {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto clamp(44px, 6vw, 76px) !important;
+  padding: 0 !important;
+}
+
+.abhang-post-main .abhang-readable-verses p {
+  margin: 0 0 8px !important;
+  line-height: 2.05 !important;
+}
+
+.abhang-post-main .abhang-readable-verses p:first-child::before {
+  margin-right: 0.35rem !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-post {
+    padding: 28px 16px 56px !important;
+  }
+
+  .abhang-post-main .post-title,
+  body.is-dnyaneshwar-page .abhang-post-main .post-title,
+  .abhang-post-main .post-content .hdr1,
+  .abhang-post-main .post-content .hdr2,
+  .abhang-post-main .post-content .hdr3,
+  .abhang-post-main .post-content .hdr4 {
+    font-size: 32px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .abhang-post-main .ovi,
+  .abhang-post-main .abhang-readable-verses,
+  .abhang-post-main .devotional-numbered-verse {
+    max-width: 100% !important;
+    font-size: 1.12rem !important;
+    line-height: 1.9 !important;
+  }
+
+  .abhang-post-main .oviar,
+  .abhang-post-main .abhang-readable-meaning,
+  .abhang-post-main .abhang-readable-meaning p {
+    font-size: 1.02rem !important;
+    line-height: 1.85 !important;
+    text-align: justify !important;
+  }
+}
+
+
+/* Keep devotional intro lines quieter than the chapter title */
+.abhang-post-main .post-content .hdr1,
+.abhang-post-main .post-content .hdr3,
+.abhang-post-main .post-content .hdr4 {
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem) !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+.abhang-post-main .post-content .hdr2 {
+  font-size: clamp(32px, 3.4vw, 40px) !important;
+  font-weight: 800 !important;
+  margin-top: clamp(22px, 4vw, 42px) !important;
+  margin-bottom: clamp(22px, 4vw, 42px) !important;
+}
+
+/* Dnyaneshwari compact reading refinement */
+.abhang-post-main .post-title,
+body.is-dnyaneshwar-page .abhang-post-main .post-title,
+.abhang-post-main .post-header .post-title {
+  color: #000 !important;
+  font-size: clamp(32px, 3.2vw, 40px) !important;
+  font-weight: 800 !important;
+  line-height: 1.22 !important;
+  text-align: center !important;
+  margin: 0 auto 18px !important;
+}
+
+.abhang-post-main .post-header {
+  margin-bottom: clamp(18px, 3vw, 32px) !important;
+}
+
+.abhang-post-main .abhang-post {
+  padding-top: clamp(18px, 3vw, 34px) !important;
+  padding-bottom: 48px !important;
+}
+
+.abhang-post-main .abhang-post-actions,
+.abhang-post-main audio,
+.abhang-post-main .wp-audio-shortcode,
+.abhang-post-main .mejs-container,
+.abhang-post-main .mejs-audio,
+.abhang-post-main .elementor-widget-audio,
+.abhang-post-main [class*="audio"],
+.abhang-post-main [id*="audio"] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.abhang-post-main .post-content .hdr1,
+.abhang-post-main .post-content .hdr3,
+.abhang-post-main .post-content .hdr4 {
+  color: #000 !important;
+  font-size: clamp(1rem, 1.5vw, 1.25rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  margin: 0 auto 8px !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-content .hdr2 {
+  color: #000 !important;
+  font-size: clamp(32px, 3.2vw, 40px) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin: 16px auto 20px !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-content .hdr1 *,
+.abhang-post-main .post-content .hdr2 *,
+.abhang-post-main .post-content .hdr3 *,
+.abhang-post-main .post-content .hdr4 * {
+  color: #000 !important;
+}
+
+.abhang-post-main .ovi,
+.abhang-post-main .abhang-readable-verses,
+.abhang-post-main .devotional-numbered-verse {
+  max-width: 780px !important;
+  margin: 0 auto 8px !important;
+  color: #000 !important;
+  font-size: clamp(1.16rem, 1.35vw, 1.36rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.78 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .ovi,
+.abhang-post-main .ovi *,
+.abhang-post-main .abhang-readable-verses p,
+.abhang-post-main .devotional-numbered-verse,
+.abhang-post-main .devotional-numbered-verse * {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .oviar,
+.abhang-post-main .abhang-readable-meaning {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 clamp(20px, 3vw, 34px) !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-size: clamp(1.04rem, 1.1vw, 1.15rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.78 !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+.abhang-post-main .oviar::before,
+.abhang-post-main .abhang-readable-meaning-title {
+  content: none !important;
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  height: 0 !important;
+}
+
+.abhang-post-main .abhang-readable-meaning p,
+.abhang-post-main .oviar,
+.abhang-post-main .oviar *,
+.abhang-post-main .entry-content p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4) {
+  color: #000 !important;
+  font-weight: 400 !important;
+  line-height: 1.78 !important;
+  text-align: justify !important;
+}
+
+.abhang-post-main .abhang-readable-item {
+  margin: 0 auto clamp(24px, 4vw, 42px) !important;
+}
+
+.abhang-post-main .abhang-readable-verses p {
+  margin: 0 0 4px !important;
+  line-height: 1.78 !important;
+}
+
+.abhang-post-main .entry-content div:empty,
+.abhang-post-main .post-content div:empty,
+.abhang-post-main .elementor-widget-container:empty,
+.abhang-post-main .elementor-widget-wrap:empty,
+.abhang-post-main .elementor-column:empty,
+.abhang-post-main .elementor-section:empty {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-post-main .abhang-post {
+    padding: 20px 14px 42px !important;
+  }
+
+  .abhang-post-main .post-title,
+  body.is-dnyaneshwar-page .abhang-post-main .post-title,
+  .abhang-post-main .post-content .hdr2 {
+    font-size: 32px !important;
+  }
+
+  .abhang-post-main .ovi,
+  .abhang-post-main .abhang-readable-verses,
+  .abhang-post-main .devotional-numbered-verse {
+    font-size: 1.08rem !important;
+    line-height: 1.72 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .abhang-post-main .oviar,
+  .abhang-post-main .abhang-readable-meaning,
+  .abhang-post-main .abhang-readable-meaning p {
+    font-size: 1rem !important;
+    line-height: 1.72 !important;
+    margin-bottom: 22px !important;
+  }
+}
+
+/* All Dnyaneshwari Adhyay pages: centered, full-width reading */
+body.is-dnyaneshwari-adhyay-page .abhang-post-main,
+body.is-dnyaneshwari-adhyay-page .abhang-post,
+body.is-dnyaneshwari-adhyay-page .post-content,
+body.is-dnyaneshwari-adhyay-page .entry-content,
+body.is-dnyaneshwari-adhyay-page .abhang-verse,
+body.is-dnyaneshwari-adhyay-page .elementor,
+body.is-dnyaneshwari-adhyay-page .elementor-section,
+body.is-dnyaneshwari-adhyay-page .elementor-container,
+body.is-dnyaneshwari-adhyay-page .elementor-column,
+body.is-dnyaneshwari-adhyay-page .elementor-widget-wrap,
+body.is-dnyaneshwari-adhyay-page .elementor-widget-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .abhang-post {
+  padding-left: clamp(14px, 3vw, 42px) !important;
+  padding-right: clamp(14px, 3vw, 42px) !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .post-header,
+body.is-dnyaneshwari-adhyay-page .post-title,
+body.is-dnyaneshwari-adhyay-page .hdr1,
+body.is-dnyaneshwari-adhyay-page .hdr2,
+body.is-dnyaneshwari-adhyay-page .hdr3,
+body.is-dnyaneshwari-adhyay-page .hdr4,
+body.is-dnyaneshwari-adhyay-page .end {
+  text-align: center !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .post-title,
+body.is-dnyaneshwari-adhyay-page .hdr2,
+body.is-dnyaneshwari-adhyay-page .hdr2 * {
+  color: #000 !important;
+  font-weight: 800 !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .ovi,
+body.is-dnyaneshwari-adhyay-page .ovi *,
+body.is-dnyaneshwari-adhyay-page .abhang-readable-verses,
+body.is-dnyaneshwari-adhyay-page .abhang-readable-verses *,
+body.is-dnyaneshwari-adhyay-page .devotional-numbered-verse,
+body.is-dnyaneshwari-adhyay-page .devotional-numbered-verse * {
+  text-align: center !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .ovi,
+body.is-dnyaneshwari-adhyay-page .abhang-readable-verses,
+body.is-dnyaneshwari-adhyay-page .devotional-numbered-verse {
+  width: min(100%, 860px) !important;
+  max-width: 860px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .oviar,
+body.is-dnyaneshwari-adhyay-page .oviar *,
+body.is-dnyaneshwari-adhyay-page .abhang-readable-meaning,
+body.is-dnyaneshwari-adhyay-page .abhang-readable-meaning *,
+body.is-dnyaneshwari-adhyay-page .entry-content p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end) {
+  width: 100% !important;
+  max-width: none !important;
+  text-align: justify !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .post-content > .abhang-verse[style],
+body.is-dnyaneshwari-adhyay-page .abhang-verse[style] {
+  text-align: inherit !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+  body.is-dnyaneshwari-adhyay-page .abhang-post {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+}
+
+/* Fix Adhyay Ovi lines that arrive as centered paragraphs or misclassified .oviar blocks */
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align: center"] strong,
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align:center"] strong,
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align: center"] b,
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align:center"] b,
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align: center"] span[style*="#ff6600"],
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align:center"] span[style*="#ff6600"],
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align: center"] span[style*="#ff6600"] *,
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align:center"] span[style*="#ff6600"] * {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align: center"],
+body.is-dnyaneshwari-adhyay-page .entry-content p[style*="text-align:center"] {
+  max-width: 860px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+body.is-dnyaneshwari-adhyay-page .oviar:has(> span[style*="#ff6600"]),
+body.is-dnyaneshwari-adhyay-page .oviar:has(> span[style*="#ff6600"]) *,
+body.is-dnyaneshwari-adhyay-page .oviar:has(> strong > span[style*="#ff6600"]),
+body.is-dnyaneshwari-adhyay-page .oviar:has(> strong > span[style*="#ff6600"]) * {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+/* Standard master reading layout for Dnyaneshwari, Haripath, Abhang and Granth chapters */
+body.is-standard-granth-reading-page .abhang-post-main {
+  background: #fff !important;
+}
+
+body.is-standard-granth-reading-page .abhang-post-main .abhang-post {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: clamp(22px, 3.5vw, 42px) clamp(16px, 3vw, 42px) 56px !important;
+  box-sizing: border-box !important;
+}
+
+body.is-standard-granth-reading-page .post-header,
+body.is-standard-granth-reading-page .post-title,
+body.is-standard-granth-reading-page .post-content .hdr1,
+body.is-standard-granth-reading-page .post-content .hdr2,
+body.is-standard-granth-reading-page .post-content .hdr3,
+body.is-standard-granth-reading-page .post-content .hdr4 {
+  color: #000 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .post-title,
+body.is-standard-granth-reading-page .post-content .hdr2,
+body.is-standard-granth-reading-page .post-content .hdr2 * {
+  font-size: clamp(32px, 3.2vw, 40px) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin: 0 auto 22px !important;
+}
+
+body.is-standard-granth-reading-page .post-content,
+body.is-standard-granth-reading-page .entry-content,
+body.is-standard-granth-reading-page .abhang-verse,
+body.is-standard-granth-reading-page .elementor,
+body.is-standard-granth-reading-page .elementor-section,
+body.is-standard-granth-reading-page .elementor-container,
+body.is-standard-granth-reading-page .elementor-column,
+body.is-standard-granth-reading-page .elementor-widget-wrap,
+body.is-standard-granth-reading-page .elementor-widget-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+body.is-standard-granth-reading-page .ovi,
+body.is-standard-granth-reading-page .devotional-verse-block,
+body.is-standard-granth-reading-page .abhang-readable-verses,
+body.is-standard-granth-reading-page .devotional-numbered-verse,
+body.is-standard-granth-reading-page .post-content p[style*="font-weight: 600"] {
+  width: min(100%, 860px) !important;
+  max-width: 860px !important;
+  margin: 0 auto 8px !important;
+  color: #000 !important;
+  font-size: clamp(1.14rem, 1.35vw, 1.36rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.82 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .ovi *,
+body.is-standard-granth-reading-page .devotional-verse-block *,
+body.is-standard-granth-reading-page .abhang-readable-verses *,
+body.is-standard-granth-reading-page .devotional-numbered-verse *,
+body.is-standard-granth-reading-page .post-content p[style*="font-weight: 600"] * {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .abhang-readable-verses p,
+body.is-standard-granth-reading-page .devotional-verse-block p {
+  margin: 0 0 4px !important;
+  line-height: 1.82 !important;
+}
+
+body.is-standard-granth-reading-page .oviar,
+body.is-standard-granth-reading-page .abhang-readable-meaning,
+body.is-standard-granth-reading-page .devotional-meaning-text,
+body.is-standard-granth-reading-page .entry-content p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end):not(.devotional-verse-block),
+body.is-standard-granth-reading-page .post-content p[style*="font-weight: 400"] {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 clamp(20px, 3vw, 34px) !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-size: clamp(1.03rem, 1.12vw, 1.15rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.88 !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+body.is-standard-granth-reading-page .oviar *,
+body.is-standard-granth-reading-page .abhang-readable-meaning *,
+body.is-standard-granth-reading-page .entry-content p:not(.devotional-verse-block) * {
+  font-weight: inherit !important;
+}
+
+body.is-standard-granth-reading-page .devotional-meaning-label,
+body.is-standard-granth-reading-page .abhang-readable-meaning-title,
+body.is-standard-granth-reading-page .oviar::before {
+  content: none !important;
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+body.is-standard-granth-reading-page .abhang-readable-item {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto clamp(24px, 4vw, 42px) !important;
+  padding: 0 !important;
+}
+
+body.is-standard-granth-reading-page .entry-content div:empty,
+body.is-standard-granth-reading-page .post-content div:empty,
+body.is-standard-granth-reading-page .elementor-widget-container:empty,
+body.is-standard-granth-reading-page .elementor-widget-wrap:empty,
+body.is-standard-granth-reading-page .elementor-column:empty,
+body.is-standard-granth-reading-page .elementor-section:empty {
+  display: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body.is-standard-granth-reading-page .abhang-post-main .abhang-post {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  body.is-standard-granth-reading-page .abhang-post-main .abhang-post {
+    padding: 20px 16px 42px !important;
+  }
+
+  body.is-standard-granth-reading-page .post-title,
+  body.is-standard-granth-reading-page .post-content .hdr2,
+  body.is-standard-granth-reading-page .post-content .hdr2 * {
+    font-size: 32px !important;
+    line-height: 1.25 !important;
+  }
+
+  body.is-standard-granth-reading-page .ovi,
+  body.is-standard-granth-reading-page .devotional-verse-block,
+  body.is-standard-granth-reading-page .abhang-readable-verses,
+  body.is-standard-granth-reading-page .devotional-numbered-verse {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 1.08rem !important;
+    line-height: 1.78 !important;
+    margin-bottom: 6px !important;
+  }
+
+  body.is-standard-granth-reading-page .oviar,
+  body.is-standard-granth-reading-page .abhang-readable-meaning,
+  body.is-standard-granth-reading-page .entry-content p:not(.devotional-verse-block) {
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 22px !important;
+  }
+}
+
+/* Final Saarth Haripath-style reading polish for Abhang and Granth detail pages */
+body.is-standard-granth-reading-page .abhang-post-main .post-title,
+body.is-standard-granth-reading-page .abhang-post-main .post-header .post-title {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .post-content > .abhang-verse[style],
+body.is-standard-granth-reading-page .abhang-verse[style] {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body.is-standard-granth-reading-page .abhang-verse,
+body.is-standard-granth-reading-page .abhang-verse p,
+body.is-standard-granth-reading-page .post-content > p.abhang-verse,
+body.is-standard-granth-reading-page .entry-content .devotional-verse-block,
+body.is-standard-granth-reading-page .entry-content .devotional-numbered-verse {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .entry-content .devotional-verse-block,
+body.is-standard-granth-reading-page .entry-content .devotional-numbered-verse {
+  display: block !important;
+  width: min(100%, 900px) !important;
+  max-width: 900px !important;
+  margin: 0 auto 8px !important;
+  padding: 0 !important;
+  font-size: clamp(1.14rem, 1.35vw, 1.36rem) !important;
+  line-height: 1.82 !important;
+}
+
+body.is-standard-granth-reading-page .entry-content .devotional-verse-number {
+  display: inline !important;
+  margin-right: 0.25em !important;
+}
+
+body.is-standard-granth-reading-page .entry-content .devotional-verse-content,
+body.is-standard-granth-reading-page .entry-content .devotional-verse-content * {
+  color: #000 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.is-standard-granth-reading-page .entry-content p:not(.devotional-verse-block):not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end),
+body.is-standard-granth-reading-page .abhang-meaning-inner,
+body.is-standard-granth-reading-page .abhang-meaning-inner p {
+  width: 100% !important;
+  max-width: none !important;
+  color: #000 !important;
+  font-weight: 400 !important;
+  line-height: 1.88 !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+body.is-standard-granth-reading-page .entry-content p:not(.devotional-verse-block):not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end) * {
+  font-weight: inherit !important;
+}
+
+body.is-standard-granth-reading-page .post-content hr,
+body.is-standard-granth-reading-page .entry-content hr,
+body.is-standard-granth-reading-page .post-hr {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  border: 0 !important;
+}
+
+body.is-standard-granth-reading-page .abhang-meaning-section {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: -18px auto 34px !important;
+  padding: 0 clamp(16px, 3vw, 42px) !important;
+}
+
+body.is-standard-granth-reading-page .meaning-heading {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  body.is-standard-granth-reading-page .entry-content .devotional-verse-block,
+  body.is-standard-granth-reading-page .entry-content .devotional-numbered-verse {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 1.08rem !important;
+    line-height: 1.78 !important;
+  }
+
+  body.is-standard-granth-reading-page .entry-content p:not(.devotional-verse-block):not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end),
+  body.is-standard-granth-reading-page .abhang-meaning-inner p {
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+    text-align: left !important;
+  }
+}
+
+/* Horizontal card-button layout for Dnyaneshwar Abhang collection ranges */
+.abhang-grid-section .abhang-grid-inner {
+  width: min(1500px, calc(100% - 40px)) !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+}
+
+.abhang-grid-section .abhang-grid-inner > .dnyaneshwar-col {
+  background: #fff !important;
+  padding: 34px 36px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ff9900 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.abhang-grid-section .abhang-grid-inner .dnyaneshwar-heading {
+  margin-bottom: 28px !important;
+  color: #a02020 !important;
+  text-align: center !important;
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+}
+
+.abhang-grid-section .abhang-grid-inner .dnyaneshwar-links-1col {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+
+.abhang-grid-section .abhang-grid-inner .dnyaneshwar-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 82px !important;
+  padding: 16px 18px !important;
+  border: 1px solid #f0d5ab !important;
+  border-radius: 14px !important;
+  background: #fff8ef !important;
+  color: #8b0000 !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  box-shadow: 0 10px 24px rgba(160, 32, 32, 0.08) !important;
+  text-decoration: none !important;
+}
+
+.abhang-grid-section .abhang-grid-inner .dnyaneshwar-link:hover {
+  color: #a02020 !important;
+  border-color: #e9b76f !important;
+  background: #fff4e6 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 28px rgba(160, 32, 32, 0.12) !important;
+}
+
+@media (max-width: 700px) {
+  .abhang-grid-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .abhang-grid-section .abhang-grid-inner {
+    width: calc(100% - 32px) !important;
+  }
+
+  .abhang-grid-section .abhang-grid-inner > .dnyaneshwar-col {
+    padding: 24px 0 !important;
+  }
+
+  .abhang-grid-section .abhang-grid-inner .dnyaneshwar-links-1col {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .abhang-grid-section .abhang-grid-inner .dnyaneshwar-link {
+    min-height: 68px !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* Gatha index inside post wrapper uses the same landing card UI. */
+.sant-page-main .abhang-post .tukaram-landing-container {
+  max-width: 1500px !important;
+  width: min(1500px, calc(100% - 40px)) !important;
+  margin: 40px auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
+}
+
+.sant-page-main .abhang-post .tukaram-landing-container > .tukaram-col {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+  padding: 34px 26px !important;
+  background: #fff !important;
+  border: 1px solid #f0b35a !important;
+  box-shadow: 0 18px 40px rgba(160, 32, 32, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+.sant-page-main .abhang-post .tukaram-landing-container .tukaram-heading {
+  margin-bottom: 26px !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  text-align: center !important;
+  font-size: clamp(1.7rem, 2.5vw, 2.35rem) !important;
+  color: #a02020 !important;
+}
+
+.sant-page-main .abhang-post .tukaram-landing-container .tukaram-links-2col {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.sant-page-main .abhang-post .tukaram-landing-container .tukaram-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 92px !important;
+  padding: 16px 14px !important;
+  text-align: center !important;
+  border: 1px solid #f0d5ab !important;
+  border-radius: 22px !important;
+  background: #fff8ef !important;
+  box-shadow: 0 10px 24px rgba(160, 32, 32, 0.08) !important;
+}
+
+.sant-page-main .abhang-post .tukaram-landing-container .tukaram-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(160, 32, 32, 0.12) !important;
+}
+
+@media (max-width: 900px) {
+  .sant-page-main .abhang-post .tukaram-landing-container {
+    width: calc(100% - 24px) !important;
+    gap: 18px !important;
+  }
+
+  .sant-page-main .abhang-post .tukaram-landing-container > .tukaram-col {
+    padding: 24px 16px !important;
+  }
+
+  .sant-page-main .abhang-post .tukaram-landing-container .tukaram-links-2col {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  }
+}

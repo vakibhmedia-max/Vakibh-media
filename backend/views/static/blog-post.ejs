@@ -1,0 +1,36 @@
+<header>
+  <div class="header-container">
+    <a href="<%= siteRootHref %>/index.html" class="logo-link">
+      <img src="<%= siteRootHref %>/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+    </a>
+  </div>
+</header>
+
+<main class="post-main" style="padding-top: 80px; padding-bottom: 60px;">
+  <nav class="sant-breadcrumb" aria-label="Breadcrumb">
+    <a href="<%= siteRootHref %>/index.html">गृहपृष्ठ</a>
+    <span class="bc-sep"> &rsaquo; </span>
+    <a href="<%= blogIndexHref %>">ब्लॉग</a>
+    <span class="bc-sep"> &rsaquo; </span>
+    <span><%= post.title %></span>
+  </nav>
+
+  <article class="post-article" style="max-width: 960px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    <div style="margin: -8px 0 28px; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 24px rgba(0,0,0,0.08);">
+      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>" style="width: 100%; height: 360px; object-fit: cover; display: block;">
+    </div>
+    <header class="post-header" style="text-align: center;">
+      <h1 class="post-title" style="color: #a02020; font-size: 2rem; margin-bottom: 20px;"><%= post.title %></h1>
+      <div class="post-meta">
+        <a href="<%= blogIndexHref %>" class="post-category-link"><%= post.category %></a>
+      </div>
+    </header>
+    <div class="post-content">
+      <%- post.content_html %>
+    </div>
+  </article>
+</main>
+
+<a href="https://wa.me/919923916476" class="floating-whatsapp" target="_blank" aria-label="व्हॉट्सअॅप वर संपर्क करा">
+  <img src="<%= siteRootHref %>/Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
+</a>

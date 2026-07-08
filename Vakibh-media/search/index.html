@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>अभंग आणि गाथा शोधा – वाकीभ</title>
+  <meta name="description" content="वाकीभवरील अभंग, गाथा, हरिपाठ आणि संत साहित्य मराठी किंवा इंग्रजीत शोधा.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../Vakibh/css/style.css?v=34">
+  <link rel="stylesheet" href="../Vakibh/css/sant.css?v=13">
+  <script src="../Vakibh/js/main.js?v=34" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo-link">
+        <img src="../Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="मुख्य मेनू उघडा">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="../index.html">मुखपृष्ठ</a></li>
+          <li><a href="../index.html#abhangs">अभंग/भजन</a></li>
+          <li><a href="../index.html#saints">संत</a></li>
+          <li><a href="../index.html#categories">विभाग</a></li>
+          <li><a href="../contact/index.html">संपर्क</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switch-group" aria-label="भाषा निवडा">
+          <button class="lang-switch active" type="button" data-language="marathi">मराठी</button>
+        </div>
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="शोध उघडा">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="library-search-page" data-library-search-page="true">
+    <section class="library-search-hero">
+      <div class="library-search-hero-inner">
+        <span class="library-search-eyebrow">डिजिटल संत साहित्य शोध</span>
+        <h1>अभंग, गाथा आणि संत साहित्य शोधा</h1>
+        <p>मराठी किंवा English transliteration मध्ये शोधा: हरि मुखे म्हणा, Dnyaneshwar, Tukaram, Haripath.</p>
+        <div class="library-search-box library-search-page-box">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input id="librarySearchPageInput" class="library-search-input" type="search" placeholder="अभंग, गाथा किंवा संतांचे नाव शोधा..." aria-label="अभंग, गाथा किंवा संतांचे नाव शोधा">
+          <button id="librarySearchPageButton" class="library-search-submit" type="button">शोधा</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-search-results-section">
+      <div class="library-search-results-card">
+        <div class="search-results-header">
+          <span class="search-results-title" id="librarySearchPageTitle">शोध परिणाम</span>
+        </div>
+        <div class="search-results-list library-search-page-results" id="librarySearchPageResults">
+          <div class="search-empty-state">शोध शब्द लिहून परिणाम पहा.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer></footer>
+  <a href="https://wa.me/919923916476" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅप वर संपर्क करा">
+    <img src="../Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
+  </a>
+</body>
+</html>

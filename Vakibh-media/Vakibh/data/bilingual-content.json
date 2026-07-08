@@ -1,0 +1,18 @@
+{
+  "_schema": {
+    "title_mr": "Original Marathi page title",
+    "title_en": "Reviewed English page title",
+    "content_mr": "Original Marathi devotional text, kept in the HTML page",
+    "content_en": "Reviewed English rendering of the devotional text",
+    "meaning_mr": "Optional Marathi meaning",
+    "meaning_en": "Reviewed English meaning or translation",
+    "description_en": "Optional English SEO description"
+  },
+  "_example_path": {
+    "title_mr": "संत तुकाराम महाराज आरती",
+    "title_en": "Sant Tukaram Maharaj Aarti",
+    "content_en": "",
+    "meaning_en": "",
+    "description_en": "Sant Tukaram Maharaj Aarti with original Marathi text and English translation."
+  }
+}
