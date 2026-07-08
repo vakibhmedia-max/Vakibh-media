@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   const removeUnwantedTranslationSections = () => {
     document.querySelectorAll('.bilingual-translation-card').forEach((node) => node.remove());
     document.querySelectorAll('section, div, article').forEach((node) => {
@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (currentPath.includes('/sants/') && document.querySelector('.abhang-post-main')) {
     document.body.classList.add('is-standard-granth-reading-page');
+  }
+  if (currentPath.includes('/sants/janabai/sant-janabai-abhang-')) {
+    document.body.classList.add('is-janabai-abhang-page');
   }
 
   if (!document.querySelector('link[data-font-awesome]')) {
@@ -1198,8 +1201,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const markDevotionalMeaningBlocks = () => {
+    const roots = document.querySelectorAll('.abhang-post-main .post-content, .abhang-post-main .entry-content, .post-article .post-content, .post-article .entry-content, .post-article [itemprop="text"], .verse_style');
+    const meaningStartPattern = /^\s*(?:\u0905\u0930\u094D\u0925(?:\u0903)?|\u092D\u093E\u0935\u093E\u0930\u094D\u0925|meaning|translation)\s*[:\uFF1A\-\u2013\u2014]?/i;
+    const meaningOnlyPattern = /^\s*(?:\u0905\u0930\u094D\u0925(?:\u0903)?|\u092D\u093E\u0935\u093E\u0930\u094D\u0925|meaning|translation)\s*[:\uFF1A\-\u2013\u2014]?\s*$/i;
+    const verseMarkerPattern = /\u0965\s*[\u0966-\u096F0-9]+\s*\u0965/;
+
+    roots.forEach((root) => {
+      const children = Array.from(root.children || []);
+      let inMeaning = false;
+
+      children.forEach((element) => {
+        if (!(element instanceof HTMLElement)) return;
+        if (element.matches('script, style, iframe, video, audio, table')) return;
+
+        const text = normalizeText(element.innerText || element.textContent || '');
+        const isDivider = element.tagName === 'HR';
+        const isHeadingBoundary = inMeaning && /^H[1-2]$/.test(element.tagName);
+        const looksLikeNextVerse = inMeaning && verseMarkerPattern.test(text) && !meaningStartPattern.test(text);
+
+        if (isDivider || isHeadingBoundary || looksLikeNextVerse) {
+          inMeaning = false;
+          return;
+        }
+
+        if (meaningStartPattern.test(text)) {
+          element.classList.add('devotional-meaning-block');
+          if (meaningOnlyPattern.test(text)) element.classList.add('devotional-meaning-label');
+          inMeaning = true;
+          return;
+        }
+
+        if (inMeaning && text) {
+          element.classList.add('devotional-meaning-block');
+        }
+      });
+    });
+  };
+  const wrapVerseEndMarkers = () => {
+    const roots = document.querySelectorAll('.abhang-post-main .post-content, .abhang-post-main .entry-content, .post-article .post-content, .post-article .entry-content, .post-article [itemprop="text"], .verse_style');
+    const markerPattern = /॥\s*[०-९0-9]+\s*॥/g;
+
+    roots.forEach((root) => {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          if (parent.closest('script, style, textarea, input, .verse-end')) return NodeFilter.FILTER_REJECT;
+          if (!markerPattern.test(node.nodeValue || '')) return NodeFilter.FILTER_REJECT;
+          markerPattern.lastIndex = 0;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach((node) => {
+        const fragment = document.createDocumentFragment();
+        const value = node.nodeValue || '';
+        let lastIndex = 0;
+        value.replace(markerPattern, (match, offset) => {
+          if (offset > lastIndex) fragment.appendChild(document.createTextNode(value.slice(lastIndex, offset)));
+          const span = document.createElement('span');
+          span.className = 'verse-end';
+          span.textContent = match.replace(/\s+/g, '');
+          fragment.appendChild(span);
+          lastIndex = offset + match.length;
+          return match;
+        });
+        if (lastIndex < value.length) fragment.appendChild(document.createTextNode(value.slice(lastIndex)));
+        node.replaceWith(fragment);
+      });
+    });
+  };
   createIndividualAbhangActions();
   normalizeLegacyNumberedDevotionalBlocks();
+  markDevotionalMeaningBlocks();
+  wrapVerseEndMarkers();
 
   const getPageShareUrl = () => window.location.href.split('#')[0];
 
@@ -1953,6 +2032,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const libraryInitSearchBars = () => {
     document.querySelectorAll('#abhangs, .abhang-grid-section, .tukaram-landing-container, .dnyaneshwar-landing-container').forEach((target) => {
+      if (target.closest('.sant-page-main')?.querySelector('#abhangSearch')) return;
       libraryCreateSearchBar(target, target.id === 'abhangs' ? 'featured' : 'listing');
     });
   };
@@ -2007,6 +2087,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   libraryInitSearchBars();
   libraryInitSearchPage();});
+
+
 
 
 
