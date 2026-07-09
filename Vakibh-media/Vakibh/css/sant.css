@@ -2654,3 +2654,812 @@ article.charitra-content h3 strong {
   line-height: 1.5 !important;
   color: #a02020 !important;
 }
+
+/* Keep Artha / meaning explanations readable and non-bold across all devotional pages */
+.post-content p:has(strong:first-child),
+.post-content p[style*="font-weight: 400"],
+.post-content .abhang-meaning,
+.post-content .artha,
+.post-content .meaning,
+.post-content .bhavarth,
+.entry-content .abhang-meaning,
+.entry-content .artha,
+.entry-content .meaning,
+.entry-content .bhavarth,
+.abhang-meaning,
+.artha,
+.meaning,
+.bhavarth {
+  font-weight: 400 !important;
+}
+
+.post-content p:has(strong:first-child) + p,
+.post-content p:has(strong:first-child) + p *,
+.post-content .abhang-meaning,
+.post-content .abhang-meaning *,
+.post-content .artha,
+.post-content .artha *,
+.post-content .meaning,
+.post-content .meaning *,
+.post-content .bhavarth,
+.post-content .bhavarth *,
+.entry-content .abhang-meaning,
+.entry-content .abhang-meaning *,
+.entry-content .artha,
+.entry-content .artha *,
+.entry-content .meaning,
+.entry-content .meaning *,
+.entry-content .bhavarth,
+.entry-content .bhavarth * {
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+}
+
+@media (max-width: 640px) {
+  .post-content p:has(strong:first-child) + p,
+  .post-content .abhang-meaning,
+  .post-content .artha,
+  .post-content .meaning,
+  .post-content .bhavarth,
+  .entry-content .abhang-meaning,
+  .entry-content .artha,
+  .entry-content .meaning,
+  .entry-content .bhavarth {
+    font-size: 18px !important;
+    line-height: 1.85 !important;
+  }
+}
+/* Haripath / devotional detail typography: verses bold, meanings normal */
+.haripath-block,
+.post-content .haripath-block {
+  color: #222 !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+}
+
+.haripath-verse,
+.haripath-verse *,
+.abhang-verse,
+.abhang-verse .verse-line,
+.ovi-verse,
+.gatha-verse {
+  font-weight: 700 !important;
+}
+
+.haripath-meaning,
+.haripath-meaning *,
+.abhang-meaning,
+.abhang-meaning *,
+.artha,
+.artha *,
+.meaning,
+.meaning *,
+.bhavarth,
+.bhavarth * {
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: justify !important;
+  color: #222 !important;
+}
+
+.haripath-meaning {
+  display: block;
+  margin-top: 10px;
+}
+body.haripath-meaning-normal-page .haripath-verse,
+body.haripath-meaning-normal-page .haripath-verse * {
+  font-weight: 700 !important;
+  color: #a02020 !important;
+}
+
+body.haripath-meaning-normal-page .haripath-meaning,
+body.haripath-meaning-normal-page .haripath-meaning * {
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: justify !important;
+  color: #222 !important;
+}
+/* Final override: numbered Haripath verse lines stay bold even inside imported meaning paragraphs */
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse * {
+  font-weight: 700 !important;
+  color: #a02020 !important;
+}
+/* Dnyaneshwar Haripath final visual: only original verses bold and centered */
+body.haripath-meaning-normal-page .post-content .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse {
+  display: block !important;
+  margin: 18px auto 12px !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  color: #111 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning,
+body.haripath-meaning-normal-page .post-content .haripath-meaning *:not(.haripath-verse) {
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: justify !important;
+  color: #222 !important;
+}
+/* Haripath typography correction: verses bold, meaning regular */
+body.haripath-meaning-normal-page .post-content .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-verse *,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse * {
+  display: block !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  line-height: 1.9 !important;
+  color: #111 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning {
+  font-weight: 400 !important;
+  text-align: justify !important;
+  line-height: 1.9 !important;
+  color: #222 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning *:not(.haripath-verse):not(.haripath-meaning-heading) {
+  font-weight: 400 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading,
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading * {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+/* Haripath class-only typography: no container-wide font weight */
+body.haripath-meaning-normal-page .post-content .haripath-meaning,
+body.haripath-meaning-normal-page .post-content p.haripath-meaning,
+body.haripath-meaning-normal-page .post-content span.haripath-meaning {
+  font-weight: 400 !important;
+  text-align: justify !important;
+  line-height: 1.9 !important;
+  color: #222 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning *:not(.haripath-meaning-heading):not(.haripath-verse) {
+  font-weight: 400 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading,
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading * {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-verse *,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-verse * {
+  display: block !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  line-height: 1.9 !important;
+  color: #111 !important;
+}
+/* Final Haripath artha weight fix: explanation text must never look bold */
+body.haripath-meaning-normal-page .post-content p.haripath-meaning,
+body.haripath-meaning-normal-page .post-content span.haripath-meaning,
+body.haripath-meaning-normal-page .post-content .haripath-meaning {
+  font-family: "Noto Sans Devanagari", "Mangal", "Kokila", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-align: justify !important;
+  line-height: 1.9 !important;
+  color: #222 !important;
+}
+
+body.haripath-meaning-normal-page .post-content p.haripath-meaning:not(.haripath-verse),
+body.haripath-meaning-normal-page .post-content span.haripath-meaning:not(.haripath-verse) {
+  font-weight: 400 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning :not(.haripath-verse):not(.haripath-meaning-heading) {
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-verse * {
+  font-weight: 700 !important;
+  text-align: center !important;
+  line-height: 1.9 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading,
+body.haripath-meaning-normal-page .post-content .haripath-meaning-heading * {
+  font-weight: 700 !important;
+}
+/* Dnyaneshwar Haripath final fix: verse bold, artha normal */
+.haripath-item {
+  font-weight: inherit !important;
+}
+
+.haripath-verse,
+.haripath-verse * {
+  font-weight: 700 !important;
+}
+
+.haripath-artha,
+.haripath-artha * {
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: justify !important;
+  color: #222 !important;
+}
+
+.haripath-artha strong,
+.haripath-artha b {
+  font-weight: 400 !important;
+}
+
+.haripath-artha-heading,
+.haripath-artha-heading * {
+  font-weight: 700 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse,
+body.haripath-meaning-normal-page .post-content .haripath-verse * {
+  font-weight: 700 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-artha,
+body.haripath-meaning-normal-page .post-content .haripath-artha * {
+  font-weight: 400 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-artha strong,
+body.haripath-meaning-normal-page .post-content .haripath-artha b {
+  font-weight: 400 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-artha-heading,
+body.haripath-meaning-normal-page .post-content .haripath-artha-heading * {
+  font-weight: 700 !important;
+}
+
+/* Global devotional mobile responsiveness: shared across Haripath, Ovi, Abhang, Gatha and Granth pages */
+:root {
+  --devotional-mobile-padding: 16px;
+  --devotional-text-size: 16px;
+  --devotional-verse-size: 18px;
+  --devotional-mobile-verse-size: 16px;
+  --devotional-line-height: 1.8;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.verse-text,
+.haripath-verse,
+.abhang-verse,
+.abhang-readable-verses,
+.abhang-readable-verses p,
+.devotional-numbered-verse,
+.devotional-verse-content,
+.gatha-verse,
+.ovi-verse,
+.abhang-post-main .ovi,
+.abhang-post-main .ovi *,
+.post-article .verse_style .ovi,
+.post-article .verse_style .ovi *,
+.verse_style .ovi,
+.verse_style .ovi * {
+  font-size: var(--devotional-verse-size) !important;
+  font-weight: 700 !important;
+  line-height: var(--devotional-line-height) !important;
+  text-align: center !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: manual !important;
+  text-wrap: balance;
+  max-width: 100% !important;
+}
+
+.meaning-text,
+.artha-text,
+.haripath-artha,
+.haripath-meaning,
+.abhang-meaning,
+.abhang-meaning-section,
+.abhang-meaning-inner,
+.abhang-readable-meaning,
+.devotional-meaning-block,
+.oviar,
+.post-content .artha,
+.post-content .meaning,
+.post-content .bhavarth,
+.entry-content .artha,
+.entry-content .meaning,
+.entry-content .bhavarth {
+  font-size: var(--devotional-text-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--devotional-line-height) !important;
+  text-align: justify !important;
+  color: #222 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere;
+  max-width: 100% !important;
+}
+
+.meaning-text *,
+.artha-text *,
+.haripath-artha *,
+.haripath-meaning *:not(.haripath-verse):not(.haripath-meaning-heading):not(.haripath-artha-heading),
+.abhang-meaning *,
+.abhang-meaning-section *,
+.abhang-meaning-inner *,
+.abhang-readable-meaning *,
+.devotional-meaning-block *,
+.oviar *,
+.post-content .artha *,
+.post-content .meaning *,
+.post-content .bhavarth * {
+  font-weight: 400 !important;
+}
+
+.meaning-heading,
+.devotional-meaning-label,
+.abhang-readable-meaning-title,
+.haripath-meaning-heading,
+.haripath-artha-heading,
+.oviar::before {
+  font-weight: 700 !important;
+}
+
+.verse-end {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+.content-container,
+.sant-page-main,
+.abhang-post-main,
+.abhang-post,
+.post-content,
+.entry-content,
+.post-article,
+.verse_style,
+.charitra-content,
+.sahitya-landing-container,
+.tukaram-landing-container,
+.dnyaneshwar-landing-container {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.abhang-post-main .post-content,
+.abhang-post-main .entry-content,
+.abhang-post-main .abhang-post,
+.post-article,
+.verse_style {
+  overflow-x: hidden !important;
+}
+
+.post-title,
+.page-title,
+.inner-breadcrumb-content h1,
+.abhang-post-main .post-title,
+.abhang-post-main .post-header .post-title {
+  overflow-wrap: anywhere;
+  line-height: 1.25 !important;
+}
+
+.sahitya-links-grid,
+.tukaram-links-2col,
+.dnyaneshwar-links-grid,
+.rohidas-links-grid,
+.abhang-columns,
+.tukaram-landing-container [style*="grid-template-columns"],
+.dnyaneshwar-landing-container [style*="grid-template-columns"],
+.post-content [style*="grid-template-columns"] {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.sahitya-link,
+.tukaram-link,
+.dnyaneshwar-link,
+.rohidas-links-grid .tukaram-link,
+.abhang-col-list li a {
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 72px !important;
+  padding: 14px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1.45 !important;
+  overflow-wrap: anywhere !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1200px) {
+  .sahitya-links-grid,
+  .tukaram-links-2col,
+  .dnyaneshwar-links-grid,
+  .rohidas-links-grid,
+  .abhang-columns,
+  .tukaram-landing-container [style*="grid-template-columns"],
+  .dnyaneshwar-landing-container [style*="grid-template-columns"],
+  .post-content [style*="grid-template-columns"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .sahitya-links-grid,
+  .tukaram-links-2col,
+  .dnyaneshwar-links-grid,
+  .rohidas-links-grid,
+  .abhang-columns,
+  .tukaram-landing-container [style*="grid-template-columns"],
+  .dnyaneshwar-landing-container [style*="grid-template-columns"],
+  .post-content [style*="grid-template-columns"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px !important;
+  }
+
+  .sant-page-main,
+  .abhang-post-main {
+    padding-left: var(--devotional-mobile-padding) !important;
+    padding-right: var(--devotional-mobile-padding) !important;
+  }
+
+  .abhang-post-main .abhang-post,
+  .abhang-post,
+  .post-content,
+  .entry-content,
+  .post-article,
+  .verse_style,
+  .charitra-content,
+  .sahitya-landing-container,
+  .tukaram-landing-container,
+  .dnyaneshwar-landing-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .post-content,
+  .entry-content,
+  .post-content p,
+  .entry-content p,
+  .post-content li,
+  .entry-content li,
+  .post-content span,
+  .entry-content span,
+  .charitra-content,
+  .charitra-content p,
+  .charitra-content li,
+  .normal-content {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+  }
+
+  .post-title,
+  .page-title,
+  .inner-breadcrumb-content h1,
+  .abhang-post-main .post-title,
+  .abhang-post-main .post-header .post-title,
+  .post-content .hdr1,
+  .post-content h1 {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .post-content h2,
+  .post-content h3,
+  .sahitya-heading,
+  .tukaram-heading {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+  }
+
+  .verse-text,
+  .haripath-verse,
+  .abhang-verse,
+  .abhang-readable-verses,
+  .abhang-readable-verses p,
+  .devotional-numbered-verse,
+  .devotional-verse-content,
+  .gatha-verse,
+  .ovi-verse,
+  .abhang-post-main .ovi,
+  .abhang-post-main .ovi *,
+  .post-article .verse_style .ovi,
+  .post-article .verse_style .ovi *,
+  .verse_style .ovi,
+  .verse_style .ovi * {
+    font-size: var(--devotional-mobile-verse-size) !important;
+    line-height: 1.8 !important;
+    margin-top: 12px !important;
+    margin-bottom: 10px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .meaning-text,
+  .artha-text,
+  .haripath-artha,
+  .haripath-meaning,
+  .abhang-meaning,
+  .abhang-meaning-section,
+  .abhang-meaning-inner,
+  .abhang-readable-meaning,
+  .devotional-meaning-block,
+  .oviar,
+  .post-content .artha,
+  .post-content .meaning,
+  .post-content .bhavarth,
+  .entry-content .artha,
+  .entry-content .meaning,
+  .entry-content .bhavarth {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    margin-top: 8px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .haripath-item,
+  .abhang-readable-item,
+  .abhang-meaning-section,
+  .abhang-post-main .ovi,
+  .abhang-post-main .oviar {
+    margin-bottom: 14px !important;
+  }
+
+  .sahitya-links-grid,
+  .tukaram-links-2col,
+  .dnyaneshwar-links-grid,
+  .rohidas-links-grid,
+  .abhang-columns,
+  .tukaram-landing-container [style*="grid-template-columns"],
+  .dnyaneshwar-landing-container [style*="grid-template-columns"],
+  .post-content [style*="grid-template-columns"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .sahitya-link,
+  .tukaram-link,
+  .dnyaneshwar-link,
+  .rohidas-links-grid .tukaram-link,
+  .abhang-col-list li a {
+    min-height: 64px !important;
+    padding: 12px 10px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .sant-page-main,
+  .abhang-post-main {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .sahitya-links-grid,
+  .tukaram-links-2col,
+  .dnyaneshwar-links-grid,
+  .rohidas-links-grid,
+  .abhang-columns,
+  .tukaram-landing-container [style*="grid-template-columns"],
+  .dnyaneshwar-landing-container [style*="grid-template-columns"],
+  .post-content [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sahitya-link,
+  .tukaram-link,
+  .dnyaneshwar-link,
+  .rohidas-links-grid .tukaram-link,
+  .abhang-col-list li a {
+    min-height: 58px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .post-title,
+  .page-title,
+  .inner-breadcrumb-content h1,
+  .abhang-post-main .post-title,
+  .abhang-post-main .post-header .post-title {
+    font-size: 24px !important;
+  }
+
+  .verse-text,
+  .haripath-verse,
+  .abhang-verse,
+  .abhang-readable-verses p,
+  .devotional-numbered-verse,
+  .devotional-verse-content,
+  .gatha-verse,
+  .ovi-verse,
+  .abhang-post-main .ovi,
+  .abhang-post-main .ovi * {
+    font-size: 16px !important;
+  }
+}
+
+/* Devotional print typography reset: keep Marathi text naturally spaced. */
+.verse-text,
+.haripath-verse,
+.abhang-verse,
+.abhang-readable-verses,
+.abhang-readable-verses p,
+.devotional-numbered-verse,
+.devotional-verse-content,
+.gatha-verse,
+.ovi-verse,
+.abhang-post-main .ovi,
+.post-article .verse_style .ovi,
+.verse_style .ovi {
+  display: block !important;
+  justify-content: normal !important;
+  align-items: normal !important;
+  text-align: center !important;
+  text-align-last: auto !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: manual !important;
+  text-wrap: auto !important;
+}
+
+.verse-text *,
+.haripath-verse *,
+.abhang-readable-verses *,
+.devotional-numbered-verse *,
+.devotional-verse-content *,
+.gatha-verse *,
+.ovi-verse *,
+.abhang-post-main .ovi *,
+.post-article .verse_style .ovi *,
+.verse_style .ovi * {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+.devotional-verse-number,
+.devotional-verse-content,
+.verse-end {
+  display: inline !important;
+}
+
+.meaning-text,
+.artha-text,
+.haripath-artha,
+.haripath-meaning,
+.abhang-meaning,
+.abhang-meaning-section,
+.abhang-meaning-inner,
+.abhang-readable-meaning,
+.devotional-meaning-block,
+.oviar,
+.post-content .artha,
+.post-content .meaning,
+.post-content .bhavarth,
+.entry-content .artha,
+.entry-content .meaning,
+.entry-content .bhavarth,
+body.is-standard-granth-reading-page .devotional-meaning-text,
+body.is-dnyaneshwari-adhyay-page .oviar {
+  display: block !important;
+  text-align: left !important;
+  text-align-last: auto !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: manual !important;
+}
+
+.meaning-text *,
+.artha-text *,
+.haripath-artha *,
+.haripath-meaning *:not(.haripath-verse):not(.haripath-meaning-heading):not(.haripath-artha-heading),
+.abhang-meaning *,
+.abhang-meaning-section *,
+.abhang-meaning-inner *,
+.abhang-readable-meaning *,
+.devotional-meaning-block *,
+.oviar *,
+.post-content .artha *,
+.post-content .meaning *,
+.post-content .bhavarth *,
+.entry-content .artha *,
+.entry-content .meaning *,
+.entry-content .bhavarth * {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+@media (max-width: 768px) {
+  .meaning-text,
+  .artha-text,
+  .haripath-artha,
+  .haripath-meaning,
+  .abhang-meaning,
+  .abhang-meaning-section,
+  .abhang-meaning-inner,
+  .abhang-readable-meaning,
+  .devotional-meaning-block,
+  .oviar,
+  .post-content .artha,
+  .post-content .meaning,
+  .post-content .bhavarth,
+  .entry-content .artha,
+  .entry-content .meaning,
+  .entry-content .bhavarth {
+    text-align: left !important;
+  }
+}
+
+/* Legacy granth paragraph spacing override: remove inter-word stretching. */
+body.is-standard-granth-reading-page .oviar,
+body.is-standard-granth-reading-page .abhang-readable-meaning,
+body.is-standard-granth-reading-page .devotional-meaning-text,
+body.is-standard-granth-reading-page .entry-content p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end):not(.devotional-verse-block),
+body.is-standard-granth-reading-page .post-content p[style*="font-weight: 400"],
+.abhang-post-main .post-content p[style*="font-weight: 400"],
+.abhang-post-main .entry-content p[style*="font-weight: 400"],
+.post-content p[style*="font-weight: 400"],
+.entry-content p[style*="font-weight: 400"] {
+  text-align: left !important;
+  text-align-last: auto !important;
+  text-justify: auto !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+body.is-standard-granth-reading-page .ovi,
+body.is-standard-granth-reading-page .devotional-verse-block,
+body.is-standard-granth-reading-page .abhang-readable-verses,
+body.is-standard-granth-reading-page .devotional-numbered-verse,
+body.is-standard-granth-reading-page .post-content p[style*="font-weight: 600"],
+.abhang-post-main .post-content p[style*="font-weight: 600"],
+.abhang-post-main .entry-content p[style*="font-weight: 600"],
+.post-content p[style*="font-weight: 600"],
+.entry-content p[style*="font-weight: 600"] {
+  display: block !important;
+  text-align: center !important;
+  text-align-last: auto !important;
+  text-justify: auto !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}

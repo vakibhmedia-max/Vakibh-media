@@ -2080,13 +2080,62 @@
     }, 0);
   });
 
+
+  const wrapDevotionalVerseEndings = () => {
+    const verseSelector = [
+      '.verse-text',
+      '.haripath-verse',
+      '.abhang-verse',
+      '.abhang-readable-verses p',
+      '.devotional-numbered-verse',
+      '.devotional-verse-content',
+      '.gatha-verse',
+      '.ovi-verse',
+      '.ovi'
+    ].join(', ');
+    const verseEndPattern = /॥\s*[०-९0-9]+(?:[-–][०-९0-9]+)?\s*॥/g;
+
+    document.querySelectorAll(verseSelector).forEach((root) => {
+      if (root.dataset.verseEndsWrapped === 'true') return;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue || !verseEndPattern.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+          verseEndPattern.lastIndex = 0;
+          if (node.parentElement?.closest('.verse-end')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      textNodes.forEach((node) => {
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        node.nodeValue.replace(verseEndPattern, (match, index) => {
+          if (index > lastIndex) fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, index)));
+          const span = document.createElement('span');
+          span.className = 'verse-end';
+          span.textContent = match;
+          fragment.appendChild(span);
+          lastIndex = index + match.length;
+          return match;
+        });
+        if (lastIndex < node.nodeValue.length) fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
+        node.parentNode.replaceChild(fragment, node);
+      });
+
+      root.dataset.verseEndsWrapped = 'true';
+    });
+  };
   const hashTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (hashTarget) {
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
   }
 
+  wrapDevotionalVerseEndings();
   libraryInitSearchBars();
   libraryInitSearchPage();});
+
 
 
 

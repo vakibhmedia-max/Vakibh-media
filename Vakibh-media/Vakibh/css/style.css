@@ -2540,3 +2540,74 @@ section:not(.hero):not(.inner-breadcrumb-hero) {
 .translation-pending {
   display: none !important;
 }
+
+/* Global mobile safety for floating actions and header layering */
+header {
+  z-index: 1100;
+}
+
+.floating-veena,
+.floating-whatsapp,
+.devotional-float-veena {
+  z-index: 900 !important;
+}
+
+@media (max-width: 768px) {
+  .floating-veena,
+  .floating-whatsapp {
+    bottom: 18px !important;
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .floating-veena {
+    left: 12px !important;
+  }
+
+  .floating-whatsapp {
+    right: 12px !important;
+  }
+
+  .floating-veena img,
+  .floating-whatsapp img {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .floating-veena img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .devotional-float-veena {
+    right: 12px !important;
+    bottom: 74px !important;
+    transform: scale(0.82) !important;
+  }
+
+  main,
+  .sant-page-main,
+  .abhang-post-main {
+    scroll-margin-top: 90px;
+  }
+}
+
+@media (max-width: 390px) {
+  .floating-veena,
+  .floating-whatsapp {
+    bottom: 14px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .floating-veena img,
+  .floating-whatsapp img {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .floating-veena img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
