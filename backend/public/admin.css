@@ -891,3 +891,47 @@ select {
     padding: 1.4rem;
   }
 }
+
+.admin-stats-grid-six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.admin-visitor-cell {
+  align-items: center;
+}
+
+.admin-visitor-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--admin-primary), var(--admin-accent));
+  color: #fff;
+  font-weight: 800;
+}
+
+.admin-muted-block {
+  display: block;
+  color: var(--admin-muted);
+  margin-top: 0.2rem;
+}
+
+.visitor-logins-table td {
+  vertical-align: middle;
+}
+
+@media (max-width: 1200px) {
+  .admin-stats-grid-six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-stats-grid-six {
+    grid-template-columns: 1fr;
+  }
+}

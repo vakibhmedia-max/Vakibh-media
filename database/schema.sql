@@ -38,3 +38,46 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   KEY idx_blog_posts_published_at (published_at),
   KEY idx_blog_posts_updated_at (updated_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS visitors (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(120) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_login_at DATETIME DEFAULT NULL,
+  login_count INT UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_visitors_phone (phone),
+  KEY idx_visitors_last_login_at (last_login_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS visitor_login_logs (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  visitor_id INT UNSIGNED NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  login_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ip_address VARCHAR(64) DEFAULT NULL,
+  user_agent VARCHAR(500) DEFAULT NULL,
+  device_type VARCHAR(40) DEFAULT NULL,
+  browser VARCHAR(80) DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY idx_visitor_login_logs_visitor_time (visitor_id, login_time),
+  KEY idx_visitor_login_logs_phone (phone),
+  KEY idx_visitor_login_logs_login_time (login_time),
+  CONSTRAINT fk_visitor_login_logs_visitor
+    FOREIGN KEY (visitor_id) REFERENCES visitors(id)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS otp_verifications (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  phone VARCHAR(20) NOT NULL,
+  otp_hash VARCHAR(255) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  verified TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_otp_verifications_phone_created (phone, created_at),
+  KEY idx_otp_verifications_expires (expires_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

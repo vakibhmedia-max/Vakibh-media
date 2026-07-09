@@ -1,10 +1,10 @@
-<div class="admin-shell">
+﻿<div class="admin-shell">
   <aside class="admin-sidebar">
     <div class="admin-brand">
       <a href="/admin" class="admin-brand-link">
-        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="à¤µà¤¾à¤•à¥€à¤­ à¤²à¥‹à¤—à¥‹">
         <div>
-          <strong>वाकीभ</strong>
+          <strong>à¤µà¤¾à¤•à¥€à¤­</strong>
           <span>Admin Console</span>
         </div>
       </a>
@@ -22,6 +22,10 @@
       <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
         <i class="fas fa-plus-circle"></i>
         Add Blog
+      </a>
+      <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
+        <i class="fas fa-users-viewfinder"></i>
+        Visitor Logins
       </a>
       <a href="/blog/index.html" target="_blank">
         <i class="fas fa-external-link-alt"></i>
@@ -44,13 +48,13 @@
     <header class="admin-topbar">
       <div>
         <p class="admin-breadcrumb">Dashboard</p>
-        <h1>ब्लॉग नियंत्रण कक्ष</h1>
+        <h1>à¤¬à¥à¤²à¥‰à¤— à¤¨à¤¿à¤¯à¤‚à¤¤à¥à¤°à¤£ à¤•à¤•à¥à¤·</h1>
       </div>
 
       <div class="admin-topbar-actions">
         <a class="admin-button admin-button-secondary" href="/admin/posts/new">
           <i class="fas fa-plus"></i>
-          नवीन लेख
+          à¤¨à¤µà¥€à¤¨ à¤²à¥‡à¤–
         </a>
         <form method="post" action="/admin/logout">
           <button class="admin-button admin-button-ghost" type="submit">
@@ -68,10 +72,10 @@
     <section class="admin-hero-card">
       <div class="admin-hero-copy">
         <span class="admin-eyebrow">Frontend aligned blog system</span>
-        <h2>Public blog cards, article pages आणि admin editor यांच्यात एकसंध structure.</h2>
+        <h2>Public blog cards, article pages à¤†à¤£à¤¿ admin editor à¤¯à¤¾à¤‚à¤šà¥à¤¯à¤¾à¤¤ à¤à¤•à¤¸à¤‚à¤§ structure.</h2>
         <p>
-          इथे तयार झालेला प्रत्येक लेख public blog list, detail page आणि share buttons शी
-          जुळतो. तुमचा current frontend layout preserve होत राहतो.
+          à¤‡à¤¥à¥‡ à¤¤à¤¯à¤¾à¤° à¤à¤¾à¤²à¥‡à¤²à¤¾ à¤ªà¥à¤°à¤¤à¥à¤¯à¥‡à¤• à¤²à¥‡à¤– public blog list, detail page à¤†à¤£à¤¿ share buttons à¤¶à¥€
+          à¤œà¥à¤³à¤¤à¥‹. à¤¤à¥à¤®à¤šà¤¾ current frontend layout preserve à¤¹à¥‹à¤¤ à¤°à¤¾à¤¹à¤¤à¥‹.
         </p>
       </div>
 
@@ -106,12 +110,38 @@
       </article>
     </section>
 
+    <section class="admin-stats-grid admin-stats-grid-six">
+      <article class="admin-stat-card">
+        <span>Total visitors logged in</span>
+        <strong><%= visitorStats.total_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Today's logins</span>
+        <strong><%= visitorStats.today_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This week's logins</span>
+        <strong><%= visitorStats.week_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This month's logins</span>
+        <strong><%= visitorStats.month_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Repeat visitors</span>
+        <strong><%= visitorStats.repeat_visitors || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Unique phone numbers</span>
+        <strong><%= visitorStats.unique_phones || 0 %></strong>
+      </article>
+    </section>
     <section class="admin-panel-grid">
       <section class="admin-panel">
         <header class="admin-panel-header">
           <div>
             <h3>Recent Posts</h3>
-            <p>Most recently updated लेख.</p>
+            <p>Most recently updated à¤²à¥‡à¤–.</p>
           </div>
           <a href="/admin/posts" class="admin-text-link">Manage all</a>
         </header>
@@ -130,7 +160,7 @@
               <% if (!recentPosts || !recentPosts.length) { %>
                 <tr>
                   <td colspan="4">
-                    <div class="admin-empty-inline">कोणतेही लेख नाहीत.</div>
+                    <div class="admin-empty-inline">à¤•à¥‹à¤£à¤¤à¥‡à¤¹à¥€ à¤²à¥‡à¤– à¤¨à¤¾à¤¹à¥€à¤¤.</div>
                   </td>
                 </tr>
               <% } else { %>
@@ -165,17 +195,19 @@
         <header class="admin-panel-header">
           <div>
             <h3>Editorial Map</h3>
-            <p>ज्या fields public frontend वापरतो.</p>
+            <p>à¤œà¥à¤¯à¤¾ fields public frontend à¤µà¤¾à¤ªà¤°à¤¤à¥‹.</p>
           </div>
         </header>
 
         <ul class="admin-checklist">
-          <li><i class="fas fa-check"></i> Title, tag, author आणि excerpt blog cards मध्ये दिसतात.</li>
-          <li><i class="fas fa-check"></i> `content_html` detail page वर raw render होते.</li>
-          <li><i class="fas fa-check"></i> `sort_order` blog grid order ठरवतो.</li>
-          <li><i class="fas fa-check"></i> `featured_image` आणि alt text preview मध्ये वापरले जातात.</li>
+          <li><i class="fas fa-check"></i> Title, tag, author à¤†à¤£à¤¿ excerpt blog cards à¤®à¤§à¥à¤¯à¥‡ à¤¦à¤¿à¤¸à¤¤à¤¾à¤¤.</li>
+          <li><i class="fas fa-check"></i> `content_html` detail page à¤µà¤° raw render à¤¹à¥‹à¤¤à¥‡.</li>
+          <li><i class="fas fa-check"></i> `sort_order` blog grid order à¤ à¤°à¤µà¤¤à¥‹.</li>
+          <li><i class="fas fa-check"></i> `featured_image` à¤†à¤£à¤¿ alt text preview à¤®à¤§à¥à¤¯à¥‡ à¤µà¤¾à¤ªà¤°à¤²à¥‡ à¤œà¤¾à¤¤à¤¾à¤¤.</li>
         </ul>
       </aside>
     </section>
   </main>
 </div>
+
+

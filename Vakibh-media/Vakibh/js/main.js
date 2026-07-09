@@ -2081,6 +2081,208 @@
   });
 
 
+  const initVisitorOtpLogin = () => {
+    if (document.body.dataset.visitorLoginReady === 'true') return;
+    document.body.dataset.visitorLoginReady = 'true';
+
+    const apiBase = window.location.origin === 'null' ? '' : '';
+    const state = { name: '', phone: '', resendTimer: 0, resendInterval: null };
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'visitor-login-floating-btn';
+    trigger.setAttribute('aria-label', 'Login with OTP');
+    trigger.innerHTML = '<i class="fas fa-user-check" aria-hidden="true"></i><span>Login</span>';
+
+    const modal = document.createElement('div');
+    modal.className = 'visitor-login-modal';
+    modal.hidden = true;
+    modal.innerHTML = `
+      <div class="visitor-login-backdrop" data-visitor-login-close></div>
+      <section class="visitor-login-dialog" role="dialog" aria-modal="true" aria-labelledby="visitorLoginTitle">
+        <button class="visitor-login-close" type="button" data-visitor-login-close aria-label="Close login popup">&times;</button>
+        <span class="visitor-login-eyebrow">वाकीभ</span>
+        <h2 id="visitorLoginTitle">OTP Login</h2>
+        <p class="visitor-login-subtitle">Enter your name and phone number to receive OTP.</p>
+        <div class="visitor-login-alert" data-visitor-login-message hidden></div>
+        <form class="visitor-login-form" data-visitor-step="details">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" maxlength="120" required>
+          </label>
+          <label>
+            <span>Phone number</span>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="numeric" placeholder="10 digit mobile number" required>
+          </label>
+          <button class="visitor-login-primary" type="submit">Send OTP</button>
+        </form>
+        <form class="visitor-login-form" data-visitor-step="otp" hidden>
+          <label>
+            <span>OTP</span>
+            <input type="text" name="otp" inputmode="numeric" maxlength="6" placeholder="Enter 6 digit OTP" required>
+          </label>
+          <button class="visitor-login-primary" type="submit">Verify OTP</button>
+          <button class="visitor-login-resend" type="button" data-visitor-resend disabled>Resend OTP in 30s</button>
+        </form>
+        <div class="visitor-login-success" data-visitor-step="success" hidden>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Login successful</strong>
+        </div>
+      </section>
+    `;
+
+    document.body.appendChild(trigger);
+    document.body.appendChild(modal);
+
+    const detailsForm = modal.querySelector('[data-visitor-step="details"]');
+    const otpForm = modal.querySelector('[data-visitor-step="otp"]');
+    const successPanel = modal.querySelector('[data-visitor-step="success"]');
+    const message = modal.querySelector('[data-visitor-login-message]');
+    const resendButton = modal.querySelector('[data-visitor-resend]');
+
+    const showMessage = (text, type = 'error') => {
+      if (!message) return;
+      message.textContent = text;
+      message.className = `visitor-login-alert ${type}`;
+      message.hidden = !text;
+    };
+
+    const setOpen = (open) => {
+      modal.hidden = !open;
+      document.body.classList.toggle('visitor-login-open', open);
+      if (open) setTimeout(() => modal.querySelector('input:not([hidden])')?.focus(), 80);
+    };
+
+    const setStep = (step) => {
+      detailsForm.hidden = step !== 'details';
+      otpForm.hidden = step !== 'otp';
+      successPanel.hidden = step !== 'success';
+    };
+
+    const normalizePhone = (value) => String(value || '').trim();
+    const isValidOtpPhone = (value) => {
+      const digits = String(value || '').replace(/\\D+/g, '');
+      return /^[6-9]\\d{9}$/.test(digits) || /^91[6-9]\\d{9}$/.test(digits) || /^9\\d{10}$/.test(digits);
+    };
+
+    const postJson = async (url, payload) => {
+      let response;
+      try {
+        response = await fetch(apiBase + url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        throw new Error('Unable to reach OTP service. Please check server connection.');
+      }
+      const raw = await response.text();
+      let data = {};
+      try { data = raw ? JSON.parse(raw) : {}; } catch { data = {}; }
+      if (!response.ok || data.ok === false) {
+        throw new Error(data.message || raw || `OTP request failed (${response.status}).`);
+      }
+      return data;
+    };
+    const startResendTimer = (seconds = 30) => {
+      clearInterval(state.resendInterval);
+      state.resendTimer = seconds;
+      resendButton.disabled = true;
+      const tick = () => {
+        resendButton.textContent = state.resendTimer > 0 ? `Resend OTP in ${state.resendTimer}s` : 'Resend OTP';
+        resendButton.disabled = state.resendTimer > 0;
+        state.resendTimer -= 1;
+        if (state.resendTimer < 0) clearInterval(state.resendInterval);
+      };
+      tick();
+      state.resendInterval = setInterval(tick, 1000);
+    };
+
+    detailsForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      showMessage('');
+      const formData = new FormData(detailsForm);
+      state.name = String(formData.get('name') || '').trim();
+      state.phone = normalizePhone(formData.get('phone'));
+      if (!state.name || !/^[6-9]\d{9}$/.test(state.phone)) {
+        showMessage('Please enter a valid name and Indian mobile number.');
+        return;
+      }
+      const button = detailsForm.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      try {
+        const result = await postJson('/api/visitor-login/send-otp', { name: state.name, phone: state.phone });
+        showMessage(result.message || 'OTP sent successfully.', 'success');
+        setStep('otp');
+        startResendTimer(result.resendAfter || 30);
+      } catch (error) {
+        showMessage(error.message || 'Unable to send OTP.');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Send OTP';
+      }
+    });
+
+    otpForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      showMessage('');
+      const otp = String(new FormData(otpForm).get('otp') || '').replace(/\D+/g, '');
+      const button = otpForm.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.textContent = 'Verifying...';
+      try {
+        const result = await postJson('/api/visitor-login/verify-otp', { name: state.name, phone: state.phone, otp });
+        showMessage(result.message || 'Login successful', 'success');
+        setStep('success');
+        trigger.classList.add('is-logged-in');
+        trigger.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i><span>Logged in</span>';
+        setTimeout(() => setOpen(false), 1400);
+      } catch (error) {
+        showMessage(error.message || 'Unable to verify OTP.');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Verify OTP';
+      }
+    });
+
+    resendButton.addEventListener('click', async () => {
+      if (resendButton.disabled) return;
+      showMessage('');
+      resendButton.disabled = true;
+      try {
+        const result = await postJson('/api/visitor-login/send-otp', { name: state.name, phone: state.phone });
+        showMessage(result.message || 'OTP sent successfully.', 'success');
+        startResendTimer(result.resendAfter || 30);
+      } catch (error) {
+        showMessage(error.message || 'Unable to resend OTP.');
+        resendButton.disabled = false;
+      }
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target.closest('[data-visitor-login-close]')) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.hidden) setOpen(false);
+    });
+    trigger.addEventListener('click', () => {
+      showMessage('');
+      setStep(trigger.classList.contains('is-logged-in') ? 'success' : 'details');
+      setOpen(true);
+    });
+
+    fetch('/api/visitor-login/status', { credentials: 'same-origin' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => {
+        if (data?.loggedIn) {
+          trigger.classList.add('is-logged-in');
+          trigger.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i><span>Logged in</span>';
+        }
+      })
+      .catch(() => {});
+  };
   const wrapDevotionalVerseEndings = () => {
     const verseSelector = [
       '.verse-text',
@@ -2132,9 +2334,14 @@
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
   }
 
+  initVisitorOtpLogin();
   wrapDevotionalVerseEndings();
   libraryInitSearchBars();
   libraryInitSearchPage();});
+
+
+
+
 
 
 

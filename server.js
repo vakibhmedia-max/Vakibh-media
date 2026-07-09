@@ -1,4 +1,4 @@
-require('dotenv').config();
+﻿require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
@@ -28,6 +28,12 @@ const {
   updateBlogPost
 } = require('./backend/lib/blogs');
 const { renderPage } = require('./backend/lib/render');
+const {
+  getVisitorStats,
+  listVisitorLogins,
+  requestVisitorOtp,
+  verifyVisitorOtp
+} = require('./backend/lib/visitors');
 const { formatDate, toDateTimeLocal } = require('./backend/lib/utils');
 
 const ROOT = __dirname;
@@ -94,9 +100,9 @@ function makeDefaultPost(nextSortOrder) {
   return {
     title: '',
     slug: '',
-    category: 'वाकीभ ब्लॉग',
-    author_name: 'वाकीभ संपादकीय मंडळ',
-    card_label: `लेख ${nextSortOrder}`,
+    category: 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—',
+    author_name: 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³',
+    card_label: `à¤²à¥‡à¤– ${nextSortOrder}`,
     excerpt: '',
     content_html: '',
     featured_image: '/assests/hero-bg.jpg',
@@ -114,9 +120,9 @@ function prepareFormPost(post, nextSortOrder) {
     ...resolved,
     featured_image: resolved.featured_image || '/assests/hero-bg.jpg',
     featured_image_alt: resolved.featured_image_alt || resolved.title || '',
-    category: resolved.category || 'वाकीभ ब्लॉग',
-    author_name: resolved.author_name || 'वाकीभ संपादकीय मंडळ',
-    card_label: resolved.card_label || (resolved.sort_order ? `लेख ${resolved.sort_order}` : `लेख ${nextSortOrder}`),
+    category: resolved.category || 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—',
+    author_name: resolved.author_name || 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³',
+    card_label: resolved.card_label || (resolved.sort_order ? `à¤²à¥‡à¤– ${resolved.sort_order}` : `à¤²à¥‡à¤– ${nextSortOrder}`),
     excerpt: resolved.excerpt || '',
     content_html: resolved.content_html || '',
     meta_description: resolved.meta_description || '',
@@ -133,13 +139,62 @@ async function render(res, template, data = {}, layout = 'public') {
 
 app.get('/blog/', (req, res) => res.redirect('/blog/index.html'));
 
+app.get('/api/visitor-login/status', (req, res) => {
+  res.json({
+    loggedIn: Boolean(req.session.visitor?.id),
+    visitor: req.session.visitor ? { name: req.session.visitor.name } : null
+  });
+});
+
+app.post('/api/visitor-login/send-otp', async (req, res, next) => {
+  try {
+    const result = await requestVisitorOtp({
+      name: req.body.name,
+      phone: req.body.phone,
+      req
+    });
+    req.session.pendingVisitorLogin = {
+      name: String(req.body.name || '').trim(),
+      phone: result.phone,
+      requestedAt: Date.now()
+    };
+    res.json({ ok: true, message: 'OTP sent successfully.', resendAfter: result.resendAfter });
+  } catch (error) {
+    console.error('[Vakibh OTP] Send OTP API error:', error.message);
+    res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to send OTP.' });
+  }
+});
+
+app.post('/api/visitor-login/verify-otp', async (req, res, next) => {
+  try {
+    const pending = req.session.pendingVisitorLogin || {};
+    const visitor = await verifyVisitorOtp({
+      name: req.body.name || pending.name,
+      phone: req.body.phone || pending.phone,
+      otp: req.body.otp,
+      req
+    });
+    req.session.cookie.maxAge = 1000 * 60 * 60 * 24;
+    req.session.visitor = {
+      id: visitor.id,
+      name: visitor.name,
+      phone: visitor.phone,
+      loggedInAt: Date.now()
+    };
+    delete req.session.pendingVisitorLogin;
+    res.json({ ok: true, message: 'Login successful', visitor: { name: visitor.name } });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to verify OTP.' });
+  }
+});
+
 app.get('/admin/login', redirectIfAdmin, async (req, res, next) => {
   try {
     await render(
       res,
       'admin/login.ejs',
       {
-        title: 'वाकीभ Admin Login',
+        title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Login',
         error: getError(req),
         notice: getNotice(req),
         email: '',
@@ -163,8 +218,8 @@ app.post('/admin/login', redirectIfAdmin, async (req, res, next) => {
         res,
         'admin/login.ejs',
         {
-          title: 'वाकीभ Admin Login',
-          error: 'Email किंवा password चुकीचा आहे.',
+          title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Login',
+          error: 'Email à¤•à¤¿à¤‚à¤µà¤¾ password à¤šà¥à¤•à¥€à¤šà¤¾ à¤†à¤¹à¥‡.',
           notice: '',
           email,
           bodyClass: 'admin-login-page'
@@ -189,17 +244,19 @@ app.post('/admin/logout', requireAdmin, async (req, res) => {
 
 app.get('/admin', requireAdmin, async (req, res, next) => {
   try {
-    const [stats, recentPosts] = await Promise.all([
+    const [stats, recentPosts, visitorStats] = await Promise.all([
       getDashboardStats(),
-      getRecentPosts(5)
+      getRecentPosts(5),
+      getVisitorStats()
     ]);
 
     await render(
       res,
       'admin/dashboard.ejs',
       {
-        title: 'वाकीभ Admin Dashboard',
+        title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Dashboard',
         stats,
+        visitorStats,
         recentPosts,
         currentUser: req.session.admin,
         notice: getNotice(req),
@@ -214,6 +271,31 @@ app.get('/admin', requireAdmin, async (req, res, next) => {
   }
 });
 
+app.get('/admin/visitor-logins', requireAdmin, async (req, res, next) => {
+  try {
+    const [visitorStats, visitors] = await Promise.all([
+      getVisitorStats(),
+      listVisitorLogins(300)
+    ]);
+    await render(
+      res,
+      'admin/visitor-logins.ejs',
+      {
+        title: 'Visitor Logins - Vakibh Admin',
+        visitors,
+        visitorStats,
+        currentUser: req.session.admin,
+        notice: getNotice(req),
+        activeNav: 'visitor-logins',
+        formatDate,
+        bodyClass: 'admin-visitor-logins-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    next(error);
+  }
+});
 app.get('/admin/posts', requireAdmin, async (req, res, next) => {
   try {
     const posts = await listAllPosts();
@@ -221,7 +303,7 @@ app.get('/admin/posts', requireAdmin, async (req, res, next) => {
       res,
       'admin/posts.ejs',
       {
-        title: 'वाकीभ Blog Management',
+        title: 'à¤µà¤¾à¤•à¥€à¤­ Blog Management',
         posts,
         currentUser: req.session.admin,
         notice: getNotice(req),
@@ -246,7 +328,7 @@ app.get('/admin/posts/new', requireAdmin, async (req, res, next) => {
       res,
       'admin/form.ejs',
       {
-        title: 'नवीन ब्लॉग लेख',
+        title: 'à¤¨à¤µà¥€à¤¨ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤–',
         post,
         mode: 'new',
         actionUrl: '/admin/posts',
@@ -281,7 +363,7 @@ app.post('/admin/posts', requireAdmin, upload.single('featured_image_file'), asy
         res,
         'admin/form.ejs',
         {
-          title: 'नवीन ब्लॉग लेख',
+          title: 'à¤¨à¤µà¥€à¤¨ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤–',
           post: prepareFormPost({
             ...req.body,
             featured_image: req.body.featured_image || '/assests/hero-bg.jpg',
@@ -406,9 +488,9 @@ app.get('/blog/index.html', async (req, res, next) => {
       res,
       'public/blog-index.ejs',
       {
-        title: 'वाकीभ ब्लॉग - संत साहित्याचा डिजिटल ठेवा',
+        title: 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤— - à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯à¤¾à¤šà¤¾ à¤¡à¤¿à¤œà¤¿à¤Ÿà¤² à¤ à¥‡à¤µà¤¾',
         description:
-          'वाकीभ ब्लॉगमध्ये संत साहित्य, नामस्मरण, अभंग वाचन आणि वारकरी परंपरेवरील निवडक लेख वाचा.',
+          'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—à¤®à¤§à¥à¤¯à¥‡ à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯, à¤¨à¤¾à¤®à¤¸à¥à¤®à¤°à¤£, à¤…à¤­à¤‚à¤— à¤µà¤¾à¤šà¤¨ à¤†à¤£à¤¿ à¤µà¤¾à¤°à¤•à¤°à¥€ à¤ªà¤°à¤‚à¤ªà¤°à¥‡à¤µà¤°à¥€à¤² à¤¨à¤¿à¤µà¤¡à¤• à¤²à¥‡à¤– à¤µà¤¾à¤šà¤¾.',
         posts,
         bodyClass: 'blog-page'
       },
@@ -427,9 +509,9 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
       const html = await renderPage(
         'public/not-found.ejs',
         {
-          title: 'लेख सापडला नाही',
-          heading: 'लेख सापडला नाही',
-          message: 'हा ब्लॉग लेख सध्या उपलब्ध नाही.',
+          title: 'à¤²à¥‡à¤– à¤¸à¤¾à¤ªà¤¡à¤²à¤¾ à¤¨à¤¾à¤¹à¥€',
+          heading: 'à¤²à¥‡à¤– à¤¸à¤¾à¤ªà¤¡à¤²à¤¾ à¤¨à¤¾à¤¹à¥€',
+          message: 'à¤¹à¤¾ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤– à¤¸à¤§à¥à¤¯à¤¾ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¾à¤¹à¥€.',
           bodyClass: 'blog-page'
         },
         'public'
@@ -442,7 +524,7 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
       res,
       'public/blog-post.ejs',
       {
-        title: `${post.title} - वाकीभ ब्लॉग`,
+        title: `${post.title} - à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—`,
         description: post.meta_description || post.excerpt,
         post,
         bodyClass: 'blog-post-page',
@@ -466,7 +548,7 @@ app.use(async (err, req, res, next) => {
   if (res.headersSent) return next(err);
 
   const status = err.statusCode || 500;
-  const title = status === 404 ? 'पृष्ठ सापडले नाही' : 'सर्व्हर त्रुटी';
+  const title = status === 404 ? 'à¤ªà¥ƒà¤·à¥à¤  à¤¸à¤¾à¤ªà¤¡à¤²à¥‡ à¤¨à¤¾à¤¹à¥€' : 'à¤¸à¤°à¥à¤µà¥à¤¹à¤° à¤¤à¥à¤°à¥à¤Ÿà¥€';
   const message = err.message || 'Unexpected error occurred.';
 
   if (req.path.startsWith('/admin')) {
@@ -524,3 +606,11 @@ start().catch((error) => {
   console.error('Failed to start Vakibh backend:', error);
   process.exit(1);
 });
+
+
+
+
+
+
+
+

@@ -2611,3 +2611,335 @@ header {
     height: 40px !important;
   }
 }
+
+/* Visitor OTP login popup */
+.visitor-login-floating-btn {
+  position: fixed;
+  right: 14px;
+  bottom: 84px;
+  z-index: 920;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 16px;
+  background: linear-gradient(135deg, #d9781f, #a02020);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(113, 42, 13, 0.24);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.visitor-login-floating-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(113, 42, 13, 0.3);
+}
+
+.visitor-login-floating-btn.is-logged-in {
+  background: linear-gradient(135deg, #24734b, #39a368);
+}
+
+.visitor-login-modal[hidden] {
+  display: none !important;
+}
+
+.visitor-login-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.visitor-login-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 18, 9, 0.48);
+  backdrop-filter: blur(5px);
+  animation: visitorFadeIn 180ms ease both;
+}
+
+.visitor-login-dialog {
+  position: relative;
+  width: min(430px, 100%);
+  border-radius: 22px;
+  padding: 28px;
+  background: #fffaf3;
+  color: #241a13;
+  border: 1px solid rgba(160, 96, 32, 0.18);
+  box-shadow: 0 28px 70px rgba(65, 34, 12, 0.24);
+  animation: visitorPopIn 220ms ease both;
+}
+
+.visitor-login-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #f2dfca;
+  color: #6b3620;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.visitor-login-eyebrow {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: #a02020;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.visitor-login-dialog h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #a02020;
+}
+
+.visitor-login-subtitle {
+  margin: 8px 0 18px;
+  color: #6a5545;
+  line-height: 1.6;
+}
+
+.visitor-login-form {
+  display: grid;
+  gap: 14px;
+}
+
+.visitor-login-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+  color: #3a2618;
+}
+
+.visitor-login-form input {
+  width: 100%;
+  border: 1px solid #e3c8a6;
+  border-radius: 12px;
+  padding: 12px 13px;
+  background: #fff;
+  color: #241a13;
+  outline: none;
+}
+
+.visitor-login-form input:focus {
+  border-color: #d9781f;
+  box-shadow: 0 0 0 4px rgba(217, 120, 31, 0.14);
+}
+
+.visitor-login-primary,
+.visitor-login-resend {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.visitor-login-primary {
+  background: linear-gradient(135deg, #d9781f, #a02020);
+  color: #fff;
+}
+
+.visitor-login-resend {
+  background: #f2dfca;
+  color: #7d411e;
+}
+
+.visitor-login-primary:disabled,
+.visitor-login-resend:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.visitor-login-alert {
+  margin-bottom: 12px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff0f0;
+  color: #9e2424;
+  font-weight: 700;
+}
+
+.visitor-login-alert.success {
+  background: #e9f7ef;
+  color: #24734b;
+}
+
+.visitor-login-success {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 20px 10px 8px;
+  color: #24734b;
+  text-align: center;
+}
+
+.visitor-login-success i {
+  font-size: 42px;
+}
+
+@keyframes visitorFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes visitorPopIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .visitor-login-floating-btn {
+    right: 12px;
+    bottom: 68px;
+    padding: 10px 13px;
+    font-size: 14px;
+  }
+
+  .visitor-login-dialog {
+    padding: 24px 18px 20px;
+    border-radius: 18px;
+  }
+
+  .visitor-login-dialog h2 {
+    font-size: 24px;
+  }
+}
+
+/* Compact OTP popup sizing and non-overlapping floating login placement */
+.visitor-login-floating-btn {
+  right: 14px !important;
+  bottom: 155px !important;
+  min-height: 46px !important;
+  padding: 10px 15px !important;
+  z-index: 930 !important;
+}
+
+.visitor-login-modal {
+  place-items: center !important;
+  padding: 16px !important;
+}
+
+.visitor-login-dialog {
+  width: min(460px, calc(100% - 32px)) !important;
+  max-width: 460px !important;
+  max-height: calc(100vh - 40px) !important;
+  overflow-y: auto !important;
+  border-radius: 18px !important;
+  padding: 22px 22px 20px !important;
+}
+
+.visitor-login-close {
+  top: 10px !important;
+  right: 10px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 20px !important;
+}
+
+.visitor-login-eyebrow {
+  margin-bottom: 5px !important;
+  font-size: 12px !important;
+}
+
+.visitor-login-dialog h2 {
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+}
+
+.visitor-login-subtitle {
+  margin: 6px 0 14px !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+.visitor-login-form {
+  gap: 12px !important;
+}
+
+.visitor-login-form label {
+  gap: 5px !important;
+  font-size: 15px !important;
+}
+
+.visitor-login-form input {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 9px 12px !important;
+  border-radius: 10px !important;
+}
+
+.visitor-login-primary,
+.visitor-login-resend {
+  min-height: 44px !important;
+  padding: 10px 14px !important;
+  border-radius: 10px !important;
+}
+
+.visitor-login-alert {
+  margin-bottom: 10px !important;
+  padding: 9px 11px !important;
+  font-size: 14px !important;
+}
+
+.visitor-login-success {
+  padding: 16px 8px 4px !important;
+  gap: 8px !important;
+}
+
+.visitor-login-success i {
+  font-size: 36px !important;
+}
+
+@media (max-width: 768px) {
+  .visitor-login-floating-btn {
+    right: 12px !important;
+    bottom: 82px !important;
+    min-height: 42px !important;
+    padding: 9px 12px !important;
+    font-size: 14px !important;
+  }
+
+  .floating-whatsapp {
+    right: 12px !important;
+    bottom: 18px !important;
+  }
+
+  .visitor-login-dialog {
+    width: calc(100% - 32px) !important;
+    max-width: 420px !important;
+    padding: 20px 18px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .visitor-login-dialog h2 {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .visitor-login-floating-btn {
+    bottom: 70px !important;
+    right: 12px !important;
+  }
+
+  .floating-whatsapp {
+    bottom: 14px !important;
+  }
+
+  .visitor-login-dialog {
+    width: calc(100% - 32px) !important;
+    padding: 18px 16px 16px !important;
+  }
+}
