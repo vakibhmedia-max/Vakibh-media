@@ -757,18 +757,21 @@ app.use(async (err, req, res, next) => {
 });
 
 async function start() {
-  await initPool();
-  await bootstrapDatabase();
+  await ensureBackendReady();
 
   app.listen(PORT, () => {
     console.log(`Vakibh backend running on http://127.0.0.1:${PORT}`);
   });
 }
 
-start().catch((error) => {
-  console.error('Failed to start Vakibh backend:', error);
-  process.exit(1);
-});
+if (require.main === module) {
+  start().catch((error) => {
+    console.error('Failed to start Vakibh backend:', error);
+    process.exit(1);
+  });
+}
+
+module.exports = app;
 
 
 

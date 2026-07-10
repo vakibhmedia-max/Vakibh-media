@@ -17,6 +17,7 @@ const BLOG_ROOT_PATH = path.join(SITE_ROOT, 'blog');
 const STATIC_BLOG_INDEX_TEMPLATE = 'static/blog-index.ejs';
 const STATIC_BLOG_POST_TEMPLATE = 'static/blog-post.ejs';
 const STATIC_BLOG_LAYOUT = 'static-blog';
+const IS_VERCEL = process.env.VERCEL === '1';
 
 const SANITIZE_OPTIONS = {
   allowedTags: [
