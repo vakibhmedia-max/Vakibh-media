@@ -1,10 +1,10 @@
-﻿<div class="admin-shell">
+<div class="admin-shell">
   <aside class="admin-sidebar">
     <div class="admin-brand">
       <a href="/admin" class="admin-brand-link">
-        <img src="/Vakibh/vaakibh_logo.svg" alt="à¤µà¤¾à¤•à¥€à¤­ à¤²à¥‹à¤—à¥‹">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
         <div>
-          <strong>à¤µà¤¾à¤•à¥€à¤­</strong>
+          <strong>वाकीभ</strong>
           <span>Admin Console</span>
         </div>
       </a>
@@ -22,6 +22,10 @@
       <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
         <i class="fas fa-plus-circle"></i>
         Add Blog
+      </a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>">
+        <i class="fas fa-file-import"></i>
+        Import from Blogger
       </a>
       <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
         <i class="fas fa-users-viewfinder"></i>
@@ -48,7 +52,7 @@
           <span>/</span>
           <span><%= mode === 'edit' ? 'Edit' : 'New' %></span>
         </p>
-        <h1><%= mode === 'edit' ? 'à¤²à¥‡à¤– à¤¸à¤‚à¤ªà¤¾à¤¦à¤¿à¤¤ à¤•à¤°à¤¾' : 'à¤¨à¤µà¥€à¤¨ à¤²à¥‡à¤– à¤¤à¤¯à¤¾à¤° à¤•à¤°à¤¾' %></h1>
+        <h1><%= mode === 'edit' ? 'लेख संपादित करा' : 'नवीन लेख तयार करा' %></h1>
         <% if (mode === 'edit' && post?.is_protected) { %>
           <span class="admin-legacy-badge">Legacy preserved</span>
         <% } %>
@@ -79,7 +83,7 @@
         <header class="admin-panel-header">
           <div>
             <h3><%= mode === 'edit' ? 'Update post' : 'Create post' %></h3>
-            <p>à¤•à¤¾à¤°à¥à¤¡, hero image à¤†à¤£à¤¿ article body à¤¯à¤¾à¤¸à¤¾à¤ à¥€ same fields à¤µà¤¾à¤ªà¤°à¤¾.</p>
+            <p>कार्ड, hero image आणि article body यासाठी same fields वापरा.</p>
           </div>
         </header>
 
@@ -98,17 +102,17 @@
 
             <label class="admin-field">
               <span>Category / Tag</span>
-              <input type="text" name="category" value="<%= post.category || 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—' %>" required data-preview-field="category">
+              <input type="text" name="category" value="<%= post.category || 'वाकीभ ब्लॉग' %>" required data-preview-field="category">
             </label>
 
             <label class="admin-field">
               <span>Author</span>
-              <input type="text" name="author_name" value="<%= post.author_name || 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³' %>" required data-preview-field="author">
+              <input type="text" name="author_name" value="<%= post.author_name || 'वाकीभ संपादकीय मंडळ' %>" required data-preview-field="author">
             </label>
 
             <label class="admin-field">
               <span>Card label</span>
-              <input type="text" name="card_label" value="<%= post.card_label || '' %>" placeholder="à¤²à¥‡à¤– à¥§" data-preview-field="label">
+              <input type="text" name="card_label" value="<%= post.card_label || '' %>" placeholder="लेख १" data-preview-field="label">
             </label>
 
             <label class="admin-field">
@@ -157,7 +161,7 @@
 
             <label class="admin-field admin-field-wide">
               <span>Featured image alt</span>
-              <input type="text" name="featured_image_alt" value="<%= post.featured_image_alt || '' %>" placeholder="à¤µà¥ˆà¤•à¤²à¥à¤ªà¤¿à¤• à¤ªà¥à¤°à¤¤à¤¿à¤®à¤¾ à¤µà¤°à¥à¤£à¤¨" data-preview-field="image-alt">
+              <input type="text" name="featured_image_alt" value="<%= post.featured_image_alt || '' %>" placeholder="वैकल्पिक प्रतिमा वर्णन" data-preview-field="image-alt">
             </label>
 
             <label class="admin-field admin-field-wide">
@@ -176,7 +180,7 @@
         </form>
 
         <% if (mode === 'edit' && post?.id) { %>
-          <form class="admin-delete-form" method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('à¤¹à¤¾ à¤²à¥‡à¤– delete à¤•à¤°à¤¾à¤¯à¤šà¤¾ à¤†à¤¹à¥‡ à¤•à¤¾?');">
+          <form class="admin-delete-form" method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
             <button type="submit" class="admin-button admin-button-danger">
               <i class="fas fa-trash"></i>
               Delete this post
@@ -189,7 +193,7 @@
         <header class="admin-panel-header">
           <div>
             <h3>Live preview</h3>
-            <p>à¤¹à¥‡ public blog card à¤†à¤£à¤¿ article page à¤šà¥‡ à¤°à¥‚à¤ª à¤†à¤¹à¥‡.</p>
+            <p>हे public blog card आणि article page चे रूप आहे.</p>
           </div>
         </header>
 
@@ -199,27 +203,27 @@
               <img src="<%= post.featured_image || '/assests/hero-bg.jpg' %>" alt="<%= post.featured_image_alt || post.title || 'Preview image' %>" data-preview-image>
             </a>
             <div class="arrival-header">
-              <span class="arrival-tag" data-preview-tag><%= post.category || 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—' %></span>
-              <span class="arrival-date" data-preview-label><%= post.card_label || ('à¤²à¥‡à¤– ' + (post.sort_order || nextSortOrder || 1)) %></span>
+              <span class="arrival-tag" data-preview-tag><%= post.category || 'वाकीभ ब्लॉग' %></span>
+              <span class="arrival-date" data-preview-label><%= post.card_label || ('लेख ' + (post.sort_order || nextSortOrder || 1)) %></span>
             </div>
             <h2 class="arrival-title">
-              <a href="#" data-preview-title><%= post.title || 'à¤²à¥‡à¤– à¤¶à¥€à¤°à¥à¤·à¤•' %></a>
+              <a href="#" data-preview-title><%= post.title || 'लेख शीर्षक' %></a>
             </h2>
-            <p class="arrival-author" data-preview-author><%= post.author_name || 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³' %></p>
-            <p class="arrival-excerpt" data-preview-excerpt><%= post.excerpt || 'à¤‡à¤¥à¥‡ excerpt preview à¤¦à¤¿à¤¸à¥‡à¤².' %></p>
+            <p class="arrival-author" data-preview-author><%= post.author_name || 'वाकीभ संपादकीय मंडळ' %></p>
+            <p class="arrival-excerpt" data-preview-excerpt><%= post.excerpt || 'इथे excerpt preview दिसेल.' %></p>
             <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="preview-card" data-share-label="preview">
               <div class="abhang-actions-left">
                 <button class="abhang-btn copy-abhang-btn" type="button" aria-label="Copy preview">
                   <i class="far fa-copy"></i>
                 </button>
                 <div class="abhang-share-group">
-                  <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="à¤µà¥à¤¹à¥‰à¤Ÿà¥à¤¸à¥²à¤ªà¤µà¤° à¤¶à¥‡à¤…à¤° à¤•à¤°à¤¾">
+                  <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा">
                     <i class="fab fa-whatsapp"></i>
                   </button>
-                  <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="à¤«à¥‡à¤¸à¤¬à¥à¤•à¤µà¤° à¤¶à¥‡à¤…à¤° à¤•à¤°à¤¾">
+                  <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा">
                     <i class="fab fa-facebook-f"></i>
                   </button>
-                  <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="à¤‡à¤‚à¤¸à¥à¤Ÿà¤¾à¤—à¥à¤°à¤¾à¤®à¤¸à¤¾à¤ à¥€ à¤•à¥‰à¤ªà¥€ à¤•à¤°à¤¾">
+                  <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा">
                     <i class="fab fa-instagram"></i>
                   </button>
                 </div>
@@ -233,8 +237,8 @@
             <span class="admin-article-preview-pill" data-preview-status><%= post.status || 'draft' %></span>
             <span class="admin-article-preview-meta" data-preview-order>Order <%= post.sort_order || nextSortOrder || 1 %></span>
           </div>
-          <h4 data-preview-title-full><%= post.title || 'à¤²à¥‡à¤– à¤¶à¥€à¤°à¥à¤·à¤•' %></h4>
-          <div class="admin-article-preview-content" data-preview-content><%- post.content_html || '<p>HTML preview à¤¯à¥‡à¤¥à¥‡ à¤¦à¤¿à¤¸à¥‡à¤².</p>' %></div>
+          <h4 data-preview-title-full><%= post.title || 'लेख शीर्षक' %></h4>
+          <div class="admin-article-preview-content" data-preview-content><%- post.content_html || '<p>HTML preview येथे दिसेल.</p>' %></div>
         </div>
       </aside>
     </div>

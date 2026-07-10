@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   content_html MEDIUMTEXT NOT NULL,
   featured_image VARCHAR(500) NOT NULL DEFAULT '/assests/hero-bg.jpg',
   featured_image_alt VARCHAR(255) NOT NULL DEFAULT '',
+  meta_title VARCHAR(255) DEFAULT NULL,
   meta_description VARCHAR(500) DEFAULT NULL,
+  original_url VARCHAR(500) DEFAULT NULL,
   status ENUM('draft', 'published') NOT NULL DEFAULT 'draft',
   sort_order INT NOT NULL DEFAULT 0,
   is_protected TINYINT(1) NOT NULL DEFAULT 0,
@@ -36,6 +38,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   UNIQUE KEY uq_blog_posts_slug (slug),
   KEY idx_blog_posts_status_sort (status, sort_order),
   KEY idx_blog_posts_published_at (published_at),
+  KEY idx_blog_posts_original_url (original_url),
   KEY idx_blog_posts_updated_at (updated_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

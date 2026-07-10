@@ -2,7 +2,15 @@ const slugify = require('slugify');
 
 function normalizeSlug(input) {
   const value = String(input || '').trim();
-  return slugify(value, { lower: true, strict: true, trim: true });
+  const asciiSlug = slugify(value, { lower: true, strict: true, trim: true });
+  if (asciiSlug) return asciiSlug;
+
+  return value
+    .toLowerCase()
+    .normalize('NFKC')
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-');
 }
 
 function stripHtml(html) {

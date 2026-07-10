@@ -249,7 +249,9 @@ function normalizeRow(row) {
     content_html: row.content_html || '',
     featured_image: normalizeAssetUrl(row.featured_image) || '/assests/hero-bg.jpg',
     featured_image_alt: row.featured_image_alt || row.title || '',
+    meta_title: row.meta_title || row.title || '',
     meta_description: row.meta_description || row.excerpt || '',
+    original_url: row.original_url || '',
     status: row.status,
     sort_order: row.sort_order,
     published_at: row.published_at,
@@ -278,7 +280,9 @@ function buildPostPayload({ body = {}, filePath = '', existingPost = null } = {}
   const content_html = sanitizeContentHtml(body.content_html || '');
   const excerptFallback = htmlPreviewText(content_html, 220);
   const excerpt = String(body.excerpt || '').trim() || excerptFallback;
+  const meta_title = String(body.meta_title || '').trim() || title;
   const meta_description = String(body.meta_description || '').trim() || excerpt;
+  const original_url = String(body.original_url || existingPost?.original_url || '').trim();
   const status = body.status === 'draft' ? 'draft' : 'published';
   const sort_order_input = Number.parseInt(body.sort_order, 10);
   const sort_order = Number.isFinite(sort_order_input)
@@ -319,7 +323,9 @@ function buildPostPayload({ body = {}, filePath = '', existingPost = null } = {}
       content_html,
       featured_image,
       featured_image_alt,
+      meta_title,
       meta_description,
+      original_url,
       status,
       sort_order,
       published_at
@@ -396,6 +402,14 @@ async function getPostById(id) {
   return normalizeRow(rows[0] || null);
 }
 
+async function getPostByOriginalUrl(originalUrl) {
+  const pool = getPool();
+  const value = String(originalUrl || '').trim();
+  if (!value) return null;
+  const [rows] = await pool.query('SELECT * FROM blog_posts WHERE original_url = ? LIMIT 1', [value]);
+  return normalizeRow(rows[0] || null);
+}
+
 async function getPostBySlug(slug, { publishedOnly = true } = {}) {
   const pool = getPool();
   const [rows] = await pool.query(
@@ -449,8 +463,8 @@ async function createBlogPost(input) {
   const [result] = await pool.query(
     `INSERT INTO blog_posts
       (title, slug, category, author_name, card_label, excerpt, content_html,
-       featured_image, featured_image_alt, meta_description, status, sort_order, published_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       featured_image, featured_image_alt, meta_title, meta_description, original_url, status, sort_order, published_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       payload.title,
       uniqueSlug,
@@ -461,7 +475,9 @@ async function createBlogPost(input) {
       payload.content_html,
       payload.featured_image,
       payload.featured_image_alt,
+      payload.meta_title,
       payload.meta_description,
+      payload.original_url,
       payload.status,
       payload.sort_order,
       payload.published_at
@@ -509,7 +525,9 @@ async function updateBlogPost(id, input) {
          content_html = ?,
          featured_image = ?,
          featured_image_alt = ?,
+         meta_title = ?,
          meta_description = ?,
+         original_url = ?,
          status = ?,
          sort_order = ?,
          published_at = ?
@@ -524,7 +542,9 @@ async function updateBlogPost(id, input) {
       payload.content_html,
       payload.featured_image,
       payload.featured_image_alt,
+      payload.meta_title,
       payload.meta_description,
+      payload.original_url,
       payload.status,
       payload.sort_order,
       payload.published_at,
@@ -583,8 +603,12 @@ async function seedStaticBlogPosts() {
     await pool.query(
       `INSERT INTO blog_posts
         (title, slug, category, author_name, card_label, excerpt, content_html,
-         featured_image, featured_image_alt, meta_description, status, sort_order, published_at, is_protected)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?, 1)
+         featured_image, featured_image_alt,
+      meta_title,
+      meta_description,
+      original_url,
+      status, sort_order, published_at, is_protected)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, 'published', ?, ?, 1)
        ON DUPLICATE KEY UPDATE
          is_protected = 1`,
       [
@@ -596,6 +620,7 @@ async function seedStaticBlogPosts() {
         card.excerpt || htmlPreviewText(contentHtml, 220),
         contentHtml,
         card.image || '/assests/hero-bg.jpg',
+        title,
         title,
         detail.description || card.excerpt || '',
         seed.index,
@@ -615,6 +640,7 @@ module.exports = {
   getDashboardStats,
   getNextSortOrder,
   getPostById,
+  getPostByOriginalUrl,
   getPostBySlug,
   getRecentPosts,
   listAllPosts,
@@ -622,5 +648,6 @@ module.exports = {
   normalizeRow,
   seedStaticBlogPosts,
   sanitizeContentHtml,
+  syncStaticBlogPages,
   updateBlogPost
 };

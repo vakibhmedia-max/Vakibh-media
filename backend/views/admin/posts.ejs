@@ -1,10 +1,10 @@
-﻿<div class="admin-shell">
+<div class="admin-shell">
   <aside class="admin-sidebar">
     <div class="admin-brand">
       <a href="/admin" class="admin-brand-link">
-        <img src="/Vakibh/vaakibh_logo.svg" alt="à¤µà¤¾à¤•à¥€à¤­ à¤²à¥‹à¤—à¥‹">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
         <div>
-          <strong>à¤µà¤¾à¤•à¥€à¤­</strong>
+          <strong>वाकीभ</strong>
           <span>Admin Console</span>
         </div>
       </a>
@@ -22,6 +22,10 @@
       <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
         <i class="fas fa-plus-circle"></i>
         Add Blog
+      </a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>">
+        <i class="fas fa-file-import"></i>
+        Import from Blogger
       </a>
       <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
         <i class="fas fa-users-viewfinder"></i>
@@ -42,9 +46,13 @@
     <header class="admin-topbar">
       <div>
         <p class="admin-breadcrumb">Blog management</p>
-        <h1>à¤¸à¤°à¥à¤µ à¤²à¥‡à¤–</h1>
+        <h1>सर्व लेख</h1>
       </div>
       <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-secondary" href="/admin/posts/import-blogger">
+          <i class="fas fa-file-import"></i>
+          Import Blogger
+        </a>
         <a class="admin-button admin-button-primary" href="/admin/posts/new">
           <i class="fas fa-plus"></i>
           Add blog
@@ -92,7 +100,7 @@
               <tr>
                 <td colspan="7">
                   <div class="admin-empty-inline">
-                    à¤¬à¥à¤²à¥‰à¤— à¤°à¤¿à¤•à¤¾à¤®à¤¾ à¤†à¤¹à¥‡. à¤ªà¤¹à¤¿à¤²à¤¾ à¤²à¥‡à¤– add à¤•à¤°à¤¾.
+                    ब्लॉग रिकामा आहे. पहिला लेख add करा.
                   </div>
                 </td>
               </tr>
@@ -122,7 +130,7 @@
                     <div class="admin-row-actions">
                       <a class="admin-action-link" href="/blog/<%= post.slug %>/index.html" target="_blank">View</a>
                       <a class="admin-action-link" href="/admin/posts/<%= post.id %>/edit">Edit</a>
-                      <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('à¤¹à¤¾ à¤²à¥‡à¤– delete à¤•à¤°à¤¾à¤¯à¤šà¤¾ à¤†à¤¹à¥‡ à¤•à¤¾?');">
+                      <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
                         <button type="submit" class="admin-action-link danger">Delete</button>
                       </form>
                     </div>

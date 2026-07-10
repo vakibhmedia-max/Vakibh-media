@@ -1,4 +1,4 @@
-﻿require('dotenv').config();
+require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
@@ -35,13 +35,16 @@ const {
   verifyVisitorOtp
 } = require('./backend/lib/visitors');
 const { formatDate, toDateTimeLocal } = require('./backend/lib/utils');
+const { buildImportPreview, importBloggerFeed } = require('./backend/lib/blogger-import');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
 const UPLOAD_ROOT = path.join(ROOT, 'uploads', 'blog');
+const BLOGGER_IMPORT_ROOT = path.join(ROOT, 'uploads', 'blogger-import');
 const PORT = Number(process.env.PORT || 3000);
 
 fs.mkdirSync(UPLOAD_ROOT, { recursive: true });
+fs.mkdirSync(BLOGGER_IMPORT_ROOT, { recursive: true });
 
 const app = express();
 
@@ -83,6 +86,42 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+const bloggerImportUpload = multer({
+  storage: multer.diskStorage({
+    destination: (_, __, cb) => cb(null, BLOGGER_IMPORT_ROOT),
+    filename: (_, file, cb) => {
+      const extension = path.extname(file.originalname || '').toLowerCase();
+      cb(null, `${Date.now()}-blogger-feed${extension || '.atom'}`);
+    }
+  }),
+  limits: { fileSize: 50 * 1024 * 1024 },
+  fileFilter: (_, file, cb) => {
+    const extension = path.extname(file.originalname || '').toLowerCase();
+    if (!['.atom', '.xml'].includes(extension)) {
+      cb(new Error('Only .atom or .xml Blogger export files are allowed.'));
+      return;
+    }
+    cb(null, true);
+  }
+});
+
+function resolveImportFile(filePath) {
+  const value = String(filePath || '').trim();
+  const resolved = path.resolve(value);
+  if (!resolved.startsWith(BLOGGER_IMPORT_ROOT + path.sep)) {
+    const error = new Error('Invalid import file reference. Please upload the Blogger feed again.');
+    error.statusCode = 400;
+    throw error;
+  }
+  if (!fs.existsSync(resolved)) {
+    const error = new Error('Import file was not found. Please upload the Blogger feed again.');
+    error.statusCode = 400;
+    throw error;
+  }
+  return resolved;
+}
+
+
 function getNotice(req) {
   return String(req.query.notice || '').trim();
 }
@@ -100,9 +139,9 @@ function makeDefaultPost(nextSortOrder) {
   return {
     title: '',
     slug: '',
-    category: 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—',
-    author_name: 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³',
-    card_label: `à¤²à¥‡à¤– ${nextSortOrder}`,
+    category: 'वाकीभ ब्लॉग',
+    author_name: 'वाकीभ संपादकीय मंडळ',
+    card_label: `लेख ${nextSortOrder}`,
     excerpt: '',
     content_html: '',
     featured_image: '/assests/hero-bg.jpg',
@@ -120,9 +159,9 @@ function prepareFormPost(post, nextSortOrder) {
     ...resolved,
     featured_image: resolved.featured_image || '/assests/hero-bg.jpg',
     featured_image_alt: resolved.featured_image_alt || resolved.title || '',
-    category: resolved.category || 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—',
-    author_name: resolved.author_name || 'à¤µà¤¾à¤•à¥€à¤­ à¤¸à¤‚à¤ªà¤¾à¤¦à¤•à¥€à¤¯ à¤®à¤‚à¤¡à¤³',
-    card_label: resolved.card_label || (resolved.sort_order ? `à¤²à¥‡à¤– ${resolved.sort_order}` : `à¤²à¥‡à¤– ${nextSortOrder}`),
+    category: resolved.category || 'वाकीभ ब्लॉग',
+    author_name: resolved.author_name || 'वाकीभ संपादकीय मंडळ',
+    card_label: resolved.card_label || (resolved.sort_order ? `लेख ${resolved.sort_order}` : `लेख ${nextSortOrder}`),
     excerpt: resolved.excerpt || '',
     content_html: resolved.content_html || '',
     meta_description: resolved.meta_description || '',
@@ -194,7 +233,7 @@ app.get('/admin/login', redirectIfAdmin, async (req, res, next) => {
       res,
       'admin/login.ejs',
       {
-        title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Login',
+        title: 'वाकीभ Admin Login',
         error: getError(req),
         notice: getNotice(req),
         email: '',
@@ -218,8 +257,8 @@ app.post('/admin/login', redirectIfAdmin, async (req, res, next) => {
         res,
         'admin/login.ejs',
         {
-          title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Login',
-          error: 'Email à¤•à¤¿à¤‚à¤µà¤¾ password à¤šà¥à¤•à¥€à¤šà¤¾ à¤†à¤¹à¥‡.',
+          title: 'वाकीभ Admin Login',
+          error: 'Email किंवा password चुकीचा आहे.',
           notice: '',
           email,
           bodyClass: 'admin-login-page'
@@ -254,7 +293,7 @@ app.get('/admin', requireAdmin, async (req, res, next) => {
       res,
       'admin/dashboard.ejs',
       {
-        title: 'à¤µà¤¾à¤•à¥€à¤­ Admin Dashboard',
+        title: 'वाकीभ Admin Dashboard',
         stats,
         visitorStats,
         recentPosts,
@@ -296,6 +335,130 @@ app.get('/admin/visitor-logins', requireAdmin, async (req, res, next) => {
     next(error);
   }
 });
+app.get('/admin/posts/import-blogger', requireAdmin, async (req, res, next) => {
+  try {
+    await render(
+      res,
+      'admin/import-blogger.ejs',
+      {
+        title: 'Import from Blogger - Vakibh Admin',
+        currentUser: req.session.admin,
+        notice: getNotice(req),
+        error: getError(req),
+        activeNav: 'import-blogger',
+        preview: null,
+        summary: null,
+        selectedMode: 'new_only',
+        formatDate,
+        bodyClass: 'admin-import-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/admin/posts/import-blogger/preview', requireAdmin, (req, res, next) => {
+  bloggerImportUpload.single('blogger_feed')(req, res, async (uploadError) => {
+    try {
+      if (uploadError) throw uploadError;
+      if (!req.file) {
+        const error = new Error('Please upload a .atom or .xml Blogger export file.');
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const preview = await buildImportPreview(req.file.path);
+      await render(
+        res,
+        'admin/import-blogger.ejs',
+        {
+          title: 'Import from Blogger - Vakibh Admin',
+          currentUser: req.session.admin,
+          notice: '',
+          error: '',
+          activeNav: 'import-blogger',
+          preview,
+          summary: null,
+          selectedMode: req.body.duplicate_mode || 'new_only',
+          formatDate,
+          bodyClass: 'admin-import-page'
+        },
+        'admin'
+      );
+    } catch (error) {
+      await render(
+        res,
+        'admin/import-blogger.ejs',
+        {
+          title: 'Import from Blogger - Vakibh Admin',
+          currentUser: req.session.admin,
+          notice: '',
+          error: error.message || 'Could not read the Blogger feed.',
+          activeNav: 'import-blogger',
+          preview: null,
+          summary: null,
+          selectedMode: req.body.duplicate_mode || 'new_only',
+          formatDate,
+          bodyClass: 'admin-import-page'
+        },
+        'admin'
+      );
+    }
+  });
+});
+
+app.post('/admin/posts/import-blogger/run', requireAdmin, async (req, res, next) => {
+  try {
+    const filePath = resolveImportFile(req.body.import_file);
+    const mode = ['new_only', 'update_existing', 'skip_duplicates'].includes(req.body.duplicate_mode)
+      ? req.body.duplicate_mode
+      : 'new_only';
+    const preview = await buildImportPreview(filePath);
+    const summary = await importBloggerFeed(filePath, mode);
+
+    await render(
+      res,
+      'admin/import-blogger.ejs',
+      {
+        title: 'Import from Blogger - Vakibh Admin',
+        currentUser: req.session.admin,
+        notice: 'Blogger import completed.',
+        error: '',
+        activeNav: 'import-blogger',
+        preview,
+        summary,
+        selectedMode: mode,
+        formatDate,
+        bodyClass: 'admin-import-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    try {
+      await render(
+        res,
+        'admin/import-blogger.ejs',
+        {
+          title: 'Import from Blogger - Vakibh Admin',
+          currentUser: req.session.admin,
+          notice: '',
+          error: error.message || 'Import failed.',
+          activeNav: 'import-blogger',
+          preview: null,
+          summary: null,
+          selectedMode: req.body.duplicate_mode || 'new_only',
+          formatDate,
+          bodyClass: 'admin-import-page'
+        },
+        'admin'
+      );
+    } catch (renderError) {
+      next(renderError);
+    }
+  }
+});
 app.get('/admin/posts', requireAdmin, async (req, res, next) => {
   try {
     const posts = await listAllPosts();
@@ -303,7 +466,7 @@ app.get('/admin/posts', requireAdmin, async (req, res, next) => {
       res,
       'admin/posts.ejs',
       {
-        title: 'à¤µà¤¾à¤•à¥€à¤­ Blog Management',
+        title: 'वाकीभ Blog Management',
         posts,
         currentUser: req.session.admin,
         notice: getNotice(req),
@@ -328,7 +491,7 @@ app.get('/admin/posts/new', requireAdmin, async (req, res, next) => {
       res,
       'admin/form.ejs',
       {
-        title: 'à¤¨à¤µà¥€à¤¨ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤–',
+        title: 'नवीन ब्लॉग लेख',
         post,
         mode: 'new',
         actionUrl: '/admin/posts',
@@ -363,7 +526,7 @@ app.post('/admin/posts', requireAdmin, upload.single('featured_image_file'), asy
         res,
         'admin/form.ejs',
         {
-          title: 'à¤¨à¤µà¥€à¤¨ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤–',
+          title: 'नवीन ब्लॉग लेख',
           post: prepareFormPost({
             ...req.body,
             featured_image: req.body.featured_image || '/assests/hero-bg.jpg',
@@ -488,9 +651,9 @@ app.get('/blog/index.html', async (req, res, next) => {
       res,
       'public/blog-index.ejs',
       {
-        title: 'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤— - à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯à¤¾à¤šà¤¾ à¤¡à¤¿à¤œà¤¿à¤Ÿà¤² à¤ à¥‡à¤µà¤¾',
+        title: 'वाकीभ ब्लॉग - संत साहित्याचा डिजिटल ठेवा',
         description:
-          'à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—à¤®à¤§à¥à¤¯à¥‡ à¤¸à¤‚à¤¤ à¤¸à¤¾à¤¹à¤¿à¤¤à¥à¤¯, à¤¨à¤¾à¤®à¤¸à¥à¤®à¤°à¤£, à¤…à¤­à¤‚à¤— à¤µà¤¾à¤šà¤¨ à¤†à¤£à¤¿ à¤µà¤¾à¤°à¤•à¤°à¥€ à¤ªà¤°à¤‚à¤ªà¤°à¥‡à¤µà¤°à¥€à¤² à¤¨à¤¿à¤µà¤¡à¤• à¤²à¥‡à¤– à¤µà¤¾à¤šà¤¾.',
+          'वाकीभ ब्लॉगमध्ये संत साहित्य, नामस्मरण, अभंग वाचन आणि वारकरी परंपरेवरील निवडक लेख वाचा.',
         posts,
         bodyClass: 'blog-page'
       },
@@ -509,9 +672,9 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
       const html = await renderPage(
         'public/not-found.ejs',
         {
-          title: 'à¤²à¥‡à¤– à¤¸à¤¾à¤ªà¤¡à¤²à¤¾ à¤¨à¤¾à¤¹à¥€',
-          heading: 'à¤²à¥‡à¤– à¤¸à¤¾à¤ªà¤¡à¤²à¤¾ à¤¨à¤¾à¤¹à¥€',
-          message: 'à¤¹à¤¾ à¤¬à¥à¤²à¥‰à¤— à¤²à¥‡à¤– à¤¸à¤§à¥à¤¯à¤¾ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¾à¤¹à¥€.',
+          title: 'लेख सापडला नाही',
+          heading: 'लेख सापडला नाही',
+          message: 'हा ब्लॉग लेख सध्या उपलब्ध नाही.',
           bodyClass: 'blog-page'
         },
         'public'
@@ -524,7 +687,7 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
       res,
       'public/blog-post.ejs',
       {
-        title: `${post.title} - à¤µà¤¾à¤•à¥€à¤­ à¤¬à¥à¤²à¥‰à¤—`,
+        title: post.meta_title || `${post.title} - वाकीभ ब्लॉग`,
         description: post.meta_description || post.excerpt,
         post,
         bodyClass: 'blog-post-page',
@@ -548,7 +711,7 @@ app.use(async (err, req, res, next) => {
   if (res.headersSent) return next(err);
 
   const status = err.statusCode || 500;
-  const title = status === 404 ? 'à¤ªà¥ƒà¤·à¥à¤  à¤¸à¤¾à¤ªà¤¡à¤²à¥‡ à¤¨à¤¾à¤¹à¥€' : 'à¤¸à¤°à¥à¤µà¥à¤¹à¤° à¤¤à¥à¤°à¥à¤Ÿà¥€';
+  const title = status === 404 ? 'पृष्ठ सापडले नाही' : 'सर्व्हर त्रुटी';
   const message = err.message || 'Unexpected error occurred.';
 
   if (req.path.startsWith('/admin')) {
