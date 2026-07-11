@@ -1,6 +1,8 @@
 node_modules/
 .env
-uploads/
+uploads/*
+!uploads/blogger-import/
+!uploads/blogger-import/**
 backend/public/uploads/
 npm-debug.log*
 *.log

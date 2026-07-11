@@ -47,6 +47,7 @@ fs.mkdirSync(UPLOAD_ROOT, { recursive: true });
 fs.mkdirSync(BLOGGER_IMPORT_ROOT, { recursive: true });
 
 const app = express();
+let backendReadyPromise = null;
 
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(compression());
@@ -121,6 +122,20 @@ function resolveImportFile(filePath) {
   return resolved;
 }
 
+async function ensureBackendReady() {
+  if (!backendReadyPromise) {
+    backendReadyPromise = (async () => {
+      await initPool();
+      await bootstrapDatabase();
+    })().catch((error) => {
+      backendReadyPromise = null;
+      throw error;
+    });
+  }
+
+  return backendReadyPromise;
+}
+
 
 function getNotice(req) {
   return String(req.query.notice || '').trim();
@@ -175,6 +190,26 @@ async function render(res, template, data = {}, layout = 'public') {
   const html = await renderPage(template, data, layout);
   res.send(html);
 }
+
+app.use(async (req, res, next) => {
+  const needsBackend =
+    req.path === '/admin' ||
+    req.path.startsWith('/admin/') ||
+    req.path === '/blog' ||
+    req.path.startsWith('/blog/') ||
+    req.path.startsWith('/api/visitor-login/');
+
+  if (!needsBackend) {
+    return next();
+  }
+
+  try {
+    await ensureBackendReady();
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+});
 
 app.get('/blog/', (req, res) => res.redirect('/blog/index.html'));
 
@@ -772,7 +807,6 @@ if (require.main === module) {
 }
 
 module.exports = app;
-
 
 
 

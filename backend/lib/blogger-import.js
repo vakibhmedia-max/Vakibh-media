@@ -88,6 +88,45 @@ function getLinks(entryXml) {
   return links;
 }
 
+function getEntryOriginalUrl(entryXml, links = []) {
+  const alternate = links.find((link) => link.rel === 'alternate' && link.href);
+  if (alternate?.href) return alternate.href.trim();
+
+  const filename = firstTag(entryXml, 'blogger:filename');
+  if (!filename) return '';
+  return filename.startsWith('/') ? filename : `/${filename.replace(/^\/+/, '')}`;
+}
+
+function slugFromOriginalUrl(originalUrl) {
+  const value = String(originalUrl || '').trim();
+  if (!value) return '';
+
+  let pathname = value;
+  try {
+    pathname = new URL(value).pathname || value;
+  } catch (_) {
+    pathname = value;
+  }
+
+  const cleanPath = pathname.replace(/\/+$/, '');
+  const baseName = path.basename(cleanPath).replace(/\.html?$/i, '');
+  const normalizedBase = normalizeSlug(baseName.replace(/_/g, '-'));
+  if (!normalizedBase) return '';
+
+  if (/^blog-post(?:-?\d+)?$/i.test(normalizedBase)) {
+    const context = cleanPath
+      .split('/')
+      .filter(Boolean)
+      .slice(-3, -1)
+      .map((part) => normalizeSlug(part))
+      .filter(Boolean);
+
+    if (context.length) return [...context, normalizedBase].join('-');
+  }
+
+  return normalizedBase;
+}
+
 function getCategories(entryXml) {
   const labels = [];
   const regex = /<category\b[^>]*>/gi;
@@ -229,9 +268,8 @@ function parseBloggerFeed(xml) {
       const title = firstTag(entryXml, 'title') || `Blogger post ${index + 1}`;
       const contentHtml = getContentHtml(entryXml);
       const links = getLinks(entryXml);
-      const alternate = links.find((link) => link.rel === 'alternate' && link.href);
-      const originalUrl = alternate?.href || '';
-      const slugFromUrl = originalUrl ? path.basename(new URL(originalUrl).pathname || '').replace(/\.html?$/i, '') : '';
+      const originalUrl = getEntryOriginalUrl(entryXml, links);
+      const slugFromUrl = slugFromOriginalUrl(originalUrl);
       const baseSlug = normalizeSlug(slugFromUrl) || normalizeSlug(title) || `blogger-post-${index + 1}`;
       const labels = getCategories(entryXml);
       const author = firstTag(firstTag(entryXml, 'author'), 'name') || firstTag(entryXml, 'name') || 'Blogger';
@@ -324,7 +362,7 @@ async function insertImportedPost(post, sortOrder) {
       uniqueSlug,
       post.category,
       post.author_name,
-      `??? ${sortOrder}`,
+      post.card_label || null,
       post.excerpt,
       post.content_html,
       post.featured_image || '/assests/hero-bg.jpg',
