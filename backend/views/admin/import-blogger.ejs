@@ -1,0 +1,213 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="Vaakibh logo">
+        <div>
+          <strong>Vaakibh</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>">
+        <i class="fas fa-newspaper"></i>
+        Blogs
+      </a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
+        <i class="fas fa-plus-circle"></i>
+        Add Blog
+      </a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>">
+        <i class="fas fa-file-import"></i>
+        Import from Blogger
+      </a>
+      <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
+        <i class="fas fa-users-viewfinder"></i>
+        Visitor Logins
+      </a>
+      <a href="/blog/index.html" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Public Blog
+      </a>
+      <a href="/index.html" target="_blank">
+        <i class="fas fa-home"></i>
+        Frontend Home
+      </a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb">
+          <a href="/admin">Dashboard</a>
+          <span>/</span>
+          <a href="/admin/posts">Blog Management</a>
+          <span>/</span>
+          <span>Import from Blogger</span>
+        </p>
+        <h1>Import from Blogger</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-secondary" href="/admin/posts">
+          <i class="fas fa-arrow-left"></i>
+          Back to blogs
+        </a>
+      </div>
+    </header>
+
+    <% if (notice) { %>
+      <div class="admin-alert admin-alert-success"><%= notice %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="admin-alert admin-alert-error"><%= error %></div>
+    <% } %>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header">
+        <div>
+          <h3>Blogger Takeout feed</h3>
+          <p>Upload the exported `feed.atom` file to preview posts before saving them.</p>
+        </div>
+      </header>
+
+      <form class="admin-form" method="post" action="/admin/posts/import-blogger/preview" enctype="multipart/form-data">
+        <div class="admin-form-grid">
+          <label class="admin-field admin-field-wide">
+            <span>ATOM/XML file</span>
+            <input type="file" name="blogger_feed" accept=".atom,.xml,application/atom+xml,application/xml,text/xml" required>
+            <small>Only `.atom` and `.xml` files up to 50 MB are accepted.</small>
+          </label>
+
+          <label class="admin-field admin-field-wide">
+            <span>Duplicate handling</span>
+            <select name="duplicate_mode">
+              <option value="new_only" <%= selectedMode === 'new_only' ? 'selected' : '' %>>Import new only</option>
+              <option value="update_existing" <%= selectedMode === 'update_existing' ? 'selected' : '' %>>Update existing</option>
+              <option value="skip_duplicates" <%= selectedMode === 'skip_duplicates' ? 'selected' : '' %>>Skip duplicates</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="admin-form-actions">
+          <button type="submit" class="admin-button admin-button-primary">
+            <i class="fas fa-magnifying-glass-chart"></i>
+            Preview import
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <% if (preview) { %>
+      <section class="admin-stats-grid admin-import-stats">
+        <div class="admin-stat-card"><span>Total posts found</span><strong><%= preview.stats.totalPosts %></strong></div>
+        <div class="admin-stat-card"><span>New posts</span><strong><%= preview.stats.newPosts %></strong></div>
+        <div class="admin-stat-card"><span>Duplicate posts</span><strong><%= preview.stats.duplicatePosts %></strong></div>
+        <div class="admin-stat-card"><span>Posts with images</span><strong><%= preview.stats.postsWithImages %></strong></div>
+        <div class="admin-stat-card"><span>Possible errors</span><strong><%= preview.stats.possibleErrors %></strong></div>
+      </section>
+
+      <section class="admin-panel">
+        <header class="admin-panel-header">
+          <div>
+            <h3>Preview</h3>
+            <p>Duplicates are checked by original Blogger URL first, then slug.</p>
+          </div>
+          <form method="post" action="/admin/posts/import-blogger/run">
+            <input type="hidden" name="import_file" value="<%= preview.filePath %>">
+            <input type="hidden" name="duplicate_mode" value="<%= selectedMode %>">
+            <button type="submit" class="admin-button admin-button-primary">
+              <i class="fas fa-file-import"></i>
+              Run import
+            </button>
+          </form>
+        </header>
+
+        <% if (preview.possibleErrors && preview.possibleErrors.length) { %>
+          <div class="admin-alert admin-alert-error">
+            <% preview.possibleErrors.slice(0, 5).forEach((item) => { %>
+              <div><%= item %></div>
+            <% }) %>
+          </div>
+        <% } %>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table admin-table-large">
+            <thead>
+              <tr>
+                <th>Post</th>
+                <th>Labels</th>
+                <th>Published</th>
+                <th>Images</th>
+                <th>Duplicate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% preview.posts.slice(0, 50).forEach((post) => { %>
+                <tr>
+                  <td>
+                    <div class="admin-post-cell">
+                      <img src="<%= post.featured_image || '/assests/hero-bg.jpg' %>" alt="" class="admin-thumb">
+                      <div>
+                        <strong><%= post.title %></strong>
+                        <small><%= post.slug %></small>
+                        <% if (post.original_url) { %><small><%= post.original_url %></small><% } %>
+                      </div>
+                    </div>
+                  </td>
+                  <td><%= post.category %></td>
+                  <td><%= post.published_at ? formatDate(post.published_at) : '-' %></td>
+                  <td><%= post.imageUrls.length %></td>
+                  <td>
+                    <% if (post.duplicate_id) { %>
+                      <span class="admin-status-pill draft">By <%= post.duplicate_reason %></span>
+                    <% } else { %>
+                      <span class="admin-status-pill published">New</span>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <% if (preview.posts.length > 50) { %>
+          <p class="admin-muted-block">Showing first 50 posts. All <%= preview.posts.length %> posts will be processed.</p>
+        <% } %>
+      </section>
+    <% } %>
+
+    <% if (summary) { %>
+      <section class="admin-panel">
+        <header class="admin-panel-header">
+          <div>
+            <h3>Import summary</h3>
+            <p>Static blog pages were regenerated after the import.</p>
+          </div>
+        </header>
+
+        <div class="admin-stats-grid admin-import-stats">
+          <div class="admin-stat-card"><span>Imported</span><strong><%= summary.imported %></strong></div>
+          <div class="admin-stat-card"><span>Updated</span><strong><%= summary.updated %></strong></div>
+          <div class="admin-stat-card"><span>Skipped</span><strong><%= summary.skipped %></strong></div>
+          <div class="admin-stat-card"><span>Failed</span><strong><%= summary.failed %></strong></div>
+          <div class="admin-stat-card"><span>Image download failed</span><strong><%= summary.imageDownloadFailed %></strong></div>
+        </div>
+
+        <% if (summary.errors && summary.errors.length) { %>
+          <div class="admin-alert admin-alert-error">
+            <% summary.errors.slice(0, 10).forEach((item) => { %>
+              <div><%= item %></div>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+    <% } %>
+  </main>
+</div>

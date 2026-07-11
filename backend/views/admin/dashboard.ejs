@@ -1,0 +1,221 @@
+<%
+  const safeStats = typeof stats !== 'undefined' && stats ? stats : {};
+  const safeVisitorStats = typeof visitorStats !== 'undefined' && visitorStats ? visitorStats : {};
+  const safeRecentPosts = typeof recentPosts !== 'undefined' && recentPosts ? recentPosts : [];
+%><div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div>
+          <strong>वाकीभ</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>">
+        <i class="fas fa-newspaper"></i>
+        Blogs
+      </a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
+        <i class="fas fa-plus-circle"></i>
+        Add Blog
+      </a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>">
+        <i class="fas fa-file-import"></i>
+        Import from Blogger
+      </a>
+      <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
+        <i class="fas fa-users-viewfinder"></i>
+        Visitor Logins
+      </a>
+      <a href="/blog/index.html" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Public Blog
+      </a>
+      <a href="/index.html" target="_blank">
+        <i class="fas fa-home"></i>
+        Frontend Home
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-card">
+      <span class="admin-sidebar-label">Logged in as</span>
+      <strong><%= currentUser?.name || 'Admin' %></strong>
+      <small><%= currentUser?.email || '' %></small>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb">Dashboard</p>
+        <h1>ब्लॉग नियंत्रण कक्ष</h1>
+      </div>
+
+      <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-secondary" href="/admin/posts/new">
+          <i class="fas fa-plus"></i>
+          नवीन लेख
+        </a>
+        <form method="post" action="/admin/logout">
+          <button class="admin-button admin-button-ghost" type="submit">
+            <i class="fas fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <% if (notice) { %>
+      <div class="admin-alert admin-alert-success"><%= notice %></div>
+    <% } %>
+
+    <section class="admin-hero-card">
+      <div class="admin-hero-copy">
+        <span class="admin-eyebrow">Frontend aligned blog system</span>
+        <h2>Public blog cards, article pages आणि admin editor यांच्यात एकसंध structure.</h2>
+        <p>
+          इथे तयार झालेला प्रत्येक लेख public blog list, detail page आणि share buttons शी
+          जुळतो. तुमचा current frontend layout preserve होत राहतो.
+        </p>
+      </div>
+
+      <div class="admin-hero-actions">
+        <a href="/admin/posts/new" class="admin-button admin-button-primary">
+          <i class="fas fa-pen-nib"></i>
+          Write a post
+        </a>
+        <a href="/blog/index.html" target="_blank" class="admin-button admin-button-secondary">
+          <i class="fas fa-eye"></i>
+          View public blog
+        </a>
+      </div>
+    </section>
+
+    <section class="admin-stats-grid">
+      <article class="admin-stat-card">
+        <span>Total Posts</span>
+        <strong><%= safeStats.total_posts || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Published</span>
+        <strong><%= safeStats.published_posts || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Drafts</span>
+        <strong><%= safeStats.draft_posts || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Last Update</span>
+        <strong><%= formatDate(safeStats.last_updated) || 'N/A' %></strong>
+      </article>
+    </section>
+
+    <section class="admin-stats-grid admin-stats-grid-six">
+      <article class="admin-stat-card">
+        <span>Total visitors logged in</span>
+        <strong><%= safeVisitorStats.total_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Today's logins</span>
+        <strong><%= safeVisitorStats.today_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This week's logins</span>
+        <strong><%= safeVisitorStats.week_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This month's logins</span>
+        <strong><%= safeVisitorStats.month_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Repeat visitors</span>
+        <strong><%= safeVisitorStats.repeat_visitors || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Unique phone numbers</span>
+        <strong><%= safeVisitorStats.unique_phones || 0 %></strong>
+      </article>
+    </section>
+    <section class="admin-panel-grid">
+      <section class="admin-panel">
+        <header class="admin-panel-header">
+          <div>
+            <h3>Recent Posts</h3>
+            <p>Most recently updated लेख.</p>
+          </div>
+          <a href="/admin/posts" class="admin-text-link">Manage all</a>
+        </header>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Order</th>
+                <th>Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (!safeRecentPosts.length) { %>
+                <tr>
+                  <td colspan="4">
+                    <div class="admin-empty-inline">कोणतेही लेख नाहीत.</div>
+                  </td>
+                </tr>
+              <% } else { %>
+                <% safeRecentPosts.forEach((post) => { %>
+                  <tr>
+                    <td>
+                      <div class="admin-post-cell">
+                        <img src="<%= post.featured_image %>" alt="" class="admin-thumb">
+                        <div>
+                          <strong><%= post.title %></strong>
+                          <small><%= post.slug %></small>
+                          <% if (post.is_protected) { %>
+                            <span class="admin-legacy-badge">Legacy preserved</span>
+                          <% } %>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="admin-status-pill <%= post.status %>"><%= post.status %></span>
+                    </td>
+                    <td><%= post.sort_order %></td>
+                    <td><%= formatDate(post.updated_at) %></td>
+                  </tr>
+                <% }) %>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="admin-panel admin-note-card">
+        <header class="admin-panel-header">
+          <div>
+            <h3>Editorial Map</h3>
+            <p>ज्या fields public frontend वापरतो.</p>
+          </div>
+        </header>
+
+        <ul class="admin-checklist">
+          <li><i class="fas fa-check"></i> Title, tag, author आणि excerpt blog cards मध्ये दिसतात.</li>
+          <li><i class="fas fa-check"></i> `content_html` detail page वर raw render होते.</li>
+          <li><i class="fas fa-check"></i> `sort_order` blog grid order ठरवतो.</li>
+          <li><i class="fas fa-check"></i> `featured_image` आणि alt text preview मध्ये वापरले जातात.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+</div>
+
+

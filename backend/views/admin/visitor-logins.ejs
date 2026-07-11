@@ -1,0 +1,145 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="????? ????">
+        <div>
+          <strong>?????</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+      </a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>">
+        <i class="fas fa-newspaper"></i>
+        Blogs
+      </a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
+        <i class="fas fa-plus-circle"></i>
+        Add Blog
+      </a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>">
+        <i class="fas fa-file-import"></i>
+        Import from Blogger
+      </a>
+      <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
+        <i class="fas fa-users-viewfinder"></i>
+        Visitor Logins
+      </a>
+      <a href="/index.html" target="_blank">
+        <i class="fas fa-home"></i>
+        Frontend Home
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-card">
+      <span class="admin-sidebar-label">Logged in as</span>
+      <strong><%= currentUser?.name || 'Admin' %></strong>
+      <small><%= currentUser?.email || '' %></small>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb">Dashboard / Visitor Logins</p>
+        <h1>Visitor Logins</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <form method="post" action="/admin/logout">
+          <button class="admin-button admin-button-ghost" type="submit">
+            <i class="fas fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <section class="admin-stats-grid admin-stats-grid-six">
+      <article class="admin-stat-card">
+        <span>Total visitors logged in</span>
+        <strong><%= visitorStats.total_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Today's logins</span>
+        <strong><%= visitorStats.today_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This week</span>
+        <strong><%= visitorStats.week_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>This month</span>
+        <strong><%= visitorStats.month_logins || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Repeat visitors</span>
+        <strong><%= visitorStats.repeat_visitors || 0 %></strong>
+      </article>
+      <article class="admin-stat-card">
+        <span>Unique phone numbers</span>
+        <strong><%= visitorStats.unique_phones || 0 %></strong>
+      </article>
+    </section>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header">
+        <div>
+          <h3>Visitor Login Activity</h3>
+          <p>Name, phone, login count, last login, device, browser and IP details.</p>
+        </div>
+      </header>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table admin-table-large visitor-logins-table">
+          <thead>
+            <tr>
+              <th>Visitor</th>
+              <th>Phone</th>
+              <th>Login Count</th>
+              <th>Last Login</th>
+              <th>Device</th>
+              <th>Browser</th>
+              <th>IP / City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!visitors || !visitors.length) { %>
+              <tr>
+                <td colspan="7"><div class="admin-empty-inline">No visitor logins yet.</div></td>
+              </tr>
+            <% } else { %>
+              <% visitors.forEach((visitor) => { %>
+                <tr>
+                  <td>
+                    <div class="admin-post-cell admin-visitor-cell">
+                      <span class="admin-visitor-avatar"><%= String(visitor.name || '?').trim().charAt(0).toUpperCase() || '?' %></span>
+                      <div>
+                        <strong><%= visitor.name %></strong>
+                        <small>First login: <%= formatDate(visitor.created_at) || 'N/A' %></small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><%= visitor.phone %></td>
+                  <td><span class="admin-status-pill published"><%= visitor.login_count || 0 %></span></td>
+                  <td><%= formatDate(visitor.last_login_at || visitor.login_time) || 'N/A' %></td>
+                  <td><%= visitor.device_type || 'N/A' %></td>
+                  <td><%= visitor.browser || 'N/A' %></td>
+                  <td>
+                    <%= visitor.ip_address || 'N/A' %>
+                    <small class="admin-muted-block">City lookup not configured</small>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>

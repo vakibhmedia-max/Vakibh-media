@@ -1,0 +1,11 @@
+const fs = require('fs');
+const file = 'Vakibh-media/sants/dnyaneshwar/abhang-1-200/index.html';
+let html = fs.readFileSync(file, 'utf8');
+html = html.replace(/\s*विडिओ सहित\s*/g, ' ');
+html = html.replace(/\s*व्हिडिओ सहित\s*/g, ' ');
+fs.writeFileSync(file, html, 'utf8');
+const numbers = [...html.matchAll(/<p><strong>([०-९0-9]+)\.?<\/strong>/g)].map(m => m[1]);
+console.log('numbered blocks', numbers.length);
+console.log('first', numbers.slice(0, 5).join(', '));
+console.log('last', numbers.slice(-10).join(', '));
+console.log('has video text', /विडिओ|व्हिडिओ|iframe|youtube|play\.google/i.test(html));

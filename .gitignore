@@ -1,0 +1,13 @@
+node_modules/
+.env
+uploads/*
+!uploads/blogger-import/
+!uploads/blogger-import/**
+backend/public/uploads/
+Vakibh-media/Vakibh/extracted_new_data/
+Vakibh-media/Vakibh/www.santsahitya.in/
+Vakibh-media/Vakibh/www.santsahitya.in.zip
+npm-debug.log*
+*.log
+.DS_Store
+Thumbs.db
