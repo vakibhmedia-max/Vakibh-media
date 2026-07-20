@@ -2943,3 +2943,9 @@ header {
     padding: 18px 16px 16px !important;
   }
 }
+/* Hide floating controls over reading content. */
+.floating-whatsapp,
+.floating-veena,
+.visitor-login-floating-btn {
+  display: none !important;
+}

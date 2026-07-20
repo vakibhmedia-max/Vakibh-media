@@ -2334,7 +2334,7 @@
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
   }
 
-  initVisitorOtpLogin();
+  // Visitor OTP floating login disabled on public pages.
   wrapDevotionalVerseEndings();
   libraryInitSearchBars();
   libraryInitSearchPage();});

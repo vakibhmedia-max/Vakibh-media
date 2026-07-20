@@ -137,6 +137,11 @@ async function ensureBackendReady() {
 }
 
 
+async function ensureBackendReady() {
+  await initPool();
+  await bootstrapDatabase();
+}
+
 function getNotice(req) {
   return String(req.query.notice || '').trim();
 }

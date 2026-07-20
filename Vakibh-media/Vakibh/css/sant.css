@@ -2207,25 +2207,12 @@ body.abhang-list-page .sahitya-link:hover {
   background: #fff;
 }
 
-.janabai-info-card {
+.janabai-biography-content {
   max-width: 980px;
   margin: 0 auto;
-  padding: 26px 28px;
-  border: 1px solid #f0d5ab;
-  border-radius: 14px;
-  background: #fff8ef;
-  box-shadow: 0 12px 28px rgba(160, 32, 32, 0.08);
 }
 
-.janabai-info-card h2 {
-  margin: 0 0 14px;
-  color: #a02020;
-  text-align: center;
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  line-height: 1.25;
-}
-
-.janabai-info-card p {
+.janabai-biography-content p {
   margin: 0 0 12px;
   color: #2f4054;
   font-size: 1.08rem;
@@ -2233,7 +2220,7 @@ body.abhang-list-page .sahitya-link:hover {
   text-align: left;
 }
 
-.janabai-info-card p:last-child {
+.janabai-biography-content p:last-child {
   margin-bottom: 0;
 }
 
@@ -2281,11 +2268,7 @@ body.is-janabai-abhang-page .abhang-readable-meaning * {
     padding: 24px 12px 8px;
   }
 
-  .janabai-info-card {
-    padding: 20px 16px;
-  }
-
-  .janabai-info-card p {
+  .janabai-biography-content p {
     font-size: 1rem;
     line-height: 1.75;
   }
@@ -3462,4 +3445,249 @@ body.is-standard-granth-reading-page .post-content p[style*="font-weight: 600"],
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: normal !important;
+}
+
+/* Row-wise Abhang list grid used by generated Sant range/list pages. */
+body.abhang-list-page .abhang-list {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  column-gap: 32px !important;
+  row-gap: 24px !important;
+  width: 100% !important;
+  align-items: start !important;
+}
+
+body.abhang-list-page .abhang-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  color: #a00000 !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  line-height: 1.55 !important;
+  text-decoration: none !important;
+  overflow-wrap: anywhere !important;
+}
+
+body.abhang-list-page .abhang-item:visited {
+  color: #a00000 !important;
+}
+
+body.abhang-list-page .abhang-item:hover {
+  color: #ed8208 !important;
+  text-decoration: underline !important;
+}
+
+body.abhang-list-page .abhang-number {
+  flex-shrink: 0 !important;
+  color: #ed8208 !important;
+  font-weight: 800 !important;
+}
+
+body.abhang-list-page .abhang-title {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+}
+
+body.abhang-list-page .abhang-empty-state {
+  margin: 24px 0 0;
+  text-align: center;
+  color: #777;
+}
+
+@media (max-width: 1200px) {
+  body.abhang-list-page .abhang-list { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 992px) {
+  body.abhang-list-page .abhang-list { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 768px) {
+  body.abhang-list-page .abhang-list { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 576px) {
+  body.abhang-list-page .abhang-list {
+    grid-template-columns: 1fr !important;
+    row-gap: 16px !important;
+  }
+}
+
+/* Tukaram Natache Abhang category additions. */
+.tukaram-literature-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 15px !important;
+}
+
+body.natache-abhang-page {
+  padding-bottom: 96px;
+}
+
+body.natache-abhang-page .abhang-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+body.natache-abhang-page .abhang-item {
+  min-height: 58px;
+}
+
+
+body.natache-abhang-detail-page .abhang-verse {
+  font-weight: 700 !important;
+}
+
+@media (max-width: 900px) {
+  .tukaram-literature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body.natache-abhang-page .abhang-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .tukaram-literature-grid,
+  body.natache-abhang-page .abhang-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.natache-abhang-page {
+    padding-bottom: 124px;
+  }
+}
+
+/* Natache detail stanza rendering: keeps verses separated while reusing abhang-post typography. */
+body.natache-abhang-detail-page .natache-verse {
+  max-width: 960px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.natache-abhang-detail-page .natache-stanza {
+  display: block !important;
+  margin: 0 0 18px !important;
+}
+
+body.natache-abhang-detail-page .natache-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.natache-abhang-detail-page .natache-line {
+  display: block !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 576px) {
+  body.natache-abhang-detail-page .natache-stanza {
+    margin-bottom: 14px !important;
+  }
+}
+
+/* Natache Abhang line preservation and shared-left alignment. */
+body.natache-abhang-detail-page .sant-page-main,
+body.natache-abhang-detail-page .abhang-post-main {
+  overflow-x: hidden !important;
+}
+
+body.natache-abhang-detail-page .abhang-post {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+
+body.natache-abhang-detail-page .post-content {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.natache-abhang-detail-page .natache-verse {
+  width: 100% !important;
+  max-width: 1150px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  text-align-last: auto !important;
+  text-justify: auto !important;
+}
+
+body.natache-abhang-detail-page .natache-stanza {
+  width: 100% !important;
+  display: block !important;
+  text-align: left !important;
+  text-align-last: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body.natache-abhang-detail-page .natache-line {
+  width: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  text-align-last: auto !important;
+  text-justify: auto !important;
+  line-height: 2.05 !important;
+  white-space: pre !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: manual !important;
+}
+
+@media (max-width: 900px) {
+  body.natache-abhang-detail-page .abhang-post,
+  body.natache-abhang-detail-page .post-content,
+  body.natache-abhang-detail-page .natache-verse {
+    max-width: 90vw !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.natache-abhang-detail-page .abhang-post {
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.natache-abhang-detail-page .post-content,
+  body.natache-abhang-detail-page .natache-verse {
+    max-width: 100% !important;
+  }
+
+  body.natache-abhang-detail-page .natache-line {
+    white-space: pre-wrap !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+/* Sant Janabai literature landing split. */
+.sant-page-main > .janabai-landing-container {
+  max-width: 900px !important;
+}
+
+.sant-page-main > .janabai-landing-container .janabai-literature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 640px) {
+  .sant-page-main > .janabai-landing-container .janabai-literature-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
