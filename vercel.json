@@ -3,13 +3,48 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "excludeFiles": [
+          "Vakibh-media/**",
+          "uploads/**",
+          ".git/**"
+        ]
+      }
+    },
+    {
+      "src": "Vakibh-media/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/admin(?:/.*)?",
       "dest": "server.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/backend(?:/.*)?",
+      "dest": "server.js"
+    },
+    {
+      "src": "/uploads(?:/.*)?",
+      "dest": "server.js"
+    },
+    {
+      "src": "/",
+      "dest": "/Vakibh-media/index.html"
+    },
+    {
+      "src": "/(.*)/$",
+      "dest": "/Vakibh-media/$1/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Vakibh-media/$1"
     }
   ]
 }
