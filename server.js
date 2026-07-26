@@ -735,6 +735,23 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
   }
 });
 
+app.get('/sant/:santSlug/abhang/:range', (req, res, next) => {
+  const santSlug = String(req.params.santSlug || '').toLowerCase();
+  const range = String(req.params.range || '').toLowerCase();
+  if (!/^[a-z0-9-]+$/.test(santSlug) || !/^\d+-\d+$/.test(range)) return next();
+
+  const [start, end] = range.split('-');
+  const candidates = [
+    path.join(SITE_ROOT, 'sants', santSlug, 'abhang-' + start + '-to-' + end, 'index.html'),
+    path.join(SITE_ROOT, 'sants', santSlug, 'abhang-' + start + '-' + end, 'index.html')
+  ];
+  const found = candidates.find((file) => fs.existsSync(file));
+  if (!found) return next();
+
+  const relative = path.relative(path.join(SITE_ROOT, 'sants', santSlug), path.dirname(found)).replace(/\\/g, '/');
+  res.redirect(301, '/sants/' + santSlug + '/' + relative + '/index.html');
+});
+
 app.get('/blog/:slug', (req, res) => {
   res.redirect(`/blog/${req.params.slug}/index.html`);
 });

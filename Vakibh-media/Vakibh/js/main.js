@@ -31,37 +31,68 @@
     document.head.appendChild(fontAwesomeLink);
   }
 
-  // --- Dynamically Inject Missing Navbar (for 1000+ static files) ---
-  const headerContainer = document.querySelector('.header-container');
-  if (headerContainer && !document.querySelector('#navMenu')) {
-    const logoLink = document.querySelector('.logo-link');
-    const homePath = logoLink ? logoLink.getAttribute('href') : 'index.html';
-    const contactPath = homePath.replace(/index\.html(?:#.*)?$/, 'contact/index.html');
-    const navHTML = `
-      <button class="menu-toggle" id="menuToggle" aria-label="\u092E\u0941\u0916\u094D\u092F \u092E\u0947\u0928\u0942 \u0909\u0918\u0921\u093E">
-        <i class="fas fa-bars"></i>
-      </button>
-      <nav id="navMenu">
-        <ul>
-          <li><a href="${homePath}">\u092E\u0941\u0916\u092A\u0943\u0937\u094D\u0920</a></li>
-          <li><a href="${homePath}#abhangs">\u0905\u092D\u0902\u0917/\u092D\u091C\u0928</a></li>
-          <li><a href="${homePath}#saints" class="active">\u0938\u0902\u0924</a></li>
-          <li><a href="${homePath}#categories">\u0935\u093F\u092D\u093E\u0917</a></li>
-          <li><a href="${contactPath}">\u0938\u0902\u092A\u0930\u094D\u0915</a></li>
-        </ul>
-      </nav>
-      <div class="header-actions">
-        <div class="lang-switch-group" aria-label="\u092D\u093E\u0937\u093E \u0928\u093F\u0935\u0921\u093E">
-          <button class="lang-switch active" type="button" data-language="marathi">\u092E\u0930\u093E\u0920\u0940</button>
-        </div>
-        <button class="search-trigger-btn" id="searchTrigger" aria-label="\u0936\u094B\u0927 \u0909\u0918\u0921\u093E">
-          <i class="fas fa-search"></i>
+  // --- Standardize Header Across All Pages ---
+  const getRelativeSitePrefix = () => {
+    const logo = document.querySelector('.logo-img');
+    const logoSrc = logo?.getAttribute('src') || '';
+    const logoMatch = logoSrc.match(/^(.*?)(?:Vakibh\/)?vaakibh_logo\.svg(?:\?.*)?$/i);
+    if (logoMatch) return logoMatch[1] || '';
+
+    const stylesheet = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+      .map((link) => link.getAttribute('href') || '')
+      .find((href) => /Vakibh\/css\/(?:style|sant)\.css/i.test(href));
+    const styleMatch = stylesheet?.match(/^(.*?)Vakibh\/css\/(?:style|sant)\.css/i);
+    if (styleMatch) return styleMatch[1] || '';
+
+    const segments = window.location.pathname.split('/').filter(Boolean);
+    const mediaIndex = Math.max(segments.lastIndexOf('Vakibh-media'), segments.lastIndexOf('vakibh-media'));
+    const depth = mediaIndex >= 0 ? Math.max(0, segments.length - mediaIndex - 2) : Math.max(0, segments.length - 1);
+    return depth ? '../'.repeat(depth) : '';
+  };
+
+  const sitePrefix = getRelativeSitePrefix();
+  const standardHomePath = `${sitePrefix}index.html`;
+  const standardLogoSrc = `${sitePrefix}Vakibh/vaakibh_logo.svg`;
+  const standardContactPath = `${sitePrefix}contact/index.html`;
+
+  const standardizeHeader = () => {
+    let header = document.querySelector('body > header');
+    if (!header) {
+      header = document.createElement('header');
+      document.body.prepend(header);
+    }
+
+    header.innerHTML = `
+      <div class="header-container">
+        <a href="${standardHomePath}" class="logo-link">
+          <img src="${standardLogoSrc}" alt="\u0935\u093e\u0915\u0940\u092d \u0932\u094b\u0917\u094b" class="logo-img">
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="\u092e\u0941\u0916\u094d\u092f \u092e\u0947\u0928\u0942 \u0909\u0918\u0921\u093e" type="button">
+          <i class="fas fa-bars"></i>
         </button>
+        <nav id="navMenu" aria-label="\u092e\u0941\u0916\u094d\u092f \u092e\u0947\u0928\u0942">
+          <ul>
+            <li><a href="${standardHomePath}">\u092e\u0941\u0916\u092a\u0943\u0937\u094d\u0920</a></li>
+            <li><a href="${standardHomePath}#abhangs">\u0905\u092d\u0902\u0917/\u092d\u091c\u0928</a></li>
+            <li><a href="${standardHomePath}#saints">\u0938\u0902\u0924</a></li>
+            <li><a href="${standardHomePath}#categories">\u0935\u093f\u092d\u093e\u0917</a></li>
+            <li><a href="${standardContactPath}">\u0938\u0902\u092a\u0930\u094d\u0915</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <div class="lang-switch-group" aria-label="\u092d\u093e\u0937\u093e \u0928\u093f\u0935\u0921\u093e">
+            <button class="lang-switch active" type="button" data-language="marathi" data-language-option="marathi">\u092e\u0930\u093e\u0920\u0940</button>
+            <button class="lang-switch" type="button" data-language="english" data-language-option="english">English</button>
+          </div>
+          <button class="search-trigger-btn" id="searchTrigger" aria-label="\u0936\u094b\u0927 \u0909\u0918\u0921\u093e" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
       </div>
     `;
-    headerContainer.insertAdjacentHTML('beforeend', navHTML);
-  }
+  };
 
+  standardizeHeader();
   // --- Standardize Footer Across All Pages ---
   const logoLink = document.querySelector('.logo-link');
   const logoImg = document.querySelector('.logo-img');
@@ -70,6 +101,9 @@
   const mediaBasePath = logoSrc.replace(/vaakibh_logo\.svg(?:\?.*)?$/, '');
   const siteBasePath = homePath.replace(/index\.html(?:#.*)?$/, '');
   const sharedVeenaSrc = `${mediaBasePath}veena.svg`;
+  const sharedWhatsappSrc = `${mediaBasePath}whatsapp_icon.svg`;
+  const whatsappMessage = encodeURIComponent('\u0928\u092e\u0938\u094d\u0915\u093e\u0930, \u092e\u0932\u093e \u0935\u093e\u0915\u0940\u092d \u0935\u093f\u0937\u092f\u0940 \u092e\u093e\u0939\u093f\u0924\u0940 \u0939\u0935\u0940 \u0906\u0939\u0947.');
+  const sharedWhatsappHref = `https://wa.me/919923916476?text=${whatsappMessage}`;
   const blogPath = homePath.replace(/index\.html(?:#.*)?$/, 'blog/index.html');
   const contactPath = homePath.replace(/index\.html(?:#.*)?$/, 'contact/index.html');
   const assetBasePath = mediaBasePath.replace(/Vakibh\/?$/, 'assests/');
@@ -94,7 +128,7 @@
       .replace(/\s+\|\s+.*$/, '')
       .trim();
 
-    const isReadableMarathi = (value = '') => /[\u0900-\u097F]/.test(value) && !/[?]{2,}|ÃƒÆ’Ã‚Â Ãƒâ€šÃ‚Â¤|ÃƒÆ’Ã‚Â Ãƒâ€šÃ‚Â¥/.test(value);
+    const isReadableMarathi = (value = '') => /[\u0900-\u097F]/.test(value) && !/[?]{2,}|ÃƒÆ’Ã†’Ãƒâ€šÃ‚Â ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤|ÃƒÆ’Ã†’Ãƒâ€šÃ‚Â ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¥/.test(value);
     const slugTitle = (slug = '') => slug
       .split('-')
       .filter(Boolean)
@@ -120,6 +154,13 @@
     const santsIndex = segments.indexOf('sants');
     const saintSlug = santsIndex >= 0 ? segments[santsIndex + 1] : '';
     const pageSlug = [...segments].reverse().find(segment => segment && segment !== 'index.html' && segment !== 'contact' && segment !== 'blog' && segment !== 'sants' && segment !== 'vakibh-media-main' && segment !== 'vakibh-media') || '';
+    const isAbhangRangePage = /\/sants\/[^/]+\/abhang-\d+(?:(?:-to-)|-)\d+(?:\/|\.html|$)/.test(normalizedPath);
+    const cleanAbhangRangeTitle = (value = '') => value
+      .replace(/\s*[०-९0-9]+\s*ते\s*[०-९0-9]+(?=\s*(?:[–-]|$))/u, '')
+      .replace(/\s*[०-९0-9]+ते[०-९0-9]+(?=\s*(?:[–-]|$))/u, '')
+      .replace(/\s*[–-]\s*वाकीभ\s*$/u, '')
+      .trim();
+    
 
     let category = '\u0935\u093E\u0930\u0915\u0930\u0940 \u092A\u0930\u0902\u092A\u0930\u093E';
     let title = cleanText(document.querySelector('h1')?.textContent || document.title);
@@ -152,7 +193,7 @@
       image = `${assetBasePath}vaari.webp`;
 
       if (pageSlug.includes('haripath') || pageSlug.includes('abhang') || pageSlug.includes('gatha') || path.includes('abhang')) {
-        image = `${assetBasePath}sant/haripath-banner.jpg`;
+        image = path.includes('/dnyaneshwar/') ? `${assetBasePath}sant/sant-dnyaneshwar-abhang.jpg` : `${assetBasePath}sant/haripath-banner.jpg`;
         eyebrow = '\u0905\u092D\u0902\u0917 \u0917\u093E\u092F\u0928';
       }
 
@@ -165,18 +206,38 @@
       title = pageSlug ? slugTitle(pageSlug) : '\u0935\u093E\u0915\u0940\u092D';
     }
 
+    if (isAbhangRangePage) {
+      title = path.includes('/dnyaneshwar/') ? 'संत ज्ञानेश्वर गाथा' : cleanAbhangRangeTitle(title);
+    }
+
+    if (/\/sants\/tukaram\/gatha-\d+(?:\/|\.html|$)/.test(normalizedPath)) {
+      title = '\u0938\u0902\u0924 \u0924\u0941\u0915\u093E\u0930\u093E\u092E \u0917\u093E\u0925\u093E';
+    }
+
     const hero = document.createElement('section');
     hero.className = 'inner-breadcrumb-hero';
     hero.dataset.category = category;
     hero.style.setProperty('--breadcrumb-bg', `url("${image}")`);
+    hero.style.backgroundImage = `url("${image}")`;
+    hero.style.position = 'relative';
+    hero.style.width = '100%';
+    hero.style.minHeight = '410px';
+    hero.style.margin = '0';
+    hero.style.padding = '0 1.5rem';
+    hero.style.display = 'flex';
+    hero.style.alignItems = 'center';
+    hero.style.overflow = 'hidden';
+    hero.style.color = '#ffffff';
+    hero.style.backgroundSize = 'cover';
+    hero.style.backgroundPosition = 'center';
     hero.innerHTML = `
-      <div class="inner-breadcrumb-overlay"></div>
+      <div class="inner-breadcrumb-overlay" style="position:absolute;inset:0;z-index:0;background:linear-gradient(90deg, rgba(36,59,90,.84) 0%, rgba(36,59,90,.58) 45%, rgba(16,22,32,.58) 100%), rgba(0,0,0,.55);"></div>
       <div class="inner-breadcrumb-pattern" aria-hidden="true"></div>
       <span class="devotional-float devotional-float-taal" aria-hidden="true"><i class="fas fa-music"></i></span>
       <span class="devotional-float devotional-float-mridang" aria-hidden="true"><i class="fas fa-drum"></i></span>
       <span class="devotional-float devotional-float-tulsi" aria-hidden="true"><i class="fas fa-leaf"></i></span>
       <span class="devotional-float devotional-float-veena" aria-hidden="true"><i class="fas fa-guitar"></i></span>
-      <div class="inner-breadcrumb-content">
+      <div class="inner-breadcrumb-content" style="position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;">
         <span class="inner-breadcrumb-eyebrow">${eyebrow}</span>
         <h1>${title}</h1>
         <nav class="inner-breadcrumb-nav" aria-label="Breadcrumb">
@@ -197,6 +258,25 @@
   };
 
   createInnerBreadcrumbHero();
+  const standardizeAbhangRangeSelectors = () => {
+    const rangeSelectors = document.querySelectorAll('.sahitya-links-grid, .dnyaneshwar-links-1col, .dnyaneshwar-links-grid');
+
+    rangeSelectors.forEach((grid) => {
+      const rangeLinks = Array.from(grid.querySelectorAll("a[href*=\"abhang-\"]"))
+        .filter((link) => /abhang-\d+(?:-to-|-|\/)\d+|abhang-\d+-\d+/i.test(link.getAttribute('href') || ''));
+
+      if (!rangeLinks.length) return;
+
+      grid.classList.add('abhang-range-selector-grid');
+      document.body.classList.add('abhang-range-selector-page');
+
+      const section = grid.closest('.abhang-grid-section, section, main');
+      const heading = section?.querySelector('.abhang-grid-heading, .dnyaneshwar-heading, h2');
+      if (heading) heading.textContent = '\u0905\u092d\u0902\u0917 \u0938\u0902\u0917\u094d\u0930\u0939';
+    });
+  };
+
+  standardizeAbhangRangeSelectors();
   const socialProfiles = {
     facebook: 'https://www.facebook.com/vaakibh',
     instagram:
@@ -270,15 +350,41 @@
       </button>
     </div>
   `;
+  const ensureFloatingWhatsapp = () => {
+    let floatingWhatsapp = document.querySelector('.floating-whatsapp');
+
+    if (!floatingWhatsapp) {
+      floatingWhatsapp = document.createElement('a');
+      floatingWhatsapp.className = 'floating-whatsapp';
+      document.body.appendChild(floatingWhatsapp);
+    }
+
+    floatingWhatsapp.href = sharedWhatsappHref;
+    floatingWhatsapp.target = '_blank';
+    floatingWhatsapp.rel = 'noopener noreferrer';
+    floatingWhatsapp.setAttribute('aria-label', '\u0935\u094d\u0939\u0949\u091f\u094d\u0938\u0905\u0945\u092a \u0935\u0930 \u0938\u0902\u092a\u0930\u094d\u0915 \u0915\u0930\u093e');
+
+    let whatsappImg = floatingWhatsapp.querySelector('img');
+    if (!whatsappImg) {
+      whatsappImg = document.createElement('img');
+      floatingWhatsapp.textContent = '';
+      floatingWhatsapp.appendChild(whatsappImg);
+    }
+    whatsappImg.src = sharedWhatsappSrc;
+    whatsappImg.alt = '\u0935\u094d\u0939\u0949\u091f\u094d\u0938\u0905\u0945\u092a';
+
+    return floatingWhatsapp;
+  };
+
+  const floatingWhatsapp = ensureFloatingWhatsapp();
   let floatingVeena = document.querySelector('.floating-veena');
-  const floatingWhatsapp = document.querySelector('.floating-whatsapp');
 
   if (!floatingVeena) {
     floatingVeena = document.createElement('button');
     floatingVeena.type = 'button';
     floatingVeena.className = 'floating-veena';
-    floatingVeena.setAttribute('aria-label', '?????? ??? ???');
-    floatingVeena.innerHTML = `<img src="${sharedVeenaSrc}" alt="????">`;
+    floatingVeena.setAttribute('aria-label', 'Play music');
+    floatingVeena.innerHTML = `<img src="${sharedVeenaSrc}" alt="Veena">`;
 
     if (floatingWhatsapp?.parentNode) {
       floatingWhatsapp.parentNode.insertBefore(floatingVeena, floatingWhatsapp);
@@ -289,9 +395,33 @@
     const veenaImg = floatingVeena.querySelector('img');
     if (veenaImg) {
       veenaImg.src = sharedVeenaSrc;
-      veenaImg.alt = '????';
+      veenaImg.alt = 'Veena';
     }
   }
+
+  const devotionalAudio = new Audio(`${mediaBasePath}vaakibh_audio.mp3`);
+  devotionalAudio.loop = true;
+  devotionalAudio.preload = 'auto';
+  const updateVeenaState = () => {
+    floatingVeena.classList.toggle('is-playing', !devotionalAudio.paused);
+    floatingVeena.setAttribute('aria-pressed', devotionalAudio.paused ? 'false' : 'true');
+    floatingVeena.setAttribute('aria-label', devotionalAudio.paused ? 'Play music' : 'Pause music');
+  };
+  floatingVeena.addEventListener('click', async () => {
+    try {
+      if (devotionalAudio.paused) {
+        await devotionalAudio.play();
+      } else {
+        devotionalAudio.pause();
+      }
+      updateVeenaState();
+    } catch (error) {
+      showToast('Audio could not start. Please try again.');
+    }
+  });
+  devotionalAudio.addEventListener('pause', updateVeenaState);
+  devotionalAudio.addEventListener('play', updateVeenaState);
+  updateVeenaState();
 
   // --- Mobile Menu Toggle ---
   const menuToggle = document.querySelector('.menu-toggle');
@@ -896,7 +1026,7 @@
     const rawText = normalizeText(nodesToFormat.map((node) => node.textContent || '').join('\n'));
     if (!rawText) return;
 
-    const itemPattern = /(^|\n|\s)([\u0966-\u096F]+)\s+(?=[^\n]*\u0965\u0967\u0965)/g;
+    const itemPattern = /(^|\n|\s)([\u0966-\u096F]+)\s*[.)]?\s+(?=[\s\S]*?\u0965\u0967\u0965)/g;
     const verseMarkerPattern = /[\u0964\u0965]/;
     const meaningLabelPattern = /^\s*(\u0905\u0930\u094D\u0925|\u092D\u093E\u0935\u093E\u0930\u094D\u0925|meaning)\s*[:：\-–—]?\s*$/i;
     const matches = Array.from(rawText.matchAll(itemPattern));
@@ -910,19 +1040,31 @@
       .split(/\n{2,}|(?<=\u0965[\u0966-\u096F]+\u0965)\s+(?=[^\u0965\n]{18,})/)
       .map((part) => cleanText(part))
       .filter(Boolean);
-    const renderVerseLines = (value) => {
-      const compact = cleanText(value).replace(/\s+/g, ' ');
-      const pieces = compact.split(verseMarkerPattern).map((part) => part.trim()).filter(Boolean);
-      const lines = [];
+    const attachEndingMarker = (line = '') => cleanText(line).replace(/\s+(॥[\u0966-\u096F]+॥)\s*$/, '\u00a0$1');
 
-      for (let index = 0; index < pieces.length; index += 2) {
-        const textPart = pieces[index] || '';
-        const markerPart = pieces[index + 1] || '';
-        const line = cleanText(`${textPart} ${markerPart}`);
-        if (line) lines.push(line);
+    const renderVerseStanzas = (value) => {
+      const compact = cleanText(value).replace(/\s+/g, ' ');
+      const stanzas = [];
+      const stanzaPattern = /([^।॥]+।)\s*([^।॥]+॥[\u0966-\u096F]+॥)/g;
+      let match;
+
+      while ((match = stanzaPattern.exec(compact)) !== null) {
+        stanzas.push([
+          cleanText(match[1]),
+          attachEndingMarker(match[2])
+        ]);
       }
 
-      return lines;
+      if (stanzas.length) return stanzas;
+
+      const pieces = compact.split(verseMarkerPattern).map((part) => part.trim()).filter(Boolean);
+      for (let index = 0; index < pieces.length; index += 2) {
+        const firstLine = cleanText(`${pieces[index] || ''} ।`);
+        const secondLine = attachEndingMarker(pieces[index + 1] || '');
+        if (firstLine || secondLine) stanzas.push([firstLine, secondLine]);
+      }
+
+      return stanzas;
     };
 
     const list = document.createElement('div');
@@ -950,10 +1092,10 @@
         }
       }
 
-      const verseLines = renderVerseLines(verseText);
+      const verseStanzas = renderVerseStanzas(verseText);
       const meaningParagraphs = splitMeaningParagraphs(meaningText);
 
-      if (!verseLines.length && !meaningParagraphs.length) return;
+      if (!verseStanzas.length && !meaningParagraphs.length) return;
 
       const section = document.createElement('section');
       section.className = 'abhang-readable-item';
@@ -961,20 +1103,28 @@
       section.dataset.abhangItem = 'true';
       section.dataset.abhangNumber = number;
 
-      const numberEl = document.createElement('div');
-      numberEl.className = 'abhang-readable-number';
-      numberEl.textContent = number;
-      section.appendChild(numberEl);
-
       const verseBlock = document.createElement('div');
-      verseBlock.className = 'abhang-readable-verses';
-      verseLines.forEach((line, lineIndex) => {
-        const lineEl = document.createElement('p');
-        lineEl.textContent = line;
-        if (lineIndex === 0) {
-          lineEl.dataset.verseNumber = number;
-        }
-        verseBlock.appendChild(lineEl);
+      verseBlock.className = 'abhang-readable-verses haripath-readable-verses';
+      verseStanzas.forEach((stanza, stanzaIndex) => {
+        const stanzaEl = document.createElement('div');
+        stanzaEl.className = 'haripath-stanza';
+
+        stanza.forEach((line, lineIndex) => {
+          const lineEl = document.createElement('p');
+          lineEl.className = lineIndex === 1 ? 'haripath-line haripath-ending-line' : 'haripath-line';
+          if (stanzaIndex === 0 && lineIndex === 0) {
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'haripath-inline-number';
+            numberSpan.textContent = `${number}.`;
+            lineEl.dataset.verseNumber = number;
+            lineEl.append(numberSpan, document.createTextNode(line));
+          } else {
+            lineEl.textContent = line;
+          }
+          stanzaEl.appendChild(lineEl);
+        });
+
+        verseBlock.appendChild(stanzaEl);
       });
       section.appendChild(verseBlock);
 
@@ -1033,6 +1183,325 @@
   };
 
   cleanupDnyaneshwariAudioBlocks();
+  const formatDnyaneshwarGathaRangePages = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/abhang-') || path.includes('/abhang-all/')) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const pageMain = document.querySelector('.sant-page-main') || document.body;
+    const entryContent = postContent?.querySelector('.entry-content');
+    const sourceRoot = entryContent?.querySelector('p strong') ? entryContent : pageMain;
+    if (!postContent || !sourceRoot || postContent.querySelector('.abhang-content-list')) return;
+
+    document.body.classList.add('abhang-list-page', 'abhang-range-page', 'dnyaneshwar-gatha-range-page');
+
+    const devanagariDigits = '०१२३४५६७८९';
+    const toDevanagari = (value = '') => String(value).replace(/[0-9]/g, (digit) => devanagariDigits[Number(digit)]);
+    const normalizeGathaText = (value = '') => normalizeText(value).replace(/\s+/g, ' ').trim();
+    const getTitle = () => normalizeGathaText(document.querySelector('.post-title')?.textContent || document.title.replace(/\s*[-–].*$/, ''));
+    const isCategoryNote = (value = '') => /अभंग\s*[०-९0-9]+\s*(?:ते|रे|to)\s*[०-९0-9]+/i.test(value) && !/॥[०-९0-9ध्रु]+॥/.test(value);
+    const getAbhangNumber = (value = '') => {
+      const match = normalizeGathaText(value).match(/^([०-९0-9]+)\s*[.)]?$/);
+      return match?.[1] || '';
+    };
+    const cleanVerseLine = (value = '') => normalizeGathaText(value)
+      .replace(/\s+(॥[०-९0-9ध्रु]+॥)\s*$/, '\u00a0$1')
+      .replace(/\s+(॥ध्रु०॥)\s*$/, '\u00a0$1');
+    const makeParagraph = (line, className = '') => {
+      const p = document.createElement('p');
+      if (className) p.className = className;
+      p.textContent = line;
+      return p;
+    };
+
+    const items = [];
+    Array.from(sourceRoot.querySelectorAll('p')).forEach((paragraph) => {
+      let paragraphText = paragraph.innerText || paragraph.textContent || '';
+      paragraphText = paragraphText.replace(/^\s*[^\n]*(?:अभंग\s*[०-९0-9]+\s*(?:ते|रे|to)\s*[०-९0-9]+)[^\n]*\n+/i, '');
+      const text = normalizeGathaText(paragraphText);
+      if (!text || isCategoryNote(text)) return;
+
+      const firstLine = normalizeGathaText(paragraphText.split(/\r?\n/).find(Boolean) || text);
+      const number = getAbhangNumber(firstLine) || getAbhangNumber(normalizeGathaText(paragraph.querySelector('strong')?.textContent || ''));
+      if (!number) return;
+
+      const lines = paragraphText
+        .replace(new RegExp(`^\\s*${number}\\s*[.)]?\\s*`), '')
+        .split(/\r?\n|(?<=॥[०-९0-9ध्रु]+॥)\s+/)
+        .map(cleanVerseLine)
+        .filter(Boolean);
+      if (!lines.length) return;
+
+      const titleLine = cleanVerseLine(lines[0]).replace(/\s*।.*$/, '').replace(/\s*॥.*$/, '').trim() || `अभंग ${number}`;
+      items.push({ number, title: titleLine, lines });
+    });
+
+    if (!items.length) return;
+
+    const oldActions = postContent.querySelector('.abhang-post-actions');
+    const rangeSection = document.createElement('section');
+    rangeSection.className = 'abhang-grid-section';
+    rangeSection.id = 'abhang-grid';
+
+    const inner = document.createElement('div');
+    inner.className = 'abhang-grid-inner';
+
+    const heading = document.createElement('h2');
+    heading.className = 'abhang-grid-heading';
+    heading.textContent = getTitle();
+    inner.appendChild(heading);
+
+    const list = document.createElement('div');
+    list.className = 'abhang-content-list';
+    list.id = 'abhangContentList';
+    list.dataset.totalCount = String(items.length);
+
+    items.forEach((item, index) => {
+      const article = document.createElement('article');
+      article.className = 'abhang-content-block';
+      article.id = `abhang-${item.number}`;
+      article.dataset.abhangNumber = item.number;
+      article.dataset.search = normalizeGathaText(`${item.number} ${toDevanagari(item.number)} ${item.title} ${item.lines.join(' ')}`);
+
+      const header = document.createElement('header');
+      header.className = 'abhang-content-header';
+      const numberEl = document.createElement('span');
+      numberEl.className = 'abhang-content-number';
+      numberEl.textContent = `अभंग ${toDevanagari(item.number)}`;
+      const titleEl = document.createElement('h3');
+      titleEl.className = 'abhang-content-title';
+      titleEl.textContent = item.title;
+      header.append(numberEl, titleEl);
+
+      const verses = document.createElement('div');
+      verses.className = 'abhang-readable-verses';
+      verses.dataset.devotionalVerse = 'true';
+      item.lines.forEach((line, lineIndex) => {
+        verses.appendChild(makeParagraph(line, lineIndex === 0 ? 'abhang-verse' : ''));
+      });
+      verses.querySelector('.abhang-verse')?.setAttribute('data-devotional-verse', 'true');
+
+      const actions = oldActions?.cloneNode(true);
+      if (actions) {
+        actions.className = 'abhang-item-actions abhang-card-footer';
+        actions.dataset.shareScope = 'item';
+        actions.querySelectorAll('button').forEach((button) => button.setAttribute('type', 'button'));
+      }
+
+      article.append(header, verses);
+      if (actions) article.appendChild(actions);
+      list.appendChild(article);
+    });
+
+    inner.appendChild(list);
+    const empty = document.createElement('p');
+    empty.className = 'abhang-empty-state';
+    empty.id = 'abhangEmptyState';
+    empty.hidden = true;
+    empty.textContent = 'जुळणारे अभंग सापडले नाहीत.';
+    inner.appendChild(empty);
+    rangeSection.appendChild(inner);
+
+    postContent.replaceChildren(rangeSection);
+
+    const article = postContent.closest('.abhang-post');
+    if (article) {
+      Array.from(article.children).forEach((child) => {
+        if (!child.matches('.post-header, .post-content')) child.remove();
+      });
+    }
+
+    pageMain.querySelectorAll('.elementor-section, .elementor-container, .elementor-column, .elementor-widget-wrap, .elementor-widget, .elementor-widget-container').forEach((element) => {
+      if (!element.closest('.post-content')) element.remove();
+    });
+  };
+
+  formatDnyaneshwarGathaRangePages();
+  const formatGathaStanzaSpacing = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!/\/sants\/[^/]+\/gatha-\d+(?:\/|\.html|$)/.test(path)) return;
+
+    const entryContent = document.querySelector('.abhang-post .entry-content');
+    if (!entryContent || entryContent.dataset.gathaTypography === 'true') return;
+
+const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
+    Array.from(entryContent.querySelectorAll('p')).forEach((numberParagraph) => {
+      const numberText = (numberParagraph.innerText || numberParagraph.textContent || '').trim();
+      const verseParagraph = numberParagraph.nextElementSibling;
+      if (!standaloneNumberPattern.test(numberText) || verseParagraph?.tagName !== 'P') return;
+      if (!/॥/.test(verseParagraph.innerText || verseParagraph.textContent || '')) return;
+
+      numberParagraph.innerHTML = `${numberParagraph.innerHTML.trim()}<br>${verseParagraph.innerHTML}`;
+      verseParagraph.remove();
+    });
+
+    const heavyFontClasses = ['font-bold', 'font-semibold', 'font-medium', 'font-extrabold'];
+    entryContent.classList.remove(...heavyFontClasses);
+    entryContent.querySelectorAll('.font-bold, .font-semibold, .font-medium, .font-extrabold').forEach((element) => {
+      element.classList.remove(...heavyFontClasses);
+    });
+
+    const stanzaEndPattern = /॥(?:[०-९0-9]+|ध्रु\.?|ध्रु०)॥\s*$/u;
+    const gathaNumberPattern = /(?:^|\n)\s*[०-९0-9]+[.)]?(?:\s|$)/u;
+    entryContent.querySelectorAll('p').forEach((paragraph) => {
+      const paragraphText = paragraph.innerText || paragraph.textContent || '';
+      if (!gathaNumberPattern.test(paragraphText) || !/॥/.test(paragraphText)) return;
+
+      paragraph.classList.add('gatha-verse');
+      paragraph.querySelectorAll('strong, b').forEach((boldElement) => {
+        boldElement.replaceWith(...boldElement.childNodes);
+      });
+      paragraph.querySelectorAll('br').forEach((lineBreak) => {
+        const precedingText = lineBreak.previousSibling?.textContent || '';
+        if (stanzaEndPattern.test(precedingText)) {
+          lineBreak.classList.add('gatha-stanza-break');
+        }
+      });
+    });
+
+    entryContent.dataset.gathaTypography = 'true';
+    entryContent.classList.add('gatha-content');
+    document.body.classList.add('gatha-typography-page');
+  };
+
+  formatGathaStanzaSpacing();
+  const formatDnyaneshwarViraniPage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/virani/')) return;
+
+    const entry = document.querySelector('.abhang-post .entry-content');
+    if (!entry || entry.dataset.viraniFormatted === 'true') return;
+    entry.dataset.viraniFormatted = 'true';
+    document.body.classList.add('dnyaneshwar-virani-page');
+
+    Array.from(entry.children).forEach((element) => {
+      const text = normalizeText(element.textContent || '');
+      if (!text) return;
+
+      if (/^(?:संत\s+ज्ञानेश्वर\s+विराणी\s*[०-९0-9,\s]+(?:समाप्त)?|ref\s*:\s*bhavtarang)$/i.test(text)) {
+        element.remove();
+        return;
+      }
+
+      if (/विराणी\s*\/|विरहिणी|विरहरत्ने|विराणी\s*[०-९0-9]+\s*[–-]/.test(text)) {
+        element.remove();
+        return;
+      }
+
+      if (element.matches('p') && element.querySelector('strong') && /॥/.test(text)) {
+        element.classList.add('virani-main-lines');
+        return;
+      }
+
+      if (element.matches('p')) {
+        if (text === '॥ हरि ॐ ॥') {
+          element.remove();
+          return;
+        }
+        element.classList.add('virani-meaning');
+      }
+    });
+  };
+
+  formatDnyaneshwarViraniPage();
+  const formatAmrutanubhavPage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/amrutanubhav/')) return;
+
+    const entry = document.querySelector('.abhang-post .entry-content');
+    if (!entry || entry.dataset.amrutanubhavFormatted === 'true') return;
+    entry.dataset.amrutanubhavFormatted = 'true';
+    document.body.classList.add('amrutanubhav-page');
+
+    Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      if (!text) return;
+
+      if (paragraph.classList.contains('hdr2') || paragraph.classList.contains('hdr3')) {
+        paragraph.classList.add('amrutanubhav-chapter-title');
+        return;
+      }
+
+      if (paragraph.querySelectorAll('br').length >= 3 && /॥/.test(text)) {
+        Array.from(paragraph.querySelectorAll('br')).forEach((br) => br.replaceWith(document.createTextNode(' ')));
+        paragraph.classList.add('amrutanubhav-verse-block');
+      }
+    });
+  };
+
+  formatAmrutanubhavPage();
+  const formatChangdevPasashtiPage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/changdev-pasashti/')) return;
+
+    const entry = document.querySelector('.abhang-post .entry-content');
+    if (!entry || entry.dataset.changdevFormatted === 'true') return;
+    entry.dataset.changdevFormatted = 'true';
+    document.body.classList.add('changdev-pasashti-page');
+
+    Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      if (!text) return;
+
+      if (/^(?:सार्थ\s+चांगदेव\s+पासष्टी|श्रीज्ञानेश्वरमहाराजकृत|श्री\s+चांगदेव\s+पासष्टी|सार्थ\s+अमृतानुभव\s+आणि\s+चांगदेवपासष्टी)/.test(text)) {
+        paragraph.remove();
+        return;
+      }
+
+      if (paragraph.querySelector('b, strong') && /॥\s*[०-९0-9]+\s*॥|।\s*[०-९0-9]+\s*॥/.test(text)) {
+        paragraph.classList.add('changdev-ovi-line');
+        return;
+      }
+
+      paragraph.classList.add('changdev-meaning-line');
+    });
+  };
+
+  formatChangdevPasashtiPage();
+  const formatDnyaneshwarPasaydanPage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/pasaydan/')) return;
+
+    const entry = document.querySelector('.abhang-post .entry-content');
+    if (!entry || entry.dataset.pasaydanFormatted === 'true') return;
+    entry.dataset.pasaydanFormatted = 'true';
+    document.body.classList.add('dnyaneshwar-pasaydan-page');
+
+    Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      if (!text) return;
+
+      if (text === 'पसायदान') {
+        const wrapper = paragraph.closest('.msg');
+        if (wrapper && normalizeText(wrapper.textContent || '') === 'पसायदान') {
+          wrapper.remove();
+        } else {
+          paragraph.remove();
+        }
+        return;
+      }
+
+      if (/॥\s*[०-९0-9]+\s*॥/.test(text)) {
+        paragraph.classList.add('pasaydan-verse-line');
+        return;
+      }
+
+      paragraph.classList.add('pasaydan-meaning-line');
+    });
+
+    const mainVerses = Array.from(entry.querySelectorAll('p.pasaydan-verse-line')).slice(0, 9);
+    if (mainVerses.length) {
+      const mainBlock = document.createElement('div');
+      mainBlock.className = 'pasaydan-main-centered';
+      mainVerses.forEach((paragraph) => {
+        paragraph.classList.add('pasaydan-main-line');
+        mainBlock.appendChild(paragraph);
+      });
+      entry.insertBefore(mainBlock, entry.firstChild);
+    }
+  };
+
+  formatDnyaneshwarPasaydanPage();
 
   const splitLegacyDnyaneshwariParagraphs = () => {
     if (!document.body.classList.contains('is-dnyaneshwari-adhyay-page')) return;
@@ -2329,6 +2798,36 @@
       root.dataset.verseEndsWrapped = 'true';
     });
   };
+  const initAbhangRangeSearch = () => {
+    const input = document.getElementById('abhangRangeSearch') || document.querySelector('[data-abhang-range-search]');
+    const list = document.getElementById('abhangContentList');
+    if (!input || !list) return;
+    const blocks = Array.from(list.querySelectorAll('.abhang-content-block'));
+    const count = document.getElementById('countPill');
+    const empty = document.getElementById('abhangEmptyState');
+    const devanagari = '\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f';
+    const toAscii = (value) => String(value || '').replace(/[\u0966-\u096f]/g, (digit) => devanagari.indexOf(digit));
+    const updateCount = (visible) => {
+      if (!count) return;
+      count.textContent = visible.toLocaleString('mr-IN') + ' \u0905\u092d\u0902\u0917';
+    };
+    const apply = () => {
+      const raw = input.value.trim().toLowerCase();
+      const asciiQuery = toAscii(raw.replace(/^\u0905\u092d\u0902\u0917\s*/, ''));
+      let visible = 0;
+      blocks.forEach((block) => {
+        const haystack = (block.dataset.search || block.textContent || '').toLowerCase();
+        const match = !raw || haystack.includes(raw) || (asciiQuery && toAscii(haystack).includes(asciiQuery));
+        block.hidden = !match;
+        if (match) visible += 1;
+      });
+      updateCount(visible);
+      if (empty) empty.hidden = visible !== 0;
+    };
+    input.addEventListener('input', apply);
+    apply();
+  };
+
   const hashTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (hashTarget) {
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
@@ -2338,6 +2837,22 @@
   wrapDevotionalVerseEndings();
   libraryInitSearchBars();
   libraryInitSearchPage();});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

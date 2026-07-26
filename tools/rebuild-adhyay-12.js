@@ -31,7 +31,7 @@ function escapeHtml(value) {
 
 function markerText(line) {
   const devanagari = [...line.matchAll(/॥[^॥]*॥/g)].map((m) => m[0]);
-  const mojibake = [...line.matchAll(/à¥¥(?:(?!à¥¥).)*à¥¥/g)].map((m) => m[0]);
+  const mojibake = [...line.matchAll(/॥(?:(?!॥).)*॥/g)].map((m) => m[0]);
   const markers = [...devanagari, ...mojibake];
   return markers.length ? markers[markers.length - 1] : '';
 }

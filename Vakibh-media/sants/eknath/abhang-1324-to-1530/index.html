@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
@@ -6,76 +6,1061 @@
   <title>संत एकनाथ अभंग १३२४ ते १५३० – वाकीभ</title>
   <meta name="description" content="संत एकनाथ अभंग १३२४ ते १५३० येथे क्रमाने वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=39">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=30">
-  <script src="../../../Vakibh/js/main.js?v=40" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=42">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=38">
+  <script src="../../../Vakibh/js/main.js?v=60" defer></script>
 </head>
-<body class="abhang-list-page">
-  <header>
+<body class="abhang-list-page abhang-range-page">
+      <header>
     <div class="header-container">
-      <a href="../../../index.html" class="logo-link"><img src="../../../Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="मुख्य मेनू उघडा"><i class="fas fa-bars"></i></button>
-      <nav id="navMenu"><ul><li><a href="../../../index.html">मुखपृष्ठ</a></li><li><a href="../../../index.html#abhangs">अभंग/भजन</a></li><li><a href="../../../index.html#saints">संत</a></li><li><a href="../../../index.html#categories">विभाग</a></li><li><a href="../../../contact/index.html">संपर्क</a></li></ul></nav>
-      <div class="header-actions"><div class="lang-switch-group" aria-label="भाषा निवडा"><button class="lang-switch active" type="button" data-language="marathi">मराठी</button></div><button class="search-trigger-btn" id="searchTrigger" aria-label="शोध उघडा"><i class="fas fa-search"></i></button></div>
+      <a href="../../../index.html" class="logo-link">
+        <img src="../../../Vakibh/vaakibh_logo.svg" alt="&#x0935;&#x093E;&#x0915;&#x0940;&#x092D; &#x0932;&#x094B;&#x0917;&#x094B;" class="logo-img">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="navMenu" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942;">
+        <ul>
+          <li><a href="../../../index.html">&#x092E;&#x0941;&#x0916;&#x092A;&#x0943;&#x0937;&#x094D;&#x0920;</a></li>
+          <li><a href="../../../index.html#abhangs">&#x0905;&#x092D;&#x0902;&#x0917;/&#x092D;&#x091C;&#x0928;</a></li>
+          <li><a href="../../../index.html#saints">&#x0938;&#x0902;&#x0924;</a></li>
+          <li><a href="../../../index.html#categories">&#x0935;&#x093F;&#x092D;&#x093E;&#x0917;</a></li>
+          <li><a href="../../../contact/index.html">&#x0938;&#x0902;&#x092A;&#x0930;&#x094D;&#x0915;</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch-group" aria-label="&#x092D;&#x093E;&#x0937;&#x093E; &#x0928;&#x093F;&#x0935;&#x0921;&#x093E;">
+          <button class="lang-switch active" type="button" data-language="marathi" data-language-option="marathi">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</button>
+          <button class="lang-switch" type="button" data-language="english" data-language-option="english">English</button>
+        </div>
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="&#x0936;&#x094B;&#x0927; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
   </header>
   <main class="sant-page-main">
     <section class="sant-title-section"><div class="sant-title-inner"><h1 class="sant-page-h1">संत एकनाथ अभंग १३२४ ते १५३०</h1><nav class="sant-quick-links" aria-label="संत एकनाथ विभाग"><a href="../../../index.html" class="sant-quick-link">गृहपृष्ठ</a><a href="../eknath-abhang-gatha/index.html" class="sant-quick-link">एकनाथांचे अभंग / गाथा</a><a href="#abhang-grid" class="sant-quick-link active">अभंग</a></nav></div></section>
-    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">५२ अभंग</span></div></section>
-    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">अभंग सूची</h2><div class="abhang-list" id="abhangColumns">
-        <a class="abhang-item" href="../sant-eknath-abhang-1324/index.html" data-abhang-number="1324" data-search="1324 १३२४ अभंग नामपाठें ओहं सोहं कोहं खादलें नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥१॥ अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥२॥ जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥३॥ "><span class="abhang-number">१३२४.</span><span class="abhang-title">नामपाठें ओहं सोहं कोहं खादलें</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1325/index.html" data-abhang-number="1325" data-search="1325 १३२५ अभंग नामपाठ गीता नामपाठ गीता नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥१॥ हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।२॥ जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥३॥ "><span class="abhang-number">१३२५.</span><span class="abhang-title">नामपाठ गीता नामपाठ गीता</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1326/index.html" data-abhang-number="1326" data-search="1326 १३२६ अभंग नामपाठें गीता ज्ञानेश्वरी होय नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥१॥ नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥२॥ जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥३॥ "><span class="abhang-number">१३२६.</span><span class="abhang-title">नामपाठें गीता ज्ञानेश्वरी होय</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1327/index.html" data-abhang-number="1327" data-search="1327 १३२७ अभंग नामपाठ ज्ञानदेवी नामपाठ तूं करीं नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥१॥ ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥२॥ जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥३॥ "><span class="abhang-number">१३२७.</span><span class="abhang-title">नामपाठ ज्ञानदेवी नामपाठ तूं करीं</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1328/index.html" data-abhang-number="1328" data-search="1328 १३२८ अभंग नामपाठें वर्म वेदींचें तें कळे नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥१॥ या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥२॥ जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥३॥ "><span class="abhang-number">१३२८.</span><span class="abhang-title">नामपाठें वर्म वेदींचें तें कळे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1329/index.html" data-abhang-number="1329" data-search="1329 १३२९ अभंग नामपाठें संदेह सर्व हा जाईल नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥१॥ नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥२॥ जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥३॥ "><span class="abhang-number">१३२९.</span><span class="abhang-title">नामपाठें संदेह सर्व हा जाईल</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1330/index.html" data-abhang-number="1330" data-search="1330 १३३० अभंग नामपाठ साधन याहुनी आहे कोण नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥१॥ जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥२॥ जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥३॥ "><span class="abhang-number">१३३०.</span><span class="abhang-title">नामपाठ साधन याहुनी आहे कोण</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1331/index.html" data-abhang-number="1331" data-search="1331 १३३१ अभंग नामपाठ युक्ति भाविकां प्रतीती नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥१॥ नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥२॥ जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥३॥ "><span class="abhang-number">१३३१.</span><span class="abhang-title">नामपाठ युक्ति भाविकां प्रतीती</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1332/index.html" data-abhang-number="1332" data-search="1332 १३३२ अभंग नामपाठें मोक्ष पाविजे तत्त्वतां नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥१॥ नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥२॥ जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥३॥ "><span class="abhang-number">१३३२.</span><span class="abhang-title">नामपाठें मोक्ष पाविजे तत्त्वतां</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1333/index.html" data-abhang-number="1333" data-search="1333 १३३३ अभंग नामपाठें संत पावले विसांवा नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥१॥ नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥२॥ जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥३॥ "><span class="abhang-number">१३३३.</span><span class="abhang-title">नामपाठें संत पावले विसांवा</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1334/index.html" data-abhang-number="1334" data-search="1334 १३३४ अभंग नामपाठे युक्ती साधन समाप्ती नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥१॥ आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥३॥ "><span class="abhang-number">१३३४.</span><span class="abhang-title">नामपाठे युक्ती साधन समाप्ती</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1335/index.html" data-abhang-number="1335" data-search="1335 १३३५ अभंग नामपाठ मंत्र सर्वांत पैं श्रेष्ठ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥१॥ नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥२॥ जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥३॥ "><span class="abhang-number">१३३५.</span><span class="abhang-title">नामपाठ मंत्र सर्वांत पैं श्रेष्ठ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1336/index.html" data-abhang-number="1336" data-search="1336 १३३६ अभंग नामपाठ करितां आनंद मानसें नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥१॥ आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥२॥ जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥३॥ "><span class="abhang-number">१३३६.</span><span class="abhang-title">नामपाठ करितां आनंद मानसें</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1337/index.html" data-abhang-number="1337" data-search="1337 १३३७ अभंग नामपाठ पसारा घे रे मुखें सदा नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥१॥ नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥२॥ जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥३॥ "><span class="abhang-number">१३३७.</span><span class="abhang-title">नामपाठ पसारा घे रे मुखें सदा</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1338/index.html" data-abhang-number="1338" data-search="1338 १३३८ अभंग नामपाठ कसवटी अखंड ज्याचे मुखीं नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥१॥ नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥२॥ जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥३॥ "><span class="abhang-number">१३३८.</span><span class="abhang-title">नामपाठ कसवटी अखंड ज्याचे मुखीं</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1339/index.html" data-abhang-number="1339" data-search="1339 १३३९ अभंग नामपाठे ज्ञान नामपाठें ध्यान नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥१॥ जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥२॥ जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥३॥ "><span class="abhang-number">१३३९.</span><span class="abhang-title">नामपाठे ज्ञान नामपाठें ध्यान</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1340/index.html" data-abhang-number="1340" data-search="1340 १३४० अभंग नामचेनि पाठें जाती पैं वैकुंठी नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥१॥ आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥२॥ जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥३॥ "><span class="abhang-number">१३४०.</span><span class="abhang-title">नामचेनि पाठें जाती पैं वैकुंठी</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1341/index.html" data-abhang-number="1341" data-search="1341 १३४१ अभंग संसार पाल्हाळ सांगती परिकर संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥१॥ न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥२॥ जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥३॥ "><span class="abhang-number">१३४१.</span><span class="abhang-title">संसार पाल्हाळ सांगती परिकर</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1342/index.html" data-abhang-number="1342" data-search="1342 १३४२ अभंग नामपाठ नित्य एक नेमें गायें नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥१॥ अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥२॥ जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥३॥ "><span class="abhang-number">१३४२.</span><span class="abhang-title">नामपाठ नित्य एक नेमें गायें</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1343/index.html" data-abhang-number="1343" data-search="1343 १३४३ अभंग नामपाठ गंगा नामपाठ सरिता नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥१॥ नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥२॥ जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥३॥ "><span class="abhang-number">१३४३.</span><span class="abhang-title">नामपाठ गंगा नामपाठ सरिता</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1344/index.html" data-abhang-number="1344" data-search="1344 १३४४ अभंग नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ "><span class="abhang-number">१३४४.</span><span class="abhang-title">नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1345/index.html" data-abhang-number="1345" data-search="1345 १३४५ अभंग नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ "><span class="abhang-number">१३४५.</span><span class="abhang-title">नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1346/index.html" data-abhang-number="1346" data-search="1346 १३४६ अभंग नामपाठ यश कीर्ति नामपाठें नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥१॥ न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥२॥ जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥३॥ "><span class="abhang-number">१३४६.</span><span class="abhang-title">नामपाठ यश कीर्ति नामपाठें</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1347/index.html" data-abhang-number="1347" data-search="1347 १३४७ अभंग आणिक साधन नाहीं नाहीं जगीं आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥१॥ तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥३॥ "><span class="abhang-number">१३४७.</span><span class="abhang-title">आणिक साधन नाहीं नाहीं जगीं</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1348/index.html" data-abhang-number="1348" data-search="1348 १३४८ अभंग चंचळ तें मन मुष्टीमाजी धरी चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥१॥ जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥२॥ जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥३॥ "><span class="abhang-number">१३४८.</span><span class="abhang-title">चंचळ तें मन मुष्टीमाजी धरी</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1349/index.html" data-abhang-number="1349" data-search="1349 १३४९ अभंग नामपाठ स्नान नामपाठ दान नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥१॥ नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥२॥ जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥३॥ नामपाठ संध्येतील चोवीस नामांचा नामोच्चार "><span class="abhang-number">१३४९.</span><span class="abhang-title">नामपाठ स्नान नामपाठ दान</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1350/index.html" data-abhang-number="1350" data-search="1350 १३५० अभंग नामपाठ केशव वदा नित्य वाचे नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥१॥ आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥२॥ जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥३॥ "><span class="abhang-number">१३५०.</span><span class="abhang-title">नामपाठ केशव वदा नित्य वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1351/index.html" data-abhang-number="1351" data-search="1351 १३५१ अभंग नामपाठ नारायण वदे सर्वकाळ नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥१॥ नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥२॥ जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥३॥ "><span class="abhang-number">१३५१.</span><span class="abhang-title">नामपाठ नारायण वदे सर्वकाळ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1352/index.html" data-abhang-number="1352" data-search="1352 १३५२ अभंग नामापाठ माधव सदा तूं उच्चारी नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥१। माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥२॥ जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥३॥ "><span class="abhang-number">१३५२.</span><span class="abhang-title">नामापाठ माधव सदा तूं उच्चारी</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1353/index.html" data-abhang-number="1353" data-search="1353 १३५३ अभंग नामपाठ गोविंद हाचि लागो छंद नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥१॥ गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥२॥ जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥३॥ "><span class="abhang-number">१३५३.</span><span class="abhang-title">नामपाठ गोविंद हाचि लागो छंद</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1354/index.html" data-abhang-number="1354" data-search="1354 १३५४ अभंग विष्णुनामपाठ करी वेळोवेळां विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥१॥ विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥२॥ जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥३॥ "><span class="abhang-number">१३५४.</span><span class="abhang-title">विष्णुनामपाठ करी वेळोवेळां</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1355/index.html" data-abhang-number="1355" data-search="1355 १३५५ अभंग नामपाठें मधुसुदन वाचे नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥१॥ मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥२॥ जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥३॥ "><span class="abhang-number">१३५५.</span><span class="abhang-title">नामपाठें मधुसुदन वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1356/index.html" data-abhang-number="1356" data-search="1356 १३५६ अभंग नामपाठ त्रिविक्रम वदे तूं रे वाचे नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥१॥ बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥२॥ जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥३॥ "><span class="abhang-number">१३५६.</span><span class="abhang-title">नामपाठ त्रिविक्रम वदे तूं रे वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1357/index.html" data-abhang-number="1357" data-search="1357 १३५७ अभंग नामपाठें वामन अक्षरें तीं तीन नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥१॥ वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥२॥ जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥३॥ "><span class="abhang-number">१३५७.</span><span class="abhang-title">नामपाठें वामन अक्षरें तीं तीन</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1358/index.html" data-abhang-number="1358" data-search="1358 १३५८ अभंग नाम तें सार श्रीधरांचे वाचे नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥१॥ जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥२॥ जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥३॥ "><span class="abhang-number">१३५८.</span><span class="abhang-title">नाम तें सार श्रीधरांचे वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1359/index.html" data-abhang-number="1359" data-search="1359 १३५९ अभंग नाम हृषिकेश गाये सावकाश नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥१॥ जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥२॥ जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥३॥ "><span class="abhang-number">१३५९.</span><span class="abhang-title">नाम हृषिकेश गाये सावकाश</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1360/index.html" data-abhang-number="1360" data-search="1360 १३६० अभंग नाम तें सोपें पद्मनाभ पाठ नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥१॥ चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥२॥ जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥३॥ "><span class="abhang-number">१३६०.</span><span class="abhang-title">नाम तें सोपें पद्मनाभ पाठ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1361/index.html" data-abhang-number="1361" data-search="1361 १३६१ अभंग दामोदर गावा दामोदर पहावा दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥१॥ गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥२॥ जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥३॥ "><span class="abhang-number">१३६१.</span><span class="abhang-title">दामोदर गावा दामोदर पहावा</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1362/index.html" data-abhang-number="1362" data-search="1362 १३६२ अभंग नाम तें सोपें संकर्षण जपे नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥१॥ धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥२॥ जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥३॥ "><span class="abhang-number">१३६२.</span><span class="abhang-title">नाम तें सोपें संकर्षण जपे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1363/index.html" data-abhang-number="1363" data-search="1363 १३६३ अभंग वासुदेव नाम प्रातःकाळीं वाचे वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥१॥ वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥२॥ जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥३॥ "><span class="abhang-number">१३६३.</span><span class="abhang-title">वासुदेव नाम प्रातःकाळीं वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1364/index.html" data-abhang-number="1364" data-search="1364 १३६४ अभंग नाम जप वाचा प्रद्युम्न साचा नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥१॥ संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥२॥ जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥३॥ "><span class="abhang-number">१३६४.</span><span class="abhang-title">नाम जप वाचा प्रद्युम्न साचा</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1365/index.html" data-abhang-number="1365" data-search="1365 १३६५ अभंग नाम अनिरुद्ध जगीं तें प्रसिद्ध नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥१॥ अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥२॥ जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥३॥ "><span class="abhang-number">१३६५.</span><span class="abhang-title">नाम अनिरुद्ध जगीं तें प्रसिद्ध</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1366/index.html" data-abhang-number="1366" data-search="1366 १३६६ अभंग नामपुरुषोत्तम घेई तूं आवडी नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥१॥ नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥२॥ जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥३॥ "><span class="abhang-number">१३६६.</span><span class="abhang-title">नामपुरुषोत्तम घेई तूं आवडी</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1367/index.html" data-abhang-number="1367" data-search="1367 १३६७ अभंग नाम तूं अधोक्षज घेई सर्वकाळ नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥१॥ नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥२॥ जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥३॥ "><span class="abhang-number">१३६७.</span><span class="abhang-title">नाम तूं अधोक्षज घेई सर्वकाळ</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1368/index.html" data-abhang-number="1368" data-search="1368 १३६८ अभंग नाम नारसिंह नाम नारसिंह नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥१॥ जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥२॥ जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥३॥ "><span class="abhang-number">१३६८.</span><span class="abhang-title">नाम नारसिंह नाम नारसिंह</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1369/index.html" data-abhang-number="1369" data-search="1369 १३६९ अभंग वंदें तूं अच्युत सर्वकाळ सदा वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥१॥ करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥२॥ जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥३॥ "><span class="abhang-number">१३६९.</span><span class="abhang-title">वंदें तूं अच्युत सर्वकाळ सदा</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1370/index.html" data-abhang-number="1370" data-search="1370 १३७० अभंग नाम जनार्दन रुप जनार्दन नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥१॥ माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥२॥ जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥३॥ "><span class="abhang-number">१३७०.</span><span class="abhang-title">नाम जनार्दन रुप जनार्दन</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1371/index.html" data-abhang-number="1371" data-search="1371 १३७१ अभंग नाम उपेंद्र सर्व देवांचा तो इंद्र नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥१॥ तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥२॥ जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥३॥ "><span class="abhang-number">१३७१.</span><span class="abhang-title">नाम उपेंद्र सर्व देवांचा तो इंद्र</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1372/index.html" data-abhang-number="1372" data-search="1372 १३७२ अभंग नाम हरिहर संसार तो हरी नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥१॥ हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥२॥ जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥३॥ "><span class="abhang-number">१३७२.</span><span class="abhang-title">नाम हरिहर संसार तो हरी</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1373/index.html" data-abhang-number="1373" data-search="1373 १३७३ अभंग नाम श्रीकृष्ण उद्धवें साधिलें नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥१॥ आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥२॥ जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥३॥नामपाठ – अभंग १३७४ ते १५३० "><span class="abhang-number">१३७३.</span><span class="abhang-title">नाम श्रीकृष्ण उद्धवें साधिलें</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1374/index.html" data-abhang-number="1374" data-search="1374 १३७४ अभंग नामपाठविठ्ठल पंचविसावा वाचे नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥१॥ विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥२॥ जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥३॥ "><span class="abhang-number">१३७४.</span><span class="abhang-title">नामपाठविठ्ठल पंचविसावा वाचे</span></a>
-        <a class="abhang-item" href="../sant-eknath-abhang-1375/index.html" data-abhang-number="1375" data-search="1375 १३७५ अभंग झाला नामपाठ झाला नामपाठ झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥१॥ आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥२॥ जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥३॥संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न. मेन्यू मुखपृष्ठ ग्रंथ अभंग/भजन संत विभाग संपर्क vakibhmedia@gmail.com +91 99239 16476 पुणे, महाराष्ट्र © २०२६ वाकीभ. सर्व हक्क सुरक्षित. "><span class="abhang-number">१३७५.</span><span class="abhang-title">झाला नामपाठ झाला नामपाठ</span></a>
-      </div><p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>
+    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangRangeSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">५२ अभंग</span></div></section>
+    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">संत एकनाथ अभंग १३२४ ते १५३०</h2><div class="abhang-content-list" id="abhangContentList" data-total-count="52">
+      <article class="abhang-content-block" id="abhang-1324" data-abhang-number="1324" data-search="1324 १३२४ नामपाठें ओहं सोहं कोहं खादलें नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥१॥ अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥२॥ जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥३॥ 1324 १३२४ अभंग नामपाठें ओहं सोहं कोहं खादलें नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥१॥ अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥२॥ जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२४</span>
+          <h3 class="abhang-content-title">नामपाठें ओहं सोहं कोहं खादलें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥१॥<br />
+अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥२॥<br />
+जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1325" data-abhang-number="1325" data-search="1325 १३२५ नामपाठ गीता नामपाठ गीता नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥१॥ हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।२॥ जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥३॥ 1325 १३२५ अभंग नामपाठ गीता नामपाठ गीता नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥१॥ हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।२॥ जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२५</span>
+          <h3 class="abhang-content-title">नामपाठ गीता नामपाठ गीता</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥१॥<br />
+हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।२॥<br />
+जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1326" data-abhang-number="1326" data-search="1326 १३२६ नामपाठें गीता ज्ञानेश्वरी होय नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥१॥ नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥२॥ जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥३॥ 1326 १३२६ अभंग नामपाठें गीता ज्ञानेश्वरी होय नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥१॥ नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥२॥ जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२६</span>
+          <h3 class="abhang-content-title">नामपाठें गीता ज्ञानेश्वरी होय</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥१॥<br />
+नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥२॥<br />
+जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1327" data-abhang-number="1327" data-search="1327 १३२७ नामपाठ ज्ञानदेवी नामपाठ तूं करीं नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥१॥ ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥२॥ जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥३॥ 1327 १३२७ अभंग नामपाठ ज्ञानदेवी नामपाठ तूं करीं नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥१॥ ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥२॥ जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२७</span>
+          <h3 class="abhang-content-title">नामपाठ ज्ञानदेवी नामपाठ तूं करीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥१॥<br />
+ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥२॥<br />
+जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1328" data-abhang-number="1328" data-search="1328 १३२८ नामपाठें वर्म वेदींचें तें कळे नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥१॥ या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥२॥ जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥३॥ 1328 १३२८ अभंग नामपाठें वर्म वेदींचें तें कळे नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥१॥ या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥२॥ जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२८</span>
+          <h3 class="abhang-content-title">नामपाठें वर्म वेदींचें तें कळे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥१॥<br />
+या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥२॥<br />
+जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1329" data-abhang-number="1329" data-search="1329 १३२९ नामपाठें संदेह सर्व हा जाईल नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥१॥ नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥२॥ जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥३॥ 1329 १३२९ अभंग नामपाठें संदेह सर्व हा जाईल नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥१॥ नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥२॥ जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३२९</span>
+          <h3 class="abhang-content-title">नामपाठें संदेह सर्व हा जाईल</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥१॥<br />
+नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥२॥<br />
+जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1330" data-abhang-number="1330" data-search="1330 १३३० नामपाठ साधन याहुनी आहे कोण नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥१॥ जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥२॥ जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥३॥ 1330 १३३० अभंग नामपाठ साधन याहुनी आहे कोण नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥१॥ जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥२॥ जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३०</span>
+          <h3 class="abhang-content-title">नामपाठ साधन याहुनी आहे कोण</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥१॥<br />
+जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥२॥<br />
+जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1331" data-abhang-number="1331" data-search="1331 १३३१ नामपाठ युक्ति भाविकां प्रतीती नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥१॥ नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥२॥ जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥३॥ 1331 १३३१ अभंग नामपाठ युक्ति भाविकां प्रतीती नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥१॥ नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥२॥ जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३१</span>
+          <h3 class="abhang-content-title">नामपाठ युक्ति भाविकां प्रतीती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥१॥<br />
+नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥२॥<br />
+जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1332" data-abhang-number="1332" data-search="1332 १३३२ नामपाठें मोक्ष पाविजे तत्त्वतां नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥१॥ नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥२॥ जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥३॥ 1332 १३३२ अभंग नामपाठें मोक्ष पाविजे तत्त्वतां नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥१॥ नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥२॥ जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३२</span>
+          <h3 class="abhang-content-title">नामपाठें मोक्ष पाविजे तत्त्वतां</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥१॥<br />
+नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥२॥<br />
+जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1333" data-abhang-number="1333" data-search="1333 १३३३ नामपाठें संत पावले विसांवा नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥१॥ नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥२॥ जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥३॥ 1333 १३३३ अभंग नामपाठें संत पावले विसांवा नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥१॥ नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥२॥ जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३३</span>
+          <h3 class="abhang-content-title">नामपाठें संत पावले विसांवा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥१॥<br />
+नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥२॥<br />
+जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1334" data-abhang-number="1334" data-search="1334 १३३४ नामपाठे युक्ती साधन समाप्ती नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥१॥ आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥३॥ 1334 १३३४ अभंग नामपाठे युक्ती साधन समाप्ती नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥१॥ आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३४</span>
+          <h3 class="abhang-content-title">नामपाठे युक्ती साधन समाप्ती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥१॥<br />
+आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥२॥<br />
+जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1335" data-abhang-number="1335" data-search="1335 १३३५ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥१॥ नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥२॥ जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥३॥ 1335 १३३५ अभंग नामपाठ मंत्र सर्वांत पैं श्रेष्ठ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥१॥ नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥२॥ जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३५</span>
+          <h3 class="abhang-content-title">नामपाठ मंत्र सर्वांत पैं श्रेष्ठ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥१॥<br />
+नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥२॥<br />
+जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1336" data-abhang-number="1336" data-search="1336 १३३६ नामपाठ करितां आनंद मानसें नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥१॥ आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥२॥ जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥३॥ 1336 १३३६ अभंग नामपाठ करितां आनंद मानसें नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥१॥ आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥२॥ जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३६</span>
+          <h3 class="abhang-content-title">नामपाठ करितां आनंद मानसें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥१॥<br />
+आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥२॥<br />
+जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1337" data-abhang-number="1337" data-search="1337 १३३७ नामपाठ पसारा घे रे मुखें सदा नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥१॥ नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥२॥ जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥३॥ 1337 १३३७ अभंग नामपाठ पसारा घे रे मुखें सदा नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥१॥ नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥२॥ जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३७</span>
+          <h3 class="abhang-content-title">नामपाठ पसारा घे रे मुखें सदा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥१॥<br />
+नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥२॥<br />
+जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1338" data-abhang-number="1338" data-search="1338 १३३८ नामपाठ कसवटी अखंड ज्याचे मुखीं नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥१॥ नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥२॥ जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥३॥ 1338 १३३८ अभंग नामपाठ कसवटी अखंड ज्याचे मुखीं नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥१॥ नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥२॥ जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३८</span>
+          <h3 class="abhang-content-title">नामपाठ कसवटी अखंड ज्याचे मुखीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥१॥<br />
+नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥२॥<br />
+जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1339" data-abhang-number="1339" data-search="1339 १३३९ नामपाठे ज्ञान नामपाठें ध्यान नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥१॥ जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥२॥ जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥३॥ 1339 १३३९ अभंग नामपाठे ज्ञान नामपाठें ध्यान नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥१॥ जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥२॥ जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३३९</span>
+          <h3 class="abhang-content-title">नामपाठे ज्ञान नामपाठें ध्यान</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥१॥<br />
+जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥२॥<br />
+जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1340" data-abhang-number="1340" data-search="1340 १३४० नामचेनि पाठें जाती पैं वैकुंठी नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥१॥ आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥२॥ जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥३॥ 1340 १३४० अभंग नामचेनि पाठें जाती पैं वैकुंठी नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥१॥ आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥२॥ जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४०</span>
+          <h3 class="abhang-content-title">नामचेनि पाठें जाती पैं वैकुंठी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥१॥<br />
+आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥२॥<br />
+जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1341" data-abhang-number="1341" data-search="1341 १३४१ संसार पाल्हाळ सांगती परिकर संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥१॥ न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥२॥ जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥३॥ 1341 १३४१ अभंग संसार पाल्हाळ सांगती परिकर संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥१॥ न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥२॥ जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४१</span>
+          <h3 class="abhang-content-title">संसार पाल्हाळ सांगती परिकर</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥१॥<br />
+न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥२॥<br />
+जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1342" data-abhang-number="1342" data-search="1342 १३४२ नामपाठ नित्य एक नेमें गायें नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥१॥ अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥२॥ जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥३॥ 1342 १३४२ अभंग नामपाठ नित्य एक नेमें गायें नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥१॥ अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥२॥ जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४२</span>
+          <h3 class="abhang-content-title">नामपाठ नित्य एक नेमें गायें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥१॥<br />
+अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥२॥<br />
+जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1343" data-abhang-number="1343" data-search="1343 १३४३ नामपाठ गंगा नामपाठ सरिता नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥१॥ नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥२॥ जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥३॥ 1343 १३४३ अभंग नामपाठ गंगा नामपाठ सरिता नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥१॥ नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥२॥ जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४३</span>
+          <h3 class="abhang-content-title">नामपाठ गंगा नामपाठ सरिता</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥१॥<br />
+नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥२॥<br />
+जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1344" data-abhang-number="1344" data-search="1344 १३४४ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ 1344 १३४४ अभंग नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४४</span>
+          <h3 class="abhang-content-title">नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥<br />
+काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥<br />
+जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1345" data-abhang-number="1345" data-search="1345 १३४५ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ 1345 १३४५ अभंग नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४५</span>
+          <h3 class="abhang-content-title">नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥<br />
+काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥<br />
+जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1346" data-abhang-number="1346" data-search="1346 १३४६ नामपाठ यश कीर्ति नामपाठें नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥१॥ न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥२॥ जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥३॥ 1346 १३४६ अभंग नामपाठ यश कीर्ति नामपाठें नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥१॥ न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥२॥ जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४६</span>
+          <h3 class="abhang-content-title">नामपाठ यश कीर्ति नामपाठें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥१॥<br />
+न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥२॥<br />
+जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1347" data-abhang-number="1347" data-search="1347 १३४७ आणिक साधन नाहीं नाहीं जगीं आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥१॥ तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥३॥ 1347 १३४७ अभंग आणिक साधन नाहीं नाहीं जगीं आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥१॥ तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४७</span>
+          <h3 class="abhang-content-title">आणिक साधन नाहीं नाहीं जगीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥१॥<br />
+तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥२॥<br />
+जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1348" data-abhang-number="1348" data-search="1348 १३४८ चंचळ तें मन मुष्टीमाजी धरी चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥१॥ जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥२॥ जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥३॥ 1348 १३४८ अभंग चंचळ तें मन मुष्टीमाजी धरी चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥१॥ जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥२॥ जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४८</span>
+          <h3 class="abhang-content-title">चंचळ तें मन मुष्टीमाजी धरी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥१॥<br />
+जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥२॥<br />
+जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1349" data-abhang-number="1349" data-search="1349 १३४९ नामपाठ स्नान नामपाठ दान नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥१॥ नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥२॥ जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥३॥ नामपाठ संध्येतील चोवीस नामांचा नामोच्चार 1349 १३४९ अभंग नामपाठ स्नान नामपाठ दान नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥१॥ नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥२॥ जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥३॥ नामपाठ संध्येतील चोवीस नामांचा नामोच्चार ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३४९</span>
+          <h3 class="abhang-content-title">नामपाठ स्नान नामपाठ दान</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥१॥<br />
+नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥२॥<br />
+जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥३॥<br />
+नामपाठ संध्येतील चोवीस नामांचा नामोच्चार</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1350" data-abhang-number="1350" data-search="1350 १३५० नामपाठ केशव वदा नित्य वाचे नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥१॥ आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥२॥ जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥३॥ 1350 १३५० अभंग नामपाठ केशव वदा नित्य वाचे नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥१॥ आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥२॥ जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५०</span>
+          <h3 class="abhang-content-title">नामपाठ केशव वदा नित्य वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥१॥<br />
+आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥२॥<br />
+जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1351" data-abhang-number="1351" data-search="1351 १३५१ नामपाठ नारायण वदे सर्वकाळ नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥१॥ नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥२॥ जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥३॥ 1351 १३५१ अभंग नामपाठ नारायण वदे सर्वकाळ नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥१॥ नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥२॥ जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५१</span>
+          <h3 class="abhang-content-title">नामपाठ नारायण वदे सर्वकाळ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥१॥<br />
+नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥२॥<br />
+जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1352" data-abhang-number="1352" data-search="1352 १३५२ नामापाठ माधव सदा तूं उच्चारी नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥१। माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥२॥ जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥३॥ 1352 १३५२ अभंग नामापाठ माधव सदा तूं उच्चारी नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥१। माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥२॥ जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५२</span>
+          <h3 class="abhang-content-title">नामापाठ माधव सदा तूं उच्चारी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥१।<br />
+माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥२॥<br />
+जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1353" data-abhang-number="1353" data-search="1353 १३५३ नामपाठ गोविंद हाचि लागो छंद नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥१॥ गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥२॥ जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥३॥ 1353 १३५३ अभंग नामपाठ गोविंद हाचि लागो छंद नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥१॥ गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥२॥ जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५३</span>
+          <h3 class="abhang-content-title">नामपाठ गोविंद हाचि लागो छंद</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥१॥<br />
+गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥२॥<br />
+जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1354" data-abhang-number="1354" data-search="1354 १३५४ विष्णुनामपाठ करी वेळोवेळां विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥१॥ विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥२॥ जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥३॥ 1354 १३५४ अभंग विष्णुनामपाठ करी वेळोवेळां विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥१॥ विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥२॥ जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५४</span>
+          <h3 class="abhang-content-title">विष्णुनामपाठ करी वेळोवेळां</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥१॥<br />
+विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥२॥<br />
+जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1355" data-abhang-number="1355" data-search="1355 १३५५ नामपाठें मधुसुदन वाचे नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥१॥ मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥२॥ जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥३॥ 1355 १३५५ अभंग नामपाठें मधुसुदन वाचे नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥१॥ मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥२॥ जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५५</span>
+          <h3 class="abhang-content-title">नामपाठें मधुसुदन वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥१॥<br />
+मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥२॥<br />
+जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1356" data-abhang-number="1356" data-search="1356 १३५६ नामपाठ त्रिविक्रम वदे तूं रे वाचे नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥१॥ बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥२॥ जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥३॥ 1356 १३५६ अभंग नामपाठ त्रिविक्रम वदे तूं रे वाचे नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥१॥ बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥२॥ जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५६</span>
+          <h3 class="abhang-content-title">नामपाठ त्रिविक्रम वदे तूं रे वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥१॥<br />
+बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥२॥<br />
+जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1357" data-abhang-number="1357" data-search="1357 १३५७ नामपाठें वामन अक्षरें तीं तीन नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥१॥ वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥२॥ जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥३॥ 1357 १३५७ अभंग नामपाठें वामन अक्षरें तीं तीन नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥१॥ वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥२॥ जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५७</span>
+          <h3 class="abhang-content-title">नामपाठें वामन अक्षरें तीं तीन</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥१॥<br />
+वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥२॥<br />
+जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1358" data-abhang-number="1358" data-search="1358 १३५८ नाम तें सार श्रीधरांचे वाचे नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥१॥ जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥२॥ जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥३॥ 1358 १३५८ अभंग नाम तें सार श्रीधरांचे वाचे नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥१॥ जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥२॥ जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५८</span>
+          <h3 class="abhang-content-title">नाम तें सार श्रीधरांचे वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥१॥<br />
+जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥२॥<br />
+जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1359" data-abhang-number="1359" data-search="1359 १३५९ नाम हृषिकेश गाये सावकाश नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥१॥ जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥२॥ जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥३॥ 1359 १३५९ अभंग नाम हृषिकेश गाये सावकाश नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥१॥ जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥२॥ जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३५९</span>
+          <h3 class="abhang-content-title">नाम हृषिकेश गाये सावकाश</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥१॥<br />
+जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥२॥<br />
+जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1360" data-abhang-number="1360" data-search="1360 १३६० नाम तें सोपें पद्मनाभ पाठ नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥१॥ चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥२॥ जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥३॥ 1360 १३६० अभंग नाम तें सोपें पद्मनाभ पाठ नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥१॥ चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥२॥ जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६०</span>
+          <h3 class="abhang-content-title">नाम तें सोपें पद्मनाभ पाठ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥१॥<br />
+चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥२॥<br />
+जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1361" data-abhang-number="1361" data-search="1361 १३६१ दामोदर गावा दामोदर पहावा दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥१॥ गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥२॥ जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥३॥ 1361 १३६१ अभंग दामोदर गावा दामोदर पहावा दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥१॥ गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥२॥ जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६१</span>
+          <h3 class="abhang-content-title">दामोदर गावा दामोदर पहावा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥१॥<br />
+गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥२॥<br />
+जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1362" data-abhang-number="1362" data-search="1362 १३६२ नाम तें सोपें संकर्षण जपे नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥१॥ धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥२॥ जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥३॥ 1362 १३६२ अभंग नाम तें सोपें संकर्षण जपे नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥१॥ धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥२॥ जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६२</span>
+          <h3 class="abhang-content-title">नाम तें सोपें संकर्षण जपे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥१॥<br />
+धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥२॥<br />
+जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1363" data-abhang-number="1363" data-search="1363 १३६३ वासुदेव नाम प्रातःकाळीं वाचे वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥१॥ वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥२॥ जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥३॥ 1363 १३६३ अभंग वासुदेव नाम प्रातःकाळीं वाचे वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥१॥ वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥२॥ जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६३</span>
+          <h3 class="abhang-content-title">वासुदेव नाम प्रातःकाळीं वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥१॥<br />
+वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥२॥<br />
+जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1364" data-abhang-number="1364" data-search="1364 १३६४ नाम जप वाचा प्रद्युम्न साचा नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥१॥ संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥२॥ जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥३॥ 1364 १३६४ अभंग नाम जप वाचा प्रद्युम्न साचा नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥१॥ संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥२॥ जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६४</span>
+          <h3 class="abhang-content-title">नाम जप वाचा प्रद्युम्न साचा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥१॥<br />
+संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥२॥<br />
+जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1365" data-abhang-number="1365" data-search="1365 १३६५ नाम अनिरुद्ध जगीं तें प्रसिद्ध नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥१॥ अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥२॥ जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥३॥ 1365 १३६५ अभंग नाम अनिरुद्ध जगीं तें प्रसिद्ध नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥१॥ अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥२॥ जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६५</span>
+          <h3 class="abhang-content-title">नाम अनिरुद्ध जगीं तें प्रसिद्ध</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥१॥<br />
+अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥२॥<br />
+जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1366" data-abhang-number="1366" data-search="1366 १३६६ नामपुरुषोत्तम घेई तूं आवडी नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥१॥ नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥२॥ जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥३॥ 1366 १३६६ अभंग नामपुरुषोत्तम घेई तूं आवडी नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥१॥ नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥२॥ जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६६</span>
+          <h3 class="abhang-content-title">नामपुरुषोत्तम घेई तूं आवडी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥१॥<br />
+नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥२॥<br />
+जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1367" data-abhang-number="1367" data-search="1367 १३६७ नाम तूं अधोक्षज घेई सर्वकाळ नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥१॥ नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥२॥ जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥३॥ 1367 १३६७ अभंग नाम तूं अधोक्षज घेई सर्वकाळ नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥१॥ नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥२॥ जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६७</span>
+          <h3 class="abhang-content-title">नाम तूं अधोक्षज घेई सर्वकाळ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥१॥<br />
+नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥२॥<br />
+जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1368" data-abhang-number="1368" data-search="1368 १३६८ नाम नारसिंह नाम नारसिंह नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥१॥ जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥२॥ जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥३॥ 1368 १३६८ अभंग नाम नारसिंह नाम नारसिंह नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥१॥ जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥२॥ जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६८</span>
+          <h3 class="abhang-content-title">नाम नारसिंह नाम नारसिंह</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥१॥<br />
+जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥२॥<br />
+जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1369" data-abhang-number="1369" data-search="1369 १३६९ वंदें तूं अच्युत सर्वकाळ सदा वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥१॥ करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥२॥ जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥३॥ 1369 १३६९ अभंग वंदें तूं अच्युत सर्वकाळ सदा वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥१॥ करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥२॥ जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३६९</span>
+          <h3 class="abhang-content-title">वंदें तूं अच्युत सर्वकाळ सदा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥१॥<br />
+करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥२॥<br />
+जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1370" data-abhang-number="1370" data-search="1370 १३७० नाम जनार्दन रुप जनार्दन नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥१॥ माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥२॥ जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥३॥ 1370 १३७० अभंग नाम जनार्दन रुप जनार्दन नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥१॥ माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥२॥ जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७०</span>
+          <h3 class="abhang-content-title">नाम जनार्दन रुप जनार्दन</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥१॥<br />
+माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥२॥<br />
+जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1371" data-abhang-number="1371" data-search="1371 १३७१ नाम उपेंद्र सर्व देवांचा तो इंद्र नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥१॥ तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥२॥ जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥३॥ 1371 १३७१ अभंग नाम उपेंद्र सर्व देवांचा तो इंद्र नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥१॥ तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥२॥ जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७१</span>
+          <h3 class="abhang-content-title">नाम उपेंद्र सर्व देवांचा तो इंद्र</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥१॥<br />
+तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥२॥<br />
+जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1372" data-abhang-number="1372" data-search="1372 १३७२ नाम हरिहर संसार तो हरी नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥१॥ हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥२॥ जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥३॥ 1372 १३७२ अभंग नाम हरिहर संसार तो हरी नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥१॥ हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥२॥ जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७२</span>
+          <h3 class="abhang-content-title">नाम हरिहर संसार तो हरी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥१॥<br />
+हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥२॥<br />
+जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1373" data-abhang-number="1373" data-search="1373 १३७३ नाम श्रीकृष्ण उद्धवें साधिलें नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥१॥ आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥२॥ जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥३॥नामपाठ – अभंग १३७४ ते १५३० 1373 १३७३ अभंग नाम श्रीकृष्ण उद्धवें साधिलें नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥१॥ आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥२॥ जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥३॥नामपाठ – अभंग १३७४ ते १५३० ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७३</span>
+          <h3 class="abhang-content-title">नाम श्रीकृष्ण उद्धवें साधिलें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥१॥<br />
+आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥२॥<br />
+जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥३॥</p><strong>नामपाठ – अभंग १३७४ ते १५३०</strong></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1374" data-abhang-number="1374" data-search="1374 १३७४ नामपाठविठ्ठल पंचविसावा वाचे नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥१॥ विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥२॥ जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥३॥ 1374 १३७४ अभंग नामपाठविठ्ठल पंचविसावा वाचे नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥१॥ विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥२॥ जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७४</span>
+          <h3 class="abhang-content-title">नामपाठविठ्ठल पंचविसावा वाचे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥१॥<br />
+विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥२॥<br />
+जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1375" data-abhang-number="1375" data-search="1375 १३७५ झाला नामपाठ झाला नामपाठ झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥१॥ आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥२॥ जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥३॥संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न. मेन्यू मुखपृष्ठ ग्रंथ अभंग/भजन संत विभाग संपर्क vakibhmedia@gmail.com +91 99239 16476 पुणे, महाराष्ट्र © २०२६ वाकीभ. सर्व हक्क सुरक्षित. 1375 १३७५ अभंग झाला नामपाठ झाला नामपाठ झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥१॥ आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥२॥ जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥३॥संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न. मेन्यू मुखपृष्ठ ग्रंथ अभंग/भजन संत विभाग संपर्क vakibhmedia@gmail.com +91 99239 16476 पुणे, महाराष्ट्र © २०२६ वाकीभ. सर्व हक्क सुरक्षित. ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १३७५</span>
+          <h3 class="abhang-content-title">झाला नामपाठ झाला नामपाठ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥१॥<br />
+आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥२॥<br />
+जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥३॥</p><p>संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.</p>
+
+
+
+
+
+
+        मेन्यू
+
+          मुखपृष्ठ
+          ग्रंथ
+          अभंग/भजन
+          संत
+          विभाग
+
+
+
+        संपर्क
+
+           vakibhmedia@gmail.com
+           +91 99239 16476
+           पुणे, महाराष्ट्र
+
+
+
+
+      <p>© २०२६ वाकीभ. सर्व हक्क सुरक्षित.</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+      <p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p>
+      <p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>
   </main>
   <footer>
     <div class="footer-container"><div class="footer-brand"><div class="footer-logo"><img src="../../../Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो"><h3>वाकीभ</h3></div><p>संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.</p><div class="footer-socials"><a href="#" class="social-link" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link" aria-label="इंस्टाग्राम"><i class="fab fa-instagram"></i></a></div></div><div class="footer-links"><h4>मेन्यू</h4><ul><li><a href="../../../index.html">मुखपृष्ठ</a></li><li><a href="../../../index.html#granth">ग्रंथ</a></li><li><a href="../../../index.html#abhangs">अभंग/भजन</a></li><li><a href="../../../index.html#saints">संत</a></li><li><a href="../../../index.html#categories">विभाग</a></li></ul></div><div class="footer-contact"><h4>संपर्क</h4><ul class="footer-contact-list"><li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li><li><i class="fas fa-phone"></i> +91 99239 16476</li><li><i class="fas fa-map-marker-alt"></i> पुणे, महाराष्ट्र</li></ul></div></div>
@@ -83,13 +1068,4 @@
   </footer>
 </body>
 </html>
-<script>
-(function(){
-  const input=document.getElementById('abhangSearch'); const cols=document.getElementById('abhangColumns'); const count=document.getElementById('countPill'); const empty=document.getElementById('abhangEmptyState'); const ranges=document.getElementById('abhangRangeGrid');
-  const devanagari='०१२३४५६७८९'; const toAscii=s=>String(s).replace(/[०-९]/g,ch=>devanagari.indexOf(ch));
-  const all=[{"number":1324,"mr":"१३२४","title":"नामपाठें ओहं सोहं कोहं खादलें","search":"1324 १३२४ अभंग नामपाठें ओहं सोहं कोहं खादलें नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥१॥ अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥२॥ जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥३॥ ","searchAscii":"1324 abhang नामपाठें ओहं सोहं कोहं खादलें नामपाठें ओहं सोहं कोहं खादलें । परब्रह्मा लक्षिलें नामपाठें ॥1॥ अहं अहंपण सोहं सोहंपण । नाम हेंचि खूण नामपाठें ॥2॥ जनार्दनाचा एका कोहंपणा वेगळा । जनार्दनें कुर्वाळिला अभय दानीं ॥3॥ "},{"number":1325,"mr":"१३२५","title":"नामपाठ गीता नामपाठ गीता","search":"1325 १३२५ अभंग नामपाठ गीता नामपाठ गीता नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥१॥ हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।२॥ जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥३॥ ","searchAscii":"1325 abhang नामपाठ गीता नामपाठ गीता नामपाठ गीता नामपाठ गीता । नाम पाठ गीता गाय सदा ॥1॥ हाचि बोध सोपा अर्जुना उपदेश । नामपाठें क्लेश सर्व गेले ।2॥ जनार्दनाचा एका वाचे गाये गीता । हारपली चिंता जन्मरण ॥3॥ "},{"number":1326,"mr":"१३२६","title":"नामपाठें गीता ज्ञानेश्वरी होय","search":"1326 १३२६ अभंग नामपाठें गीता ज्ञानेश्वरी होय नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥१॥ नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥२॥ जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥३॥ ","searchAscii":"1326 abhang नामपाठें गीता ज्ञानेश्वरी होय नामपाठें गीता ज्ञानेश्वरी होय । स्मरे तूं निर्भय ज्ञानदेवी ॥1॥ नामपाठें सोपीं अक्षरें ती उच्चार । ज्ञानेश्वरी उच्चार करी वाचे ॥2॥ जनार्दनाचा एका ज्ञानेश्वरवरी ध्याय । तेणें मुक्त होय युगायुगीं ॥3॥ "},{"number":1327,"mr":"१३२७","title":"नामपाठ ज्ञानदेवी नामपाठ तूं करीं","search":"1327 १३२७ अभंग नामपाठ ज्ञानदेवी नामपाठ तूं करीं नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥१॥ ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥२॥ जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥३॥ ","searchAscii":"1327 abhang नामपाठ ज्ञानदेवी नामपाठ तूं करीं नामपाठ ज्ञानदेवी नामपाठ तूं करीं । चुकें वेरझारी चौर्‍यांशीची ॥1॥ ऐसें वर्म सोपें सांगो जगा गुज । ज्ञानेश्वरी निजीं जपों आधीं ॥2॥ जनार्दनाचा एका चरणीं विनटला । धन्य धन्य झाला ज्ञानदेवी ॥3॥ "},{"number":1328,"mr":"१३२८","title":"नामपाठें वर्म वेदींचें तें कळे","search":"1328 १३२८ अभंग नामपाठें वर्म वेदींचें तें कळे नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥१॥ या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥२॥ जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥३॥ ","searchAscii":"1328 abhang नामपाठें वर्म वेदींचें तें कळे नामपाठें वर्म वेदींचें तें कळे । नाम पाठबळें शास्त्रबोध ॥1॥ या दोहींचेंवर्म ज्ञानदेवी जाणा । जपें कां रे जना हृदयीं सदा ॥2॥ जनार्दनाचा एक विनित हो उनी । आठवितो मनी ज्ञानदेवा ॥3॥ "},{"number":1329,"mr":"१३२९","title":"नामपाठें संदेह सर्व हा जाईल","search":"1329 १३२९ अभंग नामपाठें संदेह सर्व हा जाईल नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥१॥ नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥२॥ जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥३॥ ","searchAscii":"1329 abhang नामपाठें संदेह सर्व हा जाईल नामपाठें संदेह सर्व हा जाईल । गामपाठ गाईल प्रेमभावें ॥1॥ नामपाठ सोपा नामपाठ सोपा । अहर्निशीं बापा जप करी ॥2॥ जनार्दनाचा एका ठेउनी विश्वास । नामपाठ निजध्यास करीं सदा ॥3॥ "},{"number":1330,"mr":"१३३०","title":"नामपाठ साधन याहुनी आहे कोण","search":"1330 १३३० अभंग नामपाठ साधन याहुनी आहे कोण नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥१॥ जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥२॥ जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥३॥ ","searchAscii":"1330 abhang नामपाठ साधन याहुनी आहे कोण नामपाठ साधन याहुनी आहे कोण । कासयासी पेणें स्वर्गवास ॥1॥ जन्म देई देवा जन्म देई देवा । गाईन मी देवा नामपाठ ॥2॥ जनार्दनाचा एका बोलतसे वाणी । नामपाठें जनीं जनार्दन ॥3॥ "},{"number":1331,"mr":"१३३१","title":"नामपाठ युक्ति भाविकां प्रतीती","search":"1331 १३३१ अभंग नामपाठ युक्ति भाविकां प्रतीती नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥१॥ नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥२॥ जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥३॥ ","searchAscii":"1331 abhang नामपाठ युक्ति भाविकां प्रतीती नामपाठ युक्ति भाविकां प्रतीती । लोभिया विरक्ती नामपाठें ॥1॥ नामपाठें याग नामपाठ योग । नामपाठें भोग सरे आधीं ॥2॥ जनार्दनाचा एका भोगातीत झाला । म्हणोनि वोळला जनार्दन ॥3॥ "},{"number":1332,"mr":"१३३२","title":"नामपाठें मोक्ष पाविजे तत्त्वतां","search":"1332 १३३२ अभंग नामपाठें मोक्ष पाविजे तत्त्वतां नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥१॥ नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥२॥ जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥३॥ ","searchAscii":"1332 abhang नामपाठें मोक्ष पाविजे तत्त्वतां नामपाठें मोक्ष पाविजे तत्त्वतां । आणिक तें आतां साधन नाहीं ॥1॥ नामपाठ सार नामपाठ सार । न करी विचार आणिक दुजा ॥2॥ जनार्दनाचा एका नामपाठ गाय । आदरें नाचताहे संतापुढें ॥3॥ "},{"number":1333,"mr":"१३३३","title":"नामपाठें संत पावले विसांवा","search":"1333 १३३३ अभंग नामपाठें संत पावले विसांवा नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥१॥ नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥२॥ जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥३॥ ","searchAscii":"1333 abhang नामपाठें संत पावले विसांवा नामपाठें संत पावले विसांवा । आणिक नाहीं ठेवा दुजा कांहीं ॥1॥ नामपाठें सिद्धि येईल हातां । मोक्षमार्ग तत्त्वतां नामपाठें ॥2॥ जनार्दनाचा एका नामपाठें तरला । उद्धार तो केला जडजीवां ॥3॥ "},{"number":1334,"mr":"१३३४","title":"नामपाठे युक्ती साधन समाप्ती","search":"1334 १३३४ अभंग नामपाठे युक्ती साधन समाप्ती नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥१॥ आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥३॥ ","searchAscii":"1334 abhang नामपाठे युक्ती साधन समाप्ती नामपाठे युक्ती साधन समाप्ती । नोहे दुजी प्रीति नामपाठें ॥1॥ आणिक खटपट कासया बोभाट । नामपाठ वाट वैकुंठाची ॥2॥ जनार्दनाचा एका नामपाठें रंगला । आनंदें वहिला नाचतसे ॥3॥ "},{"number":1335,"mr":"१३३५","title":"नामपाठ मंत्र सर्वांत पैं श्रेष्ठ","search":"1335 १३३५ अभंग नामपाठ मंत्र सर्वांत पैं श्रेष्ठ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥१॥ नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥२॥ जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥३॥ ","searchAscii":"1335 abhang नामपाठ मंत्र सर्वांत पैं श्रेष्ठ नामपाठ मंत्र सर्वांत पैं श्रेष्ठ । तेणें तें वैंकुठ सरतें केलें ॥1॥ नामपाठें साधे साधन तत्त्वतां । मोक्ष सायुज्यता हातां लागें ॥2॥ जनार्दनाचा एका प्रेमें नाम गाय । उभारुनी बाह्म सांगतसे ॥3॥ "},{"number":1336,"mr":"१३३६","title":"नामपाठ करितां आनंद मानसें","search":"1336 १३३६ अभंग नामपाठ करितां आनंद मानसें नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥१॥ आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥२॥ जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥३॥ ","searchAscii":"1336 abhang नामपाठ करितां आनंद मानसें नामपाठ करितां आनंद मानसें । योगयाग राशीं पायां लागे ॥1॥ आनंदें आवडी नामपाठ गाय । उभा तारिता बाह्मा जना ॥2॥ जनार्दनाचा एका सांगे जगाप्राती । नामपाठें विश्रांती होईल जना ॥3॥ "},{"number":1337,"mr":"१३३७","title":"नामपाठ पसारा घे रे मुखें सदा","search":"1337 १३३७ अभंग नामपाठ पसारा घे रे मुखें सदा नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥१॥ नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥२॥ जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥३॥ ","searchAscii":"1337 abhang नामपाठ पसारा घे रे मुखें सदा नामपाठ पसारा घे रे मुखें सदा । कळिकाळाची बाधा तुज नोहे ॥1॥ नाम तें सोपें नाम तें सोपें । नाम तें सोपें विठ्ठलाचें ॥2॥ जनार्दनाचा एका नामपाठ वाणी । कीर्ति त्रिभुवनी नाममाठें ॥3॥ "},{"number":1338,"mr":"१३३८","title":"नामपाठ कसवटी अखंड ज्याचे मुखीं","search":"1338 १३३८ अभंग नामपाठ कसवटी अखंड ज्याचे मुखीं नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥१॥ नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥२॥ जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥३॥ ","searchAscii":"1338 abhang नामपाठ कसवटी अखंड ज्याचे मुखीं नामपाठ कसवटी अखंड ज्याचे मुखीं । तोचि झाला इहीं जनीं ॥1॥ नामपाठ धन्य नामपाठ धन्य । नामपाठ धन्य कालीमाजीं ॥2॥ जनार्दनाचा एका नामपाठें मिरविला । श्रीरंग वरला नामपाठें ॥3॥ "},{"number":1339,"mr":"१३३९","title":"नामपाठे ज्ञान नामपाठें ध्यान","search":"1339 १३३९ अभंग नामपाठे ज्ञान नामपाठें ध्यान नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥१॥ जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥२॥ जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥३॥ ","searchAscii":"1339 abhang नामपाठे ज्ञान नामपाठें ध्यान नामपाठे ज्ञान नामपाठें ध्यान । नामपाठे मन स्थिर होय ॥1॥ जगांत हें सार नामपाठ भक्ती । आणिक विश्रांती नाहीं नाहीं ॥2॥ जनार्दनाचा एका अखंड नाम गाय । हर्ष नाचताहे प्रेमे रंगीं ॥3॥ "},{"number":1340,"mr":"१३४०","title":"नामचेनि पाठें जाती पैं वैकुंठी","search":"1340 १३४० अभंग नामचेनि पाठें जाती पैं वैकुंठी नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥१॥ आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥२॥ जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥३॥ ","searchAscii":"1340 abhang नामचेनि पाठें जाती पैं वैकुंठी नामचेनि पाठें जाती पैं वैकुंठी । आणिक खटपटी न तरती ॥1॥ आठवा नामपाठ आठवा नामपाठ । वाउगा बोभाट करुं नका ॥2॥ जनार्दनाचा एका नामपाठें तरला । जनार्दन जोडला गुरु मज ॥3॥ "},{"number":1341,"mr":"१३४१","title":"संसार पाल्हाळ सांगती परिकर","search":"1341 १३४१ अभंग संसार पाल्हाळ सांगती परिकर संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥१॥ न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥२॥ जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥३॥ ","searchAscii":"1341 abhang संसार पाल्हाळ सांगती परिकर संसार पाल्हाळ सांगती परिकर । नामपाठ सार सिद्धवरी ॥1॥ न करी आळस नामपाठ गातां । तुटे भवचितां नाना व्याधीं ॥2॥ जनार्दनाचा एका जनार्दन चरणीं । भासे जनीं वनीं जनार्दन ॥3॥ "},{"number":1342,"mr":"१३४२","title":"नामपाठ नित्य एक नेमें गायें","search":"1342 १३४२ अभंग नामपाठ नित्य एक नेमें गायें नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥१॥ अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥२॥ जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥३॥ ","searchAscii":"1342 abhang नामपाठ नित्य एक नेमें गायें नामपाठ नित्य एक नेमें गायें । हरिकृपा होय तयावरी ॥1॥ अंतरीं बाहेरी रक्षी नारायण । आलिया विघ्न निवारी साचें ॥2॥ जनार्दनाचा एका प्रचीत घेउनी । गात असे वाणी नामपाठ ॥3॥ "},{"number":1343,"mr":"१३४३","title":"नामपाठ गंगा नामपाठ सरिता","search":"1343 १३४३ अभंग नामपाठ गंगा नामपाठ सरिता नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥१॥ नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥२॥ जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥३॥ ","searchAscii":"1343 abhang नामपाठ गंगा नामपाठ सरिता नामपाठ गंगा नामपाठ सरिता । सागर जाती भंगा नामपाठें ॥1॥ नामपाठ सरिता सागर संगम । देवभक्त नाम तिन्हीं बोध ॥2॥ जनार्दनाचा एका करितो मार्जन । त्रिवेणीं स्नान पुण्य जोडे ॥3॥ "},{"number":1344,"mr":"१३४४","title":"नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ","search":"1344 १३४४ अभंग नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ ","searchAscii":"1344 abhang नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचे तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥1॥ काळाचें तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥2॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥3॥ "},{"number":1345,"mr":"१३४५","title":"नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ","search":"1345 १३४५ अभंग नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥१॥ काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥२॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥३॥ ","searchAscii":"1345 abhang नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ नामपाठ श्रेष्ठ तीर्थाचें तें तीर्थ । वदे तूं चितारहित सर्वकाळ ॥1॥ काळांचे तें काळ नामपाठ गात । काळ हा तयास नमस्कारी ॥2॥ जनार्दनाचा एका काळा बांधी चरणीं । म्हणोनी जनार्दनीं विनटला ॥3॥ "},{"number":1346,"mr":"१३४६","title":"नामपाठ यश कीर्ति नामपाठें","search":"1346 १३४६ अभंग नामपाठ यश कीर्ति नामपाठें नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥१॥ न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥२॥ जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥३॥ ","searchAscii":"1346 abhang नामपाठ यश कीर्ति नामपाठें नामपाठ यश कीर्ति नामपाठें । तो जाय वैकुंठा हेळामात्रें ॥1॥ न करी रे जना आळस मानसीं । नामपाठ अहर्निशी जपे सदा ॥2॥ जनार्दनाच एका सांगतो आदरें । नामपाठ स्मरे वेळोवेळां ॥3॥ "},{"number":1347,"mr":"१३४७","title":"आणिक साधन नाहीं नाहीं जगीं","search":"1347 १३४७ अभंग आणिक साधन नाहीं नाहीं जगीं आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥१॥ तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥२॥ जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥३॥ ","searchAscii":"1347 abhang आणिक साधन नाहीं नाहीं जगीं आणिक साधन नाहीं नाहीं जगीं । नामपाठ वेगीं गाय जना ॥1॥ तुटली बंधनें खुंटलें पतन । नामपाठ खुण वैकुंठाची ॥2॥ जनार्दनाचा एका नामपाठें रंगला । भोळ्या भाविकाला नामपाठ ॥3॥ "},{"number":1348,"mr":"१३४८","title":"चंचळ तें मन मुष्टीमाजी धरी","search":"1348 १३४८ अभंग चंचळ तें मन मुष्टीमाजी धरी चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥१॥ जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥२॥ जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥३॥ ","searchAscii":"1348 abhang चंचळ तें मन मुष्टीमाजी धरी चंचळ तें मन मुष्टीमाजी धरी । नामपाठ हरि गाये सदा ॥1॥ जोडेल सर्व सिद्धि तुटेल उपाधी । नामपाठी आधींभावें गाय ॥2॥ जनार्दनाचा एका निश्चयें करुनीं । नामपाठ निर्वाणीं जपतसे ॥3॥ "},{"number":1349,"mr":"१३४९","title":"नामपाठ स्नान नामपाठ दान","search":"1349 १३४९ अभंग नामपाठ स्नान नामपाठ दान नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥१॥ नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥२॥ जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥३॥ नामपाठ संध्येतील चोवीस नामांचा नामोच्चार ","searchAscii":"1349 abhang नामपाठ स्नान नामपाठ दान नामपाठ स्नान नामपाठ दान । नामपाठ ध्यान जनार्दन ॥1॥ नामपाठ संध्या नामपाठ कर्म । नामपाठें धर्म सव जोडे ॥2॥ जनार्दनाचा एका करी नामपाठ । आणिक नाहें श्रेष्ठ नामेंविण ॥3॥ नामपाठ संध्येतील चोवीस नामांचा नामोच्चार "},{"number":1350,"mr":"१३५०","title":"नामपाठ केशव वदा नित्य वाचे","search":"1350 १३५० अभंग नामपाठ केशव वदा नित्य वाचे नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥१॥ आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥२॥ जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥३॥ ","searchAscii":"1350 abhang नामपाठ केशव वदा नित्य वाचे नामपाठ केशव वदा नित्य वाचे । सार्थक देहांचे सहजासहज ॥1॥ आठवी केशव आठवीं केशव । ठेवी तूं भाव केशवचरणीं ॥2॥ जनार्दनाचा एका केशवीं विनटला । प्रेमें तो दाटला हृदयामाजीं ॥3॥ "},{"number":1351,"mr":"१३५१","title":"नामपाठ नारायण वदे सर्वकाळ","search":"1351 १३५१ अभंग नामपाठ नारायण वदे सर्वकाळ नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥१॥ नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥२॥ जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥३॥ ","searchAscii":"1351 abhang नामपाठ नारायण वदे सर्वकाळ नामपाठ नारायण वदे सर्वकाळ । काळाच तो काळ नारायण ॥1॥ नारायण गाय नारायण ध्याय । नारायण पाहे सर्वाठायीं ॥2॥ जनार्दनाचा एका नारायणीं प्रेम । आणिक नाहीं प्रेम दुजा कांहीं ॥3॥ "},{"number":1352,"mr":"१३५२","title":"नामापाठ माधव सदा तूं उच्चारी","search":"1352 १३५२ अभंग नामापाठ माधव सदा तूं उच्चारी नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥१। माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥२॥ जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥३॥ ","searchAscii":"1352 abhang नामापाठ माधव सदा तूं उच्चारी नामापाठ माधव सदा तूं उच्चारी । माधव अंतरीं धरुनी राहे ॥1। माधवा माधवा आठवी यादवा । आणिक धांवा धांवा करुं नको ॥2॥ जनार्दनाचा एक माधवीं मुराला । वसंत तयाला जनार्दन ॥3॥ "},{"number":1353,"mr":"१३५३","title":"नामपाठ गोविंद हाचि लागो छंद","search":"1353 १३५३ अभंग नामपाठ गोविंद हाचि लागो छंद नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥१॥ गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥२॥ जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥३॥ ","searchAscii":"1353 abhang नामपाठ गोविंद हाचि लागो छंद नामपाठ गोविंद हाचि लागो छंद । न करी भेदाभेद हृदयामाजीं ॥1॥ गोविंद नाम गाय गोविंद नाम गाय । गोविंद नाम गाय हृदयीं सदा ॥2॥ जनार्दनाचा एका हृदयीं ध्यायें सच्चित्ता । गोविंद गीतीं सुख जोडे ॥3॥ "},{"number":1354,"mr":"१३५४","title":"विष्णुनामपाठ करी वेळोवेळां","search":"1354 १३५४ अभंग विष्णुनामपाठ करी वेळोवेळां विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥१॥ विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥२॥ जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥३॥ ","searchAscii":"1354 abhang विष्णुनामपाठ करी वेळोवेळां विष्णुनामपाठ करी वेळोवेळां । पाहे तूं सावळा विष्णुसखा ॥1॥ विष्णुनाम गाय अंतरी सर्वदा । तुटें जन्मजरा बाधा येणें नामें ॥2॥ जानर्दनाचा एका विष्णुरुप देखा । जनार्दन सखा एकरुप ॥3॥ "},{"number":1355,"mr":"१३५५","title":"नामपाठें मधुसुदन वाचे","search":"1355 १३५५ अभंग नामपाठें मधुसुदन वाचे नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥१॥ मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥२॥ जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥३॥ ","searchAscii":"1355 abhang नामपाठें मधुसुदन वाचे नामपाठें मधुसुदन वाचे । अनंत जन्माचें दोष जाती ॥1॥ मधुनामे जैसा मोक्षकेशी वेधु । तैसा तूं बोधूं धरीं देहीं ॥2॥ जनार्दनाचा एका मधुर बोले वाणीं । मधुसूदन चरणीं देउनी दिठी ॥3॥ "},{"number":1356,"mr":"१३५६","title":"नामपाठ त्रिविक्रम वदे तूं रे वाचे","search":"1356 १३५६ अभंग नामपाठ त्रिविक्रम वदे तूं रे वाचे नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥१॥ बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥२॥ जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥३॥ ","searchAscii":"1356 abhang नामपाठ त्रिविक्रम वदे तूं रे वाचे नामपाठ त्रिविक्रम वदे तूं रे वाचे । अनंत जन्माचे दोष जाती ॥1॥ बळीये द्वारी त्रिविक्रम उभा । नाम पाठें उभा तुजपुढें ॥2॥ जनार्दनाचा एका त्रिविक्रमीं वंदी । साधन उपाधी नेणें आन ॥3॥ "},{"number":1357,"mr":"१३५७","title":"नामपाठें वामन अक्षरें तीं तीन","search":"1357 १३५७ अभंग नामपाठें वामन अक्षरें तीं तीन नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥१॥ वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥२॥ जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥३॥ ","searchAscii":"1357 abhang नामपाठें वामन अक्षरें तीं तीन नामपाठें वामन अक्षरें तीं तीन । आणिक योगसाधन आन नाहीं ॥1॥ वदे तूं वामन वदे तूं वामन । विषय वमन करुनि सांडि ॥2॥ जनार्दनाचा एका नसे तो पारखा । वामन तेणें सखा जोडियेला ॥3॥ "},{"number":1358,"mr":"१३५८","title":"नाम तें सार श्रीधरांचे वाचे","search":"1358 १३५८ अभंग नाम तें सार श्रीधरांचे वाचे नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥१॥ जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥२॥ जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥३॥ ","searchAscii":"1358 abhang नाम तें सार श्रीधरांचे वाचे नाम तें सार श्रीधरांचे वाचे । कोटी जन्माचें दोष जाती ॥1॥ जपें तूं आवडी धरुनियां गोडी । युगाऐसीं धडी करुनियां ॥2॥ जनार्दनीं एका श्रीधर निजसखा । नोहे तो पारखा जनार्दनीं ॥3॥ "},{"number":1359,"mr":"१३५९","title":"नाम हृषिकेश गाये सावकाश","search":"1359 १३५९ अभंग नाम हृषिकेश गाये सावकाश नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥१॥ जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥२॥ जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥३॥ ","searchAscii":"1359 abhang नाम हृषिकेश गाये सावकाश नाम हृषिकेश गाये सावकाश । धरुनि उदास देहाअशा ॥1॥ जाईल जाईल देह नाशिवंत । नाम तें शाश्वत हृषिकेश ॥2॥ जनार्दनाचा एका नाम गाय सदा । पंचभूत बाधा तेणे नोहे ॥3॥ "},{"number":1360,"mr":"१३६०","title":"नाम तें सोपें पद्मनाभ पाठ","search":"1360 १३६० अभंग नाम तें सोपें पद्मनाभ पाठ नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥१॥ चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥२॥ जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥३॥ ","searchAscii":"1360 abhang नाम तें सोपें पद्मनाभ पाठ नाम तें सोपें पद्मनाभ पाठ । करी तूं बोभाट दिवसनिशीं ॥1॥ चौसष्ट घडियामाजीं जपें नामावली । कळिकाळ टाळी मारुं न शके ॥2॥ जनार्दनाचा एक नामीं तो निर्भय । कळिकाळ वंदी पाय जन्मोजन्मी ॥3॥ "},{"number":1361,"mr":"१३६१","title":"दामोदर गावा दामोदर पहावा","search":"1361 १३६१ अभंग दामोदर गावा दामोदर पहावा दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥१॥ गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥२॥ जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥३॥ ","searchAscii":"1361 abhang दामोदर गावा दामोदर पहावा दामोदर गावा दामोदर पहावा । दामोदर सांठवा हृदयमाजीं ॥1॥ गोपीराजी ध्यान दामोदरीं मन । चुकलें बंधन नाम घेतां ॥2॥ जनार्दनाचा एका दामोदरी मिनला । कृतकृत्य झाला उभय लोकीं ॥3॥ "},{"number":1362,"mr":"१३६२","title":"नाम तें सोपें संकर्षण जपे","search":"1362 १३६२ अभंग नाम तें सोपें संकर्षण जपे नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥१॥ धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥२॥ जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥३॥ ","searchAscii":"1362 abhang नाम तें सोपें संकर्षण जपे नाम तें सोपें संकर्षण जपे । आणिक संकल्पें धरुं नको ॥1॥ धरितां संकल्प नाशिवंत बापा । नाम जप सोपा मंत्रमार्ग ॥2॥ जनार्दनाच एक बोले लडिवाळ । जनार्दन कृपाळ जगीं तोची ॥3॥ "},{"number":1363,"mr":"१३६३","title":"वासुदेव नाम प्रातःकाळीं वाचे","search":"1363 १३६३ अभंग वासुदेव नाम प्रातःकाळीं वाचे वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥१॥ वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥२॥ जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥३॥ ","searchAscii":"1363 abhang वासुदेव नाम प्रातःकाळीं वाचे वासुदेव नाम प्रातःकाळीं वाचे । धन्य जन्म त्यांचें सुफळ सदा ॥1॥ वाहतां टाळीं मुखीं नाम सार । वासुदेव उच्चार करी आधीं ॥2॥ जनार्दनाचा एका एकपणें देखा । जनार्दन सखा जोडियेला ॥3॥ "},{"number":1364,"mr":"१३६४","title":"नाम जप वाचा प्रद्युम्न साचा","search":"1364 १३६४ अभंग नाम जप वाचा प्रद्युम्न साचा नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥१॥ संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥२॥ जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥३॥ ","searchAscii":"1364 abhang नाम जप वाचा प्रद्युम्न साचा नाम जप वाचा प्रद्युम्न साचा । न करी नामाचा आळस कदा ॥1॥ संसारयातना जाती पां निर्धारें । नाम निरंतर जपें आधीं ॥2॥ जनार्दनाचा एका त्रैलोक्याचा सखा । झाली पूर्ण कृपा जनार्दन ॥3॥ "},{"number":1365,"mr":"१३६५","title":"नाम अनिरुद्ध जगीं तें प्रसिद्ध","search":"1365 १३६५ अभंग नाम अनिरुद्ध जगीं तें प्रसिद्ध नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥१॥ अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥२॥ जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥३॥ ","searchAscii":"1365 abhang नाम अनिरुद्ध जगीं तें प्रसिद्ध नाम अनिरुद्ध जगीं तें प्रसिद्ध । ओहं सोहं बोध गिळोनि गाय ॥1॥ अहंकार सांडी नाम मुखें मांडी । साधन देशधडी करुनी जपें ॥2॥ जनार्दनाच एक साधन सारुनी । जनार्दनचरणीं विनटला ॥3॥ "},{"number":1366,"mr":"१३६६","title":"नामपुरुषोत्तम घेई तूं आवडी","search":"1366 १३६६ अभंग नामपुरुषोत्तम घेई तूं आवडी नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥१॥ नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥२॥ जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥३॥ ","searchAscii":"1366 abhang नामपुरुषोत्तम घेई तूं आवडी नामपुरुषोत्तम घेई तूं आवडी । यातना कल्पकोडी नाहीं तुज ॥1॥ नाम हें आठवी नाम हें आठवी । हृदयीं सांठवी पुरुषोत्तम ॥2॥ जनार्दनाचा एका पारखी नेटका । पुरुषोत्तम सखा जोडिलासे ॥3॥ "},{"number":1367,"mr":"१३६७","title":"नाम तूं अधोक्षज घेई सर्वकाळ","search":"1367 १३६७ अभंग नाम तूं अधोक्षज घेई सर्वकाळ नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥१॥ नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥२॥ जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥३॥ ","searchAscii":"1367 abhang नाम तूं अधोक्षज घेई सर्वकाळ नाम तूं अधोक्षज घेई सर्वकाळ । महाकाळ काळ अधोक्षज ॥1॥ नामीं धरुनी प्रीति आठव सर्वदा । नाहीं तुज बाधा जन्मोजन्मीं ॥2॥ जनार्दनाचा एका प्रेमें विनटला । आपुलासा केला जनार्दन ॥3॥ "},{"number":1368,"mr":"१३६८","title":"नाम नारसिंह नाम नारसिंह","search":"1368 १३६८ अभंग नाम नारसिंह नाम नारसिंह नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥१॥ जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥२॥ जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥३॥ ","searchAscii":"1368 abhang नाम नारसिंह नाम नारसिंह नाम नारसिंह नाम नारसिंह । भक्तांसी तो सम सर्वकाळ ॥1॥ जपे तो प्रल्हाद आवडी तें नाम । पावला सर्वोत्तम तयालागीं ॥2॥ जनार्दनाचा एका रुप तें पाहुनी । नारसिंहचरणीं मिठी घाली ॥3॥ "},{"number":1369,"mr":"१३६९","title":"वंदें तूं अच्युत सर्वकाळ सदा","search":"1369 १३६९ अभंग वंदें तूं अच्युत सर्वकाळ सदा वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥१॥ करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥२॥ जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥३॥ ","searchAscii":"1369 abhang वंदें तूं अच्युत सर्वकाळ सदा वंदें तूं अच्युत सर्वकाळ सदा । मायापाश बंध तुटोनि जाय ॥1॥ करी कां रे नेम धरीं का रे प्रेम । अच्युताचें नाम वंदे सदा ॥2॥ जनार्दनाचा एका अच्युत पै झाला । सप्रेमे रंगला प्रेमें रंगीं ॥3॥ "},{"number":1370,"mr":"१३७०","title":"नाम जनार्दन रुप जनार्दन","search":"1370 १३७० अभंग नाम जनार्दन रुप जनार्दन नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥१॥ माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥२॥ जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥३॥ ","searchAscii":"1370 abhang नाम जनार्दन रुप जनार्दन नाम जनार्दन रुप जनार्दन । ध्यान जनार्दन सर्व मज ॥1॥ माय जनार्दन बाप जनार्दन । जन जनार्दन सर्व मज ॥2॥ जनार्दनाचा एका जनार्दन देखा । जनीं वनीं सखा जनार्दन ॥3॥ "},{"number":1371,"mr":"१३७१","title":"नाम उपेंद्र सर्व देवांचा तो इंद्र","search":"1371 १३७१ अभंग नाम उपेंद्र सर्व देवांचा तो इंद्र नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥१॥ तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥२॥ जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥३॥ ","searchAscii":"1371 abhang नाम उपेंद्र सर्व देवांचा तो इंद्र नाम उपेंद्र सर्व देवांचा तो इंद्र । शुभ काळ वक्त्र जप सदा ॥1॥ तें नाम सोपें जपें कां रे वाचे । अहर्निशी साचें नाम जप ॥2॥ जनार्दनाचा एका एकाभावें नटला । हृदयीं सांठ विला जनार्दन ॥3॥ "},{"number":1372,"mr":"१३७२","title":"नाम हरिहर संसार तो हरी","search":"1372 १३७२ अभंग नाम हरिहर संसार तो हरी नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥१॥ हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥२॥ जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥३॥ ","searchAscii":"1372 abhang नाम हरिहर संसार तो हरी नाम हरिहर संसार तो हरी । सबाह्म अभ्यंतरीं हरि माझा ॥1॥ हरिनाम जपें हरिनाम जपें । ते वर्म सोपें हरि जपें ॥2॥ जनार्दनाचा एका हरिचरणीं देखा । सुखासुख सुखा अनुभवला ॥3॥ "},{"number":1373,"mr":"१३७३","title":"नाम श्रीकृष्ण उद्धवें साधिलें","search":"1373 १३७३ अभंग नाम श्रीकृष्ण उद्धवें साधिलें नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥१॥ आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥२॥ जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥३॥नामपाठ – अभंग १३७४ ते १५३० ","searchAscii":"1373 abhang नाम श्रीकृष्ण उद्धवें साधिलें नाम श्रीकृष्ण उद्धवें साधिलें । चोविस नामें झालें जप पवे ॥1॥ आठवा श्रीकृष्ण आठवा श्रीकृष्ण । आठवा श्रीकृष्ण वेळोवेळां ॥2॥ जनार्दनाचा एका श्रीकृष्ण निजसखा । जनार्दनें देखा दावियेला ॥3॥नामपाठ – अभंग 1374 ते 1530 "},{"number":1374,"mr":"१३७४","title":"नामपाठविठ्ठल पंचविसावा वाचे","search":"1374 १३७४ अभंग नामपाठविठ्ठल पंचविसावा वाचे नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥१॥ विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥२॥ जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥३॥ ","searchAscii":"1374 abhang नामपाठविठ्ठल पंचविसावा वाचे नामपाठविठ्ठल पंचविसावा वाचे । सार्थक जन्माचेंजालें जालें ॥1॥ विठ्ठल विठ्ठल वदतां वो वाचे । सार्थक जन्माचें झालें साचें ॥2॥ जनार्दनाचा एका नामपाठ गाय । विठ्ठल विठ्ठल ध्याये वेळोवेळां ॥3॥ "},{"number":1375,"mr":"१३७५","title":"झाला नामपाठ झाला नामपाठ","search":"1375 १३७५ अभंग झाला नामपाठ झाला नामपाठ झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥१॥ आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥२॥ जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥३॥संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न. मेन्यू मुखपृष्ठ ग्रंथ अभंग/भजन संत विभाग संपर्क vakibhmedia@gmail.com +91 99239 16476 पुणे, महाराष्ट्र © २०२६ वाकीभ. सर्व हक्क सुरक्षित. ","searchAscii":"1375 abhang झाला नामपाठ झाला नामपाठ झाला नामपाठ झाला नामपाठ । मोक्षमार्ग वाट सोपी झाली ॥1॥ आवडी आदरें नामपाठ गाये । हरिकृपा होय तयावारी ॥2॥ जनार्दनाचा एका नामपाठें निका । तोडियेली शाखा अद्वैताची ॥3॥संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न. मेन्यू मुखपृष्ठ ग्रंथ अभंग/भजन संत विभाग संपर्क vakibhmedia@gmail.com +91 99239 16476 पुणे, महाराष्ट्र © 2026 वाकीभ. सर्व हक्क सुरक्षित. "}];
-  function render(items){ cols.innerHTML=''; items.forEach(item=>{ const a=document.createElement('a'); a.className='abhang-item'; a.href='../sant-eknath-abhang-'+item.number+'/index.html'; const n=document.createElement('span'); n.className='abhang-number'; n.textContent=item.mr+'.'; const t=document.createElement('span'); t.className='abhang-title'; t.textContent=item.title; a.appendChild(n); a.appendChild(t); cols.appendChild(a); }); count.textContent=(items.length?items.length:0).toLocaleString('mr-IN')+' अभंग'; empty.hidden=items.length!==0; }
-  function apply(){ const raw=input.value.trim().toLowerCase(); if(!raw){ if(ranges) ranges.hidden=false; render(all); return; } if(ranges) ranges.hidden=true; const q=toAscii(raw.replace(/^अभंग\s*/,'')); render(all.filter(item=>item.search.includes(raw)||item.searchAscii.includes(q))); }
-  input&&input.addEventListener('input', apply);
-})();
-</script>
+

@@ -134,8 +134,8 @@ function extractBody(html) {
     .replace(/<div[^>]*class="[^"]*ast-oembed-container[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '')
     .replace(/<p>\s*&nbsp;\s*<\/p>/gi, '')
     .replace(/<p>\s*<a[^>]*play\.google\.com[\s\S]*?<\/p>/gi, '')
-    .replace(/<p>\s*<strong>\s*à¤¸à¤‚à¤¤ à¤œà¥à¤žà¤¾à¤¨à¥‡à¤¶à¥à¤µà¤° à¤…à¤à¤ª à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡[\s\S]*?<\/p>/gi, '')
-    .replace(/<h2[^>]*>[\s\S]*?à¤…à¤­à¤‚à¤— à¤µà¤¿à¤¡à¤¿à¤“ à¤¸à¥à¤µà¤°à¥‚à¤ªà¤¾à¤¤ à¤ªà¤¹à¤¾[\s\S]*?<\/h2>/gi, '')
+    .replace(/<p>\s*<strong>\s*संत ज्ञानेश्वर अँप डाउनलोड[\s\S]*?<\/p>/gi, '')
+    .replace(/<h2[^>]*>[\s\S]*?अभंग विडिओ स्वरूपात पहा[\s\S]*?<\/h2>/gi, '')
     .replace(/<h2[^>]*>[\s\S]*?sant dnyaneshwer abhnag[\s\S]*?<\/h2>/gi, '')
     .replace(/<a\s+[^>]*href="[^"]*"[^>]*>([\s\S]*?)<\/a>/gi, '$1')
     .replace(/\s*(?:\r?\n){3,}/g, '\n\n')
@@ -163,6 +163,6 @@ function updateWrapper(page, content) {
 for (const page of pages) {
   const content = extractBody(fs.readFileSync(page.sourceFile, 'utf8'));
   updateWrapper(page, content);
-  const numberedBlocks = (content.match(/<p>\s*<strong>[à¥¦-à¥¯0-9]+/g) || []).length;
+  const numberedBlocks = (content.match(/<p>\s*<strong>[०-९0-9]+/g) || []).length;
   console.log(`${page.localFile}: inserted ${numberedBlocks} numbered blocks, ${content.length} chars`);
 }

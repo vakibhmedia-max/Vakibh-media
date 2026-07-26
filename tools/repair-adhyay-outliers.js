@@ -50,6 +50,6 @@ function joinSplitOviBlocks(html) {
   const { file, html: original } = read(6);
   let html = original;
   html = html.replace(/<div><strong>([\s\S]*?)<\/strong><\/div>\s*<div><strong>([\s\S]*?॥६-[०-९0-9]+॥)<\/strong><\/div>\s*<div>([\s\S]*?॥६-[०-९0-9]+॥)<\/div>/g, '<div class="ovi"><strong>$1</strong><br/><strong>$2</strong></div><div class="oviar">$3</div>');
-  html = html.replace(/\s*<p>[^<]*॥६-९६॥<\/p>\s*(?=<div class="ovi"><strong>ते जैशी निर्वाण|<div class="ovi"><strong>à¤¤à¥‡ à¤œà¥ˆà¤¶à¥€)/, '\n');
+  html = html.replace(/\s*<p>[^<]*॥६-९६॥<\/p>\s*(?=<div class="ovi"><strong>ते जैशी निर्वाण|<div class="ovi"><strong>ते जैशी)/, '\n');
   write(file, html, original);
 }

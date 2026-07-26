@@ -17,38 +17,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="Vakibh/css/style.css?v=37">
+  <link rel="stylesheet" href="Vakibh/css/style.css?v=42">
 
   <!-- JS Script (Deferred) -->
-  <script src="Vakibh/js/main.js?v=40" defer></script>
+  <script src="Vakibh/js/main.js?v=45" defer></script>
 </head>
 
 <body>
-  <header>
+      <header>
     <div class="header-container">
       <a href="index.html" class="logo-link">
-        <img src="Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img">
+        <img src="Vakibh/vaakibh_logo.svg" alt="&#x0935;&#x093E;&#x0915;&#x0940;&#x092D; &#x0932;&#x094B;&#x0917;&#x094B;" class="logo-img">
       </a>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="मुख्य मेनू उघडा">
+      <button class="menu-toggle" id="menuToggle" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
         <i class="fas fa-bars"></i>
       </button>
-
-      <nav id="navMenu">
+      <nav id="navMenu" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942;">
         <ul>
-          <li><a href="index.html">मुखपृष्ठ</a></li>
-          <li><a href="index.html#abhangs">अभंग/भजन</a></li>
-          <li><a href="index.html#saints">संत</a></li>
-          <li><a href="index.html#categories">विभाग</a></li>
-          <li><a href="contact/index.html">संपर्क</a></li>
+          <li><a href="index.html">&#x092E;&#x0941;&#x0916;&#x092A;&#x0943;&#x0937;&#x094D;&#x0920;</a></li>
+          <li><a href="index.html#abhangs">&#x0905;&#x092D;&#x0902;&#x0917;/&#x092D;&#x091C;&#x0928;</a></li>
+          <li><a href="index.html#saints">&#x0938;&#x0902;&#x0924;</a></li>
+          <li><a href="index.html#categories">&#x0935;&#x093F;&#x092D;&#x093E;&#x0917;</a></li>
+          <li><a href="contact/index.html">&#x0938;&#x0902;&#x092A;&#x0930;&#x094D;&#x0915;</a></li>
         </ul>
       </nav>
-
       <div class="header-actions">
-        <div class="lang-switch-group" aria-label="भाषा निवडा">
-          <button class="lang-switch active" type="button" data-language="marathi">मराठी</button>
+        <div class="lang-switch-group" aria-label="&#x092D;&#x093E;&#x0937;&#x093E; &#x0928;&#x093F;&#x0935;&#x0921;&#x093E;">
+          <button class="lang-switch active" type="button" data-language="marathi" data-language-option="marathi">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</button>
+          <button class="lang-switch" type="button" data-language="english" data-language-option="english">English</button>
         </div>
-        <button class="search-trigger-btn" id="searchTrigger" aria-label="शोध उघडा">
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="&#x0936;&#x094B;&#x0927; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -56,7 +54,7 @@
   </header>
 
   <!-- Header / Sticky Navigation -->
-  
+
 
   <main>
     <!-- Hero Banner Section -->
@@ -156,107 +154,6 @@
           <span class="saint-period">&#x0967;&#x096B; &#x0935;&#x0947; &#x0936;&#x0924;&#x0915;</span>
           <p class="saint-desc">&#x092D;&#x0915;&#x094D;&#x0924;&#x0940; &#x0906;&#x0923;&#x093F; &#x0938;&#x093E;&#x092E;&#x093E;&#x091C;&#x093F;&#x0915; &#x0938;&#x092E;&#x0924;&#x0947;&#x091A;&#x0947; &#x092A;&#x0941;&#x0930;&#x0938;&#x094D;&#x0915;&#x0930;&#x094D;&#x0924;&#x0947;.</p>
         </a>
-      </div>
-    </section>
-
-    <!-- Section 3: Featured Abhang -->
-    <section class="abhang-section" id="abhangs">
-      <div class="section-title-container">
-        <h2 class="heading-traditional">&#x0935;&#x0948;&#x0936;&#x093F;&#x0937;&#x094D;&#x091F;&#x094D;&#x092F;&#x092A;&#x0942;&#x0930;&#x094D;&#x0923; &#x0905;&#x092D;&#x0902;&#x0917;</h2>
-        <p>(&#x0928;&#x093F;&#x0935;&#x0921;&#x0915; &#x0930;&#x091A;&#x0928;&#x093E;)</p>
-        <div class="see-all-container">
-          <a href="#quickLinks" class="see-all-btn">&#x0938;&#x0930;&#x094D;&#x0935; &#x092A;&#x0939;&#x093E;</a>
-        </div>
-      </div>
-
-      <div class="abhang-grid">
-        <div class="abhang-card">
-          <div>
-            <span class="abhang-tag">&#x0905;&#x092D;&#x0902;&#x0917; - &#x0938;&#x0902;&#x0924; &#x091C;&#x094D;&#x091E;&#x093E;&#x0928;&#x0947;&#x0936;&#x094D;&#x0935;&#x0930;</span>
-            <h3 class="abhang-card-title">&#x0930;&#x0942;&#x092A; &#x092A;&#x093E;&#x0939;&#x0924;&#x093E; &#x0932;&#x094B;&#x091A;&#x0928;&#x0940;&#x0902;</h3>
-            <p class="abhang-content">&#x0930;&#x0942;&#x092A; &#x092A;&#x093E;&#x0939;&#x0924;&#x093E;&#x0902; &#x0932;&#x094B;&#x091A;&#x0928;&#x0940;&#x0902; । &#x0938;&#x0941;&#x0916; &#x091C;&#x093E;&#x0932;&#x0947;&#x0902; &#x0935;&#x094B; &#x0938;&#x093E;&#x091C;&#x0923;&#x0940; ॥&#x0967;॥
-              &#x0924;&#x094B; &#x0939;&#x093E; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; &#x092C;&#x0930;&#x0935;&#x093E; । &#x0924;&#x094B; &#x0939;&#x093E; &#x092E;&#x093E;&#x0927;&#x0935; &#x092C;&#x0930;&#x0935;&#x093E; ॥
-              &#x092C;&#x0939;&#x0941;&#x0924;&#x093E;&#x0902; &#x0938;&#x0941;&#x0915;&#x0943;&#x0924;&#x093E;&#x0902;&#x091A;&#x0940; &#x091C;&#x094B;&#x0921;&#x0940; । &#x092E;&#x094D;&#x0939;&#x0923;&#x0941;&#x0928;&#x0940; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932;&#x0940;&#x0902; &#x0906;&#x0935;&#x0921;&#x0940; &#x0932;&#x093E;&#x0917;&#x0932;&#x0940; &#x091C;&#x0940;&#x0935;&#x0947; ॥
-              &#x0938;&#x0930;&#x094D;&#x0935; &#x0938;&#x0941;&#x0916;&#x093E;&#x091A;&#x0947;&#x0902; &#x0906;&#x0917;&#x0930; । &#x092C;&#x093E;&#x092A; &#x0930;&#x0916;&#x0941;&#x092E;&#x093E;&#x0926;&#x0947;&#x0935;&#x0940;&#x0935;&#x0930;&#x0941; ॥</p>
-          </div>
-          <div class="abhang-card-footer">
-            <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="&#x0905;&#x092D;&#x0902;&#x0917; &#x0915;&#x0949;&#x092A;&#x0940; &#x0915;&#x0930;&#x093E;"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
-              <div class="abhang-share-group">
-                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="&#x0935;&#x094D;&#x0939;&#x0949;&#x091F;&#x094D;&#x0938;&#x0905;&#x0945;&#x092A;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-whatsapp"></i></button>
-                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="&#x092B;&#x0947;&#x0938;&#x092C;&#x0941;&#x0915;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-facebook-f"></i></button>
-                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="&#x0907;&#x0928;&#x094D;&#x0938;&#x094D;&#x091F;&#x093E;&#x0917;&#x094D;&#x0930;&#x093E;&#x092E;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-instagram"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="abhang-card">
-          <div>
-            <span class="abhang-tag">&#x0905;&#x092D;&#x0902;&#x0917; - &#x0938;&#x0902;&#x0924; &#x0924;&#x0941;&#x0915;&#x093E;&#x0930;&#x093E;&#x092E;</span>
-            <h3 class="abhang-card-title">&#x0906;&#x0924;&#x093E; &#x0915;&#x094B;&#x0920;&#x0947; &#x0927;&#x093E;&#x0935;&#x0947; &#x092E;&#x0928;</h3>
-            <p class="abhang-content">&#x0906;&#x0924;&#x093E; &#x0915;&#x094B;&#x0920;&#x0947; &#x0927;&#x093E;&#x0935;&#x0947; &#x092E;&#x0928; । &#x0924;&#x0941;&#x091D;&#x0947; &#x091A;&#x0930;&#x0923; &#x0926;&#x0947;&#x0916;&#x093F;&#x0932;&#x093F;&#x092F;&#x093E; ॥
-              &#x092D;&#x093E;&#x0917; &#x0917;&#x0947;&#x0932;&#x093E; &#x0936;&#x0940;&#x0923; &#x0917;&#x0947;&#x0932;&#x093E; । &#x0905;&#x0935;&#x0918;&#x093E; &#x091D;&#x093E;&#x0932;&#x093E; &#x0906;&#x0928;&#x0902;&#x0926; ॥
-              &#x092A;&#x094D;&#x0930;&#x0947;&#x092E;&#x0930;&#x0938;&#x0947; &#x092D;&#x0930;&#x0932;&#x0947; &#x0905;&#x0902;&#x0917; । &#x0917;&#x093E;&#x090A; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932;&#x093E;&#x091A;&#x0947; &#x0928;&#x093E;&#x092E; ॥
-              &#x0924;&#x0941;&#x0915;&#x093E; &#x092E;&#x094D;&#x0939;&#x0923;&#x0947; &#x092A;&#x093E;&#x0935;&#x0932;&#x094B; &#x0920;&#x093E;&#x0935; । &#x0906;&#x0924;&#x093E; &#x0928;&#x093E;&#x0939;&#x0940; &#x0915;&#x094B;&#x0920;&#x0947; &#x091C;&#x093E;&#x0935; ॥</p>
-          </div>
-          <div class="abhang-card-footer">
-            <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="&#x0905;&#x092D;&#x0902;&#x0917; &#x0915;&#x0949;&#x092A;&#x0940; &#x0915;&#x0930;&#x093E;"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
-              <div class="abhang-share-group">
-                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="&#x0935;&#x094D;&#x0939;&#x0949;&#x091F;&#x094D;&#x0938;&#x0905;&#x0945;&#x092A;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-whatsapp"></i></button>
-                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="&#x092B;&#x0947;&#x0938;&#x092C;&#x0941;&#x0915;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-facebook-f"></i></button>
-                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="&#x0907;&#x0928;&#x094D;&#x0938;&#x094D;&#x091F;&#x093E;&#x0917;&#x094D;&#x0930;&#x093E;&#x092E;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-instagram"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="abhang-card">
-          <div>
-            <span class="abhang-tag">&#x0905;&#x092D;&#x0902;&#x0917; - &#x0938;&#x0902;&#x0924; &#x0928;&#x093E;&#x092E;&#x0926;&#x0947;&#x0935;</span>
-            <h3 class="abhang-card-title">&#x0924;&#x0940;&#x0930;&#x094D;&#x0925; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932;</h3>
-            <p class="abhang-content">&#x0924;&#x0940;&#x0930;&#x094D;&#x0925; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; &#x0915;&#x094D;&#x0937;&#x0947;&#x0924;&#x094D;&#x0930; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; ।
-              &#x0926;&#x0947;&#x0935; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; &#x0926;&#x0947;&#x0935;&#x092A;&#x0942;&#x091C;&#x093E; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; ॥
-              &#x092E;&#x093E;&#x0924;&#x093E; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; &#x092A;&#x093F;&#x0924;&#x093E; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; ।
-              &#x092C;&#x0902;&#x0927;&#x0941; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; &#x0917;&#x094B;&#x0924;&#x094D;&#x0930; &#x0935;&#x093F;&#x0920;&#x094D;&#x0920;&#x0932; ॥</p>
-          </div>
-          <div class="abhang-card-footer">
-            <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="&#x0905;&#x092D;&#x0902;&#x0917; &#x0915;&#x0949;&#x092A;&#x0940; &#x0915;&#x0930;&#x093E;"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
-              <div class="abhang-share-group">
-                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="&#x0935;&#x094D;&#x0939;&#x0949;&#x091F;&#x094D;&#x0938;&#x0905;&#x0945;&#x092A;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-whatsapp"></i></button>
-                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="&#x092B;&#x0947;&#x0938;&#x092C;&#x0941;&#x0915;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-facebook-f"></i></button>
-                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="&#x0907;&#x0928;&#x094D;&#x0938;&#x094D;&#x091F;&#x093E;&#x0917;&#x094D;&#x0930;&#x093E;&#x092E;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-instagram"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="abhang-card">
-          <div>
-            <span class="abhang-tag">&#x092A;&#x0938;&#x093E;&#x092F;&#x0926;&#x093E;&#x0928; - &#x0938;&#x0902;&#x0924; &#x091C;&#x094D;&#x091E;&#x093E;&#x0928;&#x0947;&#x0936;&#x094D;&#x0935;&#x0930;</span>
-            <h3 class="abhang-card-title">&#x092A;&#x0938;&#x093E;&#x092F;&#x0926;&#x093E;&#x0928;</h3>
-            <p class="abhang-content">&#x0906;&#x0924;&#x093E; &#x0935;&#x093F;&#x0936;&#x094D;&#x0935;&#x093E;&#x0924;&#x094D;&#x092E;&#x0915;&#x0947;&#x0902; &#x0926;&#x0947;&#x0935;&#x0947;&#x0902; ।
-              &#x092F;&#x0947;&#x0923;&#x0947; &#x0935;&#x093E;&#x0917;&#x094D;&#x092F;&#x091C;&#x094D;&#x091E;&#x0947;&#x0902; &#x0924;&#x094B;&#x0937;&#x093E;&#x0935;&#x0947;&#x0902; ।
-              &#x0924;&#x094B;&#x0937;&#x094B;&#x0928;&#x093F; &#x092E;&#x091C; &#x0926;&#x094D;&#x092F;&#x093E;&#x0935;&#x0947;&#x0902; । &#x092A;&#x0938;&#x093E;&#x092F;&#x0926;&#x093E;&#x0928; &#x0939;&#x0947; ॥
-              &#x091C;&#x0947; &#x0916;&#x0933;&#x093E;&#x0902;&#x091A;&#x0940; &#x0935;&#x094D;&#x092F;&#x0902;&#x0915;&#x091F;&#x0940; &#x0938;&#x093E;&#x0902;&#x0921;&#x094B; । &#x0924;&#x092F;&#x093E; &#x0938;&#x0924;&#x094D;&#x0915;&#x0930;&#x094D;&#x092E;&#x0940; &#x0930;&#x0924;&#x0940; &#x0935;&#x093E;&#x0922;&#x094B; ॥</p>
-          </div>
-          <div class="abhang-card-footer">
-            <div class="abhang-actions-left">
-              <button class="abhang-btn copy-abhang-btn" aria-label="&#x0905;&#x092D;&#x0902;&#x0917; &#x0915;&#x0949;&#x092A;&#x0940; &#x0915;&#x0930;&#x093E;"><i class="far fa-copy"></i></button>
-              <button class="abhang-btn like-abhang-btn" aria-label="Like Abhang"><i class="far fa-heart"></i></button>
-              <div class="abhang-share-group">
-                <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="&#x0935;&#x094D;&#x0939;&#x0949;&#x091F;&#x094D;&#x0938;&#x0905;&#x0945;&#x092A;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-whatsapp"></i></button>
-                <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="&#x092B;&#x0947;&#x0938;&#x092C;&#x0941;&#x0915;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-facebook-f"></i></button>
-                <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="&#x0907;&#x0928;&#x094D;&#x0938;&#x094D;&#x091F;&#x093E;&#x0917;&#x094D;&#x0930;&#x093E;&#x092E;&#x0935;&#x0930; &#x0936;&#x0947;&#x0905;&#x0930; &#x0915;&#x0930;&#x093E;"><i class="fab fa-instagram"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 

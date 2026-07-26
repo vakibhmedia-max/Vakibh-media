@@ -1,4 +1,4 @@
-/* Design Tokens & Variables */
+﻿/* Design Tokens & Variables */
 :root {
   --primary: #ff7a00;
   --primary-dark: #e65c00;
@@ -13,8 +13,14 @@
   --card-shadow: 0 10px 30px rgba(220, 180, 140, 0.15);
   --hover-shadow: 0 15px 35px rgba(230, 92, 0, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --font-body: 'Mukta', sans-serif;
+  --font-body: 'Mukta', Arial, Helvetica, Verdana, sans-serif;
   --font-heading: 'Mukta', sans-serif;
+  --marathi-font: 'Mukta', Arial, Helvetica, Verdana, sans-serif;
+  --content-text: var(--text-dark);
+  --heading-text: var(--text-dark);
+  --content-line-height: 1.95;
+  --content-font-size: clamp(1rem, 1.05vw, 1.06rem);
+  --verse-font-size: clamp(1.08rem, 1.3vw, 1.28rem);
 }
 
 /* Reset & Base Styles */
@@ -2943,9 +2949,217 @@ header {
     padding: 18px 16px 16px !important;
   }
 }
-/* Hide floating controls over reading content. */
-.floating-whatsapp,
-.floating-veena,
-.visitor-login-floating-btn {
-  display: none !important;
+/* Shared Marathi reading typography, matched to the Blog Detail Page. */
+.marathi-page-title {
+  font-family: var(--marathi-font);
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0;
+  color: var(--heading-text);
+  overflow-wrap: anywhere;
+}
+
+.marathi-section-title {
+  font-family: var(--marathi-font);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--heading-text);
+}
+
+.marathi-verse {
+  font-family: var(--marathi-font);
+  font-size: var(--verse-font-size);
+  font-weight: 700;
+  line-height: 1.9;
+  letter-spacing: 0;
+  color: var(--heading-text);
+  white-space: pre-line;
+}
+
+.marathi-meaning,
+.marathi-paragraph {
+  font-family: var(--marathi-font);
+  font-size: var(--content-font-size);
+  font-weight: 400;
+  line-height: var(--content-line-height);
+  letter-spacing: 0;
+  color: var(--content-text);
+}
+
+.search-result-title,
+.search-results-title {
+  font-family: var(--marathi-font);
+  letter-spacing: 0;
+}
+
+.search-result-description,
+.library-search-page-results .search-result-description {
+  font-family: var(--marathi-font);
+  font-size: var(--content-font-size);
+  font-weight: 400;
+  line-height: var(--content-line-height);
+  letter-spacing: 0;
+  color: var(--content-text);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --content-font-size: 1.05rem;
+    --verse-font-size: 1.12rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --content-font-size: 1rem;
+    --verse-font-size: 1rem;
+    --content-line-height: 1.85;
+  }
+}
+
+/* Strict shared header: one layout across every page. */
+body > header .header-container {
+  min-height: 118px;
+  padding: 1.1rem 1.5rem;
+  gap: 2rem;
+}
+
+body > header .logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+body > header #navMenu {
+  flex: 1 1 auto;
+}
+
+body > header #navMenu ul {
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.2rem);
+}
+
+body > header #navMenu a {
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+body > header .header-actions {
+  min-width: 220px;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+body > header .lang-switch-group {
+  gap: 0.55rem;
+}
+
+body > header .search-trigger-btn {
+  width: 42px;
+  height: 42px;
+}
+
+body.is-standard-granth-reading-page .floating-veena,
+body.is-standard-granth-reading-page .floating-whatsapp {
+  display: inline-flex !important;
+}
+@media (max-width: 900px) {
+  body > header .header-container {
+    min-height: 82px;
+    padding: 0.7rem 1rem;
+    gap: 1rem;
+  }
+
+  body > header .logo-img {
+    width: 56px;
+    height: 56px;
+  }
+
+  body > header #navMenu {
+    flex: none;
+  }
+
+  body > header #navMenu ul {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.05rem;
+  }
+
+  body > header .header-actions {
+    min-width: 0;
+    gap: 0.65rem;
+  }
+
+  body > header .lang-switch-group {
+    gap: 0.35rem;
+  }
+
+  body > header .lang-switch {
+    min-height: 38px;
+    padding: 0.34rem 0.72rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 420px) {
+  body > header .header-actions {
+    gap: 0.45rem;
+  }
+
+  body > header .lang-switch {
+    padding: 0.32rem 0.58rem;
+    font-size: 0.82rem;
+  }
+
+  body > header .search-trigger-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Final shared floating widget positions. */
+.floating-veena {
+  left: 20px !important;
+  right: auto !important;
+  bottom: 92px !important;
+}
+
+.floating-whatsapp {
+  right: 20px !important;
+  bottom: 92px !important;
+}
+
+.scroll-top-btn {
+  right: 24px !important;
+  bottom: 20px !important;
+}
+
+@media (max-width: 768px) {
+  .floating-veena {
+    left: 12px !important;
+    right: auto !important;
+    bottom: 18px !important;
+  }
+
+  .floating-whatsapp {
+    right: 12px !important;
+    bottom: 76px !important;
+  }
+
+  .scroll-top-btn {
+    right: 12px !important;
+    bottom: 18px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .floating-whatsapp {
+    bottom: 70px !important;
+  }
 }
