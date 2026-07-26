@@ -122,13 +122,12 @@ for (const file of walk(root)) {
     while ((m = paraRe.exec(html))) {
       const number = (m[1] || m[2] || '').trim();
       const verse = stripTags(m[3] || '');
-      const meaning = stripTags(m[4] || '');
       if (!number || verse.length < 10) continue;
       const firstLine = verse.split(/[।॥\n]/)[0].trim() || `अभंग ${number}`;
       entries.push(makeEntry({
         title: `अभंग ${number} - ${firstLine}`,
         heading: firstLine,
-        excerpt: `${verse} ${meaning}`.trim(),
+        excerpt: verse.trim(),
         rel,
         saintSlug,
         type: 'अभंग',

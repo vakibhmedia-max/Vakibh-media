@@ -1,8 +1,10 @@
-﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   sant.css  â€“  Sant & Abhang Pages
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════
+   sant.css  –  Sant & Abhang Pages
    Layout matches source: orange headings, blue link columns,
    while using Vakibh header/footer.
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+═══════════════════════════════════════════════════════════════ */
 
 /* â”€â”€ Page wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sant-page-main {
@@ -11,9 +13,9 @@
   font-family: Arial, Helvetica, Verdana, sans-serif;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ══════════════════════════════════════════════════════════════
    LISTING PAGE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+══════════════════════════════════════════════════════════════ */
 
 /* â”€â”€ Title section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .sant-title-section {
@@ -28,7 +30,7 @@
   margin: 0 auto;
 }
 
-/* Main H1 â€“ orange, centered, like source */
+/* Main H1 – orange, centered, like source */
 .sant-page-h1 {
   font-size: 1.75rem;
   font-weight: 400;
@@ -126,7 +128,7 @@
   margin: 0 auto;
 }
 
-/* "à¤¸à¤‚à¤¤ à¤œà¤¨à¤¾à¤¬à¤¾à¤ˆ à¤…à¤­à¤‚à¤—" heading â€” centered, orange, like source */
+/* "संत जनाबाई अभंग" heading — centered, orange, like source */
 .abhang-grid-heading {
   text-align: center;
   font-size: 1.55rem;
@@ -160,7 +162,7 @@
   text-align: center;
 }
 
-/* Links â€” dark red, bold, centered, no underline by default */
+/* Links — dark red, bold, centered, no underline by default */
 .abhang-col-list li a {
   display: block;
   padding: 0.5rem 0.5rem;
@@ -183,9 +185,9 @@
   text-decoration: underline;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   INDIVIDUAL ABHANG PAGE  â€“ exact source layout
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ══════════════════════════════════════════════════════════════
+   INDIVIDUAL ABHANG PAGE  – exact source layout
+══════════════════════════════════════════════════════════════ */
 
 .abhang-post-main {
   background: #fff;
@@ -222,7 +224,7 @@
   padding: 0 1.5rem 3rem;
 }
 
-/* â”€â”€ Featured image â€“ full width like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ Featured image – full width like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .post-thumb {
   margin: 0 -1.5rem 1.5rem;
   overflow: hidden;
@@ -290,7 +292,7 @@
   border-radius: 0;
 }
 
-/* â”€â”€ Post content â€“ mirrors the source entry-content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ Post content – mirrors the source entry-content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .post-content {
   font-family: Arial, Helvetica, Verdana, sans-serif;
   color: #333;
@@ -307,7 +309,7 @@
   font-size: 16px;
 }
 
-/* â”€â”€ HR lines â€“ thin, like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ HR lines – thin, like source â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .post-hr {
   border: none;
   border-top: 1px solid #e0e0e0;
@@ -443,9 +445,9 @@
   text-decoration: none;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ══════════════════════════════════════════════════════════════
    RESPONSIVE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+══════════════════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .abhang-columns { grid-template-columns: repeat(4, 1fr); }
 }
@@ -619,8 +621,6 @@
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap');
-
 .sant-page-main,
 .sant-page-main div,
 .sant-page-main p,
@@ -2098,7 +2098,8 @@ body.is-standard-granth-reading-page .meaning-heading {
     border-radius: 14px !important;
     font-size: clamp(1rem, 4.6vw, 1.18rem) !important;
     line-height: 1.32 !important;
-    overflow-wrap: anywhere !important;
+    overflow-wrap: break-word !important;
+  word-break: normal !important;
     word-break: normal !important;
   }
 }
@@ -3689,5 +3690,1712 @@ body.natache-abhang-detail-page .natache-line {
 @media (max-width: 640px) {
   .sant-page-main > .janabai-landing-container .janabai-literature-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* Final Vaakibh typography standardization: uses Blog Detail Page as baseline. */
+:root {
+  --marathi-font: 'Mukta', Arial, Helvetica, Verdana, sans-serif;
+  --content-text: var(--text-dark, #2c3e50);
+  --heading-text: var(--text-dark, #2c3e50);
+  --content-line-height: 1.95;
+  --content-font-size: clamp(1rem, 1.05vw, 1.06rem);
+  --verse-font-size: clamp(1.08rem, 1.3vw, 1.28rem);
+}
+
+.post-title,
+.page-title,
+.inner-breadcrumb-content h1,
+.abhang-post-main .post-title,
+.abhang-post-main .post-header .post-title,
+body.is-standard-granth-reading-page .post-title,
+body.is-dnyaneshwari-adhyay-page .post-title,
+body.blog-post-page .post-title,
+.marathi-page-title {
+  font-family: var(--marathi-font) !important;
+  font-size: clamp(2rem, 4vw, 3.35rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  color: var(--heading-text) !important;
+  overflow-wrap: anywhere !important;
+  text-wrap: balance;
+}
+
+.post-content,
+.entry-content,
+.charitra-content,
+.blog-post-content,
+.post-content p,
+.entry-content p,
+.charitra-content p,
+.blog-post-content p,
+.post-content li,
+.entry-content li,
+.marathi-paragraph {
+  font-family: var(--marathi-font) !important;
+  font-size: var(--content-font-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--content-line-height) !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  color: var(--content-text) !important;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.post-content .hdr1,
+.post-content .hdr2,
+.post-content .hdr3,
+.post-content .hdr4,
+.meaning-heading,
+.devotional-meaning-label,
+.abhang-readable-meaning-title,
+.haripath-meaning-heading,
+.haripath-artha-heading,
+.marathi-section-title {
+  font-family: var(--marathi-font) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+  color: var(--heading-text) !important;
+}
+
+.verse-text,
+.haripath-verse,
+.abhang-verse,
+.abhang-readable-verses,
+.abhang-readable-verses p,
+.devotional-numbered-verse,
+.devotional-verse-content,
+.gatha-verse,
+.ovi-verse,
+.abhang-post-main .ovi,
+.post-article .verse_style .ovi,
+.verse_style .ovi,
+.natache-verse,
+.natache-line,
+.post-content p[style*="font-weight: 600"],
+.entry-content p[style*="font-weight: 600"],
+.marathi-verse {
+  font-family: var(--marathi-font) !important;
+  font-size: var(--verse-font-size) !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  color: var(--heading-text) !important;
+}
+
+.verse-text *,
+.haripath-verse *,
+.abhang-verse *,
+.abhang-readable-verses *,
+.devotional-numbered-verse *,
+.devotional-verse-content *,
+.gatha-verse *,
+.ovi-verse *,
+.abhang-post-main .ovi *,
+.post-article .verse_style .ovi *,
+.verse_style .ovi *,
+.natache-verse *,
+.natache-line * {
+  font-family: var(--marathi-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+.meaning-text,
+.artha-text,
+.haripath-artha,
+.haripath-meaning,
+.abhang-meaning,
+.abhang-meaning-section,
+.abhang-meaning-inner,
+.abhang-readable-meaning,
+.devotional-meaning-block,
+.devotional-meaning-text,
+.oviar,
+.post-content .artha,
+.post-content .meaning,
+.post-content .bhavarth,
+.entry-content .artha,
+.entry-content .meaning,
+.entry-content .bhavarth,
+.post-content p[style*="font-weight: 400"],
+.entry-content p[style*="font-weight: 400"],
+.marathi-meaning {
+  font-family: var(--marathi-font) !important;
+  font-size: var(--content-font-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--content-line-height) !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  color: var(--content-text) !important;
+}
+
+.meaning-text *,
+.artha-text *,
+.haripath-artha *:not(.haripath-verse):not(.haripath-artha-heading),
+.haripath-meaning *:not(.haripath-verse):not(.haripath-meaning-heading),
+.abhang-meaning *,
+.abhang-meaning-section *:not(.meaning-heading),
+.abhang-meaning-inner *,
+.abhang-readable-meaning *:not(.abhang-readable-meaning-title),
+.devotional-meaning-block *:not(.devotional-meaning-label),
+.devotional-meaning-text *,
+.oviar *,
+.post-content .artha *,
+.post-content .meaning *,
+.post-content .bhavarth *,
+.entry-content .artha *,
+.entry-content .meaning *,
+.entry-content .bhavarth * {
+  font-family: var(--marathi-font) !important;
+  font-weight: 400 !important;
+  line-height: inherit !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+  color: var(--content-text) !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --content-font-size: 1.05rem;
+    --verse-font-size: 1.12rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --content-font-size: 1rem;
+    --verse-font-size: 1rem;
+    --content-line-height: 1.85;
+  }
+
+  .post-title,
+  .page-title,
+  .inner-breadcrumb-content h1,
+  .abhang-post-main .post-title,
+  .abhang-post-main .post-header .post-title,
+  body.is-standard-granth-reading-page .post-title,
+  body.is-dnyaneshwari-adhyay-page .post-title,
+  body.blog-post-page .post-title,
+  .marathi-page-title {
+    font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
+    line-height: 1.18 !important;
+  }
+}
+
+
+/* Hero title contrast fix: breadcrumb/blog image heroes need light text over photos. */
+.inner-breadcrumb-content h1 {
+  color: #ffffff !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.72), 0 2px 6px rgba(0, 0, 0, 0.72) !important;
+}
+
+.inner-breadcrumb-nav,
+.inner-breadcrumb-nav a {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.inner-breadcrumb-nav span:last-child {
+  color: #ffd7a3 !important;
+}
+
+
+/* Live blog paragraph size match. */
+body.blog-post-page .blog-post-content,
+body.blog-post-page .post-content,
+body.blog-post-page .blog-post-content p,
+body.blog-post-page .post-content p,
+body.blog-post-page .blog-post-content li,
+body.blog-post-page .post-content li {
+  font-size: 18px !important;
+  line-height: 1.9 !important;
+  font-weight: 400 !important;
+}
+
+@media (max-width: 900px) {
+  body.blog-post-page .blog-post-content,
+  body.blog-post-page .post-content,
+  body.blog-post-page .blog-post-content p,
+  body.blog-post-page .post-content p,
+  body.blog-post-page .blog-post-content li,
+  body.blog-post-page .post-content li {
+    font-size: 17px !important;
+    line-height: 1.9 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.blog-post-page .blog-post-content,
+  body.blog-post-page .post-content,
+  body.blog-post-page .blog-post-content p,
+  body.blog-post-page .post-content p,
+  body.blog-post-page .blog-post-content li,
+  body.blog-post-page .post-content li {
+    font-size: 16px !important;
+    line-height: 1.85 !important;
+  }
+}
+
+
+/* Live blog detail title size match. */
+body.blog-post-page .post-header .post-title,
+body.blog-post-page .post-article .post-title,
+body.blog-post-page .blog-post-card .post-title {
+  font-size: 2rem !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+@media (max-width: 576px) {
+  body.blog-post-page .post-header .post-title,
+  body.blog-post-page .post-article .post-title,
+  body.blog-post-page .blog-post-card .post-title {
+    font-size: 1.7rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* Direct Abhang range content layout. */
+body.abhang-range-page .abhang-grid-section {
+  padding-top: 24px;
+}
+
+body.abhang-range-page .abhang-grid-inner {
+  max-width: 1050px;
+}
+
+body.abhang-range-page .abhang-range-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+body.abhang-range-page .abhang-range-tab,
+body.abhang-range-page .abhang-range-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  border-radius: 8px;
+  background: #fffaf3;
+  color: #9a4a08;
+  font-family: var(--marathi-font);
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+body.abhang-range-page .abhang-range-tab.active,
+body.abhang-range-page .abhang-range-tab:hover,
+body.abhang-range-page .abhang-range-nav-link:hover {
+  background: #ff6600;
+  border-color: #ff6600;
+  color: #ffffff;
+}
+
+body.abhang-range-page .abhang-content-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+body.abhang-range-page .abhang-content-block {
+  width: 100%;
+  padding: 28px 30px;
+  border: 1px solid rgba(181, 118, 45, 0.22);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(56, 44, 30, 0.07);
+  overflow-wrap: anywhere;
+}
+
+body.abhang-range-page .abhang-content-header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+body.abhang-range-page .abhang-content-number {
+  width: fit-content;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #fff1df;
+  color: #b45309;
+  font-family: var(--marathi-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+body.abhang-range-page .abhang-content-title {
+  margin: 0;
+  color: var(--heading-text);
+  font-family: var(--marathi-font);
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+body.abhang-range-page .abhang-readable-verses,
+body.abhang-range-page .abhang-readable-verses p,
+body.abhang-range-page .abhang-readable-verses span,
+body.abhang-range-page .abhang-readable-verses strong,
+body.abhang-range-page .abhang-readable-verses b,
+body.abhang-range-page .abhang-readable-verses .natache-line {
+  color: var(--heading-text) !important;
+  font-family: var(--marathi-font) !important;
+  font-size: var(--verse-font-size) !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+body.abhang-range-page .abhang-readable-verses p {
+  margin: 0 0 12px;
+}
+
+body.abhang-range-page .abhang-readable-verses p:last-child {
+  margin-bottom: 0;
+}
+
+body.abhang-range-page .abhang-readable-meaning {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(181, 118, 45, 0.18);
+}
+
+body.abhang-range-page .abhang-readable-meaning-title {
+  margin: 0 0 10px;
+  color: #b45309;
+  font-family: var(--marathi-font);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+body.abhang-range-page .abhang-readable-meaning,
+body.abhang-range-page .abhang-readable-meaning p,
+body.abhang-range-page .abhang-readable-meaning span,
+body.abhang-range-page .abhang-readable-meaning strong,
+body.abhang-range-page .abhang-readable-meaning b {
+  color: var(--content-text) !important;
+  font-family: var(--marathi-font) !important;
+  font-size: var(--content-font-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--content-line-height) !important;
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
+}
+
+body.abhang-range-page .abhang-readable-meaning p {
+  margin: 0 0 12px;
+}
+
+body.abhang-range-page .abhang-item-actions {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(181, 118, 45, 0.18);
+}
+
+body.abhang-range-page .abhang-range-bottom-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 980px;
+  margin: 32px auto 0;
+}
+
+body.abhang-range-page .abhang-range-bottom-nav > div:last-child {
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  body.abhang-range-page .abhang-grid-section {
+    padding-top: 18px;
+  }
+
+  body.abhang-range-page .abhang-range-tabs {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  body.abhang-range-page .abhang-range-tab {
+    flex: 1 1 calc(50% - 8px);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  body.abhang-range-page .abhang-content-list {
+    gap: 22px;
+  }
+
+  body.abhang-range-page .abhang-content-block {
+    padding: 22px 16px;
+  }
+
+  body.abhang-range-page .abhang-content-title {
+    font-size: 1.25rem;
+  }
+
+  body.abhang-range-page .abhang-range-bottom-nav {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  body.abhang-range-page .abhang-range-bottom-nav > div:last-child {
+    text-align: left;
+  }
+
+  body.abhang-range-page .abhang-range-nav-link {
+    width: 100%;
+  }
+}
+
+/* Hide Abhang meaning/explanation on public Abhang displays. */
+body.abhang-range-page .abhang-readable-meaning,
+body.abhang-range-page .abhang-meaning-section,
+body.abhang-range-page .abhang-meaning,
+body.abhang-post-page .abhang-readable-meaning,
+body.abhang-post-page .abhang-meaning-section,
+body.abhang-post-page .abhang-meaning,
+body.abhang-post-page .meaning-heading,
+body.abhang-post-page .oviar,
+.abhang-content-block .abhang-readable-meaning,
+.abhang-content-block .abhang-meaning-section,
+.abhang-content-block .abhang-meaning {
+  display: none !important;
+}
+
+body.abhang-range-page .abhang-item-actions,
+body.abhang-post-page .abhang-post-actions {
+  margin-top: 28px !important;
+  padding-top: 18px !important;
+}
+
+@media (max-width: 576px) {
+  body.abhang-range-page .abhang-item-actions,
+  body.abhang-post-page .abhang-post-actions {
+    margin-top: 24px !important;
+    padding-top: 16px !important;
+  }
+}
+
+/* Abhang card title alignment and duplicate-safe verse layout. */
+body.abhang-range-page .abhang-content-title,
+.abhang-content-block .abhang-content-title {
+  width: 100%;
+  text-align: center !important;
+  font-weight: 700;
+}
+
+body.abhang-range-page .abhang-readable-verses,
+.abhang-content-block .abhang-readable-verses {
+  text-align: center;
+}
+
+body.abhang-post-page .post-header .post-title {
+  text-align: center !important;
+}
+
+/* Shared Abhang range selector cards. Keeps Sant selector pages out of the old numbered-list layout. */
+body.abhang-range-selector-page .abhang-grid-inner,
+body.abhang-list-page .abhang-range-selector-grid {
+  max-width: 1050px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.abhang-range-selector-page .abhang-grid-heading,
+body.abhang-range-selector-page .dnyaneshwar-heading {
+  text-align: center !important;
+  margin: 0 0 28px !important;
+  color: var(--heading-text) !important;
+  font-family: var(--marathi-font) !important;
+  font-size: clamp(1.7rem, 3vw, 2.35rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+}
+
+body.abhang-range-selector-page .abhang-range-selector-grid,
+body.abhang-list-page .abhang-range-selector-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) !important;
+  gap: 18px !important;
+  width: 100% !important;
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  counter-reset: none !important;
+}
+
+body.abhang-range-selector-page .abhang-range-selector-grid .sahitya-link,
+body.abhang-range-selector-page .abhang-range-selector-grid .dnyaneshwar-link,
+body.abhang-list-page .abhang-range-selector-grid .sahitya-link,
+body.abhang-list-page .abhang-range-selector-grid .dnyaneshwar-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 78px !important;
+  padding: 16px 18px !important;
+  border: 1px solid rgba(255, 102, 0, 0.26) !important;
+  border-radius: 8px !important;
+  background: #fffaf3 !important;
+  color: #9a3412 !important;
+  box-shadow: 0 10px 22px rgba(56, 44, 30, 0.06) !important;
+  font-family: var(--marathi-font) !important;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+}
+
+body.abhang-range-selector-page .abhang-range-selector-grid .sahitya-link::before,
+body.abhang-list-page .abhang-range-selector-grid .sahitya-link::before {
+  content: none !important;
+}
+
+body.abhang-range-selector-page .abhang-range-selector-grid .sahitya-link:hover,
+body.abhang-range-selector-page .abhang-range-selector-grid .dnyaneshwar-link:hover,
+body.abhang-list-page .abhang-range-selector-grid .sahitya-link:hover,
+body.abhang-list-page .abhang-range-selector-grid .dnyaneshwar-link:hover {
+  transform: translateY(-2px) !important;
+  border-color: #ff6600 !important;
+  background: #fffbf5 !important;
+  color: #a02020 !important;
+  box-shadow: 0 14px 28px rgba(160, 32, 32, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  body.abhang-range-selector-page .abhang-range-selector-grid,
+  body.abhang-list-page .abhang-range-selector-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  body.abhang-range-selector-page .abhang-range-selector-grid .sahitya-link,
+  body.abhang-range-selector-page .abhang-range-selector-grid .dnyaneshwar-link,
+  body.abhang-list-page .abhang-range-selector-grid .sahitya-link,
+  body.abhang-list-page .abhang-range-selector-grid .dnyaneshwar-link {
+    min-height: 66px !important;
+    padding: 12px 10px !important;
+    font-size: clamp(0.98rem, 4.2vw, 1.1rem) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body.abhang-range-selector-page .abhang-range-selector-grid,
+  body.abhang-list-page .abhang-range-selector-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* Sant Dnyaneshwar Haripath verse formatting. */
+body.haripath-meaning-normal-page .haripath-item {
+  margin: 0 0 30px !important;
+  padding: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse.haripath-verse-block {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  line-height: 1.45 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-number {
+  display: none !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-stanzas {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-stanza {
+  display: block !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse p.haripath-line {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  text-wrap: nowrap !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse p.haripath-line + p.haripath-line {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-verse p.haripath-ending-line {
+  white-space: nowrap !important;
+}
+
+@media (max-width: 576px) {
+  body.haripath-meaning-normal-page .haripath-item {
+    margin-bottom: 26px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-stanzas {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .haripath-verse .haripath-stanza {
+    margin-bottom: 14px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .haripath-verse p.haripath-line {
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    text-wrap: auto !important;
+  }
+}
+/* Runtime-rendered Sant Dnyaneshwar Haripath stanza formatting. */
+body.haripath-meaning-normal-page .post-content .abhang-readable-list {
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item {
+  margin: 0 0 30px !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-number {
+  display: none !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: left !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  line-height: 1.45 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .haripath-stanza {
+  display: block !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .haripath-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses p.haripath-line {
+  position: relative !important;
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  text-wrap: nowrap !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses p.haripath-line + p.haripath-line {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .haripath-inline-number {
+  position: absolute !important;
+  right: calc(100% + 12px) !important;
+  top: 0 !important;
+  display: inline-block !important;
+  min-width: 1.35em !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses p.haripath-line:first-child::before {
+  content: none !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses p.haripath-ending-line,
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .verse-end {
+  white-space: nowrap !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .verse-end {
+  display: inline !important;
+}
+
+@media (max-width: 576px) {
+  body.haripath-meaning-normal-page .post-content .abhang-readable-item {
+    margin-bottom: 26px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses .haripath-stanza {
+    margin-bottom: 14px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses p.haripath-line {
+    width: auto !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    text-wrap: auto !important;
+  }
+}
+/* Amrutanubhav book-style centered reading layout. */
+body.amrutanubhav-page .post-content,
+body.amrutanubhav-page .post-content .abhang-verse,
+body.amrutanubhav-page .post-content .entry-content {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.amrutanubhav-page .post-content .entry-content {
+  text-align: center !important;
+}
+
+body.amrutanubhav-page .post-content .entry-content .hdr2,
+body.amrutanubhav-page .post-content .entry-content .hdr3,
+body.amrutanubhav-page .post-content .entry-content .amrutanubhav-chapter-title {
+  width: min(100%, 760px) !important;
+  margin: 0 auto 18px !important;
+  text-align: center !important;
+  line-height: 1.55 !important;
+}
+
+body.amrutanubhav-page .post-content .entry-content .amrutanubhav-verse-block,
+body.amrutanubhav-page .post-content .entry-content p:not(.hdr2):not(.hdr3) {
+  display: block !important;
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  margin: 0 auto 20px !important;
+  text-align: justify !important;
+  text-align-last: center !important;
+  line-height: 1.7 !important;
+  white-space: normal !important;
+}
+
+body.amrutanubhav-page .post-content .entry-content p[style] {
+  text-align: justify !important;
+}
+
+body.amrutanubhav-page .post-content .entry-content .hdr2[style],
+body.amrutanubhav-page .post-content .entry-content .hdr3[style],
+body.amrutanubhav-page .post-content .entry-content .amrutanubhav-chapter-title[style] {
+  text-align: center !important;
+}
+
+@media (max-width: 576px) {
+  body.amrutanubhav-page .post-content .entry-content .hdr2,
+  body.amrutanubhav-page .post-content .entry-content .hdr3,
+  body.amrutanubhav-page .post-content .entry-content .amrutanubhav-chapter-title,
+  body.amrutanubhav-page .post-content .entry-content .amrutanubhav-verse-block,
+  body.amrutanubhav-page .post-content .entry-content p:not(.hdr2):not(.hdr3) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+/* Dnyaneshwar Virani reading layout. */
+body.dnyaneshwar-virani-page .post-content .abhang-verse,
+body.dnyaneshwar-virani-page .post-content .entry-content {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-section-title,
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-main-lines,
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-main-lines *,
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-hari-om {
+  text-align: center !important;
+  font-weight: 700 !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-section-title {
+  margin: 22px auto 26px !important;
+  color: var(--heading-text) !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-main-lines {
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 28px !important;
+  padding: 0 !important;
+  line-height: 1.7 !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-meaning {
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto 18px !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-meaning *,
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-meaning a {
+  font-weight: 400 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-virani-page .post-content .entry-content .virani-hari-om {
+  margin: 22px auto !important;
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwar-virani-page .post-content .entry-content .virani-main-lines,
+  body.dnyaneshwar-virani-page .post-content .entry-content .virani-meaning {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+/* Changdev Pasashti reading layout. */
+body.changdev-pasashti-page .post-content .abhang-verse,
+body.changdev-pasashti-page .post-content .entry-content {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: left !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content > div,
+body.changdev-pasashti-page .post-content .entry-content > div[style] {
+  text-align: left !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-meta-line {
+  width: 100% !important;
+  max-width: 820px !important;
+  margin: 0 auto 12px !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-meta-line b,
+body.changdev-pasashti-page .post-content .entry-content .changdev-meta-line strong {
+  font-weight: 700 !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-ovi-line {
+  width: 100% !important;
+  max-width: 820px !important;
+  margin: 22px auto 6px !important;
+  text-align: left !important;
+  font-weight: 700 !important;
+  line-height: 1.7 !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-ovi-line b,
+body.changdev-pasashti-page .post-content .entry-content .changdev-ovi-line strong {
+  font-weight: 700 !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-meaning-line {
+  width: 100% !important;
+  max-width: 820px !important;
+  margin: 0 auto 18px !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content .changdev-meaning-line *,
+body.changdev-pasashti-page .post-content .entry-content .changdev-meaning-line a {
+  font-weight: 400 !important;
+  text-align: left !important;
+}
+
+body.changdev-pasashti-page .post-content .entry-content hr {
+  width: 100% !important;
+  max-width: 820px !important;
+  margin: 18px auto !important;
+}
+
+@media (max-width: 576px) {
+  body.changdev-pasashti-page .post-content .entry-content .changdev-meta-line,
+  body.changdev-pasashti-page .post-content .entry-content .changdev-ovi-line,
+  body.changdev-pasashti-page .post-content .entry-content .changdev-meaning-line,
+  body.changdev-pasashti-page .post-content .entry-content hr {
+    max-width: 100% !important;
+  }
+}
+/* Dnyaneshwar Aarti centered layout. */
+body.dnyaneshwar-aarti-page .post-content .abhang-verse,
+body.dnyaneshwar-aarti-page .post-content .entry-content {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-aarti-page .post-content .entry-content p {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  line-height: 1.85 !important;
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwar-aarti-page .post-content .entry-content p {
+    width: 100% !important;
+  }
+}
+
+/* Dnyaneshwar Pasaydan reading layout. */
+body.dnyaneshwar-pasaydan-page .post-content .abhang-verse,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-verse-line,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-verse-line *,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line strong {
+  font-weight: 800 !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-meaning-line,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-meaning-line * {
+  font-weight: 400 !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p[dir="ltr"] > span[style*="#800000"] > strong,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p[dir="ltr"] > span[style*="800000"] > strong {
+  font-weight: 800 !important;
+}
+
+/* Pasaydan direct bold fallback. */
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line strong {
+  font-weight: 800 !important;
+  -webkit-text-stroke: 0.15px currentColor;
+}
+
+
+/* Pasaydan centered verse column. */
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line strong {
+  text-align: center !important;
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line {
+    width: 100% !important;
+  }
+}
+
+/* Pasaydan legacy table centering fix. */
+body.dnyaneshwar-pasaydan-page .post-content .abhang-verse {
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .boldgrid-section,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .container,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .row,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .col-md-12,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .col-xs-12,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .col-sm-12,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content table,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content tbody,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content tr,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content td {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line {
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 28px !important;
+  text-align: center !important;
+}
+
+/* Pasaydan full-page center alignment fix. */
+body.dnyaneshwar-pasaydan-page .abhang-post-main,
+body.dnyaneshwar-pasaydan-page .abhang-post,
+body.dnyaneshwar-pasaydan-page .post-content,
+body.dnyaneshwar-pasaydan-page .post-content .abhang-verse,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .boldgrid-section,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .container,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .row,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content [class*="col-"] {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .abhang-verse {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content table.pasaydan-content-table,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content table.pasaydan-content-table tbody,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content table.pasaydan-content-table tr,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content table.pasaydan-content-table td {
+  width: 100% !important;
+  max-width: none !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content p.pasaydan-verse-line {
+  display: table !important;
+  width: auto !important;
+  max-width: calc(100vw - 48px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Pasaydan moved main lines centered block. */
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 34px !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto 28px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-weight: 800 !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line strong {
+  display: inline !important;
+  text-align: center !important;
+  font-weight: 800 !important;
+}
+
+/* Pasaydan same as abhang centered static block. */
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-static-centered,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered {
+  display: block !important;
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto 34px !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-static-centered p.pasaydan-verse-line,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 0 28px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-weight: 800 !important;
+  line-height: 2.05 !important;
+}
+
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-static-centered p.pasaydan-verse-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-static-centered p.pasaydan-verse-line strong,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line span,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-centered p.pasaydan-main-line strong {
+  display: inline !important;
+  text-align: center !important;
+  font-weight: 800 !important;
+}
+
+
+
+/* Shared inner breadcrumb hero styles for sant-only pages. */
+.inner-breadcrumb-hero {
+  --breadcrumb-bg: url('../assests/vaari.webp');
+  position: relative !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 410px !important;
+  margin: 0 !important;
+  padding: 0 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  color: #ffffff !important;
+  isolation: isolate !important;
+  background-image: var(--breadcrumb-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.inner-breadcrumb-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: var(--breadcrumb-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  transform: scale(1.04);
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.inner-breadcrumb-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -2 !important;
+  background: linear-gradient(90deg, rgba(36, 59, 90, 0.84) 0%, rgba(36, 59, 90, 0.58) 45%, rgba(16, 22, 32, 0.58) 100%), rgba(0, 0, 0, 0.55) !important;
+}
+
+.inner-breadcrumb-content {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(100%, 1120px) !important;
+  margin: 0 auto !important;
+}
+
+.inner-breadcrumb-content h1 {
+  color: #ffffff !important;
+  font-size: clamp(1.85rem, 4vw, 3.6rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.72), 0 2px 6px rgba(0, 0, 0, 0.72) !important;
+}
+
+.inner-breadcrumb-nav,
+.inner-breadcrumb-nav a,
+.inner-breadcrumb-nav span {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.inner-breadcrumb-nav span:last-child {
+  color: #ffd7a3 !important;
+}
+
+body.has-inner-breadcrumb .sant-title-section,
+body.has-inner-breadcrumb .blog-hero,
+body.has-inner-breadcrumb .sant-breadcrumb {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .inner-breadcrumb-hero {
+    min-height: 300px !important;
+    padding: 0 1rem !important;
+  }
+}
+
+/* Shared Marathi reading typography for abhang, aarti, ovi and gaatha pages. */
+.sant-page-main,
+.sant-page-main *,
+.abhang-post-main,
+.abhang-post-main * {
+  font-family: 'Mukta', Arial, Helvetica, Verdana, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+.abhang-post-main .post-title,
+.abhang-post-main .post-title[style] {
+  font-family: 'Mukta', Arial, Helvetica, Verdana, sans-serif !important;
+  font-size: clamp(2rem, 4vw, 3.35rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.16 !important;
+  color: #a02020 !important;
+}
+
+.abhang-post-main .post-content,
+.abhang-post-main .abhang-verse,
+.abhang-post-main .entry-content,
+.abhang-post-main .entry-content p,
+.abhang-post-main .entry-content p[style],
+.abhang-post-main .entry-content span,
+.abhang-post-main .entry-content span[style],
+.abhang-post-main .entry-content strong,
+.abhang-post-main .entry-content b,
+.abhang-post-main .entry-content li,
+.abhang-post-main .entry-content div,
+.abhang-post-main .marathi-verse,
+.abhang-post-main .marathi-meaning,
+.abhang-post-main .marathi-paragraph {
+  font-family: 'Mukta', Arial, Helvetica, Verdana, sans-serif !important;
+  font-size: clamp(1.08rem, 1.3vw, 1.22rem) !important;
+  line-height: 1.9 !important;
+}
+
+.abhang-post-main .entry-content strong,
+.abhang-post-main .entry-content b {
+  font-weight: 700 !important;
+}
+
+@media (max-width: 576px) {
+  .abhang-post-main .post-content,
+  .abhang-post-main .abhang-verse,
+  .abhang-post-main .entry-content,
+  .abhang-post-main .entry-content p,
+  .abhang-post-main .entry-content p[style],
+  .abhang-post-main .entry-content span,
+  .abhang-post-main .entry-content span[style],
+  .abhang-post-main .entry-content strong,
+  .abhang-post-main .entry-content b,
+  .abhang-post-main .entry-content li,
+  .abhang-post-main .entry-content div,
+  .abhang-post-main .marathi-verse,
+  .abhang-post-main .marathi-meaning,
+  .abhang-post-main .marathi-paragraph {
+    font-size: 1.05rem !important;
+    line-height: 1.85 !important;
+  }
+}
+/* Shared Aarti component typography. */
+.aarti-content {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 20px 56px !important;
+  box-sizing: border-box !important;
+}
+
+.aarti-content .post-header {
+  text-align: center !important;
+}
+
+.aarti-title,
+.aarti-content .aarti-title,
+.aarti-content .post-title.aarti-title {
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-family: inherit !important;
+  font-size: clamp(2rem, 4vw, 3.35rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.16 !important;
+  color: inherit !important;
+  letter-spacing: 0 !important;
+}
+
+.aarti-verses {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 20px 0 0 !important;
+  text-align: center !important;
+  color: #000 !important;
+  font-family: inherit !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 1.9 !important;
+  box-sizing: border-box !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+}
+
+.aarti-entry {
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.aarti-subtitle {
+  margin: 0 0 22px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 700 !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  letter-spacing: 0 !important;
+}
+
+.aarti-stanza {
+  width: 100% !important;
+  margin: 0 auto 24px !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.aarti-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+.aarti-line,
+.aarti-content .entry-content .aarti-line,
+.aarti-content .entry-content p.aarti-line {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  letter-spacing: 0 !important;
+}
+
+.aarti-divider {
+  width: min(100%, 760px) !important;
+  margin: 28px auto !important;
+  border: 0 !important;
+  border-top: 1px solid #e0e0e0 !important;
+}
+
+@media (max-width: 576px) {
+  .aarti-content {
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .aarti-title,
+  .aarti-content .aarti-title,
+  .aarti-content .post-title.aarti-title {
+    font-size: clamp(1.85rem, 9vw, 2.35rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .aarti-verses {
+    font-size: 18px !important;
+    line-height: 1.85 !important;
+  }
+
+  .aarti-stanza {
+    margin-bottom: 20px !important;
+  }
+}
+
+/* Keep Aarti pages centered against older abhang layout overrides. */
+.abhang-post-main .abhang-post.aarti-content,
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content {
+  width: min(100%, 900px) !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .abhang-post.aarti-content .post-content,
+.abhang-post-main .abhang-post.aarti-content .aarti-verses,
+.abhang-post-main .abhang-post.aarti-content .aarti-entry,
+.abhang-post-main .abhang-post.aarti-content .aarti-stanza,
+.abhang-post-main .abhang-post.aarti-content .aarti-line,
+.abhang-post-main .abhang-post.aarti-content .entry-content p.aarti-line {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+@media (max-width: 576px) {
+  .abhang-post-main .abhang-post.aarti-content,
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Tukaram Aarti final centered justified reading column. */
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content {
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-verses,
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-entry,
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-stanza {
+  width: min(100%, 620px) !important;
+  max-width: 620px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-line,
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .entry-content p.aarti-line {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: justify !important;
+  text-align-last: center !important;
+  text-justify: inter-word !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-subtitle {
+  width: min(100%, 620px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+@media (max-width: 576px) {
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content,
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-verses,
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-entry,
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-stanza,
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-subtitle {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Tukaram Aarti subtitle emphasis. */
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-subtitle {
+  font-weight: 800 !important;
+}
+/* Gatha typography and stanza-only spacing. */
+body.gatha-typography-page .abhang-post .gatha-content,
+body.gatha-typography-page .abhang-post .gatha-content p,
+body.gatha-typography-page .abhang-post .gatha-content p[style],
+body.gatha-typography-page .abhang-post .gatha-content span,
+body.gatha-typography-page .abhang-post .gatha-content div,
+body.gatha-typography-page .abhang-post .gatha-content strong,
+body.gatha-typography-page .abhang-post .gatha-content b {
+  font-family: 'Mukta', Arial, Helvetica, Verdana, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  font-synthesis-weight: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+body.gatha-typography-page .abhang-post .gatha-content {
+  width: 100%;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left !important;
+  text-align-last: auto !important;
+  text-justify: auto;
+  word-spacing: normal;
+  letter-spacing: normal !important;
+  hyphens: none;
+  box-sizing: border-box;
+}
+
+body.gatha-typography-page .abhang-post .gatha-content p,
+body.gatha-typography-page .abhang-post .gatha-content p.gatha-verse,
+body.gatha-typography-page .abhang-post .gatha-content .devotional-numbered-verse,
+body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-number,
+body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-content,
+body.gatha-typography-page .abhang-post .gatha-content .gatha-entry,
+body.gatha-typography-page .abhang-post .gatha-content .gatha-stanza,
+body.gatha-typography-page .abhang-post .gatha-content .gatha-line {
+  text-align: left !important;
+  text-align-last: auto !important;
+}
+
+body.gatha-typography-page .abhang-post .entry-content br.gatha-stanza-break {
+  display: block;
+  content: "";
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+@media (max-width: 576px) {
+  body.gatha-typography-page .abhang-post .entry-content br.gatha-stanza-break {
+    margin-bottom: 12px;
+  }
+}
+@media (max-width: 640px) {
+  body.gatha-typography-page .abhang-post .gatha-content {
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: left !important;
+  }
+
+  body.gatha-typography-page .abhang-post .gatha-content p,
+  body.gatha-typography-page .abhang-post .gatha-content .devotional-numbered-verse,
+  body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-content,
+  body.gatha-typography-page .abhang-post .gatha-content .gatha-line {
+    text-align: left !important;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
+/* Gatha single-column flow safeguard. */
+body.gatha-typography-page .abhang-post .gatha-content,
+body.gatha-typography-page .abhang-post .gatha-content div {
+  display: block !important;
+  grid-template-columns: 1fr !important;
+  columns: auto !important;
+  column-count: 1 !important;
+  column-width: auto !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  float: none !important;
+}
+
+body.gatha-typography-page .abhang-post .gatha-content p,
+body.gatha-typography-page .abhang-post .gatha-content p.gatha-verse,
+body.gatha-typography-page .abhang-post .gatha-content hr {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  clear: both !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  box-sizing: border-box;
+}
+/* Gatha hanging number alignment. */
+body.gatha-typography-page .abhang-post .gatha-content .devotional-numbered-verse {
+  --gatha-number-gutter: 3.25rem;
+  padding-left: var(--gatha-number-gutter) !important;
+  box-sizing: border-box;
+}
+
+body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-number {
+  display: inline-block !important;
+  width: var(--gatha-number-gutter);
+  margin-left: calc(-1 * var(--gatha-number-gutter)) !important;
+  margin-right: 0 !important;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 640px) {
+  body.gatha-typography-page .abhang-post .gatha-content .devotional-numbered-verse {
+    --gatha-number-gutter: 3rem;
   }
 }

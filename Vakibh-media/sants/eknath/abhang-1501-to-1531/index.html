@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
@@ -6,67 +6,671 @@
   <title>संत एकनाथ अभंग १५०१ ते १५३१ – वाकीभ</title>
   <meta name="description" content="संत एकनाथ अभंग १५०१ ते १५३१ येथे क्रमाने वाचा.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=39">
-  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=30">
-  <script src="../../../Vakibh/js/main.js?v=40" defer></script>
+  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=42">
+  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=67">
+  <script src="../../../Vakibh/js/main.js?v=62" defer></script>
 </head>
-<body class="abhang-list-page">
-  <header>
+<body class="abhang-list-page abhang-range-page">
+      <header>
     <div class="header-container">
-      <a href="../../../index.html" class="logo-link"><img src="../../../Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो" class="logo-img"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="मुख्य मेनू उघडा"><i class="fas fa-bars"></i></button>
-      <nav id="navMenu"><ul><li><a href="../../../index.html">मुखपृष्ठ</a></li><li><a href="../../../index.html#abhangs">अभंग/भजन</a></li><li><a href="../../../index.html#saints">संत</a></li><li><a href="../../../index.html#categories">विभाग</a></li><li><a href="../../../contact/index.html">संपर्क</a></li></ul></nav>
-      <div class="header-actions"><div class="lang-switch-group" aria-label="भाषा निवडा"><button class="lang-switch active" type="button" data-language="marathi">मराठी</button></div><button class="search-trigger-btn" id="searchTrigger" aria-label="शोध उघडा"><i class="fas fa-search"></i></button></div>
+      <a href="../../../index.html" class="logo-link">
+        <img src="../../../Vakibh/vaakibh_logo.svg" alt="&#x0935;&#x093E;&#x0915;&#x0940;&#x092D; &#x0932;&#x094B;&#x0917;&#x094B;" class="logo-img">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="navMenu" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942;">
+        <ul>
+          <li><a href="../../../index.html">&#x092E;&#x0941;&#x0916;&#x092A;&#x0943;&#x0937;&#x094D;&#x0920;</a></li>
+          <li><a href="../../../index.html#abhangs">&#x0905;&#x092D;&#x0902;&#x0917;/&#x092D;&#x091C;&#x0928;</a></li>
+          <li><a href="../../../index.html#saints">&#x0938;&#x0902;&#x0924;</a></li>
+          <li><a href="../../../index.html#categories">&#x0935;&#x093F;&#x092D;&#x093E;&#x0917;</a></li>
+          <li><a href="../../../contact/index.html">&#x0938;&#x0902;&#x092A;&#x0930;&#x094D;&#x0915;</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch-group" aria-label="&#x092D;&#x093E;&#x0937;&#x093E; &#x0928;&#x093F;&#x0935;&#x0921;&#x093E;">
+          <button class="lang-switch active" type="button" data-language="marathi" data-language-option="marathi">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</button>
+          <button class="lang-switch" type="button" data-language="english" data-language-option="english">English</button>
+        </div>
+        <button class="search-trigger-btn" id="searchTrigger" aria-label="&#x0936;&#x094B;&#x0927; &#x0909;&#x0918;&#x0921;&#x093E;" type="button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
   </header>
   <main class="sant-page-main">
     <section class="sant-title-section"><div class="sant-title-inner"><h1 class="sant-page-h1">संत एकनाथ अभंग १५०१ ते १५३१</h1><nav class="sant-quick-links" aria-label="संत एकनाथ विभाग"><a href="../../../index.html" class="sant-quick-link">गृहपृष्ठ</a><a href="../eknath-abhang-gatha/index.html" class="sant-quick-link">एकनाथांचे अभंग / गाथा</a><a href="#abhang-grid" class="sant-quick-link active">अभंग</a></nav></div></section>
-    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">३१ अभंग</span></div></section>
-    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">अभंग सूची</h2><div class="abhang-columns" id="abhangColumns">
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1501/index.html" data-abhang-number="1501" data-search="1501 १५०१ अभंग संत कृपाळुं उदार संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥१॥ काय वानूं मी पामर । थकले सहा अठरा चार ॥२॥ नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥३॥ एका जनार्दनीं शरण । धरा माझी आठवण ॥४॥ ">१५०१. संत कृपाळुं उदार</a></li>
-          <li><a href="../sant-eknath-abhang-1502/index.html" data-abhang-number="1502" data-search="1502 १५०२ अभंग स्वर्ग जयाची पायरी स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥१॥ ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥२॥ ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥३॥ भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥४॥ ">१५०२. स्वर्ग जयाची पायरी</a></li>
-          <li><a href="../sant-eknath-abhang-1503/index.html" data-abhang-number="1503" data-search="1503 १५०३ अभंग मोक्षमुक्ति काकुलती मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥१॥ करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥२॥ हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥३॥ एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥४॥ ">१५०३. मोक्षमुक्ति काकुलती</a></li>
-          <li><a href="../sant-eknath-abhang-1504/index.html" data-abhang-number="1504" data-search="1504 १५०४ अभंग घालितां संतापायीं मिठी घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥१॥ ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥२॥ इच्छिलें तें फळ । जन पावती सकळ ॥३॥ एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥४॥ ">१५०४. घालितां संतापायीं मिठी</a></li>
-          <li><a href="../sant-eknath-abhang-1505/index.html" data-abhang-number="1505" data-search="1505 १५०५ अभंग संतचरणींचा महिमा संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥१॥ ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥२॥ शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥३॥ तया संतांचा सांगात । एका जनार्दन निवांत ॥४॥ ">१५०५. संतचरणींचा महिमा</a></li>
-          <li><a href="../sant-eknath-abhang-1506/index.html" data-abhang-number="1506" data-search="1506 १५०६ अभंग संतसंगत घडे संतसंगत घडे । सायुज्यता जोडे ॥१॥ मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥२॥ एका जनार्दनीं सांगात । घडतां होय देहातीत ॥३॥ ">१५०६. संतसंगत घडे</a></li>
-        </ul>
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1507/index.html" data-abhang-number="1507" data-search="1507 १५०७ अभंग पहातां संतसमुदाय पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥१॥ जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥२॥ तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥३॥ ">१५०७. पहातां संतसमुदाय</a></li>
-          <li><a href="../sant-eknath-abhang-1508/index.html" data-abhang-number="1508" data-search="1508 १५०८ अभंग संतदरुशनें लाभ होय संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥१॥ पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥२॥ यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥३॥ एका जनार्दनीं शरण । संतमहिमान वेगळें ॥४॥ ">१५०८. संतदरुशनें लाभ होय</a></li>
-          <li><a href="../sant-eknath-abhang-1509/index.html" data-abhang-number="1509" data-search="1509 १५०९ अभंग जें सुख संतसज्जनाचे पायीं जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥१॥ तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥२॥ पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥३॥ नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥४॥ क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥५॥ एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥६॥ ">१५०९. जें सुख संतसज्जनाचे पायीं</a></li>
-          <li><a href="../sant-eknath-abhang-1510/index.html" data-abhang-number="1510" data-search="1510 १५१० अभंग सुख अपार संतसंगीं सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥१॥ बहु सुख बहुता परी । येथेंची सई नसेची ॥२॥ स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥३॥ एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥४॥ ">१५१०. सुख अपार संतसंगीं</a></li>
-          <li><a href="../sant-eknath-abhang-1511/index.html" data-abhang-number="1511" data-search="1511 १५११ अभंग संतसुखा नाहीं पार संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥१॥ ऐशी सुखाची वसती । सनकादिक जया गाती ॥२॥ सुखें सुख अनुभव । सुखें नाचतसे देव ॥३॥ तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥४॥ ">१५११. संतसुखा नाहीं पार</a></li>
-          <li><a href="../sant-eknath-abhang-1512/index.html" data-abhang-number="1512" data-search="1512 १५१२ अभंग अमृता उणें आणिता संतजन अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥१॥ नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥२॥ नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥३॥ एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥४॥ ">१५१२. अमृता उणें आणिता संतजन</a></li>
-        </ul>
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1513/index.html" data-abhang-number="1513" data-search="1513 १५१३ अभंग संत ते सोयरे जिवलग सांगाती संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥१॥ कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥२॥ देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥३॥ एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥४॥ ">१५१३. संत ते सोयरे जिवलग सांगाती</a></li>
-          <li><a href="../sant-eknath-abhang-1514/index.html" data-abhang-number="1514" data-search="1514 १५१४ अभंग जे या नेले संता शरण जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥१॥ मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥२॥ महापापी मूढ जन । जाहले पावन दरुशनें ॥३॥ एका जनार्दनीं संत । कॄपावंत दयाळू ॥४॥ ">१५१४. जे या नेले संता शरण</a></li>
-          <li><a href="../sant-eknath-abhang-1515/index.html" data-abhang-number="1515" data-search="1515 १५१५ अभंग मागें संतीं उपकार मागें संतीं उपकार । केला फार न वर्णवें ॥१॥ पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥२॥ दुणा थाव आला पोटीं । संतभेटी होतांची ॥३॥ शरण एका जनार्दनीं । पावन जनीं संत ते ॥४॥ ">१५१५. मागें संतीं उपकार</a></li>
-          <li><a href="../sant-eknath-abhang-1516/index.html" data-abhang-number="1516" data-search="1516 १५१६ अभंग संतांचा उपकार संतांचा उपकार । सांगावया नाहीं पार ॥१॥ आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।२॥ दया अंतरांत वसे । दुजेपणा तेथें नसे ॥३॥ उदारपणें उदार । एका जनार्दनीं निर्धार ॥४॥ ">१५१६. संतांचा उपकार</a></li>
-          <li><a href="../sant-eknath-abhang-1517/index.html" data-abhang-number="1517" data-search="1517 १५१७ अभंग भाग्यवंत संत होती भाग्यवंत संत होती । दीन पतीत तारिती ॥१॥ नाहीं तया भाग्या पार । काय पामर मी बहूं ॥२॥ चुकविता जन्म जरा । संसारा यापासोनी ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत तें ॥४॥ ">१५१७. भाग्यवंत संत होती</a></li>
-          <li><a href="../sant-eknath-abhang-1518/index.html" data-abhang-number="1518" data-search="1518 १५१८ अभंग भाग्यवंत होती संत भाग्यवंत होती संत । दीन पतीत तारिती ॥१॥ उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥२॥ स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत होती ॥४॥ ">१५१८. भाग्यवंत होती संत</a></li>
-        </ul>
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1519/index.html" data-abhang-number="1519" data-search="1519 १५१९ अभंग संतांचे संगती संतांचे संगती । पाप नुरे तें कल्पांती ॥१॥ ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥२॥ तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥३॥ संतचरणींचे रजःकण । वंदी एका जनार्दन ॥४॥ ">१५१९. संतांचे संगती</a></li>
-          <li><a href="../sant-eknath-abhang-1520/index.html" data-abhang-number="1520" data-search="1520 १५२० अभंग संतचरणीचें रजःकण संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥१॥ ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥२॥ शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥३॥ शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥४॥ ">१५२०. संतचरणीचें रजःकण</a></li>
-          <li><a href="../sant-eknath-abhang-1521/index.html" data-abhang-number="1521" data-search="1521 १५२१ अभंग संतचरणीं आलिंगन संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥१॥ इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥२॥ लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥३॥ शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥४॥ ">१५२१. संतचरणीं आलिंगन</a></li>
-          <li><a href="../sant-eknath-abhang-1522/index.html" data-abhang-number="1522" data-search="1522 १५२२ अभंग संताचें चरण ध्यातां संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥१॥ पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥२॥ संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥३॥ शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥४॥ ">१५२२. संताचें चरण ध्यातां</a></li>
-          <li><a href="../sant-eknath-abhang-1523/index.html" data-abhang-number="1523" data-search="1523 १५२३ अभंग संतांच्या दरुशनें संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥१॥ ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥२॥ तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥३॥ शरण एका जनार्दनीं । संत पावन इये जनीं ॥४॥ ">१५२३. संतांच्या दरुशनें</a></li>
-          <li><a href="../sant-eknath-abhang-1524/index.html" data-abhang-number="1524" data-search="1524 १५२४ अभंग अपार महिमा संतांचा अपार महिमा संतांचा । काय बोलुं मी वाचा ॥१॥ मागें तरले पुढें तरती । जदजीवा उद्धरती ॥२॥ नाममात्रा रसायन । देउनी तारिती संतजन ॥३॥ ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥४॥ ">१५२४. अपार महिमा संतांचा</a></li>
-        </ul>
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1525/index.html" data-abhang-number="1525" data-search="1525 १५२५ अभंग संत दयाळ दयाळ संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥१॥ शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥२॥ देउनियां रसायना । तारिताती भवार्णव जाणा ॥३॥ संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥४॥ ">१५२५. संत दयाळ दयाळ</a></li>
-          <li><a href="../sant-eknath-abhang-1526/index.html" data-abhang-number="1526" data-search="1526 १५२६ अभंग संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥१॥ ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥२॥ वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥३॥ एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥४॥ ">१५२६. संत श्रेष्ठ संत श्रेष्ठ</a></li>
-          <li><a href="../sant-eknath-abhang-1527/index.html" data-abhang-number="1527" data-search="1527 १५२७ अभंग धन्य धन्य जगीं संत धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥१॥ कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥२॥ अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥३॥ एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥४॥ ">१५२७. धन्य धन्य जगीं संत</a></li>
-          <li><a href="../sant-eknath-abhang-1528/index.html" data-abhang-number="1528" data-search="1528 १५२८ अभंग तुटती बंधनें संतांच्या दारुशनें तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥१॥ महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥२॥ वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥३॥ पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥४॥ ">१५२८. तुटती बंधनें संतांच्या दारुशनें</a></li>
-          <li><a href="../sant-eknath-abhang-1529/index.html" data-abhang-number="1529" data-search="1529 १५२९ अभंग उदापरणें संत भले उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥१॥ ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥२॥ ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥३॥ एका जनार्दनीं शरण । संत पतीतपावन ॥४॥ ">१५२९. उदापरणें संत भले</a></li>
-          <li><a href="../sant-eknath-abhang-1530/index.html" data-abhang-number="1530" data-search="1530 १५३० अभंग पतीतपावन केलें असें संतीं पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥१॥ सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥२॥ नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥३॥ एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥४॥तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या ref: transliteral संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० ">१५३०. पतीतपावन केलें असें संतीं</a></li>
-        </ul>
-<ul class="abhang-col-list">
-          <li><a href="../sant-eknath-abhang-1531/index.html" data-abhang-number="1531" data-search="1531 १५३१ अभंग मेघापरिस उदार संत मेघापरिस उदार संत । मनोगत पुरविती ॥१॥ आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥२॥ लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥३॥ काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥४॥ शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥५॥ ">१५३१. मेघापरिस उदार संत</a></li>
-        </ul>
-      </div><p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>
+    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangRangeSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">३१ अभंग</span></div></section>
+    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">संत एकनाथ अभंग १५०१ ते १५३१</h2><div class="abhang-content-list" id="abhangContentList" data-total-count="31">
+      <article class="abhang-content-block" id="abhang-1501" data-abhang-number="1501" data-search="1501 १५०१ संत कृपाळुं उदार संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥१॥ काय वानूं मी पामर । थकले सहा अठरा चार ॥२॥ नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥३॥ एका जनार्दनीं शरण । धरा माझी आठवण ॥४॥ 1501 १५०१ अभंग संत कृपाळुं उदार संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥१॥ काय वानूं मी पामर । थकले सहा अठरा चार ॥२॥ नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥३॥ एका जनार्दनीं शरण । धरा माझी आठवण ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०१</span>
+          <h3 class="abhang-content-title">संत कृपाळुं उदार</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥१॥<br />
+काय वानूं मी पामर । थकले सहा अठरा चार ॥२॥<br />
+नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥३॥<br />
+एका जनार्दनीं शरण । धरा माझी आठवण ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1502" data-abhang-number="1502" data-search="1502 १५०२ स्वर्ग जयाची पायरी स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥१॥ ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥२॥ ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥३॥ भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥४॥ 1502 १५०२ अभंग स्वर्ग जयाची पायरी स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥१॥ ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥२॥ ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥३॥ भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०२</span>
+          <h3 class="abhang-content-title">स्वर्ग जयाची पायरी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥१॥<br />
+ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥२॥<br />
+ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥३॥<br />
+भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1503" data-abhang-number="1503" data-search="1503 १५०३ मोक्षमुक्ति काकुलती मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥१॥ करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥२॥ हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥३॥ एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥४॥ 1503 १५०३ अभंग मोक्षमुक्ति काकुलती मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥१॥ करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥२॥ हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥३॥ एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०३</span>
+          <h3 class="abhang-content-title">मोक्षमुक्ति काकुलती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥१॥<br />
+करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥२॥<br />
+हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥३॥<br />
+एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1504" data-abhang-number="1504" data-search="1504 १५०४ घालितां संतापायीं मिठी घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥१॥ ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥२॥ इच्छिलें तें फळ । जन पावती सकळ ॥३॥ एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥४॥ 1504 १५०४ अभंग घालितां संतापायीं मिठी घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥१॥ ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥२॥ इच्छिलें तें फळ । जन पावती सकळ ॥३॥ एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०४</span>
+          <h3 class="abhang-content-title">घालितां संतापायीं मिठी</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥१॥<br />
+ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥२॥<br />
+इच्छिलें तें फळ । जन पावती सकळ ॥३॥<br />
+एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1505" data-abhang-number="1505" data-search="1505 १५०५ संतचरणींचा महिमा संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥१॥ ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥२॥ शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥३॥ तया संतांचा सांगात । एका जनार्दन निवांत ॥४॥ 1505 १५०५ अभंग संतचरणींचा महिमा संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥१॥ ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥२॥ शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥३॥ तया संतांचा सांगात । एका जनार्दन निवांत ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०५</span>
+          <h3 class="abhang-content-title">संतचरणींचा महिमा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥१॥<br />
+ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥२॥<br />
+शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥३॥<br />
+तया संतांचा सांगात । एका जनार्दन निवांत ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1506" data-abhang-number="1506" data-search="1506 १५०६ संतसंगत घडे संतसंगत घडे । सायुज्यता जोडे ॥१॥ मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥२॥ एका जनार्दनीं सांगात । घडतां होय देहातीत ॥३॥ 1506 १५०६ अभंग संतसंगत घडे संतसंगत घडे । सायुज्यता जोडे ॥१॥ मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥२॥ एका जनार्दनीं सांगात । घडतां होय देहातीत ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०६</span>
+          <h3 class="abhang-content-title">संतसंगत घडे</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतसंगत घडे । सायुज्यता जोडे ॥१॥<br />
+मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥२॥<br />
+एका जनार्दनीं सांगात । घडतां होय देहातीत ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1507" data-abhang-number="1507" data-search="1507 १५०७ पहातां संतसमुदाय पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥१॥ जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥२॥ तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥३॥ 1507 १५०७ अभंग पहातां संतसमुदाय पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥१॥ जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥२॥ तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥३॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०७</span>
+          <h3 class="abhang-content-title">पहातां संतसमुदाय</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥१॥<br />
+जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥२॥<br />
+तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥३॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1508" data-abhang-number="1508" data-search="1508 १५०८ संतदरुशनें लाभ होय संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥१॥ पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥२॥ यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥३॥ एका जनार्दनीं शरण । संतमहिमान वेगळें ॥४॥ 1508 १५०८ अभंग संतदरुशनें लाभ होय संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥१॥ पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥२॥ यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥३॥ एका जनार्दनीं शरण । संतमहिमान वेगळें ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०८</span>
+          <h3 class="abhang-content-title">संतदरुशनें लाभ होय</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥१॥<br />
+पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥२॥<br />
+यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥३॥<br />
+एका जनार्दनीं शरण । संतमहिमान वेगळें ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1509" data-abhang-number="1509" data-search="1509 १५०९ जें सुख संतसज्जनाचे पायीं जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥१॥ तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥२॥ पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥३॥ नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥४॥ क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥५॥ एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥६॥ 1509 १५०९ अभंग जें सुख संतसज्जनाचे पायीं जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥१॥ तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥२॥ पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥३॥ नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥४॥ क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥५॥ एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥६॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५०९</span>
+          <h3 class="abhang-content-title">जें सुख संतसज्जनाचे पायीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥१॥<br />
+तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥२॥<br />
+पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥३॥<br />
+नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥४॥<br />
+क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥५॥<br />
+एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥६॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1510" data-abhang-number="1510" data-search="1510 १५१० सुख अपार संतसंगीं सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥१॥ बहु सुख बहुता परी । येथेंची सई नसेची ॥२॥ स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥३॥ एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥४॥ 1510 १५१० अभंग सुख अपार संतसंगीं सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥१॥ बहु सुख बहुता परी । येथेंची सई नसेची ॥२॥ स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥३॥ एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१०</span>
+          <h3 class="abhang-content-title">सुख अपार संतसंगीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥१॥<br />
+बहु सुख बहुता परी । येथेंची सई नसेची ॥२॥<br />
+स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥३॥<br />
+एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1511" data-abhang-number="1511" data-search="1511 १५११ संतसुखा नाहीं पार संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥१॥ ऐशी सुखाची वसती । सनकादिक जया गाती ॥२॥ सुखें सुख अनुभव । सुखें नाचतसे देव ॥३॥ तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥४॥ 1511 १५११ अभंग संतसुखा नाहीं पार संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥१॥ ऐशी सुखाची वसती । सनकादिक जया गाती ॥२॥ सुखें सुख अनुभव । सुखें नाचतसे देव ॥३॥ तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५११</span>
+          <h3 class="abhang-content-title">संतसुखा नाहीं पार</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥१॥<br />
+ऐशी सुखाची वसती । सनकादिक जया गाती ॥२॥<br />
+सुखें सुख अनुभव । सुखें नाचतसे देव ॥३॥<br />
+तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1512" data-abhang-number="1512" data-search="1512 १५१२ अमृता उणें आणिता संतजन अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥१॥ नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥२॥ नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥३॥ एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥४॥ 1512 १५१२ अभंग अमृता उणें आणिता संतजन अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥१॥ नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥२॥ नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥३॥ एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१२</span>
+          <h3 class="abhang-content-title">अमृता उणें आणिता संतजन</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥१॥<br />
+नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥२॥<br />
+नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥३॥<br />
+एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1513" data-abhang-number="1513" data-search="1513 १५१३ संत ते सोयरे जिवलग सांगाती संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥१॥ कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥२॥ देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥३॥ एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥४॥ 1513 १५१३ अभंग संत ते सोयरे जिवलग सांगाती संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥१॥ कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥२॥ देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥३॥ एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१३</span>
+          <h3 class="abhang-content-title">संत ते सोयरे जिवलग सांगाती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥१॥<br />
+कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥२॥<br />
+देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥३॥<br />
+एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1514" data-abhang-number="1514" data-search="1514 १५१४ जे या नेले संता शरण जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥१॥ मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥२॥ महापापी मूढ जन । जाहले पावन दरुशनें ॥३॥ एका जनार्दनीं संत । कॄपावंत दयाळू ॥४॥ 1514 १५१४ अभंग जे या नेले संता शरण जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥१॥ मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥२॥ महापापी मूढ जन । जाहले पावन दरुशनें ॥३॥ एका जनार्दनीं संत । कॄपावंत दयाळू ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१४</span>
+          <h3 class="abhang-content-title">जे या नेले संता शरण</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥१॥<br />
+मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥२॥<br />
+महापापी मूढ जन । जाहले पावन दरुशनें ॥३॥<br />
+एका जनार्दनीं संत । कॄपावंत दयाळू ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1515" data-abhang-number="1515" data-search="1515 १५१५ मागें संतीं उपकार मागें संतीं उपकार । केला फार न वर्णवें ॥१॥ पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥२॥ दुणा थाव आला पोटीं । संतभेटी होतांची ॥३॥ शरण एका जनार्दनीं । पावन जनीं संत ते ॥४॥ 1515 १५१५ अभंग मागें संतीं उपकार मागें संतीं उपकार । केला फार न वर्णवें ॥१॥ पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥२॥ दुणा थाव आला पोटीं । संतभेटी होतांची ॥३॥ शरण एका जनार्दनीं । पावन जनीं संत ते ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१५</span>
+          <h3 class="abhang-content-title">मागें संतीं उपकार</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">मागें संतीं उपकार । केला फार न वर्णवें ॥१॥<br />
+पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥२॥<br />
+दुणा थाव आला पोटीं । संतभेटी होतांची ॥३॥<br />
+शरण एका जनार्दनीं । पावन जनीं संत ते ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1516" data-abhang-number="1516" data-search="1516 १५१६ संतांचा उपकार संतांचा उपकार । सांगावया नाहीं पार ॥१॥ आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।२॥ दया अंतरांत वसे । दुजेपणा तेथें नसे ॥३॥ उदारपणें उदार । एका जनार्दनीं निर्धार ॥४॥ 1516 १५१६ अभंग संतांचा उपकार संतांचा उपकार । सांगावया नाहीं पार ॥१॥ आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।२॥ दया अंतरांत वसे । दुजेपणा तेथें नसे ॥३॥ उदारपणें उदार । एका जनार्दनीं निर्धार ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१६</span>
+          <h3 class="abhang-content-title">संतांचा उपकार</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतांचा उपकार । सांगावया नाहीं पार ॥१॥<br />
+आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।२॥<br />
+दया अंतरांत वसे । दुजेपणा तेथें नसे ॥३॥<br />
+उदारपणें उदार । एका जनार्दनीं निर्धार ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1517" data-abhang-number="1517" data-search="1517 १५१७ भाग्यवंत संत होती भाग्यवंत संत होती । दीन पतीत तारिती ॥१॥ नाहीं तया भाग्या पार । काय पामर मी बहूं ॥२॥ चुकविता जन्म जरा । संसारा यापासोनी ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत तें ॥४॥ 1517 १५१७ अभंग भाग्यवंत संत होती भाग्यवंत संत होती । दीन पतीत तारिती ॥१॥ नाहीं तया भाग्या पार । काय पामर मी बहूं ॥२॥ चुकविता जन्म जरा । संसारा यापासोनी ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत तें ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१७</span>
+          <h3 class="abhang-content-title">भाग्यवंत संत होती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">भाग्यवंत संत होती । दीन पतीत तारिती ॥१॥<br />
+नाहीं तया भाग्या पार । काय पामर मी बहूं ॥२॥<br />
+चुकविता जन्म जरा । संसारा यापासोनी ॥३॥<br />
+एका जनार्दनीं शरण । पतीतपावन संत तें ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1518" data-abhang-number="1518" data-search="1518 १५१८ भाग्यवंत होती संत भाग्यवंत होती संत । दीन पतीत तारिती ॥१॥ उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥२॥ स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत होती ॥४॥ 1518 १५१८ अभंग भाग्यवंत होती संत भाग्यवंत होती संत । दीन पतीत तारिती ॥१॥ उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥२॥ स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत होती ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१८</span>
+          <h3 class="abhang-content-title">भाग्यवंत होती संत</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">भाग्यवंत होती संत । दीन पतीत तारिती ॥१॥<br />
+उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥२॥<br />
+स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥३॥<br />
+एका जनार्दनीं शरण । पतीतपावन संत होती ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1519" data-abhang-number="1519" data-search="1519 १५१९ संतांचे संगती संतांचे संगती । पाप नुरे तें कल्पांती ॥१॥ ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥२॥ तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥३॥ संतचरणींचे रजःकण । वंदी एका जनार्दन ॥४॥ 1519 १५१९ अभंग संतांचे संगती संतांचे संगती । पाप नुरे तें कल्पांती ॥१॥ ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥२॥ तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥३॥ संतचरणींचे रजःकण । वंदी एका जनार्दन ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५१९</span>
+          <h3 class="abhang-content-title">संतांचे संगती</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतांचे संगती । पाप नुरे तें कल्पांती ॥१॥<br />
+ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥२॥<br />
+तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥३॥<br />
+संतचरणींचे रजःकण । वंदी एका जनार्दन ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1520" data-abhang-number="1520" data-search="1520 १५२० संतचरणीचें रजःकण संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥१॥ ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥२॥ शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥३॥ शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥४॥ 1520 १५२० अभंग संतचरणीचें रजःकण संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥१॥ ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥२॥ शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥३॥ शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२०</span>
+          <h3 class="abhang-content-title">संतचरणीचें रजःकण</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥१॥<br />
+ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥२॥<br />
+शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥३॥<br />
+शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1521" data-abhang-number="1521" data-search="1521 १५२१ संतचरणीं आलिंगन संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥१॥ इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥२॥ लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥३॥ शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥४॥ 1521 १५२१ अभंग संतचरणीं आलिंगन संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥१॥ इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥२॥ लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥३॥ शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२१</span>
+          <h3 class="abhang-content-title">संतचरणीं आलिंगन</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥१॥<br />
+इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥२॥<br />
+लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥३॥<br />
+शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1522" data-abhang-number="1522" data-search="1522 १५२२ संताचें चरण ध्यातां संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥१॥ पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥२॥ संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥३॥ शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥४॥ 1522 १५२२ अभंग संताचें चरण ध्यातां संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥१॥ पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥२॥ संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥३॥ शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२२</span>
+          <h3 class="abhang-content-title">संताचें चरण ध्यातां</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥१॥<br />
+पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥२॥<br />
+संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥३॥<br />
+शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1523" data-abhang-number="1523" data-search="1523 १५२३ संतांच्या दरुशनें संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥१॥ ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥२॥ तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥३॥ शरण एका जनार्दनीं । संत पावन इये जनीं ॥४॥ 1523 १५२३ अभंग संतांच्या दरुशनें संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥१॥ ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥२॥ तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥३॥ शरण एका जनार्दनीं । संत पावन इये जनीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२३</span>
+          <h3 class="abhang-content-title">संतांच्या दरुशनें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥१॥<br />
+ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥२॥<br />
+तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥३॥<br />
+शरण एका जनार्दनीं । संत पावन इये जनीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1524" data-abhang-number="1524" data-search="1524 १५२४ अपार महिमा संतांचा अपार महिमा संतांचा । काय बोलुं मी वाचा ॥१॥ मागें तरले पुढें तरती । जदजीवा उद्धरती ॥२॥ नाममात्रा रसायन । देउनी तारिती संतजन ॥३॥ ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥४॥ 1524 १५२४ अभंग अपार महिमा संतांचा अपार महिमा संतांचा । काय बोलुं मी वाचा ॥१॥ मागें तरले पुढें तरती । जदजीवा उद्धरती ॥२॥ नाममात्रा रसायन । देउनी तारिती संतजन ॥३॥ ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२४</span>
+          <h3 class="abhang-content-title">अपार महिमा संतांचा</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">अपार महिमा संतांचा । काय बोलुं मी वाचा ॥१॥<br />
+मागें तरले पुढें तरती । जदजीवा उद्धरती ॥२॥<br />
+नाममात्रा रसायन । देउनी तारिती संतजन ॥३॥<br />
+ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1525" data-abhang-number="1525" data-search="1525 १५२५ संत दयाळ दयाळ संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥१॥ शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥२॥ देउनियां रसायना । तारिताती भवार्णव जाणा ॥३॥ संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥४॥ 1525 १५२५ अभंग संत दयाळ दयाळ संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥१॥ शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥२॥ देउनियां रसायना । तारिताती भवार्णव जाणा ॥३॥ संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२५</span>
+          <h3 class="abhang-content-title">संत दयाळ दयाळ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥१॥<br />
+शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥२॥<br />
+देउनियां रसायना । तारिताती भवार्णव जाणा ॥३॥<br />
+संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1526" data-abhang-number="1526" data-search="1526 १५२६ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥१॥ ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥२॥ वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥३॥ एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥४॥ 1526 १५२६ अभंग संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥१॥ ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥२॥ वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥३॥ एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२६</span>
+          <h3 class="abhang-content-title">संत श्रेष्ठ संत श्रेष्ठ</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥१॥<br />
+ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥२॥<br />
+वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥३॥<br />
+एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1527" data-abhang-number="1527" data-search="1527 १५२७ धन्य धन्य जगीं संत धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥१॥ कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥२॥ अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥३॥ एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥४॥ 1527 १५२७ अभंग धन्य धन्य जगीं संत धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥१॥ कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥२॥ अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥३॥ एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२७</span>
+          <h3 class="abhang-content-title">धन्य धन्य जगीं संत</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥१॥<br />
+कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥२॥<br />
+अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥३॥<br />
+एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1528" data-abhang-number="1528" data-search="1528 १५२८ तुटती बंधनें संतांच्या दारुशनें तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥१॥ महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥२॥ वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥३॥ पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥४॥ 1528 १५२८ अभंग तुटती बंधनें संतांच्या दारुशनें तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥१॥ महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥२॥ वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥३॥ पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२८</span>
+          <h3 class="abhang-content-title">तुटती बंधनें संतांच्या दारुशनें</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥१॥<br />
+महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥२॥<br />
+वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥३॥<br />
+पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1529" data-abhang-number="1529" data-search="1529 १५२९ उदापरणें संत भले उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥१॥ ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥२॥ ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥३॥ एका जनार्दनीं शरण । संत पतीतपावन ॥४॥ 1529 १५२९ अभंग उदापरणें संत भले उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥१॥ ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥२॥ ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥३॥ एका जनार्दनीं शरण । संत पतीतपावन ॥४॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५२९</span>
+          <h3 class="abhang-content-title">उदापरणें संत भले</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥१॥<br />
+ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥२॥<br />
+ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥३॥<br />
+एका जनार्दनीं शरण । संत पतीतपावन ॥४॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1530" data-abhang-number="1530" data-search="1530 १५३० पतीतपावन केलें असें संतीं पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥१॥ सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥२॥ नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥३॥ एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥४॥तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या ref: transliteral संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० 1530 १५३० अभंग पतीतपावन केलें असें संतीं पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥१॥ सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥२॥ नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥३॥ एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥४॥तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या ref: transliteral संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५३०</span>
+          <h3 class="abhang-content-title">पतीतपावन केलें असें संतीं</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥१॥<br />
+सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥२॥<br />
+नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥३॥<br />
+एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥४॥</p><p>तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या <br />
+ref: transliteral</p>
+<strong>संत एकनाथ अभंग १३२४ते१५३०</strong>
+<strong> संत एकनाथ अभंग १३२४ते१५३०</strong>
+<strong> संत एकनाथ अभंग १३२४ते१५३०</strong></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+<article class="abhang-content-block" id="abhang-1531" data-abhang-number="1531" data-search="1531 १५३१ मेघापरिस उदार संत मेघापरिस उदार संत । मनोगत पुरविती ॥१॥ आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥२॥ लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥३॥ काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥४॥ शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥५॥ 1531 १५३१ अभंग मेघापरिस उदार संत मेघापरिस उदार संत । मनोगत पुरविती ॥१॥ आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥२॥ लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥३॥ काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥४॥ शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥५॥ ">
+        <header class="abhang-content-header">
+          <span class="abhang-content-number">अभंग १५३१</span>
+          <h3 class="abhang-content-title">मेघापरिस उदार संत</h3>
+        </header>
+        <div class="abhang-readable-verses" data-devotional-verse="true"><p class="abhang-verse" data-devotional-verse="true">मेघापरिस उदार संत । मनोगत पुरविती ॥१॥<br />
+आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥२॥<br />
+लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥३॥<br />
+काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥४॥<br />
+शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥५॥</p></div>
+        <div class="abhang-item-actions abhang-card-footer" data-share-scope="item">
+          <div class="abhang-actions-left">
+            <button class="abhang-btn copy-abhang-btn" type="button" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button>
+            <div class="abhang-share-group">
+              <button class="abhang-btn social-share-btn whatsapp-share-btn" type="button" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button>
+              <button class="abhang-btn social-share-btn facebook-share-btn" type="button" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button>
+              <button class="abhang-btn social-share-btn instagram-share-btn" type="button" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+      <p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p>
+      <p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>
   </main>
   <footer>
     <div class="footer-container"><div class="footer-brand"><div class="footer-logo"><img src="../../../Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो"><h3>वाकीभ</h3></div><p>संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.</p><div class="footer-socials"><a href="#" class="social-link" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link" aria-label="इंस्टाग्राम"><i class="fab fa-instagram"></i></a></div></div><div class="footer-links"><h4>मेन्यू</h4><ul><li><a href="../../../index.html">मुखपृष्ठ</a></li><li><a href="../../../index.html#granth">ग्रंथ</a></li><li><a href="../../../index.html#abhangs">अभंग/भजन</a></li><li><a href="../../../index.html#saints">संत</a></li><li><a href="../../../index.html#categories">विभाग</a></li></ul></div><div class="footer-contact"><h4>संपर्क</h4><ul class="footer-contact-list"><li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li><li><i class="fas fa-phone"></i> +91 99239 16476</li><li><i class="fas fa-map-marker-alt"></i> पुणे, महाराष्ट्र</li></ul></div></div>
@@ -74,13 +678,6 @@
   </footer>
 </body>
 </html>
-<script>
-(function(){
-  const input=document.getElementById('abhangSearch'); const cols=document.getElementById('abhangColumns'); const count=document.getElementById('countPill'); const empty=document.getElementById('abhangEmptyState'); const ranges=document.getElementById('abhangRangeGrid');
-  const devanagari='०१२३४५६७८९'; const toAscii=s=>String(s).replace(/[०-९]/g,ch=>devanagari.indexOf(ch));
-  const all=[{"number":1501,"mr":"१५०१","title":"संत कृपाळुं उदार","search":"1501 १५०१ अभंग संत कृपाळुं उदार संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥१॥ काय वानूं मी पामर । थकले सहा अठरा चार ॥२॥ नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥३॥ एका जनार्दनीं शरण । धरा माझी आठवण ॥४॥ ","searchAscii":"1501 abhang संत कृपाळुं उदार संत कृपाळुं उदार । ब्रह्मादिकां न कळे पार ॥1॥ काय वानूं मी पामर । थकले सहा अठरा चार ॥2॥ नेति नेति शब्दें । श्रुति विरालिये आनंदें ॥3॥ एका जनार्दनीं शरण । धरा माझी आठवण ॥4॥ "},{"number":1502,"mr":"१५०२","title":"स्वर्ग जयाची पायरी","search":"1502 १५०२ अभंग स्वर्ग जयाची पायरी स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥१॥ ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥२॥ ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥३॥ भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥४॥ ","searchAscii":"1502 abhang स्वर्ग जयाची पायरी स्वर्ग जयाची पायरी । मोक्ष ज्यांचा आज्ञाधारीं ॥1॥ ऐसा संतांचा महिमा । पायवणी ये शिवब्रह्मा ॥2॥ ब्रह्माज्ञानाची ती मात । कोण तया तेथें पुसत ॥3॥ भुक्ति मुक्ति लोटांगणी शरण एका जनार्दनीं ॥4॥ "},{"number":1503,"mr":"१५०३","title":"मोक्षमुक्ति काकुलती","search":"1503 १५०३ अभंग मोक्षमुक्ति काकुलती मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥१॥ करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥२॥ हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥३॥ एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥४॥ ","searchAscii":"1503 abhang मोक्षमुक्ति काकुलती मोक्षमुक्ति काकुलती । संतांप्रती येताती ॥1॥ करा माझा अंगिकार । नाहीं थार तुम्हांवीण ॥2॥ हेंचि द्यावें आम्हांलागुनी । तुमचें चरणीं वास सदा ॥3॥ एका जनार्दनीं करी विनंती । कींव भकिती संतांप्रती ॥4॥ "},{"number":1504,"mr":"१५०४","title":"घालितां संतापायीं मिठी","search":"1504 १५०४ अभंग घालितां संतापायीं मिठी घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥१॥ ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥२॥ इच्छिलें तें फळ । जन पावती सकळ ॥३॥ एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥४॥ ","searchAscii":"1504 abhang घालितां संतापायीं मिठी घालितां संतापायीं मिठी । पुर्वज वैकुंठी उद्धरती ॥1॥ ऐसा संतांचा महिमा । वानुं न शके शिवब्रह्मा ॥2॥ इच्छिलें तें फळ । जन पावती सकळ ॥3॥ एका जनार्दनीं विश्वास । संत दासांचा मी दास ॥4॥ "},{"number":1505,"mr":"१५०५","title":"संतचरणींचा महिमा","search":"1505 १५०५ अभंग संतचरणींचा महिमा संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥१॥ ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥२॥ शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥३॥ तया संतांचा सांगात । एका जनार्दन निवांत ॥४॥ ","searchAscii":"1505 abhang संतचरणींचा महिमा संतचरणींचा महिमा । कांहीं न कळें आगमां निगमां ॥1॥ ब्रह्मा घाले लोटांगण । विष्णु वंदितो आपण ॥2॥ शिव ध्यातो पायवणी । धन्य धन्य संतजनीं ॥3॥ तया संतांचा सांगात । एका जनार्दन निवांत ॥4॥ "},{"number":1506,"mr":"१५०६","title":"संतसंगत घडे","search":"1506 १५०६ अभंग संतसंगत घडे संतसंगत घडे । सायुज्यता जोडे ॥१॥ मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥२॥ एका जनार्दनीं सांगात । घडतां होय देहातीत ॥३॥ ","searchAscii":"1506 abhang संतसंगत घडे संतसंगत घडे । सायुज्यता जोडे ॥1॥ मुक्ति लागती चरणीं । ब्रह्माज्ञान लोटांगणीं ॥2॥ एका जनार्दनीं सांगात । घडतां होय देहातीत ॥3॥ "},{"number":1507,"mr":"१५०७","title":"पहातां संतसमुदाय","search":"1507 १५०७ अभंग पहातां संतसमुदाय पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥१॥ जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥२॥ तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥३॥ ","searchAscii":"1507 abhang पहातां संतसमुदाय पहातां संतसमुदाय । भुक्ति मुक्ति तेथें देव ॥1॥ जातां लोटांगणीं भावें । ब्रह्माज्ञान अंगं पावें ॥2॥ तयाचे उच्छिष्टाचा कण । शरण एका जनार्दन ॥3॥ "},{"number":1508,"mr":"१५०८","title":"संतदरुशनें लाभ होय","search":"1508 १५०८ अभंग संतदरुशनें लाभ होय संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥१॥ पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥२॥ यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥३॥ एका जनार्दनीं शरण । संतमहिमान वेगळें ॥४॥ ","searchAscii":"1508 abhang संतदरुशनें लाभ होय संतदरुशनें लाभ होय । ऐसा आहे अनुभव ॥1॥ पुराणीं महिमा सांगें व्यास । संतदया सर्वांस सारखी ॥2॥ यातिकुळ हो कां भलतें । करिती सरते सर्वांसी ॥3॥ एका जनार्दनीं शरण । संतमहिमान वेगळें ॥4॥ "},{"number":1509,"mr":"१५०९","title":"जें सुख संतसज्जनाचे पायीं","search":"1509 १५०९ अभंग जें सुख संतसज्जनाचे पायीं जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥१॥ तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥२॥ पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥३॥ नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥४॥ क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥५॥ एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥६॥ ","searchAscii":"1509 abhang जें सुख संतसज्जनाचे पायीं जें सुख संतसज्जनाचे पायीं । तें सुख नाहीं आणिके ठायी ॥1॥ तुकितां या सुखाचेनी तुके । पैं वैकुंठ जाले फिकें ॥2॥ पाहोंजातां लोकीं तिहीं । ऐसें न देखें आणिकें ठायीं ॥3॥ नवल या सुखाची गोडी । हरिहर ब्रह्मा घालिती उडी ॥4॥ क्षीरसागर सांडोनी पाही । अंगें धांवे शेषशाई ॥5॥ एका जनार्दनीं जाली भेटीं । सुख संतोषा पडली मिठी ॥6॥ "},{"number":1510,"mr":"१५१०","title":"सुख अपार संतसंगीं","search":"1510 १५१० अभंग सुख अपार संतसंगीं सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥१॥ बहु सुख बहुता परी । येथेंची सई नसेची ॥२॥ स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥३॥ एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥४॥ ","searchAscii":"1510 abhang सुख अपार संतसंगीं सुख अपार संतसंगीं । दुजें अंगीं न दिसे कोठे ॥1॥ बहु सुख बहुता परी । येथेंची सई नसेची ॥2॥ स्त्रिया पुत्र धन सुख । नाशिवंत देख शेवटीं ॥3॥ एका जनार्दनीं संतसुखा । नोहे लेखा ब्रह्मांडी ॥4॥ "},{"number":1511,"mr":"१५११","title":"संतसुखा नाहीं पार","search":"1511 १५११ अभंग संतसुखा नाहीं पार संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥१॥ ऐशी सुखाची वसती । सनकादिक जया गाती ॥२॥ सुखें सुख अनुभव । सुखें नाचतसे देव ॥३॥ तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥४॥ ","searchAscii":"1511 abhang संतसुखा नाहीं पार संतसुखा नाहीं पार । तेणें आनंद पैं थोर ॥1॥ ऐशी सुखाची वसती । सनकादिक जया गाती ॥2॥ सुखें सुख अनुभव । सुखें नाचतसे देव ॥3॥ तया सुखाची वसती । एका जनार्दनीं ध्यातसे चिंत्तीं ॥4॥ "},{"number":1512,"mr":"१५१२","title":"अमृता उणें आणिता संतजन","search":"1512 १५१२ अभंग अमृता उणें आणिता संतजन अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥१॥ नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥२॥ नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥३॥ एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥४॥ ","searchAscii":"1512 abhang अमृता उणें आणिता संतजन अमृता उणें आणिता संतजन । नाम अमृत खूण पाजिताती ॥1॥ नाशिवंत यासी अमृत उपकार । अनाशिवंता नामामृतसार ॥2॥ नाशिवंत देह नाशिवंत जीव । नाशिवंत ठाव जगडंबर ॥3॥ एका जनार्दनीं संताचिये दृष्टी । नाशिवंत सृष्टी सजीव होती ॥4॥ "},{"number":1513,"mr":"१५१३","title":"संत ते सोयरे जिवलग सांगाती","search":"1513 १५१३ अभंग संत ते सोयरे जिवलग सांगाती संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥१॥ कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥२॥ देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥३॥ एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥४॥ ","searchAscii":"1513 abhang संत ते सोयरे जिवलग सांगाती संत ते सोयरे जिवलग सांगाती । भेटतां पुरती सर्व काम ॥1॥ कामधेनु कल्पतरु चिंतामणी । उदार चुडामणी याहुनी संत ॥2॥ देऊं परिसाची यासी उपमा । परी ते अये समा संताचिये ॥3॥ एका जनार्दनीं संतांचा सांगात । पुरती सर्व आर्त जीवींचें जें ॥4॥ "},{"number":1514,"mr":"१५१४","title":"जे या नेले संता शरण","search":"1514 १५१४ अभंग जे या नेले संता शरण जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥१॥ मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥२॥ महापापी मूढ जन । जाहले पावन दरुशनें ॥३॥ एका जनार्दनीं संत । कॄपावंत दयाळू ॥४॥ ","searchAscii":"1514 abhang जे या नेले संता शरण जे या नेले संता शरण । जन्ममरण चुकलें त्या ॥1॥ मागां बहुतां अनुभव आला । पुढेंहि देखिला प्रत्यक्ष ॥2॥ महापापी मूढ जन । जाहले पावन दरुशनें ॥3॥ एका जनार्दनीं संत । कॄपावंत दयाळू ॥4॥ "},{"number":1515,"mr":"१५१५","title":"मागें संतीं उपकार","search":"1515 १५१५ अभंग मागें संतीं उपकार मागें संतीं उपकार । केला फार न वर्णवें ॥१॥ पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥२॥ दुणा थाव आला पोटीं । संतभेटी होतांची ॥३॥ शरण एका जनार्दनीं । पावन जनीं संत ते ॥४॥ ","searchAscii":"1515 abhang मागें संतीं उपकार मागें संतीं उपकार । केला फार न वर्णवें ॥1॥ पाप ताप दैन्य गेलें । सिद्धची जाहले सर्वमार्ग ॥2॥ दुणा थाव आला पोटीं । संतभेटी होतांची ॥3॥ शरण एका जनार्दनीं । पावन जनीं संत ते ॥4॥ "},{"number":1516,"mr":"१५१६","title":"संतांचा उपकार","search":"1516 १५१६ अभंग संतांचा उपकार संतांचा उपकार । सांगावया नाहीं पार ॥१॥ आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।२॥ दया अंतरांत वसे । दुजेपणा तेथें नसे ॥३॥ उदारपणें उदार । एका जनार्दनीं निर्धार ॥४॥ ","searchAscii":"1516 abhang संतांचा उपकार संतांचा उपकार । सांगावया नाहीं पार ॥1॥ आपणासारिखें करिती । यातिकुळ नाहीं चित्तीं ।2॥ दया अंतरांत वसे । दुजेपणा तेथें नसे ॥3॥ उदारपणें उदार । एका जनार्दनीं निर्धार ॥4॥ "},{"number":1517,"mr":"१५१७","title":"भाग्यवंत संत होती","search":"1517 १५१७ अभंग भाग्यवंत संत होती भाग्यवंत संत होती । दीन पतीत तारिती ॥१॥ नाहीं तया भाग्या पार । काय पामर मी बहूं ॥२॥ चुकविता जन्म जरा । संसारा यापासोनी ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत तें ॥४॥ ","searchAscii":"1517 abhang भाग्यवंत संत होती भाग्यवंत संत होती । दीन पतीत तारिती ॥1॥ नाहीं तया भाग्या पार । काय पामर मी बहूं ॥2॥ चुकविता जन्म जरा । संसारा यापासोनी ॥3॥ एका जनार्दनीं शरण । पतीतपावन संत तें ॥4॥ "},{"number":1518,"mr":"१५१८","title":"भाग्यवंत होती संत","search":"1518 १५१८ अभंग भाग्यवंत होती संत भाग्यवंत होती संत । दीन पतीत तारिती ॥१॥ उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥२॥ स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥३॥ एका जनार्दनीं शरण । पतीतपावन संत होती ॥४॥ ","searchAscii":"1518 abhang भाग्यवंत होती संत भाग्यवंत होती संत । दीन पतीत तारिती ॥1॥ उपदेश विठ्ठल मंत्र । देती सर्वत्र सारिखा ॥2॥ स्त्रिया शुद्र अथवा बाळें । कृपा कल्लोळे एकचि ॥3॥ एका जनार्दनीं शरण । पतीतपावन संत होती ॥4॥ "},{"number":1519,"mr":"१५१९","title":"संतांचे संगती","search":"1519 १५१९ अभंग संतांचे संगती संतांचे संगती । पाप नुरे तें कल्पांती ॥१॥ ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥२॥ तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥३॥ संतचरणींचे रजःकण । वंदी एका जनार्दन ॥४॥ ","searchAscii":"1519 abhang संतांचे संगती संतांचे संगती । पाप नुरे तें कल्पांती ॥1॥ ऐसा संतांचा महिमा । नाहीं द्यावया उपमा ॥2॥ तीर्थ व्रत जप दान । अवघें टाका वोवाळुन ॥3॥ संतचरणींचे रजःकण । वंदी एका जनार्दन ॥4॥ "},{"number":1520,"mr":"१५२०","title":"संतचरणीचें रजःकण","search":"1520 १५२० अभंग संतचरणीचें रजःकण संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥१॥ ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥२॥ शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥३॥ शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥४॥ ","searchAscii":"1520 abhang संतचरणीचें रजःकण संतचरणीचें रजःकण । तेणें तिन्हीं देव पावन ॥1॥ ऐसा महिमा ज्याची थोरी । वेद गर्जें परोपरी ॥2॥ शास्त्रें पुराणें सांगत । दरुशनें प्राणी होती मुक्त ॥3॥ शरण एका जनार्दनीं । ठाव द्यावा संतचरणीं ॥4॥ "},{"number":1521,"mr":"१५२१","title":"संतचरणीं आलिंगन","search":"1521 १५२१ अभंग संतचरणीं आलिंगन संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥१॥ इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥२॥ लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥३॥ शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥४॥ ","searchAscii":"1521 abhang संतचरणीं आलिंगन संतचरणीं आलिंगन । ब्रह्माज्ञानी होती पावन ॥1॥ इतर सहज उद्धरती । वाचे गातां ज्यांची कीर्ति ॥2॥ लाभे लाभ संतचरणीं । मोक्षसुख वंदी पायवणीं ॥3॥ शरण एका जनार्दनीं । उदार संत त्रिभुवनीं ॥4॥ "},{"number":1522,"mr":"१५२२","title":"संताचें चरण ध्यातां","search":"1522 १५२२ अभंग संताचें चरण ध्यातां संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥१॥ पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥२॥ संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥३॥ शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥४॥ ","searchAscii":"1522 abhang संताचें चरण ध्यातां संताचें चरण ध्यातां । हारपली जन्मव्यथा ॥1॥ पुढती मरणाचें पेणें । चुकती जन्मजरा तेणें ॥2॥ संतसमुदाय दृष्टी । पडतां लाभ होय कोटी ॥3॥ शरण एका जनार्दनीं । काया कुर्वडीं संतचरणीं ॥4॥ "},{"number":1523,"mr":"१५२३","title":"संतांच्या दरुशनें","search":"1523 १५२३ अभंग संतांच्या दरुशनें संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥१॥ ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥२॥ तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥३॥ शरण एका जनार्दनीं । संत पावन इये जनीं ॥४॥ ","searchAscii":"1523 abhang संतांच्या दरुशनें संतांच्या दरुशनें । तुटे जन्ममरण पेणें ॥1॥ ऐसा संतांचा महिमा । बोलतां नाहीं वो उपमा ॥2॥ तीर्थ पर्वकाळ यज्ञ दान । संतचरणीं होती पावन ॥3॥ शरण एका जनार्दनीं । संत पावन इये जनीं ॥4॥ "},{"number":1524,"mr":"१५२४","title":"अपार महिमा संतांचा","search":"1524 १५२४ अभंग अपार महिमा संतांचा अपार महिमा संतांचा । काय बोलुं मी वाचा ॥१॥ मागें तरले पुढें तरती । जदजीवा उद्धरती ॥२॥ नाममात्रा रसायन । देउनी तारिती संतजन ॥३॥ ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥४॥ ","searchAscii":"1524 abhang अपार महिमा संतांचा अपार महिमा संतांचा । काय बोलुं मी वाचा ॥1॥ मागें तरले पुढें तरती । जदजीवा उद्धरती ॥2॥ नाममात्रा रसायन । देउनी तारिती संतजन ॥3॥ ऐशा संतां शरण जाऊं । एका जनार्दनीं ध्याऊं ॥4॥ "},{"number":1525,"mr":"१५२५","title":"संत दयाळ दयाळ","search":"1525 १५२५ अभंग संत दयाळ दयाळ संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥१॥ शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥२॥ देउनियां रसायना । तारिताती भवार्णव जाणा ॥३॥ संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥४॥ ","searchAscii":"1525 abhang संत दयाळ दयाळ संत दयाळ दयाळ । अंतरीं होताती प्रेमळ ॥1॥ शरण आलियासी पाठीं । पहाताती कृपादृष्टी ॥2॥ देउनियां रसायना । तारिताती भवार्णव जाणा ॥3॥ संतांसी शरण जावें । एका जनार्दनीं त्यांसी गावें ॥4॥ "},{"number":1526,"mr":"१५२६","title":"संत श्रेष्ठ संत श्रेष्ठ","search":"1526 १५२६ अभंग संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥१॥ ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥२॥ वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥३॥ एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥४॥ ","searchAscii":"1526 abhang संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ संत श्रेष्ठ । पातकी नष्ट तारिती ॥1॥ ऐसा आहे अनुभव । पुराणीं पहाहो निर्वाहो ॥2॥ वेद शास्त्र देती ग्वाही । संत श्रेष्ठा सर्वा ठायीं ॥3॥ एका जनार्दनीं संत । ब्रह्मादिकां न कळे अंत ॥4॥ "},{"number":1527,"mr":"१५२७","title":"धन्य धन्य जगीं संत","search":"1527 १५२७ अभंग धन्य धन्य जगीं संत धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥१॥ कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥२॥ अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥३॥ एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥४॥ ","searchAscii":"1527 abhang धन्य धन्य जगीं संत धन्य धन्य जगीं संत । कृपावंत दीनबंधु ॥1॥ कृपादृष्टी अवलोकितां । परिपुर्ण समदृष्टी ॥2॥ अगाधा देणेंऐसें आहे । कल्पातीं हें न सरेची ॥3॥ एका जनार्दनींचित्त । जडो हेत त्या ठायीं ॥4॥ "},{"number":1528,"mr":"१५२८","title":"तुटती बंधनें संतांच्या दारुशनें","search":"1528 १५२८ अभंग तुटती बंधनें संतांच्या दारुशनें तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥१॥ महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥२॥ वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥३॥ पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥४॥ ","searchAscii":"1528 abhang तुटती बंधनें संतांच्या दारुशनें तुटती बंधनें संतांच्या दारुशनें । केलें तें पावन जगीं बहु ॥1॥ महा पापराशी तारिलें अपार । न कळे त्यांचा पार वेदशास्त्रां ॥2॥ वाल्मिकादि दोषी तारिलें अनुग्रही । पाप तेथें नाहीं संत जेथें ॥3॥ पापताप दैन्य गेलें देशांतरीं । एका जनार्दनीं निर्धारी सत्य सत्य ॥4॥ "},{"number":1529,"mr":"१५२९","title":"उदापरणें संत भले","search":"1529 १५२९ अभंग उदापरणें संत भले उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥१॥ ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥२॥ ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥३॥ एका जनार्दनीं शरण । संत पतीतपावन ॥४॥ ","searchAscii":"1529 abhang उदापरणें संत भले उदापरणें संत भले । पापीं उद्धरिलें तात्काळ ॥1॥ ऐसे भावें येतां शरण । देणें पेणें वैकुंठ ॥2॥ ऐसें उदार त्रिभुवनीं । संतावांचुनीं कोण दुजें ॥3॥ एका जनार्दनीं शरण । संत पतीतपावन ॥4॥ "},{"number":1530,"mr":"१५३०","title":"पतीतपावन केलें असें संतीं","search":"1530 १५३० अभंग पतीतपावन केलें असें संतीं पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥१॥ सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥२॥ नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥३॥ एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥४॥तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या ref: transliteral संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० संत एकनाथ अभंग १३२४ते१५३० ","searchAscii":"1530 abhang पतीतपावन केलें असें संतीं पतीतपावन केलें असें संतीं । पुराणीं ती ख्याती वर्णियेली ॥1॥ सदोषी अदोषी तारिलें अपार । हाचि बडिवार धन्य जगीं ॥2॥ नाना वर्ण याती उत्तम चांडाळ । उद्धरिलें सकळ नाममात्रें ॥3॥ एका जनार्दनीं दयेचें सागर । संतकृपा धीर समुद्र ते ॥4॥तुमच्या शेतमालाची मोफत जाहिरात करण्या साठी कृषी क्रांती ला अवश्य भेट द्या ref: transliteral संत एकनाथ अभंग 1324ते1530 संत एकनाथ अभंग 1324ते1530 संत एकनाथ अभंग 1324ते1530 "},{"number":1531,"mr":"१५३१","title":"मेघापरिस उदार संत","search":"1531 १५३१ अभंग मेघापरिस उदार संत मेघापरिस उदार संत । मनोगत पुरविती ॥१॥ आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥२॥ लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥३॥ काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥४॥ शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥५॥ ","searchAscii":"1531 abhang मेघापरिस उदार संत मेघापरिस उदार संत । मनोगत पुरविती ॥1॥ आलिया शरण मनें वाचा । चालविती त्याचा भार सर्व ॥2॥ लिगाड उपाधी तोडिती । सरते करिती आपणामाजीं ॥3॥ काळाचा तो चुकवितो घाव । येउं न देती ठाव आंगासी ॥4॥ शरण एका जनार्दनीं । तारिले जनीं मूढ सर्व ॥5॥ "}];
-  function render(items){ cols.innerHTML=''; const per=Math.ceil(Math.max(items.length,1)/6); for(let c=0;c<6;c++){ const part=items.slice(c*per,(c+1)*per); if(!part.length) continue; const ul=document.createElement('ul'); ul.className='abhang-col-list'; part.forEach(item=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href='../sant-eknath-abhang-'+item.number+'/index.html'; a.textContent=item.mr+'. '+item.title; li.appendChild(a); ul.appendChild(li); }); cols.appendChild(ul); } count.textContent=(items.length?items.length:0).toLocaleString('mr-IN')+' अभंग'; empty.hidden=items.length!==0; }
-  function apply(){ const raw=input.value.trim().toLowerCase(); if(!raw){ if(ranges) ranges.hidden=false; render(all); return; } if(ranges) ranges.hidden=true; const q=toAscii(raw.replace(/^अभंग\s*/,'')); render(all.filter(item=>item.search.includes(raw)||item.searchAscii.includes(q))); }
-  input&&input.addEventListener('input', apply);
-})();
-</script>
+
+
+

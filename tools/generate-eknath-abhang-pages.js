@@ -41,6 +41,43 @@ const cleanHtml = html => sanitizeHtml(html, {
   allowedTags: ['p','br','strong','b','em','span','h2','h3','hr'],
   allowedAttributes: { p: ['class'], span: [], strong: [], b: [], em: [], h2: [], h3: [] },
 }).replace(/<span[^>]*>/gi, '').replace(/<\/span>/gi, '').replace(/\s*<hr\s*\/?>(\s*)/gi, '').trim();
+function normalizeComparable(value) {
+  return fromMr(strip(value))
+    .normalize('NFC')
+    .replace(/\babhanga?\b/gi, '')
+    .replace(/\bअभंग\b/g, '')
+    .replace(/^[\s\d०-९]+[.)\-–—:।॥\s]*/g, '')
+    .replace(/[.)\-–—:।॥]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function isDuplicateTitleLine(lineHtml, number, title) {
+  const text = strip(lineHtml);
+  const titleText = normalizeComparable(title);
+  const lineText = normalizeComparable(text);
+  if (!text || !titleText || !lineText) return false;
+  if (lineText === titleText) return true;
+  const plain = fromMr(text).normalize('NFC').replace(/\s+/g, ' ').trim();
+  const numbered = new RegExp('^(?:अभंग\\s*)?' + number + '\\s*[.)\\-–—:]?\\s*', 'i');
+  return normalizeComparable(plain.replace(numbered, '')) === titleText;
+}
+
+function cleanAbhangVerseHtml(html, number, title) {
+  let output = String(html || '').trim();
+  output = output.replace(/^(\s*<p\b[^>]*>\s*)<(strong|b)\b[^>]*>([\s\S]*?)<\/\2>\s*<br\s*\/?>/i, (match, start, tag, label) => (
+    isDuplicateTitleLine(label, number, title) ? start : match
+  ));
+  output = output.replace(/^(\s*<p\b[^>]*>\s*)([^<]{1,180})\s*<br\s*\/?>/i, (match, start, label) => (
+    isDuplicateTitleLine(label, number, title) ? start : match
+  ));
+  output = output.replace(/^(\s*)<p\b[^>]*>([\s\S]*?)<\/p>\s*/i, (match, leading, body) => {
+    if (!/<br\b/i.test(body) && isDuplicateTitleLine(body, number, title)) return leading;
+    return match;
+  });
+  return output.trim();
+}
 
 function getContent(html, sourceKind) {
   const scrub = value => value
@@ -115,13 +152,13 @@ function siteHeader(prefix) { return `\n  <header>\n    <div class="header-conta
 function footer(prefix) { return `\n  <footer>\n    <div class="footer-container"><div class="footer-brand"><div class="footer-logo"><img src="${prefix}Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो"><h3>वाकीभ</h3></div><p>संत साहित्य, अभंग, ओव्या आणि ग्रंथांचा समृद्ध मराठी संग्रह. वारकरी परंपरेचे जतन, संवर्धन आणि प्रसार हा आमचा प्रयत्न.</p><div class="footer-socials"><a href="#" class="social-link" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link" aria-label="इंस्टाग्राम"><i class="fab fa-instagram"></i></a></div></div><div class="footer-links"><h4>मेन्यू</h4><ul><li><a href="${prefix}index.html">मुखपृष्ठ</a></li><li><a href="${prefix}index.html#granth">ग्रंथ</a></li><li><a href="${prefix}index.html#abhangs">अभंग/भजन</a></li><li><a href="${prefix}index.html#saints">संत</a></li><li><a href="${prefix}index.html#categories">विभाग</a></li></ul></div><div class="footer-contact"><h4>संपर्क</h4><ul class="footer-contact-list"><li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li><li><i class="fas fa-phone"></i> +91 99239 16476</li><li><i class="fas fa-map-marker-alt"></i> पुणे, महाराष्ट्र</li></ul></div></div>\n    <div class="footer-bottom"><p>&copy; २०२६ वाकीभ. सर्व हक्क सुरक्षित.</p><button class="scroll-top-btn" id="scrollTopBtn" aria-label="वर जा"><i class="fas fa-chevron-up"></i></button></div>\n  </footer>\n</body>\n</html>\n`; }
 
 function makeList(items, hrefFor) {
-  return items.map(item => `        <a class="abhang-item" href="${hrefFor(item)}" data-abhang-number="${item.number}" data-search="${esc((item.number + ' ' + toMr(item.number) + ' अभंग ' + item.title + ' ' + strip(item.verseHtml) + ' ' + strip(item.meaningHtml)).toLowerCase())}"><span class="abhang-number">${toMr(item.number)}.</span><span class="abhang-title">${esc(item.title)}</span></a>`).join('\n') + '\n';
+  return items.map(item => `        <a class="abhang-item" href="${hrefFor(item)}" data-abhang-number="${item.number}" data-search="${esc((item.number + ' ' + toMr(item.number) + ' अभंग ' + item.title + ' ' + strip(item.verseHtml) + ' ').toLowerCase())}"><span class="abhang-number">${toMr(item.number)}.</span><span class="abhang-title">${esc(item.title)}</span></a>`).join('\n') + '\n';
 }
 
 function listingPage({title, subtitle, items, relPrefix, backHref, backLabel, rangeCards, searchData}) {
   const cssPrefix = relPrefix;
   const count = items.length;
-  return `${header()}\n  <title>${esc(title)} – वाकीभ</title>\n  <meta name="description" content="${esc(title)} येथे क्रमाने वाचा.">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\n  <link rel="stylesheet" href="${cssPrefix}Vakibh/css/style.css?v=39">\n  <link rel="stylesheet" href="${cssPrefix}Vakibh/css/sant.css?v=30">\n  <script src="${cssPrefix}Vakibh/js/main.js?v=40" defer></script>\n</head>\n<body class="abhang-list-page">${siteHeader(cssPrefix)}\n  <main class="sant-page-main">\n    <section class="sant-title-section"><div class="sant-title-inner"><h1 class="sant-page-h1">${esc(title)}</h1><nav class="sant-quick-links" aria-label="संत एकनाथ विभाग"><a href="${cssPrefix}index.html" class="sant-quick-link">गृहपृष्ठ</a><a href="${backHref}" class="sant-quick-link">${esc(backLabel)}</a><a href="#abhang-grid" class="sant-quick-link active">अभंग</a></nav></div></section>\n    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">${toMr(count)} अभंग</span></div></section>\n    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">${esc(subtitle)}</h2>${rangeCards || ''}<div class="abhang-list" id="abhangColumns">\n${makeList(items, item => `../sant-eknath-abhang-${item.number}/index.html`)}      </div><p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>\n  </main>${footer(cssPrefix)}${searchScript(searchData)}\n`;
+  return `${header()}\n  <title>${esc(title)} – वाकीभ</title>\n  <meta name="description" content="${esc(title)} येथे क्रमाने वाचा.">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\n  <link rel="stylesheet" href="${cssPrefix}Vakibh/css/style.css?v=42">\n  <link rel="stylesheet" href="${cssPrefix}Vakibh/css/sant.css?v=38">\n  <script src="${cssPrefix}Vakibh/js/main.js?v=45" defer></script>\n</head>\n<body class="abhang-list-page">${siteHeader(cssPrefix)}\n  <main class="sant-page-main">\n    <section class="sant-title-section"><div class="sant-title-inner"><h1 class="sant-page-h1">${esc(title)}</h1><nav class="sant-quick-links" aria-label="संत एकनाथ विभाग"><a href="${cssPrefix}index.html" class="sant-quick-link">गृहपृष्ठ</a><a href="${backHref}" class="sant-quick-link">${esc(backLabel)}</a><a href="#abhang-grid" class="sant-quick-link active">अभंग</a></nav></div></section>\n    <section class="sant-search-bar-section"><div class="sant-search-inner"><div class="sant-search-wrap"><i class="fas fa-search"></i><input type="text" id="abhangSearch" placeholder="अभंग शोधा" aria-label="अभंग शोध"></div><span class="count-pill" id="countPill">${toMr(count)} अभंग</span></div></section>\n    <section class="abhang-grid-section" id="abhang-grid"><div class="abhang-grid-inner"><h2 class="abhang-grid-heading">${esc(subtitle)}</h2>${rangeCards || ''}<div class="abhang-list" id="abhangColumns">\n${makeList(items, item => `../sant-eknath-abhang-${item.number}/index.html`)}      </div><p class="abhang-empty-state" id="abhangEmptyState" hidden>जुळणारे अभंग सापडले नाहीत.</p></div></section>\n  </main>${footer(cssPrefix)}${searchScript(searchData)}\n`;
 }
 function searchScript(data) {
   if (!data) return '';
@@ -129,14 +166,13 @@ function searchScript(data) {
 }
 function detailPage(entry, prev, next) {
   const title = `${toMr(entry.number)}. ${entry.title}`;
-  const meaning = entry.meaningHtml ? `<section class="abhang-meaning-section"><div class="abhang-meaning-inner"><h3 class="meaning-heading">अर्थ</h3><div class="abhang-meaning">${entry.meaningHtml}</div></div></section>` : '';
-  return `${header()}\n  <title>${esc(title)} – संत एकनाथ अभंग – वाकीभ</title>\n  <meta name="description" content="${esc(title)} – संत एकनाथ अभंग येथे वाचा.">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\n  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=39">\n  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=30">\n  <script src="../../../Vakibh/js/main.js?v=40" defer></script>\n</head>\n<body class="abhang-post-page">${siteHeader('../../../')}\n<main class="sant-page-main abhang-post-main">\n  <nav class="sant-breadcrumb" aria-label="Breadcrumb"><a href="../../../index.html">गृहपृष्ठ</a><span class="bc-sep"> &rsaquo; </span><a href="../index.html">संत एकनाथ</a><span class="bc-sep"> &rsaquo; </span><a href="../eknath-abhang-gatha/index.html">एकनाथांचे अभंग / गाथा</a><span class="bc-sep"> &rsaquo; </span><span>${esc(title)}</span></nav>\n  <article class="abhang-post"><header class="post-header"><h1 class="post-title">${esc(title)}</h1></header><div class="post-content"><p class="abhang-verse" data-devotional-verse="true"><strong>${toMr(entry.number)}. ${esc(entry.title)}</strong><br>${entry.verseHtml.replace(/^<p>/i,'').replace(/<\/p>$/i,'')}</p><hr class="post-hr"><div class="abhang-post-actions abhang-card-footer" data-share-scope="post"><div class="abhang-actions-left"><button class="abhang-btn copy-abhang-btn" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button><div class="abhang-share-group"><button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button><button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button><button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button></div></div></div></div><nav class="post-navigation" aria-label="अभंग नेव्हिगेशन"><div class="nav-links"><div class="nav-previous">${prev ? `<a href="../sant-eknath-abhang-${prev.number}/index.html"><span>&larr;</span> मागील</a>` : ''}</div><div class="nav-center"><a href="../eknath-abhang-gatha/index.html" class="nav-list-btn"><i class="fas fa-list-ul"></i> सर्व अभंग</a></div><div class="nav-next">${next ? `<a href="../sant-eknath-abhang-${next.number}/index.html">पुढील <span>&rarr;</span></a>` : ''}</div></div></nav></article>${meaning}\n</main>${footer('../../../')}`;
+  return `${header()}\n  <title>${esc(title)} – संत एकनाथ अभंग – वाकीभ</title>\n  <meta name="description" content="${esc(title)} – संत एकनाथ अभंग येथे वाचा.">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\n  <link rel="stylesheet" href="../../../Vakibh/css/style.css?v=42">\n  <link rel="stylesheet" href="../../../Vakibh/css/sant.css?v=38">\n  <script src="../../../Vakibh/js/main.js?v=45" defer></script>\n</head>\n<body class="abhang-post-page">${siteHeader('../../../')}\n<main class="sant-page-main abhang-post-main">\n  <nav class="sant-breadcrumb" aria-label="Breadcrumb"><a href="../../../index.html">गृहपृष्ठ</a><span class="bc-sep"> &rsaquo; </span><a href="../index.html">संत एकनाथ</a><span class="bc-sep"> &rsaquo; </span><a href="../eknath-abhang-gatha/index.html">एकनाथांचे अभंग / गाथा</a><span class="bc-sep"> &rsaquo; </span><span>${esc(title)}</span></nav>\n  <article class="abhang-post abhang-content-block"><header class="post-header abhang-content-header"><span class="abhang-content-number">अभंग ${toMr(entry.number)}</span><h1 class="post-title abhang-content-title">${esc(entry.title)}</h1></header><div class="post-content"><div class="abhang-readable-verses" data-devotional-verse="true">${cleanVerseHtml}</div><hr class="post-hr"><div class="abhang-post-actions abhang-card-footer" data-share-scope="post"><div class="abhang-actions-left"><button class="abhang-btn copy-abhang-btn" aria-label="अभंग कॉपी करा"><i class="far fa-copy"></i></button><div class="abhang-share-group"><button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सअॅपवर शेअर करा"><i class="fab fa-whatsapp"></i></button><button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा"><i class="fab fa-facebook-f"></i></button><button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इंस्टाग्रामसाठी कॉपी करा"><i class="fab fa-instagram"></i></button></div></div></div></div><nav class="post-navigation" aria-label="अभंग नेव्हिगेशन"><div class="nav-links"><div class="nav-previous">${prev ? `<a href="../sant-eknath-abhang-${prev.number}/index.html"><span>&larr;</span> मागील</a>` : ''}</div><div class="nav-center"><a href="../eknath-abhang-gatha/index.html" class="nav-list-btn"><i class="fas fa-list-ul"></i> सर्व अभंग</a></div><div class="nav-next">${next ? `<a href="../sant-eknath-abhang-${next.number}/index.html">पुढील <span>&rarr;</span></a>` : ''}</div></div></nav></article>\n</main>${footer('../../../')}`;
 }
 function rangeListPage(start, end, entries, slug) {
   const title = `संत एकनाथ अभंग ${toMr(start)} ते ${toMr(end)}`;
   return listingPage({title, subtitle: 'अभंग सूची', items: entries, relPrefix: '../../../', backHref: '../eknath-abhang-gatha/index.html', backLabel: 'एकनाथांचे अभंग / गाथा', searchData: entries.map(searchEntry)});
 }
-function searchEntry(e){ return {number:e.number, mr:toMr(e.number), title:e.title, search:(`${e.number} ${toMr(e.number)} अभंग ${e.title} ${strip(e.verseHtml)} ${strip(e.meaningHtml)}`).toLowerCase(), searchAscii:(`${e.number} abhang ${fromMr(e.title)} ${fromMr(strip(e.verseHtml))} ${fromMr(strip(e.meaningHtml))}`).toLowerCase()}; }
+function searchEntry(e){ return {number:e.number, mr:toMr(e.number), title:e.title, search:(`${e.number} ${toMr(e.number)} अभंग ${e.title} ${strip(e.verseHtml)} `).toLowerCase(), searchAscii:(`${e.number} abhang ${fromMr(e.title)} ${fromMr(strip(e.verseHtml))} `).toLowerCase()}; }
 
 let entries = [];
 for (const dir of localRangeDirs) entries = entries.concat(extractRange(dir));
@@ -191,23 +227,3 @@ const missing = [];
 for (let n = numbers[0]; n <= numbers[numbers.length - 1]; n++) if (!numbers.includes(n)) missing.push(n);
 const dupes = numbers.filter((n, i) => numbers.indexOf(n) !== i);
 console.log(JSON.stringify({count: entries.length, first: numbers[0], last: numbers[numbers.length-1], missing: missing.slice(0,30), missingCount: missing.length, duplicateCount: dupes.length, rangeCount: ranges.length}, null, 2));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
