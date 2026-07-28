@@ -150,6 +150,15 @@ body.blog-post-page {
   color: var(--text-dark);
   line-height: 1.95;
   font-size: 1.06rem;
+  font-family: Helvetica, Verdana, sans-serif;
+}
+
+.blog-post-content p,
+.blog-post-content span,
+.blog-post-content div,
+.blog-post-content li,
+.blog-post-content blockquote {
+  font-family: Helvetica, Verdana, sans-serif !important;
 }
 
 .blog-post-content > * + * {

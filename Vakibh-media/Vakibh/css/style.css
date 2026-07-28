@@ -13,14 +13,21 @@
   --card-shadow: 0 10px 30px rgba(220, 180, 140, 0.15);
   --hover-shadow: 0 15px 35px rgba(230, 92, 0, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --font-body: 'Mukta', Arial, Helvetica, Verdana, sans-serif;
-  --font-heading: 'Mukta', sans-serif;
-  --marathi-font: 'Mukta', Arial, Helvetica, Verdana, sans-serif;
+  --font-body: Helvetica, Verdana, sans-serif;
+  --font-heading: Helvetica, Verdana, sans-serif;
+  --marathi-font: Helvetica, Verdana, sans-serif;
   --content-text: var(--text-dark);
   --heading-text: var(--text-dark);
   --content-line-height: 1.95;
-  --content-font-size: clamp(1rem, 1.05vw, 1.06rem);
-  --verse-font-size: clamp(1.08rem, 1.3vw, 1.28rem);
+  --content-font-size: 1.25rem;
+  --verse-font-size: 1.25rem;
+}
+
+/* Use the requested Helvetica stack for every paragraph across the site. */
+p,
+article p,
+main p {
+  font-family: Helvetica, Verdana, sans-serif !important;
 }
 
 /* Reset & Base Styles */
@@ -2191,6 +2198,19 @@ footer::before {
   font-size: 1.35rem;
 }
 
+.devotional-float img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.78;
+}
+
+.devotional-float-veena img {
+  width: 46px;
+  height: 46px;
+}
+
 .devotional-float-taal {
   left: 7%;
   top: 18%;
@@ -2209,8 +2229,9 @@ footer::before {
 }
 
 .devotional-float-veena {
-  left: 38%;
-  bottom: 12%;
+  left: auto;
+  right: 31%;
+  bottom: 14%;
   animation-delay: -4.5s;
 }
 
@@ -3162,4 +3183,77 @@ body.is-standard-granth-reading-page .floating-whatsapp {
   .floating-whatsapp {
     bottom: 70px !important;
   }
+}
+
+/* Helvetica is the single text font across the complete website. */
+html,
+body,
+body :where(
+  div, main, section, article, header, footer, nav, aside,
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, li, label, button, input, textarea, select, option,
+  table, thead, tbody, tfoot, tr, th, td, blockquote, cite, small, strong, b, em
+):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.material-icons):not(.material-symbols-outlined) {
+  font-family: Helvetica, Verdana, sans-serif !important;
+}
+
+/* Final site-wide reading size for posts, blogs and long-form literature. */
+.post-content p,
+.post-content p span,
+.entry-content p,
+.entry-content p span,
+.article-content p,
+.article-content p span,
+.blog-content p,
+.blog-content p span,
+.blog-post-content p,
+.blog-post-content p span,
+.post-body p,
+.post-body p span,
+.article-body p,
+.article-body p span {
+  font-family: Helvetica, Verdana, sans-serif !important;
+  font-size: 1.25rem !important;
+}
+
+/* Keep prose and verse content normal; headings retain their designed weight. */
+.post-content .entry-content,
+.post-content .entry-content p,
+.post-content .entry-content p span,
+.post-content .entry-content strong,
+.post-content .entry-content b,
+.entry-content,
+.entry-content p,
+.entry-content p span,
+.entry-content strong,
+.entry-content b,
+.article-content p,
+.article-content p span,
+.blog-content p,
+.blog-content p span,
+.blog-post-content p,
+.blog-post-content p span,
+.post-body p,
+.post-body p span,
+.article-body p,
+.article-body p span {
+  font-weight: 400 !important;
+}
+
+/* Compulsory normal weight for all non-heading long-form content. */
+.post-content .entry-content,
+.post-content .entry-content *,
+.article-content p,
+.article-content p *,
+.blog-content p,
+.blog-content p *,
+.blog-post-content p,
+.blog-post-content p *,
+.post-body p,
+.post-body p *,
+.article-body p,
+.article-body p * {
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+  font-family: Helvetica, "Kokila", "Mangal", Verdana, sans-serif !important;
 }

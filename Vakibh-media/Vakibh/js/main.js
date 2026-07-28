@@ -1,4 +1,17 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+  const cleanIndexUrl = () => {
+    const pathname = window.location.pathname.replace(/\\/g, '/');
+    if (!/\/index\.html$/i.test(pathname)) return;
+
+    const cleanPath = pathname.replace(/index\.html$/i, '');
+    window.history.replaceState(
+      window.history.state,
+      document.title,
+      `${cleanPath}${window.location.search}${window.location.hash}`
+    );
+  };
+  cleanIndexUrl();
+
   const removeUnwantedTranslationSections = () => {
     document.querySelectorAll('.bilingual-translation-card').forEach((node) => node.remove());
     document.querySelectorAll('section, div, article').forEach((node) => {
@@ -233,10 +246,10 @@
     hero.innerHTML = `
       <div class="inner-breadcrumb-overlay" style="position:absolute;inset:0;z-index:0;background:linear-gradient(90deg, rgba(36,59,90,.84) 0%, rgba(36,59,90,.58) 45%, rgba(16,22,32,.58) 100%), rgba(0,0,0,.55);"></div>
       <div class="inner-breadcrumb-pattern" aria-hidden="true"></div>
-      <span class="devotional-float devotional-float-taal" aria-hidden="true"><i class="fas fa-music"></i></span>
-      <span class="devotional-float devotional-float-mridang" aria-hidden="true"><i class="fas fa-drum"></i></span>
+      <span class="devotional-float devotional-float-taal" aria-hidden="true"><img src="/assests/breadcrumb-harmonium.svg" alt=""></span>
+      <span class="devotional-float devotional-float-mridang" aria-hidden="true"><img src="/assests/breadcrumb-tabla.svg" alt=""></span>
       <span class="devotional-float devotional-float-tulsi" aria-hidden="true"><i class="fas fa-leaf"></i></span>
-      <span class="devotional-float devotional-float-veena" aria-hidden="true"><i class="fas fa-guitar"></i></span>
+      <span class="devotional-float devotional-float-veena" aria-hidden="true"><img src="/assests/breadcrumb-veena.svg" alt=""></span>
       <div class="inner-breadcrumb-content" style="position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;">
         <span class="inner-breadcrumb-eyebrow">${eyebrow}</span>
         <h1>${title}</h1>
@@ -1245,11 +1258,6 @@
 
     const inner = document.createElement('div');
     inner.className = 'abhang-grid-inner';
-
-    const heading = document.createElement('h2');
-    heading.className = 'abhang-grid-heading';
-    heading.textContent = getTitle();
-    inner.appendChild(heading);
 
     const list = document.createElement('div');
     list.className = 'abhang-content-list';
@@ -2798,6 +2806,134 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       root.dataset.verseEndsWrapped = 'true';
     });
   };
+  const removeDuplicateAbhangOpeningNumbers = () => {
+    const openingNumberPattern = /^\s*[०-९0-9]+\s*[.)।:-]\s*/u;
+    const firstLineSelector = [
+      '.natache-line',
+      '.abhang-readable-verses > p',
+      '.abhang-readable-verses .abhang-verse > p',
+      '.abhang-readable-verses .verse-line',
+      '.abhang-readable-verses .gatha-line',
+      '.abhang-readable-verses .devotional-verse-content'
+    ].join(', ');
+
+    document.querySelectorAll('.abhang-content-block').forEach((block) => {
+      const firstLine = block.querySelector(firstLineSelector);
+      if (!firstLine || firstLine.dataset.openingNumberCleaned === 'true') return;
+
+      const walker = document.createTreeWalker(firstLine, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.nodeValue || !node.nodeValue.trim()) continue;
+        node.nodeValue = node.nodeValue.replace(openingNumberPattern, '');
+        firstLine.dataset.openingNumberCleaned = 'true';
+        break;
+      }
+    });
+  };
+  const enforceNormalReadingWeight = () => {
+    const roots = document.querySelectorAll([
+      '.abhang-post-main .post-content',
+      '.abhang-post-main .abhang-verse',
+      '.abhang-post-main .entry-content',
+      '.sant-page-main .charitra-content',
+      '.sant-page-main .biography-content',
+      '.sant-page-main .gatha-content',
+      '.sant-page-main .aarti-content',
+      '.sant-page-main .haripath-content',
+      '.abhang-content-list',
+      '.abhang-content-block .abhang-readable-verses',
+      '.abhang-card .abhang-verse',
+      '.abhang-card .abhang-content',
+      '.post-article .entry-content',
+      '.blog-post-content',
+      '.article-content'
+    ].join(', '));
+
+    const skipSelector = [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+      'button', 'input', 'select', 'textarea',
+      'i', '.fa', '.fas', '.far', '.fab', '.fal', '.fad',
+      '.post-title', '.sant-title'
+    ].join(', ');
+
+    roots.forEach((root) => {
+      const readingNodes = [root, ...root.querySelectorAll('*')];
+      readingNodes.forEach((node) => {
+        if (!(node instanceof HTMLElement) || node.matches(skipSelector)) return;
+        node.style.setProperty('font-weight', '300', 'important');
+        node.style.setProperty('font-synthesis', 'none', 'important');
+        node.style.setProperty('font-family', 'Helvetica, "Kokila", "Mangal", Verdana, sans-serif', 'important');
+      });
+    });
+
+    if (document.body.classList.contains('namdev-palne-page')) {
+      const palneContainers = document.querySelectorAll(
+        '.abhang-post .post-content, .abhang-post .abhang-verse, .abhang-post .entry-content'
+      );
+      palneContainers.forEach((node) => {
+        node.style.setProperty('width', '100%', 'important');
+        node.style.setProperty('max-width', '1100px', 'important');
+        node.style.setProperty('margin-left', 'auto', 'important');
+        node.style.setProperty('margin-right', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+      });
+
+      document.querySelectorAll(
+        '.abhang-post .entry-content > p, .abhang-post .devotional-numbered-verse'
+      ).forEach((node) => {
+        node.style.setProperty('display', 'block', 'important');
+        node.style.setProperty('width', '100%', 'important');
+        node.style.setProperty('max-width', '100%', 'important');
+        node.style.setProperty('margin-left', 'auto', 'important');
+        node.style.setProperty('margin-right', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+      });
+
+      document.querySelectorAll(
+        '.abhang-post .devotional-verse-number, .abhang-post .devotional-verse-content'
+      ).forEach((node) => {
+        node.style.setProperty('display', 'inline', 'important');
+        node.style.setProperty('width', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+      });
+    }
+
+    if (document.body.classList.contains('dnyaneshwar-aarti-page')) {
+      document.querySelectorAll(
+        '.abhang-post .post-content, .abhang-post .abhang-verse, .abhang-post .entry-content'
+      ).forEach((node) => {
+        node.style.setProperty('display', 'block', 'important');
+        node.style.setProperty('width', '100%', 'important');
+        node.style.setProperty('max-width', '900px', 'important');
+        node.style.setProperty('margin-left', 'auto', 'important');
+        node.style.setProperty('margin-right', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+      });
+
+      document.querySelectorAll(
+        '.abhang-post .entry-content > p'
+      ).forEach((node) => {
+        node.style.setProperty('display', 'block', 'important');
+        node.style.setProperty('width', '100%', 'important');
+        node.style.setProperty('max-width', '100%', 'important');
+        node.style.setProperty('margin-left', 'auto', 'important');
+        node.style.setProperty('margin-right', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+      });
+
+      document.querySelectorAll(
+        '.abhang-post .entry-content .verse-end'
+      ).forEach((node) => {
+        node.style.setProperty('display', 'inline', 'important');
+        node.style.setProperty('width', 'auto', 'important');
+        node.style.setProperty('max-width', 'none', 'important');
+        node.style.setProperty('margin', '0', 'important');
+        node.style.setProperty('text-align', 'inherit', 'important');
+        node.style.setProperty('white-space', 'nowrap', 'important');
+      });
+    }
+  };
   const initAbhangRangeSearch = () => {
     const input = document.getElementById('abhangRangeSearch') || document.querySelector('[data-abhang-range-search]');
     const list = document.getElementById('abhangContentList');
@@ -2835,6 +2971,8 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
   // Visitor OTP floating login disabled on public pages.
   wrapDevotionalVerseEndings();
+  removeDuplicateAbhangOpeningNumbers();
+  enforceNormalReadingWeight();
   libraryInitSearchBars();
   libraryInitSearchPage();});
 
