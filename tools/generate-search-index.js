@@ -9,7 +9,11 @@ const saintNames = {
   dnyaneshwar: 'संत ज्ञानेश्वर महाराज', tukaram: 'संत तुकाराम महाराज', namdev: 'संत नामदेव महाराज', eknath: 'संत एकनाथ महाराज',
   janabai: 'संत जनाबाई', chokhamela: 'संत चोखामेळा महाराज', muktabai: 'संत मुक्ताबाई', sopandev: 'संत सोपानदेव',
   nivruttinath: 'संत निवृत्तिनाथ', savata: 'संत सावता माळी', gora: 'संत गोरा कुंभार', narhari: 'संत नरहरी सोनार',
-  rohidas: 'संत रोहिदास महाराज'
+  rohidas: 'संत रोहिदास महाराज',
+  nilobaray: 'संत निळोबाराय महाराज',
+  'santaji-jagnade': 'संत संताजी जगनाडे महाराज',
+  'visoba-khechar': 'संत विसोबा खेचर महाराज',
+  'narhari-sonar': 'संत नरहरी सोनार महाराज'
 };
 const saintAliases = {
   dnyaneshwar: 'dnyaneshwar dnyaneshwari jnaneshwar jnaneshwari gyaneshwar gyaneshwari gyanadev jnanadev dnyandev mauli ज्ञानदेव माऊली',
@@ -17,7 +21,11 @@ const saintAliases = {
   namdev: 'namdev nama नामदेव नामा', eknath: 'eknath eknathi एकनाथ एकनाथी', janabai: 'janabai jani jana जनाबाई जनी',
   chokhamela: 'chokhamela chokhoba चोखामेळा चोखोबा', muktabai: 'muktabai mukta मुक्ताबाई मुक्ता', sopandev: 'sopandev sopan सोपानदेव सोपान',
   nivruttinath: 'nivruttinath nivrutti निवृत्तिनाथ निवृत्ती', savata: 'savata sawata mali सावता सावतामाळी', gora: 'gora kumbhar गोरा कुंभार',
-  narhari: 'narhari sonar नरहरी सोनार', rohidas: 'rohidas ravidas रोहिदास रविदास'
+  narhari: 'narhari sonar नरहरी सोनार', rohidas: 'rohidas ravidas रोहिदास रविदास',
+  nilobaray: 'nilobaray niloba sant niloba निळोबाराय निळोबा',
+  'santaji-jagnade': 'santaji jagnade jaganade संताजी जगनाडे जगनाडे महाराज',
+  'visoba-khechar': 'visoba khechar sant visoba विसोबा खेचर विसोबा महाराज',
+  'narhari-sonar': 'narhari sonar sant narhari नरहरी सोनार नरहरी महाराज'
 };
 const contentAliases = [
   ['हरिपाठ', 'haripath hari path hari mukhe mhana hari mukhe mhna हरि मुखे म्हणा'],

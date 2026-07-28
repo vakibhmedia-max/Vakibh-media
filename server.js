@@ -195,8 +195,6 @@ app.use(async (req, res, next) => {
   const needsBackend =
     req.path === '/admin' ||
     req.path.startsWith('/admin/') ||
-    req.path === '/blog' ||
-    req.path.startsWith('/blog/') ||
     req.path.startsWith('/api/visitor-login/');
 
   if (!needsBackend) {
@@ -679,6 +677,19 @@ app.post('/admin/posts/:id/delete', requireAdmin, async (req, res, next) => {
   }
 });
 
+// Public blog pages are already generated in Vakibh-media/blog. Serve those
+// files directly so the footer link shows every imported/live blog, even when
+// the local admin database has not been populated from Blogger yet.
+app.get('/blog/index.html', (req, res) => {
+  res.sendFile(path.join(SITE_ROOT, 'blog', 'index.html'));
+});
+
+app.get('/blog/:slug/index.html', (req, res, next) => {
+  const blogFile = path.join(SITE_ROOT, 'blog', req.params.slug, 'index.html');
+  if (!fs.existsSync(blogFile)) return next();
+  return res.sendFile(blogFile);
+});
+
 app.get('/blog/index.html', async (req, res, next) => {
   try {
     const posts = await listPublishedPosts();
@@ -809,8 +820,6 @@ app.use(async (err, req, res, next) => {
 });
 
 async function start() {
-  await ensureBackendReady();
-
   app.listen(PORT, () => {
     console.log(`Vakibh backend running on http://127.0.0.1:${PORT}`);
   });
