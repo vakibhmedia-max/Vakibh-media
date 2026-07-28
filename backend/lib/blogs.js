@@ -197,6 +197,11 @@ async function syncStaticBlogPages() {
   await renderStaticBlogPosts(posts);
 }
 
+async function syncStaticBlogIndex() {
+  const posts = await listPublishedPosts();
+  await renderStaticBlogIndex(posts);
+}
+
 function extractSeedCard(listHtml, index) {
   const cardRegex = new RegExp(
     `<article class="arrival-card blog-card" id="blog-${index}">([\\s\\S]*?)<\\/article>`,
@@ -380,7 +385,7 @@ async function listPublishedPosts() {
   const [rows] = await pool.query(
     `SELECT * FROM blog_posts
      WHERE status = 'published'
-     ORDER BY sort_order ASC, COALESCE(published_at, created_at) DESC, id ASC`
+     ORDER BY COALESCE(published_at, created_at) DESC, id DESC`
   );
   return rows.map(normalizeRow);
 }
@@ -649,6 +654,7 @@ module.exports = {
   normalizeRow,
   seedStaticBlogPosts,
   sanitizeContentHtml,
+  syncStaticBlogIndex,
   syncStaticBlogPages,
   updateBlogPost
 };

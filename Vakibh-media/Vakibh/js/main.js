@@ -2964,6 +2964,65 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     apply();
   };
 
+  const sortBlogCardsNewestFirst = () => {
+    const grid = document.querySelector('.blog-page .blog-grid');
+    if (!grid) return;
+
+    const editorialDates = {
+      'digital-sant-sahitya-jatan': '2026-07-01',
+      'abhang-vachan-man-sthir': '2026-06-30',
+      'namasmaran-mahatva': '2026-06-29'
+    };
+
+    const getPublishedTime = (card) => {
+      const explicitDate = card.dataset.publishedAt;
+      if (explicitDate) {
+        const parsed = Date.parse(explicitDate);
+        if (!Number.isNaN(parsed)) return parsed;
+      }
+
+      const link = card.querySelector('.blog-card-media[href], .arrival-title a[href]');
+      const href = link ? link.getAttribute('href') || '' : '';
+      const pathParts = href
+        .split(/[?#]/, 1)[0]
+        .split('/')
+        .filter((part) => part && part !== '.' && part !== '..' && part !== 'index.html');
+      const slug = pathParts[pathParts.length - 1] || '';
+
+      if (editorialDates[slug]) return Date.parse(`${editorialDates[slug]}T12:00:00`);
+
+      const datedSlug = slug.match(/^(\d{4})-(\d{2})-blog-post(?:-(\d{1,2}))?$/);
+      if (datedSlug) {
+        const year = Number(datedSlug[1]);
+        const month = Number(datedSlug[2]);
+        const day = Number(datedSlug[3] || 1);
+        return new Date(year, month - 1, day, 12).getTime();
+      }
+
+      return 0;
+    };
+
+    const cards = Array.from(grid.querySelectorAll(':scope > .blog-card'));
+    cards
+      .map((card, originalIndex) => ({
+        card,
+        originalIndex,
+        publishedTime: getPublishedTime(card)
+      }))
+      .sort((left, right) =>
+        right.publishedTime - left.publishedTime ||
+        left.originalIndex - right.originalIndex
+      )
+      .forEach(({ card }, index) => {
+        const label = `लेख ${index + 1}`;
+        const dateLabel = card.querySelector('.arrival-date');
+        const shareFooter = card.querySelector('[data-share-label]');
+        if (dateLabel) dateLabel.textContent = label;
+        if (shareFooter) shareFooter.dataset.shareLabel = label;
+        grid.appendChild(card);
+      });
+  };
+
   const hashTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (hashTarget) {
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
@@ -2973,6 +3032,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   wrapDevotionalVerseEndings();
   removeDuplicateAbhangOpeningNumbers();
   enforceNormalReadingWeight();
+  sortBlogCardsNewestFirst();
   libraryInitSearchBars();
   libraryInitSearchPage();});
 
