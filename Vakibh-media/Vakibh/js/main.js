@@ -1157,10 +1157,1679 @@
 
     if (!list.children.length) return;
     nodesToFormat.forEach((node) => node.remove());
-    postContent.appendChild(list);
+    const completeCard = document.createElement('div');
+    completeCard.className = 'haripath-complete-card';
+    completeCard.appendChild(list);
+    if (actions) completeCard.appendChild(actions);
+    postContent.appendChild(completeCard);
   };
 
   formatSarthHaripathPage();
+
+  const formatTukaramHaripathPage = () => {
+    if (!location.pathname.includes('/sants/tukaram/sarth-haripath/')) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const source = postContent?.querySelector('.abhang-verse');
+    if (!postContent || !source || postContent.querySelector('.haripath-complete-card')) return;
+
+    document.body.classList.add('haripath-meaning-normal-page');
+
+    const actions = postContent.querySelector('.abhang-post-actions');
+    const list = document.createElement('div');
+    list.className = 'abhang-readable-list';
+
+    source.querySelectorAll(':scope > p').forEach((paragraph) => {
+      const lines = (paragraph.innerText || paragraph.textContent || '')
+        .split(/\r?\n/)
+        .map((line) => normalizeText(line))
+        .filter(Boolean);
+      const number = lines.shift();
+
+      if (!number || !/^[\u0966-\u096F]+$/.test(number) || !lines.length) return;
+      if (lines.some((line) => /इति\s+श्रीतुकाराम\s+हरिपाठ\s+समाप्त/.test(line))) return;
+
+      const section = document.createElement('section');
+      section.className = 'abhang-readable-item';
+      section.id = `haripath-${number}`;
+      section.dataset.abhangItem = 'true';
+      section.dataset.abhangNumber = number;
+
+      const verseBlock = document.createElement('div');
+      verseBlock.className = 'abhang-readable-verses haripath-readable-verses';
+
+      lines.forEach((line, lineIndex) => {
+        const stanza = document.createElement('div');
+        stanza.className = 'haripath-stanza';
+        const lineElement = document.createElement('p');
+        lineElement.className = 'haripath-line haripath-ending-line';
+
+        if (lineIndex === 0) {
+          const numberSpan = document.createElement('span');
+          numberSpan.className = 'haripath-inline-number';
+          numberSpan.textContent = `${number}.`;
+          lineElement.dataset.verseNumber = number;
+          lineElement.append(numberSpan, document.createTextNode(line));
+        } else {
+          lineElement.textContent = line;
+        }
+
+        stanza.appendChild(lineElement);
+        verseBlock.appendChild(stanza);
+      });
+
+      section.appendChild(verseBlock);
+      list.appendChild(section);
+    });
+
+    if (!list.children.length) return;
+
+    const completeCard = document.createElement('div');
+    completeCard.className = 'haripath-complete-card';
+    completeCard.appendChild(list);
+    if (actions) completeCard.appendChild(actions);
+
+    source.remove();
+    postContent.appendChild(completeCard);
+  };
+
+  formatTukaramHaripathPage();
+
+  const formatNamdevHaripathPage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/namdev/sarth-haripath/')) return;
+
+    const article = document.querySelector('.abhang-post');
+    const legacyHeader = article?.querySelector('.post-header');
+    if (!article || !legacyHeader || article.querySelector('.haripath-complete-card')) return;
+
+    const verseParagraphs = Array.from(legacyHeader.querySelectorAll('p')).filter((paragraph) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      return /[।॥]/.test(text) && !/इति\s+श्री|हरिपाठ\s+समाप्त/.test(text);
+    });
+    if (!verseParagraphs.length) return;
+
+    document.body.classList.add('haripath-meaning-normal-page', 'namdev-haripath-page');
+
+    const list = document.createElement('div');
+    list.className = 'abhang-readable-list';
+
+    verseParagraphs.forEach((paragraph, index) => {
+      const number = String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+      const lines = (paragraph.innerText || paragraph.textContent || '')
+        .split(/\r?\n/)
+        .map((line) => normalizeText(line))
+        .filter(Boolean);
+      if (!lines.length) return;
+
+      const section = document.createElement('section');
+      section.className = 'abhang-readable-item';
+      section.id = `namdev-haripath-${index + 1}`;
+      section.dataset.abhangItem = 'true';
+      section.dataset.abhangNumber = number;
+
+      const verseBlock = document.createElement('div');
+      verseBlock.className = 'abhang-readable-verses haripath-readable-verses';
+
+      for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 2) {
+        const stanza = document.createElement('div');
+        stanza.className = 'haripath-stanza';
+
+        lines.slice(lineIndex, lineIndex + 2).forEach((line, pairIndex) => {
+          const lineElement = document.createElement('p');
+          lineElement.className = pairIndex === 1
+            ? 'haripath-line haripath-ending-line'
+            : 'haripath-line';
+
+          if (lineIndex === 0 && pairIndex === 0) {
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'haripath-inline-number';
+            numberSpan.textContent = `${number}.`;
+            lineElement.dataset.verseNumber = number;
+            lineElement.append(numberSpan, document.createTextNode(line));
+          } else {
+            lineElement.textContent = line;
+          }
+          stanza.appendChild(lineElement);
+        });
+        verseBlock.appendChild(stanza);
+      }
+
+      section.appendChild(verseBlock);
+      list.appendChild(section);
+    });
+
+    const completeCard = document.createElement('div');
+    completeCard.className = 'haripath-complete-card';
+    completeCard.appendChild(list);
+    completeCard.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+
+    const pageHeader = document.createElement('header');
+    pageHeader.className = 'post-header';
+    pageHeader.innerHTML = '<h1 class="post-title">संत नामदेव हरिपाठ</h1>';
+    const postContent = document.createElement('div');
+    postContent.className = 'post-content';
+    postContent.appendChild(completeCard);
+    article.replaceChildren(pageHeader, postContent);
+  };
+
+  formatNamdevHaripathPage();
+
+  const formatNamdevGathaCategoryPages = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    const categorySlugs = [
+      'gatha-1to25', 'gatha-1-2', 'updesh', 'updesh-2', 'aatmsukh',
+      'bhaktwatsalta', 'dhruvcharitra', 'naammahima', 'pandharimahatmya',
+      'pouranik-charitra', 'shrirammahatmya', 'rupke', 'santmahima',
+      'santcharitra', 'shivratrmahatmya', 'shukakhyan', 'sudamcharitra',
+      'tirthawali', 'vitthache-abhang', 'shrivitthalmahatmya', 'gavlan',
+      'dronparw-katha', 'karuna', 'balkrida-2', 'shrikrushnlila',
+      'naamsankirtan-mahatmya', 'naamdev-charitra'
+    ];
+    const categorySlug = path.match(/\/sants\/namdev\/([^/]+)\//)?.[1] || '';
+    if (!categorySlugs.includes(categorySlug)) return;
+    const categoryNumberLabel = {
+      'vitthache-abhang': 'अभंग',
+      gavlan: 'गवळण',
+      'dronparw-katha': 'कथा'
+    }[categorySlug] || 'गाथा';
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const entry = postContent?.querySelector('.entry-content');
+    const actions = postContent?.querySelector('.abhang-post-actions');
+    if (!postContent || !entry || entry.dataset.namdevGathaCard === 'true') return;
+
+    entry.dataset.namdevGathaCard = 'true';
+    document.body.classList.add('namdev-gatha-card-page');
+
+    if (path.includes('/sants/namdev/gatha-1to25/')) {
+      entry.classList.add('namdev-gatha-card-list-host');
+      document.body.classList.add('namdev-gatha-multi-card-page');
+
+      const groups = [];
+      let currentGroup = [];
+      Array.from(entry.childNodes).forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE && node.matches('hr')) {
+          if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) {
+            groups.push(currentGroup);
+          }
+          currentGroup = [];
+          return;
+        }
+        currentGroup.push(node);
+      });
+      if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) {
+        groups.push(currentGroup);
+      }
+
+      const list = document.createElement('div');
+      list.className = 'namdev-gatha-section-list';
+      groups.slice(0, 25).forEach((nodes, index) => {
+        const number = String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card';
+        card.id = `namdev-gatha-${index + 1}`;
+
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `गाथा ${number}`;
+
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content';
+        nodes.forEach((node) => content.appendChild(node));
+        content.querySelectorAll('p').forEach((paragraph) => {
+          const getFirstLine = () => normalizeText(
+            (paragraph.innerText || paragraph.textContent || '').split(/\r?\n/)[0] || ''
+          );
+          const removeFirstLine = () => {
+            const firstBreak = paragraph.querySelector('br');
+            if (!firstBreak) {
+              paragraph.remove();
+              return false;
+            }
+            const container = firstBreak.parentNode;
+            let node = container.firstChild;
+            while (node) {
+              const next = node.nextSibling;
+              node.remove();
+              if (node === firstBreak) break;
+              node = next;
+            }
+            return true;
+          };
+
+          if (/^संत\s+नामदेव\s+गाथा\s+[०-९0-9]+\s*[–—-]/.test(getFirstLine())) {
+            if (!removeFirstLine()) return;
+          }
+
+          const firstLine = getFirstLine();
+          const firstBreak = paragraph.querySelector('br');
+          if (/^[०-९0-9]+[.)]?$/u.test(firstLine) && firstBreak) {
+            firstBreak.replaceWith(document.createTextNode(' '));
+          }
+
+          paragraph.classList.add('namdev-gatha-verse-block');
+          paragraph.removeAttribute('style');
+          paragraph.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+          paragraph.style.setProperty('display', 'table', 'important');
+          paragraph.style.setProperty('width', 'fit-content', 'important');
+          paragraph.style.setProperty('max-width', '100%', 'important');
+          paragraph.style.setProperty('margin-left', 'auto', 'important');
+          paragraph.style.setProperty('margin-right', 'auto', 'important');
+          paragraph.style.setProperty('text-align', 'left', 'important');
+        });
+
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `गाथा ${number}`));
+        list.appendChild(card);
+      });
+
+      postContent.querySelector('.abhang-post-actions')?.remove();
+      entry.replaceChildren(list);
+      return;
+    }
+
+    if (path.includes('/sants/namdev/gatha-1-2/')) {
+      entry.classList.add('namdev-gatha-card-list-host');
+      document.body.classList.add('namdev-gatha-multi-card-page');
+
+      const paragraphs = Array.from(entry.querySelectorAll('p')).filter((paragraph) => {
+        const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+        return /^[०-९0-9]+[.)]?\s+/.test(text) && /[।॥]/.test(text);
+      });
+      const list = document.createElement('div');
+      list.className = 'namdev-gatha-section-list';
+
+      paragraphs.forEach((paragraph, index) => {
+        const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+        const number = text.match(/^([०-९0-9]+)/)?.[1]
+          || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const verse = paragraph.cloneNode(true);
+        verse.className = 'namdev-gatha-verse-block';
+        verse.removeAttribute('style');
+        verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+
+        const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+        let firstTextNode = walker.nextNode();
+        while (firstTextNode && !normalizeText(firstTextNode.textContent || '')) {
+          firstTextNode = walker.nextNode();
+        }
+        if (firstTextNode) {
+          firstTextNode.textContent = (firstTextNode.textContent || '').replace(/^\s*[०-९0-9]+[.)]?\s*/, '');
+        }
+        verse.style.setProperty('display', 'table', 'important');
+        verse.style.setProperty('width', 'fit-content', 'important');
+        verse.style.setProperty('max-width', '100%', 'important');
+        verse.style.setProperty('margin-left', 'auto', 'important');
+        verse.style.setProperty('margin-right', 'auto', 'important');
+        verse.style.setProperty('text-align', 'left', 'important');
+
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card';
+        card.id = `namdev-atmaswarup-gatha-${index + 1}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `गाथा ${number}`;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content';
+        content.appendChild(verse);
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `गाथा ${number}`));
+        list.appendChild(card);
+      });
+
+      postContent.querySelector('.abhang-post-actions')?.remove();
+      entry.replaceChildren(list);
+      return;
+    }
+
+    entry.classList.add('namdev-gatha-card-list-host');
+    document.body.classList.add('namdev-gatha-multi-card-page');
+
+    const candidates = Array.from(entry.querySelectorAll('p')).filter((paragraph) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      if (!text || !/[।॥]/.test(text)) return false;
+      if (/^संत\s+नामदेव\s+(?:गाथा|अभंग)/.test(text)) return false;
+      return /^[०-९0-9]+[.)]?\s*/.test(text) || paragraph.querySelector('br');
+    });
+
+    if (!candidates.length) return;
+
+    const list = document.createElement('div');
+    list.className = 'namdev-gatha-section-list';
+    candidates.forEach((paragraph, index) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      const explicitNumber = text.match(/^([०-९0-9]+)[.)]?\s*/)?.[1];
+      const number = explicitNumber
+        || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+      const verse = paragraph.cloneNode(true);
+      verse.className = 'namdev-gatha-verse-block';
+      verse.removeAttribute('style');
+      verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+
+      if (explicitNumber) {
+        const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+        let firstTextNode = walker.nextNode();
+        while (firstTextNode && !normalizeText(firstTextNode.textContent || '')) {
+          firstTextNode = walker.nextNode();
+        }
+        if (firstTextNode) {
+          firstTextNode.textContent = (firstTextNode.textContent || '')
+            .replace(/^\s*[०-९0-9]+[.)]?\s*/, '');
+        }
+      }
+
+      verse.style.setProperty('display', 'table', 'important');
+      verse.style.setProperty('width', 'fit-content', 'important');
+      verse.style.setProperty('max-width', '100%', 'important');
+      verse.style.setProperty('margin-left', 'auto', 'important');
+      verse.style.setProperty('margin-right', 'auto', 'important');
+      verse.style.setProperty('text-align', 'left', 'important');
+
+      const card = document.createElement('article');
+      card.className = 'namdev-gatha-section-card';
+      card.id = `namdev-${categorySlug}-gatha-${index + 1}`;
+      const badge = document.createElement('span');
+      badge.className = 'namdev-gatha-section-number';
+      badge.textContent = `${categoryNumberLabel} ${number}`;
+      const content = document.createElement('div');
+      content.className = 'namdev-gatha-section-content';
+      content.appendChild(verse);
+      card.append(badge, content);
+      card.insertAdjacentHTML(
+        'beforeend',
+        getAbhangItemActionsMarkup(card.id, `${categoryNumberLabel} ${number}`)
+      );
+      list.appendChild(card);
+    });
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatNamdevGathaCategoryPages();
+
+  const formatNamdevPalnePage = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/namdev/sant-namdev-palne/')) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const entry = postContent?.querySelector('.entry-content');
+    if (!postContent || !entry || entry.dataset.namdevPalneCards === 'true') return;
+
+    const verses = Array.from(entry.querySelectorAll(':scope > p')).filter((paragraph) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      return text && /[।॥]/.test(text) && !paragraph.querySelector('strong');
+    });
+    if (!verses.length) return;
+
+    entry.dataset.namdevPalneCards = 'true';
+    entry.classList.add('namdev-gatha-card-list-host');
+    document.body.classList.add('namdev-gatha-card-page', 'namdev-gatha-multi-card-page');
+
+    const list = document.createElement('div');
+    list.className = 'namdev-gatha-section-list';
+
+    verses.forEach((paragraph, index) => {
+      const number = String(index + 1).replace(
+        /[0-9]/g,
+        (digit) => '०१२३४५६७८९'[Number(digit)]
+      );
+      const verse = paragraph.cloneNode(true);
+      verse.className = 'namdev-gatha-verse-block';
+      verse.removeAttribute('style');
+      verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+      verse.style.setProperty('display', 'table', 'important');
+      verse.style.setProperty('width', 'fit-content', 'important');
+      verse.style.setProperty('max-width', '100%', 'important');
+      verse.style.setProperty('margin-left', 'auto', 'important');
+      verse.style.setProperty('margin-right', 'auto', 'important');
+      verse.style.setProperty('text-align', 'left', 'important');
+
+      const card = document.createElement('article');
+      card.className = 'namdev-gatha-section-card';
+      card.id = `namdev-palna-${index + 1}`;
+      const badge = document.createElement('span');
+      badge.className = 'namdev-gatha-section-number';
+      badge.textContent = `पाळणा ${number}`;
+      const content = document.createElement('div');
+      content.className = 'namdev-gatha-section-content';
+      content.appendChild(verse);
+      card.append(badge, content);
+      card.insertAdjacentHTML(
+        'beforeend',
+        getAbhangItemActionsMarkup(card.id, `पाळणा ${number}`)
+      );
+      list.appendChild(card);
+    });
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatNamdevPalnePage();
+
+  const formatTukaramAartiPage = () => {
+    if (!location.pathname.includes('/sants/tukaram/aarti/')) return;
+
+    const postContent = document.querySelector('.abhang-post.aarti-content .post-content');
+    const verses = postContent?.querySelector('.aarti-verses');
+    const entries = verses ? Array.from(verses.querySelectorAll(':scope > .aarti-entry')) : [];
+    if (!postContent || !verses || entries.length !== 2 || verses.querySelector('.abhang-item-actions')) return;
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    verses.querySelector('.aarti-divider')?.remove();
+
+    entries.forEach((entry, index) => {
+      const number = index + 1;
+      entry.classList.add('tukaram-aarti-card');
+      entry.id = `tukaram-aarti-${number}`;
+      entry.dataset.abhangItem = 'true';
+      entry.dataset.abhangNumber = String(number);
+
+      let title = entry.querySelector('.aarti-subtitle');
+      if (!title) {
+        title = document.createElement('h2');
+        title.className = 'aarti-subtitle';
+        title.textContent = `श्री तुकारामांची आरती ${number}`;
+        entry.prepend(title);
+      }
+
+      entry.insertAdjacentHTML(
+        'beforeend',
+        getAbhangItemActionsMarkup(entry.id, `आरती ${number}`)
+      );
+    });
+  };
+
+  formatTukaramAartiPage();
+
+  const formatOtherSaintAartiPages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const isAartiPath = /\/(?:aarti|[^/]*(?:aarti|arati|arti))\//.test(path);
+    if (!path.includes('/sants/') || !isAartiPath || path.includes('/sants/tukaram/aarti/')) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content, .post-article .post-content');
+    const source = postContent?.querySelector('.abhang-verse, .entry-content, .verse_style, [itemprop="text"]');
+    const entry = source?.matches('.entry-content, [itemprop="text"]')
+      ? source
+      : source?.querySelector('.entry-content, [itemprop="text"]') || source;
+    if (!postContent || !source || !entry || postContent.querySelector('.saint-aarti-cards')) return;
+
+    document.body.classList.add('saint-aarti-card-page');
+
+    const pageTitle = normalizeText(document.querySelector('.post-title')?.textContent || 'संत आरती');
+    const pageConfig = path.includes('/santaji-jagnade/aarti/')
+      ? { start: /^([१२])\s*[.)]/, expected: 2 }
+      : path.includes('/nilobaray/aarti/')
+        ? { start: /^(१५७[१-५])\s*[.)]/, expected: 5 }
+        : path.includes('/gora-kumbhar-aarti/')
+          ? { start: /^आरती\s*([१२])$/, expected: 2, omitMarker: true }
+        : { start: null, expected: 1 };
+
+    const cards = document.createElement('div');
+    cards.className = 'saint-aarti-cards';
+    const paragraphs = Array.from(entry.children).filter((node) => {
+      if (!node.matches('p')) return false;
+      const text = normalizeText(node.textContent || '');
+      if (!text || /आरती\s+समाप्त\s*[-–—]?$/.test(text)) return false;
+      if (node.querySelector('strong') && text.includes(pageTitle)) return false;
+      return text.replace(/\s*[-–—]\s*$/, '') !== pageTitle;
+    });
+    const groups = [];
+
+    if (pageConfig.start) {
+      let currentGroup = null;
+      paragraphs.forEach((paragraph) => {
+        const text = normalizeText(paragraph.textContent || '');
+        if (pageConfig.start.test(text)) {
+          currentGroup = [];
+          groups.push(currentGroup);
+          if (pageConfig.omitMarker) return;
+        }
+        if (currentGroup) currentGroup.push(paragraph);
+      });
+    } else if (paragraphs.length) {
+      groups.push(paragraphs);
+    }
+
+    if (groups.length !== pageConfig.expected) return;
+
+    groups.forEach((group, index) => {
+      const number = index + 1;
+      const card = document.createElement('section');
+      card.className = 'saint-aarti-card';
+      card.id = `saint-aarti-${number}`;
+      card.dataset.abhangItem = 'true';
+      card.dataset.abhangNumber = String(number);
+
+      const title = document.createElement('h2');
+      title.className = 'saint-aarti-card-title';
+      title.textContent = groups.length === 1 ? pageTitle : `आरती ${number}`;
+      const hideDuplicateCardTitle = path.includes('/nivruttinath/nivruttinath-arti/')
+        || path.includes('/eknath/sant-eknath-arti/')
+        || path.includes('/muktabai/muktabai-aarti/')
+        || path.includes('/savata-mali/savata-maharaj-arati/')
+        || path.includes('/rohidas/ravidas-aarti/');
+      if (!hideDuplicateCardTitle) card.appendChild(title);
+
+      const content = document.createElement('div');
+      content.className = 'saint-aarti-card-content';
+      group.forEach((paragraph) => content.appendChild(paragraph));
+      card.appendChild(content);
+      card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `आरती ${number}`));
+      cards.appendChild(card);
+    });
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    postContent.closest('.abhang-post, .post-article')?.querySelector('.abhang-action-toolbar')?.remove();
+    source.remove();
+    postContent.appendChild(cards);
+  };
+
+  formatOtherSaintAartiPages();
+
+  const formatDnyaneshwarViraniCards = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/dnyaneshwar/virani/')) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const source = postContent?.querySelector('.abhang-verse');
+    const entry = source?.querySelector('.entry-content');
+    if (!postContent || !source || !entry || postContent.querySelector('.virani-card-list')) return;
+
+    const children = Array.from(entry.children);
+    const starts = children.filter((node) => {
+      const text = normalizeText(node.textContent || '');
+      return node.matches('h2') || /विराणी\s*\/\s*विरहिणी\s*\/\s*विरहरत्ने/.test(text);
+    });
+    if (starts.length !== 9) return;
+
+    document.body.classList.add('dnyaneshwar-virani-card-page');
+    entry.dataset.viraniFormatted = 'true';
+    const list = document.createElement('div');
+    list.className = 'virani-card-list';
+
+    starts.forEach((startNode, index) => {
+      const endNode = starts[index + 1] || null;
+      const number = index + 1;
+      const card = document.createElement('section');
+      card.className = 'virani-card';
+      card.id = `virani-${number}`;
+      card.dataset.abhangItem = 'true';
+      card.dataset.abhangNumber = String(number);
+
+      const title = document.createElement('h2');
+      title.className = 'virani-card-title';
+      title.textContent = normalizeText(startNode.textContent || `विराणी ${number}`);
+      card.appendChild(title);
+
+      let node = startNode.nextElementSibling;
+      let verseFound = false;
+      while (node && node !== endNode) {
+        const next = node.nextElementSibling;
+        const text = normalizeText(node.textContent || '');
+        const isDuplicate = new RegExp(`^संत ज्ञानेश्वर विराणी\\s*[${number}१२३४५६७८९]$`).test(text)
+          || /विराणी.*समाप्त/.test(text);
+
+        if (node.matches('hr') || isDuplicate) {
+          node.remove();
+        } else if (!verseFound && node.matches('p') && node.querySelector('strong')) {
+          node.className = 'virani-card-verse';
+          card.appendChild(node);
+          verseFound = true;
+        } else if (/^॥\s*हरि\s*ॐ\s*॥$/.test(text)) {
+          node.className = 'virani-card-closing';
+          card.appendChild(node);
+        } else if (node.matches('p')) {
+          node.className = 'virani-card-meaning';
+          card.appendChild(node);
+        } else {
+          card.appendChild(node);
+        }
+        node = next;
+      }
+
+      startNode.remove();
+      card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `विराणी ${number}`));
+      list.appendChild(card);
+    });
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatDnyaneshwarViraniCards();
+
+  const formatDnyaneshwarCharitraPage = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const isEknathBiography = path.includes('/sants/eknath/sant-eknath/');
+    const isNivruttinathBiography = path.includes('/sants/nivruttinath/sant-nivruttinath/');
+    const isLegacySaintBiography = [
+      '/sants/muktabai/sant-muktabai/',
+      '/sants/sopandev/sopandev/',
+      '/sants/chokhamela/sant-chokhamela/',
+      '/sants/gora-kumbhar/gora-kumbhar/',
+      '/sants/savata-mali/sant-savtamali/',
+      '/sants/rohidas/sant-ravidas/'
+    ].some((slug) => path.includes(slug));
+    if (!/\/sants\/[^/]+\/charitra\//.test(path)
+      && !isEknathBiography && !isNivruttinathBiography && !isLegacySaintBiography) return;
+
+    const article = document.querySelector('.abhang-post, .post-article');
+    let postContent = article?.querySelector('.post-content');
+
+    // A few imported biography pages have their entire article inside the
+    // legacy post header. Normalize that markup before applying the card.
+    if (article && !postContent) {
+      const legacyRoot = article.querySelector('.post-header') || article;
+      const legacyNodes = Array.from(legacyRoot.childNodes);
+      const heading = document.createElement('header');
+      heading.className = 'post-header';
+      heading.innerHTML = '<h1 class="post-title">संत तुकाराम महाराज चरित्र</h1>';
+      postContent = document.createElement('div');
+      postContent.className = 'post-content charitra-content';
+      const normalizedEntry = document.createElement('div');
+      normalizedEntry.className = 'entry-content clear';
+      legacyNodes.forEach((node) => normalizedEntry.appendChild(node));
+      postContent.innerHTML = getAbhangPostActionsMarkup();
+      postContent.appendChild(normalizedEntry);
+      if (legacyRoot !== article) legacyRoot.remove();
+      article.prepend(heading);
+      article.appendChild(postContent);
+    }
+
+    let entry = postContent?.querySelector('.entry-content');
+    if (!entry && isEknathBiography) {
+      entry = postContent?.querySelector('.verse_style');
+      entry?.classList.add('entry-content', 'clear');
+    }
+    if (!entry && (isNivruttinathBiography || isLegacySaintBiography)) {
+      entry = postContent?.querySelector('[itemprop="text"]');
+      if (!entry && isLegacySaintBiography) entry = postContent?.querySelector('.verse_style');
+      entry?.classList.add('entry-content', 'clear');
+    }
+    let actions = postContent?.querySelector('.abhang-post-actions');
+    if (postContent && entry && !actions) {
+      entry.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+      actions = entry.querySelector('.abhang-post-actions');
+    }
+    if (!postContent || !entry || entry.classList.contains('charitra-reading-card')) return;
+
+    document.body.classList.add('saint-charitra-card-page');
+    if (path.includes('/sants/dnyaneshwar/charitra/')) {
+      document.body.classList.add('dnyaneshwar-charitra-page');
+    }
+    if (isEknathBiography) document.body.classList.add('eknath-charitra-page');
+    if (isNivruttinathBiography) document.body.classList.add('nivruttinath-charitra-page');
+    if (isLegacySaintBiography) document.body.classList.add('legacy-saint-charitra-page');
+    entry.classList.add('charitra-reading-card');
+
+    entry.querySelectorAll('hr').forEach((divider) => divider.remove());
+    entry.querySelectorAll('h2, h3').forEach((heading) => heading.classList.add('charitra-section-heading'));
+    entry.querySelectorAll('p').forEach((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      paragraph.classList.add('charitra-paragraph');
+      if (/^माझा मराठाचि बोलू कौतुके/.test(text)) paragraph.classList.add('charitra-quote');
+    });
+
+    if (actions) entry.appendChild(actions);
+  };
+
+  formatDnyaneshwarCharitraPage();
+
+  const formatGoraKumbharSangitPage = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/gora-kumbhar/gora-kumbhar-sangit/')) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content');
+    const entry = postContent?.querySelector('.verse_style [itemprop="text"]')
+      || postContent?.querySelector('.verse_style');
+    if (!article || !postContent || !entry || entry.dataset.goraSangitCards === 'true') return;
+
+    const candidates = Array.from(entry.querySelectorAll(':scope > p')).filter((paragraph) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      return /^[१-६1-6](?:\s|$)/.test(text) && paragraph.querySelector('br');
+    });
+    if (!candidates.length) return;
+
+    entry.dataset.goraSangitCards = 'true';
+    entry.classList.add('entry-content', 'clear', 'namdev-gatha-card-list-host');
+    document.body.classList.add('namdev-gatha-multi-card-page', 'gora-sangit-card-page');
+    const list = document.createElement('div');
+    list.className = 'namdev-gatha-section-list gora-sangit-section-list';
+
+    candidates.forEach((paragraph, index) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      const number = text.match(/^([१-६1-6])(?:\s|$)/)?.[1]
+        || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+      const verse = paragraph.cloneNode(true);
+      verse.className = 'namdev-gatha-verse-block';
+      verse.removeAttribute('style');
+      verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+      const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+      let firstTextNode = walker.nextNode();
+      while (firstTextNode && !normalizeText(firstTextNode.textContent || '')) firstTextNode = walker.nextNode();
+      if (firstTextNode) firstTextNode.textContent = (firstTextNode.textContent || '').replace(/^\s*[१-६1-6]\s*/, '');
+      verse.querySelector('br')?.remove();
+
+      const card = document.createElement('article');
+      card.className = 'namdev-gatha-section-card gora-sangit-section-card';
+      card.id = `gora-kumbhar-sangit-${index + 1}`;
+      const badge = document.createElement('span');
+      badge.className = 'namdev-gatha-section-number';
+      badge.textContent = `संगीत ${number}`;
+      const content = document.createElement('div');
+      content.className = 'namdev-gatha-section-content';
+      content.appendChild(verse);
+      card.append(badge, content);
+      card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `संगीत ${number}`));
+      list.appendChild(card);
+    });
+
+    article.querySelector('.abhang-action-toolbar')?.remove();
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatGoraKumbharSangitPage();
+
+  const formatRohidasLiteraturePages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const slug = path.match(/\/sants\/rohidas\/([^/]+)\//)?.[1] || '';
+    if (!['rohidas-dohe', 'rohidas-pade', 'rohidas-pothi', 'rohidas-shabd'].includes(slug)) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content');
+    const entry = postContent?.querySelector('.verse_style [itemprop="text"]')
+      || postContent?.querySelector('.verse_style');
+    if (!article || !postContent || !entry || entry.dataset.rohidasFormatted === 'true') return;
+    entry.dataset.rohidasFormatted = 'true';
+    article.querySelector('.abhang-action-toolbar')?.remove();
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+
+    if (slug === 'rohidas-pothi') {
+      document.body.classList.add('haripath-meaning-normal-page', 'rohidas-pothi-page');
+      const card = document.createElement('div');
+      card.className = 'haripath-complete-card rohidas-pothi-card';
+      Array.from(entry.children).forEach((node) => {
+        const text = normalizeText(node.textContent || '');
+        if (node.matches('hr') || /संत रोहिदास पोथी समाप्त/.test(text) || !text) return;
+        node.removeAttribute('style');
+        node.querySelectorAll?.('[style]').forEach((element) => element.removeAttribute('style'));
+        card.appendChild(node);
+      });
+      card.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+      postContent.replaceChildren(card);
+      return;
+    }
+
+    document.body.classList.add('namdev-gatha-multi-card-page', 'rohidas-literature-card-page');
+    entry.classList.add('entry-content', 'clear', 'namdev-gatha-card-list-host');
+    const list = document.createElement('div');
+    list.className = 'namdev-gatha-section-list rohidas-section-list';
+
+    if (slug === 'rohidas-dohe') {
+      const headings = Array.from(entry.querySelectorAll(':scope > p')).filter((paragraph) =>
+        /^संत रोहिदास दोहे\s*[–—-]\s*[०-९0-9]+$/.test(normalizeText(paragraph.textContent || ''))
+      );
+      headings.forEach((heading, index) => {
+        const headingText = normalizeText(heading.textContent || '');
+        const number = headingText.match(/([०-९0-9]+)$/)?.[1]
+          || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const source = heading.nextElementSibling;
+        if (!source || !source.matches('p')) return;
+        const verse = source.cloneNode(true);
+        verse.className = 'namdev-gatha-verse-block';
+        verse.removeAttribute('style');
+        verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card rohidas-doha-card';
+        card.id = `rohidas-doha-${number}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `दोहा ${number}`;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content';
+        content.appendChild(verse);
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `दोहा ${number}`));
+        list.appendChild(card);
+      });
+    } else if (slug === 'rohidas-pade') {
+      const headings = Array.from(entry.querySelectorAll(':scope > p')).filter((paragraph) =>
+        /^[०-९0-9]+[.)]\s*/.test(normalizeText(paragraph.textContent || '')) && paragraph.querySelector('strong')
+      );
+      headings.forEach((heading, index) => {
+        const headingText = normalizeText(heading.textContent || '');
+        const number = headingText.match(/^([०-९0-9]+)/)?.[1]
+          || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const source = heading.nextElementSibling;
+        if (!source || !source.matches('p')) return;
+        const verse = source.cloneNode(true);
+        verse.className = 'namdev-gatha-verse-block';
+        verse.removeAttribute('style');
+        verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card rohidas-pad-card';
+        card.id = `rohidas-pad-${number}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `पद ${number}`;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content';
+        content.appendChild(verse);
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `पद ${number}`));
+        list.appendChild(card);
+      });
+    } else {
+      const poems = [];
+      let currentPoem = null;
+      Array.from(entry.querySelectorAll(':scope > p')).forEach((paragraph) => {
+        const clone = paragraph.cloneNode(true);
+        clone.querySelectorAll('br').forEach((br) => br.replaceWith('\n'));
+        (clone.textContent || '').split(/\n+/).map((line) => normalizeText(line)).filter(Boolean)
+          .forEach((line) => {
+            const marker = line.match(/^([०-९0-9]+)[.)]\s*(.+)$/);
+            if (marker) {
+              if (currentPoem) poems.push(currentPoem);
+              currentPoem = { number: marker[1], title: marker[2], lines: [] };
+              return;
+            }
+            if (!currentPoem) return;
+            if (!currentPoem.lines.length && line === currentPoem.title) return;
+            currentPoem.lines.push(line);
+          });
+      });
+      if (currentPoem) poems.push(currentPoem);
+
+      poems.forEach((poem, index) => {
+        const verse = document.createElement('p');
+        verse.className = 'namdev-gatha-verse-block';
+        poem.lines.forEach((line, lineIndex) => {
+          if (lineIndex) verse.appendChild(document.createElement('br'));
+          verse.appendChild(document.createTextNode(line));
+        });
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card rohidas-shabd-card';
+        card.id = `rohidas-kavita-${index + 1}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `कविता ${poem.number}`;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content';
+        content.appendChild(verse);
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `कविता ${poem.number}`));
+        list.appendChild(card);
+      });
+    }
+
+    entry.replaceChildren(list);
+  };
+
+  formatRohidasLiteraturePages();
+
+  const formatNilobarayLiteraturePages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const slug = path.match(/\/sants\/nilobaray\/sahitya\/([^/]+)\//)?.[1] || '';
+    const labels = {
+      manglacharan: 'मंगलाचरण',
+      balkrida: 'बालक्रीडा',
+      nilobarai: 'अभंग',
+      nilobaray: 'कृष्णचरित्र',
+      gaulani: 'गौळण',
+      virhani: 'विरहिणी',
+      'nilobaray-dnyanpar': 'ज्ञानपर',
+      'nilobaray-changdev-charitra': 'प्रकरण',
+      'nilobaray-changdev-charitra-2': 'प्रकरण',
+      'nilobaray-kala': 'काला',
+      'nilobaray-khel': 'खेळ',
+      'nilobaray-lalit': 'लळित',
+      pandharimahatyma: 'पंढरीमाहात्म्य'
+    };
+    const numberedSection = slug.match(/^nilobaray-(\d+)$/);
+    const numberedSectionValue = numberedSection ? Number(numberedSection[1]) : 0;
+    if (numberedSectionValue >= 4 && numberedSectionValue <= 23) {
+      labels[slug] = 'अभंग';
+    }
+    if (!labels[slug]) return;
+
+    const article = document.querySelector('.abhang-post, .post-article');
+    const postContent = article?.querySelector('.post-content');
+    const entry = postContent?.querySelector('.entry-content')
+      || postContent?.querySelector('.verse_style [itemprop="text"]')
+      || postContent?.querySelector('.verse_style');
+    if (!article || !postContent || !entry || entry.dataset.nilobarayCards === 'true') return;
+
+    const verses = Array.from(entry.querySelectorAll(':scope > p')).filter((paragraph) =>
+      /^[०-९0-9]+[.)]?\s*/.test(normalizeText(paragraph.innerText || paragraph.textContent || ''))
+    );
+    if (!verses.length) return;
+
+    const verseNumber = (paragraph) => {
+      const rawNumber = normalizeText(paragraph.innerText || paragraph.textContent || '')
+        .match(/^([०-९0-9]+)/)?.[1] || '0';
+      return Number(rawNumber.replace(/[०-९]/g, (digit) => String('०१२३४५६७८९'.indexOf(digit))));
+    };
+    verses.sort((first, second) => verseNumber(first) - verseNumber(second));
+
+    entry.dataset.nilobarayCards = 'true';
+    entry.classList.add('entry-content', 'clear', 'namdev-gatha-card-list-host');
+    document.body.classList.add('namdev-gatha-multi-card-page', 'nilobaray-literature-card-page');
+    if (slug === 'nilobaray-21') {
+      document.body.classList.add('nilobaray-single-long-abhang-page');
+    }
+    const list = document.createElement('div');
+    list.className = `namdev-gatha-section-list nilobaray-${slug}-section-list`;
+
+    verses.forEach((paragraph, index) => {
+      const text = normalizeText(paragraph.innerText || paragraph.textContent || '');
+      const explicitNumber = text.match(/^([०-९0-9]+)[.)]?\s*/)?.[1];
+      const number = explicitNumber
+        || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+      const verse = paragraph.cloneNode(true);
+      verse.className = 'namdev-gatha-verse-block';
+      verse.removeAttribute('style');
+      verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+      const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+      let firstTextNode = walker.nextNode();
+      while (firstTextNode && !normalizeText(firstTextNode.textContent || '')) firstTextNode = walker.nextNode();
+      if (firstTextNode) {
+        firstTextNode.textContent = (firstTextNode.textContent || '').replace(/^\s*[०-९0-9]+[.)]?\s*/, '');
+      }
+
+      const card = document.createElement('article');
+      card.className = `namdev-gatha-section-card nilobaray-${slug}-card`;
+      card.id = `nilobaray-${slug}-${index + 1}`;
+      const badge = document.createElement('span');
+      badge.className = 'namdev-gatha-section-number';
+      badge.textContent = `${labels[slug]} ${number}`;
+      const content = document.createElement('div');
+      content.className = 'namdev-gatha-section-content';
+      const centeredVerse = document.createElement('div');
+      centeredVerse.className = 'nilobaray-centered-verse';
+      if (slug === 'nilobaray-21') {
+        card.classList.add('nilobaray-single-long-abhang-card');
+        const stanzaList = document.createElement('div');
+        stanzaList.className = 'nilobaray-long-abhang-stanzas';
+        let stanza = document.createElement('p');
+        stanza.className = 'nilobaray-long-abhang-stanza';
+        Array.from(verse.childNodes).forEach((node) => {
+          if (node.nodeName === 'BR') {
+            if (normalizeText(stanza.textContent || '')) stanzaList.appendChild(stanza);
+            stanza = document.createElement('p');
+            stanza.className = 'nilobaray-long-abhang-stanza';
+          } else {
+            stanza.appendChild(node.cloneNode(true));
+          }
+        });
+        if (normalizeText(stanza.textContent || '')) stanzaList.appendChild(stanza);
+        centeredVerse.appendChild(stanzaList);
+      } else {
+        centeredVerse.appendChild(verse);
+      }
+      content.appendChild(centeredVerse);
+      card.append(badge, content);
+      card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `${labels[slug]} ${number}`));
+      list.appendChild(card);
+    });
+
+    article.querySelector('.abhang-action-toolbar')?.remove();
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatNilobarayLiteraturePages();
+
+  const formatEknathLegacyLiteraturePages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const slug = path.match(/\/sants\/eknath\/([^/]+)\//)?.[1] || '';
+    const literatureSlugs = [
+      'sant-eknath-gaulani', 'eknath-bharud', 'chatushloki-bhagwat',
+      'hastaamalak', 'shukashtak', 'chiranjivpad', 'anandlahari',
+      'swatmasukh', 'sant-eknath-arti', 'shree-eknathshashti'
+    ];
+    const isRukminiPrasang = /^rukminiswayamwar-prasang-/.test(slug);
+    if (!literatureSlugs.includes(slug) && !isRukminiPrasang) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content') || article;
+    let entry = postContent?.querySelector('.entry-content');
+    if (!entry) entry = postContent?.querySelector('.verse_style');
+    if (!entry && slug === 'shree-eknathshashti') entry = article;
+    if (!article || !postContent || !entry || entry.dataset.eknathReadingCard === 'true') return;
+
+    entry.dataset.eknathReadingCard = 'true';
+    entry.classList.add('entry-content', 'clear', 'eknath-reading-card');
+    document.body.classList.add('eknath-literature-card-page');
+    const sourceRoot = entry.querySelector(':scope > [itemprop="text"]') || entry;
+    const getSectionGroups = () => {
+      const groups = [];
+      let currentGroup = [];
+      Array.from(sourceRoot.childNodes).forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE && node.matches('hr')) {
+          if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) groups.push(currentGroup);
+          currentGroup = [];
+          return;
+        }
+        currentGroup.push(node);
+      });
+      if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) groups.push(currentGroup);
+      return groups;
+    };
+
+    if (slug === 'sant-eknath-gaulani') {
+      document.body.classList.add('namdev-gatha-multi-card-page', 'eknath-gaulani-card-page');
+      entry.classList.add('namdev-gatha-card-list-host');
+      const gaulani = Array.from(sourceRoot.querySelectorAll(':scope > p')).filter((paragraph) =>
+        normalizeText(paragraph.textContent || '')
+      );
+      const list = document.createElement('div');
+      list.className = 'namdev-gatha-section-list eknath-gaulani-section-list';
+
+      gaulani.forEach((paragraph, index) => {
+        const rawText = normalizeText(paragraph.textContent || '');
+        const foundNumber = rawText.match(/^([०-९0-9]+)\s*[.)।-]?\s*/)?.[1];
+        const displayNumber = foundNumber || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card eknath-gaulani-card';
+        card.id = `eknath-gaulan-${index + 1}`;
+
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = `गौळण ${displayNumber}`;
+
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content eknath-gaulani-content';
+        const verse = paragraph.cloneNode(true);
+        verse.className = 'namdev-gatha-verse-block eknath-gaulani-verse';
+        verse.removeAttribute('style');
+        verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+        const firstTextNode = Array.from(verse.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
+        if (firstTextNode) firstTextNode.nodeValue = firstTextNode.nodeValue.replace(/^\s*[०-९0-9]+\s*[.)।-]?\s*/, '');
+        content.appendChild(verse);
+
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `एकनाथांची गौळण ${displayNumber}`));
+        list.appendChild(card);
+      });
+
+      postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+      entry.replaceChildren(list);
+      return;
+    }
+
+    if (slug === 'hastaamalak') {
+      document.body.classList.add('namdev-gatha-multi-card-page');
+      entry.classList.add('namdev-gatha-card-list-host');
+      const groups = [];
+      let currentGroup = [];
+      Array.from(sourceRoot.childNodes).forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE && node.matches('hr')) {
+          if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) {
+            groups.push(currentGroup);
+          }
+          currentGroup = [];
+          return;
+        }
+        currentGroup.push(node);
+      });
+      if (normalizeText(currentGroup.map((item) => item.textContent || '').join(' '))) {
+        groups.push(currentGroup);
+      }
+
+      const list = document.createElement('div');
+      list.className = 'namdev-gatha-section-list hastaamalak-shlok-list';
+      groups.slice(0, 6).forEach((nodes, index) => {
+        const card = document.createElement('article');
+        card.className = 'namdev-gatha-section-card hastaamalak-shlok-card';
+        card.id = `hastaamalak-shlok-${index}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        const number = String(index).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        badge.textContent = index === 0 ? 'आरंभ' : `श्लोक ${number}`;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content hastaamalak-shlok-content';
+
+        nodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE && node.matches('h2')) return;
+          const text = normalizeText(node.textContent || '');
+          if (/^हस्तामलक\s+समाप्त$/.test(text)) return;
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            node.removeAttribute('style');
+            node.querySelectorAll?.('[style]').forEach((element) => element.removeAttribute('style'));
+          }
+          content.appendChild(node);
+        });
+
+        card.append(badge, content);
+        card.insertAdjacentHTML(
+          'beforeend',
+          getAbhangItemActionsMarkup(card.id, index === 0 ? 'हस्तामलक आरंभ' : `हस्तामलक श्लोक ${number}`)
+        );
+        list.appendChild(card);
+      });
+
+      postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+      entry.replaceChildren(list);
+      return;
+    }
+
+    if (['shukashtak', 'swatmasukh', 'chatushloki-bhagwat', 'chiranjivpad'].includes(slug)) {
+      document.body.classList.add('namdev-gatha-multi-card-page');
+      entry.classList.add('namdev-gatha-card-list-host');
+      const sectionLimits = { shukashtak: 11, swatmasukh: 22, 'chatushloki-bhagwat': 56, chiranjivpad: 44 };
+      const groups = getSectionGroups().slice(0, sectionLimits[slug]);
+      const list = document.createElement('div');
+      list.className = `namdev-gatha-section-list eknath-${slug}-section-list`;
+
+      groups.forEach((nodes, index) => {
+        const number = String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+        const rawTitle = normalizeText(nodes.find((node) =>
+          node.nodeType === Node.ELEMENT_NODE && node.matches('h2, p') && node.querySelector('strong')
+        )?.textContent || '');
+        let label = `भाग ${number}`;
+        if (slug === 'chiranjivpad') label = `पद ${number}`;
+        if (slug === 'shukashtak') {
+          const shlokNumber = rawTitle.match(/श्लोक\s*([०-९0-9]+)/)?.[1];
+          label = shlokNumber ? `श्लोक ${shlokNumber}` : rawTitle.replace(/^शुकाष्टक\s*[–—-]\s*/, '') || `भाग ${number}`;
+        }
+
+        const card = document.createElement('article');
+        card.className = `namdev-gatha-section-card eknath-section-card eknath-${slug}-card`;
+        card.id = `eknath-${slug}-${index + 1}`;
+        const badge = document.createElement('span');
+        badge.className = 'namdev-gatha-section-number';
+        badge.textContent = label;
+        const content = document.createElement('div');
+        content.className = 'namdev-gatha-section-content eknath-section-content';
+        if (['swatmasukh', 'chatushloki-bhagwat'].includes(slug) && rawTitle) {
+          const heading = document.createElement('h3');
+          heading.className = 'eknath-section-title';
+          heading.textContent = rawTitle.replace(/^(?:स्वात्मसुख|चतुःश्लोकी भागवत)\s*[–—-]\s*/, '');
+          content.appendChild(heading);
+        }
+
+        nodes.forEach((node, nodeIndex) => {
+          if (node.nodeType === Node.ELEMENT_NODE && node.matches('h2')) return;
+          const text = normalizeText(node.textContent || '');
+          if (!text || /(?:समाप्त|^वाकीभ$)/.test(text)) return;
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            node.removeAttribute('style');
+            node.querySelectorAll?.('[style]').forEach((element) => element.removeAttribute('style'));
+            if (slug === 'chiranjivpad' && node.matches('p')) {
+              node.classList.add(node.querySelector('strong, b') ? 'eknath-section-verse' : 'eknath-section-meaning');
+            }
+          }
+          content.appendChild(node);
+        });
+
+        card.append(badge, content);
+        card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, label));
+        list.appendChild(card);
+      });
+
+      postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+      entry.replaceChildren(list);
+      return;
+    }
+
+    entry.querySelectorAll('hr').forEach((divider) => divider.remove());
+    entry.querySelectorAll('p').forEach((paragraph) => {
+      if (!normalizeText(paragraph.textContent || '')) return;
+      if (/समाप्त/.test(normalizeText(paragraph.textContent || ''))) {
+        paragraph.remove();
+        return;
+      }
+      paragraph.classList.add('eknath-reading-paragraph');
+      paragraph.removeAttribute('style');
+      paragraph.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+    });
+
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+    if (!entry.querySelector(':scope > .abhang-post-actions')) {
+      entry.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+    }
+  };
+
+  formatEknathLegacyLiteraturePages();
+
+  const formatEknathiBhagwatChapterPages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    const slug = path.match(/\/sants\/eknath\/([^/]+)\//)?.[1] || '';
+    const chapterSlugs = [
+      'adhyay-pahila', 'eknathi-bhagvat-adhyay-dusra', 'adhyay-tisara',
+      'adhyay-choutha', 'adhyay-pachava', 'adhyay-sahava', 'adhyay-satava',
+      'adhyay-athva', 'chapter-nine', 'adhyay-dahava', 'chapter-eleven',
+      'adhyay-barava', 'adhyay-tera', 'adhyay-chaudava', 'adhyay-pandhrava',
+      'adhyay-solava', 'adhyay-satrava', 'adhyay-athrava', 'adhyay-ekunvis',
+      'adhyay-vis', 'adhyay-ekvis', 'adhyay-bavis', 'adhyay-teviswa',
+      'adhyay-chovis', 'adhyay-panchvis', 'adhyay-savvis', 'adhyay-sattavis',
+      'adhyay-atthavis', 'adhyay-ekuntees', 'adhyay-tisawa', 'adhyay-ektisawa'
+    ];
+    if (!chapterSlugs.includes(slug)) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content') || article;
+    let entry = postContent?.querySelector('.entry-content, .verse_style, [itemprop="text"]');
+    if (!article || !postContent || !entry || entry.dataset.eknathiChapterCard === 'true') return;
+    if (entry.matches('.verse_style')) entry = entry.querySelector(':scope > [itemprop="text"]') || entry;
+
+    entry.querySelectorAll('h1, h2, h3, h4, p').forEach((element) => {
+      const text = normalizeText(element.textContent || '');
+      if (
+        /कृष्णार्पणमस्तु/.test(text)
+        || /इति श्री.*भागवते/.test(text)
+        || /^एकनाथी\s+भागवत\s+अध्याय\s*[०-९0-9]+(?:\s*[–—-]?\s*(?:आरंभ|अर्थासहित))?\s*$/.test(text)
+        || /^\(?ओं?व्या\s*[०-९0-9]+\s*ते\s*[०-९0-9]+\)?\s*$/.test(text)
+      ) element.remove();
+    });
+
+    const hasNumberedVerses = /॥\s*[०-९0-9]+\s*॥/.test(normalizeText(entry.textContent || ''));
+    if (!hasNumberedVerses) {
+      document.body.classList.add('eknathi-bhagwat-missing-page');
+      postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+      const unavailable = document.createElement('div');
+      unavailable.className = 'dnyaneshwari-chapter-card eknathi-missing-card';
+      unavailable.innerHTML = '<p>या अध्यायाचा प्रमाणित ओवी व अर्थ मजकूर सध्या उपलब्ध नाही.</p>';
+      unavailable.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+      postContent.replaceChildren(unavailable);
+      return;
+    }
+
+    entry.dataset.eknathiChapterCard = 'true';
+    document.body.classList.add('dnyaneshwari-chapter-card-page', 'eknathi-bhagwat-chapter-page');
+    entry.classList.add('dnyaneshwari-chapter-card');
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+    entry.querySelectorAll('hr').forEach((divider) => divider.remove());
+
+    const tokens = [];
+    Array.from(entry.children).forEach((element) => {
+      if (!element.matches('p, div')) return;
+      element.innerHTML.split(/<br\s*\/?\s*>/i).forEach((html) => {
+        const holder = document.createElement('div');
+        holder.innerHTML = html;
+        const text = normalizeText(holder.textContent || '')
+          .replace(/^श्रीभगवानुवाच\s*[-–—:।]?\s*/, '')
+          .trim();
+        if (
+          !text
+          || /^ref:|समाप्त/.test(text)
+          || /^इति श्री.*भागवते/.test(text)
+          || /^(?:परमहंस)?संहितायां.*अध्यायः/.test(text)
+          || /^एकाकारटीकायां/.test(text)
+        ) return;
+        tokens.push({
+          text,
+          isVerse: Boolean(holder.querySelector('strong, b')) || /[।॥]/.test(text),
+          completesVerse: /॥\s*[०-९0-9]+\s*॥/.test(text)
+        });
+      });
+    });
+
+    const rebuilt = document.createDocumentFragment();
+    let currentPair = null;
+    const startPair = () => ({ verseLines: [], meaningLines: [], verseComplete: false });
+    const flushPair = () => {
+      if (!currentPair || (!currentPair.verseLines.length && !currentPair.meaningLines.length)) return;
+      const pair = document.createElement('section');
+      pair.className = 'eknathi-ovi-pair';
+      if (currentPair.verseLines.length) {
+        const ovi = document.createElement('div');
+        ovi.className = 'ovi';
+        currentPair.verseLines.forEach((text) => {
+          const line = document.createElement('div');
+          line.textContent = text;
+          ovi.appendChild(line);
+        });
+        pair.appendChild(ovi);
+      }
+      if (currentPair.meaningLines.length) {
+        const meaning = document.createElement('p');
+        meaning.className = 'oviar';
+        meaning.textContent = currentPair.meaningLines.join(' ');
+        pair.appendChild(meaning);
+      }
+      rebuilt.appendChild(pair);
+      currentPair = null;
+    };
+
+    tokens.forEach((token) => {
+      if (token.isVerse) {
+        if (!currentPair) currentPair = startPair();
+        if (currentPair.meaningLines.length || currentPair.verseComplete) {
+          flushPair();
+          currentPair = startPair();
+        }
+        currentPair.verseLines.push(token.text);
+        if (token.completesVerse) currentPair.verseComplete = true;
+      } else {
+        if (!currentPair) currentPair = startPair();
+        currentPair.meaningLines.push(token.text);
+      }
+    });
+    flushPair();
+
+    entry.replaceChildren(rebuilt);
+    entry.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+  };
+
+  formatEknathiBhagwatChapterPages();
+
+  const formatBhavarthRamayanChapterPages = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!/\/sants\/eknath\/bhawarth-ramayan-.*adhyay-[^/]+\//.test(path)) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content') || article;
+    let entry = postContent?.querySelector('.entry-content, .verse_style, [itemprop="text"]');
+    if (!article || !postContent || !entry || entry.dataset.bhavarthRamayanCard === 'true') return;
+    if (entry.matches('.verse_style')) entry = entry.querySelector(':scope > [itemprop="text"]') || entry;
+
+    entry.dataset.bhavarthRamayanCard = 'true';
+    document.body.classList.add('bhavarth-ramayan-chapter-page');
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+
+    const paragraphs = Array.from(entry.querySelectorAll('p'));
+    const verseParagraphs = paragraphs.filter((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      return /[।॥]/.test(text) && !/^ref:/.test(text);
+    });
+
+    const card = document.createElement('div');
+    card.className = 'dnyaneshwari-chapter-card bhavarth-ramayan-reading-card';
+    if (!verseParagraphs.length) {
+      card.classList.add('bhavarth-ramayan-missing-card');
+      card.innerHTML = '<p>या अध्यायाचा प्रमाणित ओवी मजकूर सध्या उपलब्ध नाही.</p>';
+    } else {
+      paragraphs.forEach((paragraph) => {
+        const text = normalizeText(paragraph.textContent || '');
+        if (!text || /^ref:|भावार्थरामायण.*भावार्थरामायण|संत साहित्य|©/.test(text)) return;
+        paragraph.removeAttribute('style');
+        paragraph.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
+        if (paragraph.classList.contains('bhavarth-ramayan-source-heading')) {
+          paragraph.className = 'bhavarth-ramayan-source-heading';
+        } else if (/[।॥]/.test(text)) {
+          paragraph.className = 'bhavarth-ramayan-ovi';
+        } else {
+          paragraph.className = 'bhavarth-ramayan-topic';
+        }
+        card.appendChild(paragraph);
+      });
+    }
+
+    card.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+    postContent.replaceChildren(card);
+  };
+
+  formatBhavarthRamayanChapterPages();
+
+  const sortBhavarthRamayanChapterLinks = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/eknath/bhavarth-ramayan/')) return;
+
+    const devanagariToAscii = (value = '') => Number(
+      [...value].map((char) => {
+        const index = '०१२३४५६७८९'.indexOf(char);
+        return index >= 0 ? String(index) : char;
+      }).join('').replace(/[^0-9]/g, '')
+    );
+
+    document.querySelectorAll('.tukaram-links-2col').forEach((grid) => {
+      const links = Array.from(grid.querySelectorAll(':scope > a.tukaram-link'));
+      links.sort((first, second) =>
+        devanagariToAscii(first.textContent) - devanagariToAscii(second.textContent)
+      );
+      links.forEach((link) => grid.appendChild(link));
+    });
+  };
+
+  sortBhavarthRamayanChapterLinks();
+
+  const formatEknathHaripathPage = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/eknath/sant-eknath-haripath/')) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content');
+    const verseRoot = postContent?.querySelector('.verse_style');
+    const entry = verseRoot?.querySelector(':scope > [itemprop="text"]') || verseRoot;
+    if (!article || !postContent || !entry || entry.dataset.eknathHaripathCard === 'true') return;
+
+    entry.dataset.eknathHaripathCard = 'true';
+    document.body.classList.add('eknath-haripath-page', 'haripath-meaning-normal-page');
+    entry.classList.add('haripath-complete-card', 'eknath-haripath-card');
+    const list = document.createElement('div');
+    list.className = 'abhang-readable-list';
+    Array.from(entry.querySelectorAll('p')).forEach((paragraph, index) => {
+      const text = normalizeText(paragraph.textContent || '');
+      if (!text || !/[।॥]/.test(text)) return;
+      const lines = (paragraph.innerText || paragraph.textContent || '')
+        .split(/\r?\n/)
+        .map((line) => normalizeText(line))
+        .filter(Boolean);
+      if (!lines.length) return;
+      const explicitNumber = lines[0].match(/^([०-९0-9]+)[.)]?\s*/)?.[1]
+        || String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+      lines[0] = lines[0].replace(/^[०-९0-9]+[.)]?\s*/, '');
+
+      const section = document.createElement('section');
+      section.className = 'abhang-readable-item';
+      section.id = `eknath-haripath-${index + 1}`;
+      const verseBlock = document.createElement('div');
+      verseBlock.className = 'abhang-readable-verses haripath-readable-verses';
+      for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 2) {
+        const stanza = document.createElement('div');
+        stanza.className = 'haripath-stanza';
+        lines.slice(lineIndex, lineIndex + 2).forEach((line, pairIndex) => {
+          const lineElement = document.createElement('p');
+          lineElement.className = pairIndex === 1
+            ? 'haripath-line haripath-ending-line'
+            : 'haripath-line';
+          if (lineIndex === 0 && pairIndex === 0) {
+            const number = document.createElement('span');
+            number.className = 'haripath-inline-number';
+            number.textContent = `${explicitNumber}. `;
+            lineElement.append(number, document.createTextNode(line));
+          } else {
+            lineElement.textContent = line;
+          }
+          stanza.appendChild(lineElement);
+        });
+        verseBlock.appendChild(stanza);
+      }
+      section.appendChild(verseBlock);
+      list.appendChild(section);
+    });
+
+    postContent.querySelector(':scope > .abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+    entry.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+  };
+
+  formatEknathHaripathPage();
+
+  const formatNivruttinathHaripathPage = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!path.includes('/sants/nivruttinath/nivruti-haripath/')) return;
+
+    const article = document.querySelector('.post-article, .abhang-post');
+    const postContent = article?.querySelector('.post-content');
+    const sourceRoot = postContent?.querySelector('.verse_style [itemprop="text"] > div')
+      || postContent?.querySelector('.verse_style [itemprop="text"]')
+      || postContent?.querySelector('.verse_style');
+    if (!article || !postContent || !sourceRoot || postContent.dataset.nivruttinathHaripathCard === 'true') return;
+
+    postContent.dataset.nivruttinathHaripathCard = 'true';
+    document.body.classList.add('nivruttinath-haripath-page', 'haripath-meaning-normal-page');
+
+    const groups = [];
+    let current = [];
+    Array.from(sourceRoot.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE && node.matches('hr')) {
+        if (normalizeText(current.map((item) => item.textContent || '').join(' '))) groups.push(current);
+        current = [];
+      } else {
+        current.push(node);
+      }
+    });
+    if (normalizeText(current.map((item) => item.textContent || '').join(' '))) groups.push(current);
+
+    const list = document.createElement('div');
+    list.className = 'abhang-readable-list';
+    groups.forEach((nodes, index) => {
+      const lines = [];
+      nodes.forEach((node) => {
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        const text = normalizeText(node.textContent || '');
+        if (!text || node.matches('h1, h2, h3, h4') || /^[०-९0-9]+[.)]?$/.test(text)
+          || /^संत निवृत्तीनाथ हरिपाठ\s*[–—-]?\s*[०-९0-9]*$/.test(text)) return;
+        const clone = node.cloneNode(true);
+        clone.querySelectorAll?.('br').forEach((br) => br.replaceWith('\n'));
+        (clone.textContent || '').split(/\n+/).map((line) => normalizeText(line)).filter(Boolean)
+          .forEach((line) => lines.push(line));
+      });
+      if (!lines.length) return;
+
+      const section = document.createElement('section');
+      section.className = 'abhang-readable-item';
+      section.id = `nivruttinath-haripath-${index + 1}`;
+      const verseBlock = document.createElement('div');
+      verseBlock.className = 'abhang-readable-verses haripath-readable-verses';
+      for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 2) {
+        const stanza = document.createElement('div');
+        stanza.className = 'haripath-stanza';
+        lines.slice(lineIndex, lineIndex + 2).forEach((line, pairIndex) => {
+          const lineElement = document.createElement('p');
+          lineElement.className = pairIndex === 1 ? 'haripath-line haripath-ending-line' : 'haripath-line';
+          if (lineIndex === 0 && pairIndex === 0) {
+            const number = document.createElement('span');
+            number.className = 'haripath-inline-number';
+            number.textContent = `${String(index + 1).replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)])}. `;
+            lineElement.append(number, document.createTextNode(line));
+          } else {
+            lineElement.textContent = line;
+          }
+          stanza.appendChild(lineElement);
+        });
+        verseBlock.appendChild(stanza);
+      }
+      section.appendChild(verseBlock);
+      list.appendChild(section);
+    });
+
+    const card = document.createElement('div');
+    card.className = 'haripath-complete-card nivruttinath-haripath-card';
+    card.appendChild(list);
+    card.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
+    article.querySelector('.abhang-action-toolbar')?.remove();
+    postContent.replaceChildren(card);
+  };
+
+  formatNivruttinathHaripathPage();
+
+  const normalizeMalformedDnyaneshwariContent = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!/\/sants\/dnyaneshwar\/adhyay-(13|14)\//.test(path)) return;
+
+    const entry = document.querySelector('.abhang-post .entry-content');
+    if (!entry || entry.dataset.adhyayNormalized === 'true') return;
+
+    const markerPattern = /॥\s*[०-९0-9]+\s*॥|[०-९]{2,3}\./;
+    const isVerseText = (text = '') => (text.match(/[।॥]/g) || []).length >= 3;
+    const createBlock = (text) => {
+      const block = document.createElement('div');
+      block.className = isVerseText(text) ? 'ovi' : 'oviar';
+      const lines = text.split(/\n+/).map((line) => normalizeText(line)).filter(Boolean);
+      lines.forEach((line, index) => {
+        if (index) block.appendChild(document.createElement('br'));
+        block.appendChild(document.createTextNode(line));
+      });
+      return block;
+    };
+
+    Array.from(entry.querySelectorAll('.oviar')).forEach((block) => {
+      const text = block.innerText || block.textContent || '';
+      if (text.length < 2000) return;
+
+      const fragment = document.createDocumentFragment();
+      const segmentPattern = /([\s\S]*?॥\s*[०-९0-9]+\s*॥)/g;
+      let match;
+      let segmentCount = 0;
+      while ((match = segmentPattern.exec(text)) !== null) {
+        const segment = normalizeText(match[1].replace(/\r/g, ''));
+        if (!segment) continue;
+        fragment.appendChild(createBlock(segment));
+        segmentCount += 1;
+      }
+
+      if (segmentCount) {
+        block.before(fragment);
+        block.remove();
+      }
+    });
+
+    Array.from(entry.querySelectorAll('.ovi, .oviar')).forEach((block) => {
+      const text = block.innerText || block.textContent || '';
+      const endMarkers = Array.from(text.matchAll(/॥\s*[०-९0-9]+\s*॥|[०-९]{2,3}\./g));
+      if (endMarkers.length < 2) return;
+
+      const fragment = document.createDocumentFragment();
+      let start = 0;
+      endMarkers.forEach((endMarker) => {
+        const end = (endMarker.index || 0) + endMarker[0].length;
+        const segment = normalizeText(text.slice(start, end));
+        if (segment) fragment.appendChild(createBlock(segment));
+        start = end;
+      });
+      const remainder = normalizeText(text.slice(start));
+      if (remainder) fragment.appendChild(createBlock(remainder));
+
+      block.before(fragment);
+      block.remove();
+    });
+
+    entry.querySelectorAll('.ovi, .oviar').forEach((block) => {
+      const text = normalizeText(block.textContent || '');
+      block.classList.remove('ovi', 'oviar');
+      block.classList.add(isVerseText(text) ? 'ovi' : 'oviar');
+    });
+
+    entry.querySelectorAll(':scope > p:not(.hdr1):not(.hdr2):not(.hdr3):not(.hdr4):not(.end)').forEach((paragraph) => {
+      const text = normalizeText(paragraph.textContent || '');
+      if (!markerPattern.test(text)) return;
+      paragraph.replaceWith(createBlock(text));
+    });
+
+    entry.dataset.adhyayNormalized = 'true';
+  };
+
+  normalizeMalformedDnyaneshwariContent();
+
+  const formatDnyaneshwariChapterCard = () => {
+    const path = location.pathname.replace(/\\/g, '/').toLowerCase();
+    if (!/\/sants\/dnyaneshwar\/adhyay-\d+\//.test(path)) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const entry = postContent?.querySelector('.entry-content');
+    const actions = postContent?.querySelector('.abhang-post-actions');
+    if (!postContent || !entry || entry.classList.contains('dnyaneshwari-chapter-card')) return;
+
+    document.body.classList.add('dnyaneshwari-chapter-card-page');
+    entry.classList.add('dnyaneshwari-chapter-card');
+
+    entry.querySelectorAll('.ovi').forEach((ovi, index) => {
+      ovi.id = `ovi-${index + 1}`;
+      ovi.dataset.oviNumber = String(index + 1);
+    });
+
+    if (actions) entry.appendChild(actions);
+  };
+
+  formatDnyaneshwariChapterCard();
 
   const cleanupDnyaneshwariAudioBlocks = () => {
     const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
@@ -1373,6 +3042,70 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   };
 
   formatGathaStanzaSpacing();
+
+  const formatTukaramGathaCards = () => {
+    const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+    const pageMatch = path.match(/\/sants\/tukaram\/gatha-(\d+)(?:\/|\.html|$)/);
+    if (!pageMatch) return;
+
+    const postContent = document.querySelector('.abhang-post .post-content');
+    const entry = postContent?.querySelector('.entry-content');
+    if (!postContent || !entry || entry.dataset.tukaramGathaCards === 'true') return;
+
+    const verses = Array.from(entry.querySelectorAll('p.gatha-verse'));
+    if (!verses.length) return;
+
+    entry.dataset.tukaramGathaCards = 'true';
+    entry.classList.remove('gatha-content');
+    document.body.classList.remove('gatha-typography-page');
+    document.body.classList.add('tukaram-gatha-card-page');
+
+    const list = document.createElement('div');
+    list.className = 'tukaram-gatha-card-list';
+
+    verses.forEach((verse, index) => {
+      const cardVerse = verse.cloneNode(true);
+      const firstLine = normalizeText((verse.innerText || verse.textContent || '').split(/\r?\n/)[0]);
+      const numberMatch = firstLine.match(/^([०-९0-9]+)[.)]?$/u);
+      const number = numberMatch?.[1] || String(index + 1);
+      const firstBreak = cardVerse.querySelector('br');
+
+      if (numberMatch && firstBreak) {
+        let node = cardVerse.firstChild;
+        while (node) {
+          const next = node.nextSibling;
+          node.remove();
+          if (node === firstBreak) break;
+          node = next;
+        }
+      }
+
+      cardVerse.className = 'tukaram-gatha-card-verse';
+      cardVerse.removeAttribute('style');
+      cardVerse.style.setProperty('display', 'table', 'important');
+      cardVerse.style.setProperty('width', 'fit-content', 'important');
+      cardVerse.style.setProperty('max-width', 'calc(100% - 16px)', 'important');
+      cardVerse.style.setProperty('margin-left', 'auto', 'important');
+      cardVerse.style.setProperty('margin-right', 'auto', 'important');
+      cardVerse.style.setProperty('text-align', 'left', 'important');
+      const card = document.createElement('article');
+      card.className = 'tukaram-gatha-card';
+      card.id = `tukaram-gatha-${pageMatch[1]}-${index + 1}`;
+
+      const badge = document.createElement('span');
+      badge.className = 'tukaram-gatha-number';
+      badge.textContent = `गाथा ${number}`;
+      card.append(badge, cardVerse);
+      card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `गाथा ${number}`));
+      list.appendChild(card);
+    });
+
+    postContent.querySelector('.abhang-post-actions')?.remove();
+    entry.replaceChildren(list);
+  };
+
+  formatTukaramGathaCards();
+
   const formatDnyaneshwarViraniPage = () => {
     const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
     if (!path.includes('/sants/dnyaneshwar/virani/')) return;
@@ -1420,6 +3153,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     if (!entry || entry.dataset.amrutanubhavFormatted === 'true') return;
     entry.dataset.amrutanubhavFormatted = 'true';
     document.body.classList.add('amrutanubhav-page');
+    entry.classList.add('amrutanubhav-reading-card');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
@@ -1435,6 +3169,9 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         paragraph.classList.add('amrutanubhav-verse-block');
       }
     });
+
+    const actions = document.querySelector('.abhang-post .post-content > .abhang-post-actions');
+    if (actions) entry.appendChild(actions);
   };
 
   formatAmrutanubhavPage();
@@ -1446,6 +3183,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     if (!entry || entry.dataset.changdevFormatted === 'true') return;
     entry.dataset.changdevFormatted = 'true';
     document.body.classList.add('changdev-pasashti-page');
+    entry.classList.add('changdev-reading-card');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
@@ -1463,6 +3201,10 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
       paragraph.classList.add('changdev-meaning-line');
     });
+
+    entry.querySelectorAll('hr').forEach((divider) => divider.remove());
+    const actions = document.querySelector('.abhang-post .post-content > .abhang-post-actions');
+    if (actions) entry.appendChild(actions);
   };
 
   formatChangdevPasashtiPage();
@@ -1474,6 +3216,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     if (!entry || entry.dataset.pasaydanFormatted === 'true') return;
     entry.dataset.pasaydanFormatted = 'true';
     document.body.classList.add('dnyaneshwar-pasaydan-page');
+    entry.classList.add('pasaydan-reading-card');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
@@ -1507,6 +3250,11 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       });
       entry.insertBefore(mainBlock, entry.firstChild);
     }
+
+    entry.querySelectorAll('hr').forEach((divider) => divider.remove());
+    entry.querySelectorAll('.pasaydan-static-centered:empty').forEach((block) => block.remove());
+    const actions = document.querySelector('.abhang-post .post-content > .abhang-post-actions');
+    if (actions) entry.appendChild(actions);
   };
 
   formatDnyaneshwarPasaydanPage();
@@ -2863,7 +4611,15 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         if (!(node instanceof HTMLElement) || node.matches(skipSelector)) return;
         node.style.setProperty('font-weight', '300', 'important');
         node.style.setProperty('font-synthesis', 'none', 'important');
-        node.style.setProperty('font-family', 'Helvetica, "Kokila", "Mangal", Verdana, sans-serif', 'important');
+        const eknathHaripathReading = document.body.classList.contains('eknath-haripath-page')
+          && Boolean(node.closest('.eknath-haripath-card'));
+        node.style.setProperty(
+          'font-family',
+          eknathHaripathReading
+            ? '"Nirmala UI Semilight", "Nirmala UI", "Segoe UI", sans-serif'
+            : 'Helvetica, "Kokila", "Mangal", Verdana, sans-serif',
+          'important'
+        );
       });
     });
 
@@ -2964,6 +4720,65 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     apply();
   };
 
+  const sortBlogCardsNewestFirst = () => {
+    const grid = document.querySelector('.blog-page .blog-grid');
+    if (!grid) return;
+
+    const editorialDates = {
+      'digital-sant-sahitya-jatan': '2026-07-01',
+      'abhang-vachan-man-sthir': '2026-06-30',
+      'namasmaran-mahatva': '2026-06-29'
+    };
+
+    const getPublishedTime = (card) => {
+      const explicitDate = card.dataset.publishedAt;
+      if (explicitDate) {
+        const parsed = Date.parse(explicitDate);
+        if (!Number.isNaN(parsed)) return parsed;
+      }
+
+      const link = card.querySelector('.blog-card-media[href], .arrival-title a[href]');
+      const href = link ? link.getAttribute('href') || '' : '';
+      const pathParts = href
+        .split(/[?#]/, 1)[0]
+        .split('/')
+        .filter((part) => part && part !== '.' && part !== '..' && part !== 'index.html');
+      const slug = pathParts[pathParts.length - 1] || '';
+
+      if (editorialDates[slug]) return Date.parse(`${editorialDates[slug]}T12:00:00`);
+
+      const datedSlug = slug.match(/^(\d{4})-(\d{2})-blog-post(?:-(\d{1,2}))?$/);
+      if (datedSlug) {
+        const year = Number(datedSlug[1]);
+        const month = Number(datedSlug[2]);
+        const day = Number(datedSlug[3] || 1);
+        return new Date(year, month - 1, day, 12).getTime();
+      }
+
+      return 0;
+    };
+
+    const cards = Array.from(grid.querySelectorAll(':scope > .blog-card'));
+    cards
+      .map((card, originalIndex) => ({
+        card,
+        originalIndex,
+        publishedTime: getPublishedTime(card)
+      }))
+      .sort((left, right) =>
+        right.publishedTime - left.publishedTime ||
+        left.originalIndex - right.originalIndex
+      )
+      .forEach(({ card }, index) => {
+        const label = `लेख ${index + 1}`;
+        const dateLabel = card.querySelector('.arrival-date');
+        const shareFooter = card.querySelector('[data-share-label]');
+        if (dateLabel) dateLabel.textContent = label;
+        if (shareFooter) shareFooter.dataset.shareLabel = label;
+        grid.appendChild(card);
+      });
+  };
+
   const hashTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (hashTarget) {
     setTimeout(() => hashTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
@@ -2973,6 +4788,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   wrapDevotionalVerseEndings();
   removeDuplicateAbhangOpeningNumbers();
   enforceNormalReadingWeight();
+  sortBlogCardsNewestFirst();
   libraryInitSearchBars();
   libraryInitSearchPage();});
 

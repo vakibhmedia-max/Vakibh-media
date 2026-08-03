@@ -2828,7 +2828,7 @@ body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-vers
 body.haripath-meaning-normal-page .post-content p.haripath-meaning,
 body.haripath-meaning-normal-page .post-content span.haripath-meaning,
 body.haripath-meaning-normal-page .post-content .haripath-meaning {
-  font-family: "Noto Sans Devanagari", "Mangal", "Kokila", sans-serif !important;
+  font-family: Helvetica, Arial, sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
   font-synthesis-weight: none;
@@ -3539,6 +3539,167 @@ body.natache-abhang-detail-page .abhang-verse {
   font-weight: 700 !important;
 }
 
+/* Card layout for the complete Sant Dnyaneshwar Haripath. */
+body.haripath-meaning-normal-page .post-content .abhang-readable-list {
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item {
+  position: relative !important;
+  margin: 0 0 32px !important;
+  padding: 68px 30px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  text-align: center !important;
+  scroll-margin-top: 110px !important;
+  box-sizing: border-box !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-card-badge {
+  position: absolute !important;
+  top: 28px !important;
+  left: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 32px !important;
+  padding: 5px 13px !important;
+  border-radius: 999px !important;
+  background: #fff3e3 !important;
+  color: #5b3217 !important;
+  font-size: 0.94rem !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-verses.haripath-readable-verses {
+  margin-top: 16px !important;
+  margin-bottom: 30px !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .abhang-card-footer {
+  display: flex !important;
+  width: 100% !important;
+  margin: 30px 0 0 !important;
+  padding: 18px 0 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .abhang-actions-left,
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .abhang-btn {
+  width: 24px !important;
+  height: 28px !important;
+  min-width: 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+  cursor: pointer !important;
+}
+
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .copy-abhang-btn { color: #607d8b !important; }
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .whatsapp-share-btn { color: #00c853 !important; }
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .facebook-share-btn { color: #1877f2 !important; }
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .instagram-share-btn { color: #e1306c !important; }
+body.haripath-meaning-normal-page .post-content .abhang-readable-item .copy-link-share-btn { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.haripath-meaning-normal-page .post-content .abhang-readable-item {
+    margin-bottom: 22px !important;
+    padding: 62px 16px 18px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .haripath-card-badge {
+    top: 20px !important;
+    left: 16px !important;
+  }
+}
+
+/* The same shared cards on legacy Aarti pages whose main uses post-main. */
+body.saint-aarti-card-page .post-content .saint-aarti-cards {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+}
+
+body.saint-aarti-card-page .post-content .saint-aarti-card {
+  width: 100% !important;
+  margin: 0 auto 32px !important;
+  padding: 34px 30px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+body.saint-aarti-card-page .post-content .saint-aarti-card-title {
+  margin: 0 0 28px !important;
+  color: #000 !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+body.saint-aarti-card-page .post-content .saint-aarti-card-content p {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 24px !important;
+  color: #000 !important;
+  font-size: 1.15rem !important;
+  font-weight: 300 !important;
+  line-height: 1.9 !important;
+  text-align: center !important;
+}
+
+body.saint-aarti-card-page .post-content .saint-aarti-card-content p:last-child { margin-bottom: 0 !important; }
+
+body.saint-aarti-card-page .post-content .saint-aarti-card .abhang-card-footer {
+  display: flex !important;
+  width: 100% !important;
+  margin: 30px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.saint-aarti-card-page .saint-aarti-card .abhang-actions-left,
+body.saint-aarti-card-page .saint-aarti-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.saint-aarti-card-page .saint-aarti-card .copy-abhang-btn i { color: #607d8b !important; }
+body.saint-aarti-card-page .saint-aarti-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.saint-aarti-card-page .saint-aarti-card .facebook-share-btn i { color: #1877f2 !important; }
+body.saint-aarti-card-page .saint-aarti-card .instagram-share-btn i { color: #e1306c !important; }
+body.saint-aarti-card-page .saint-aarti-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.saint-aarti-card-page .post-content .saint-aarti-card {
+    margin-bottom: 22px !important;
+    padding: 28px 16px 18px !important;
+  }
+}
+
 @media (max-width: 900px) {
   .tukaram-literature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -3695,7 +3856,7 @@ body.natache-abhang-detail-page .natache-line {
 
 /* Final Vaakibh typography standardization: uses Blog Detail Page as baseline. */
 :root {
-  --marathi-font: Helvetica, Verdana, sans-serif;
+  --marathi-font: Helvetica, Arial, sans-serif;
   --content-text: var(--text-dark, #2c3e50);
   --heading-text: var(--text-dark, #2c3e50);
   --content-line-height: 1.95;
@@ -5798,9 +5959,15 @@ body.savata-aarti-page .post-content .entry-content p * {
 
 body.nivruttinath-aarti-page .abhang-action-toolbar,
 body.nivruttinath-haripath-page .abhang-action-toolbar,
-body.nivruttinath-aarti-page .abhang-post-actions,
-body.nivruttinath-haripath-page .abhang-post-actions {
+body.nivruttinath-aarti-page .abhang-post-actions {
   display: none !important;
+}
+
+body.nivruttinath-haripath-page .nivruttinath-haripath-card .haripath-line,
+body.nivruttinath-haripath-page .nivruttinath-haripath-card .haripath-line * {
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
 }
 
 /* Final normal-weight rule for all devotional and long-form reading content. */
@@ -5858,7 +6025,7 @@ body.nivruttinath-haripath-page .abhang-post-actions {
 .sant-page-main .haripath-content * {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, "Kokila", "Mangal", Verdana, sans-serif !important;
+  font-family: Helvetica, Arial, sans-serif !important;
 }
 
 /* Preserve icon glyph weights inside reading components. */
@@ -5897,7 +6064,7 @@ body.is-standard-granth-reading-page main.abhang-post-main article.abhang-post d
 ):not(.post-title):not(.sant-title):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, "Kokila", "Mangal", Verdana, sans-serif !important;
+  font-family: Helvetica, Arial, sans-serif !important;
 }
 
 /* Sant Namdev palne: keep every original and JS-transformed verse centered. */
@@ -6063,7 +6230,7 @@ body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .verse-end 
 .abhang-post .abhang-verse p *,
 .abhang-post .entry-content .devotional-verse-content,
 .abhang-post .entry-content .devotional-verse-content * {
-  font-family: Helvetica, "Kokila", "Mangal", Verdana, sans-serif !important;
+  font-family: Helvetica, Arial, sans-serif !important;
   font-weight: 300 !important;
   font-synthesis: none !important;
 }
@@ -6073,4 +6240,1770 @@ body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .verse-end 
 .abhang-card .arrival-title,
 .abhang-post .post-title {
   font-weight: 700 !important;
+}
+
+/* Two-card layout for the two Sant Tukaram Aartis. */
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content {
+  width: 100% !important;
+  max-width: 980px !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .aarti-verses {
+  width: 100% !important;
+  max-width: 980px !important;
+  padding-top: 0 !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .tukaram-aarti-card {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 32px !important;
+  padding: 34px 30px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  scroll-margin-top: 110px !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .tukaram-aarti-card .aarti-subtitle {
+  margin: 0 0 28px !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .tukaram-aarti-card .aarti-stanza {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 24px !important;
+}
+
+body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .tukaram-aarti-card .abhang-card-footer {
+  display: flex !important;
+  width: 100% !important;
+  margin: 30px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+body.tukaram-aarti-page .tukaram-aarti-card .abhang-actions-left,
+body.tukaram-aarti-page .tukaram-aarti-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.tukaram-aarti-page .tukaram-aarti-card .abhang-btn {
+  width: 24px !important;
+  min-width: 24px !important;
+  height: 26px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+}
+
+body.tukaram-aarti-page .tukaram-aarti-card .copy-abhang-btn,
+body.tukaram-aarti-page .tukaram-aarti-card .copy-abhang-btn i { color: #607d8b !important; }
+body.tukaram-aarti-page .tukaram-aarti-card .whatsapp-share-btn,
+body.tukaram-aarti-page .tukaram-aarti-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.tukaram-aarti-page .tukaram-aarti-card .facebook-share-btn,
+body.tukaram-aarti-page .tukaram-aarti-card .facebook-share-btn i { color: #1877f2 !important; }
+body.tukaram-aarti-page .tukaram-aarti-card .instagram-share-btn,
+body.tukaram-aarti-page .tukaram-aarti-card .instagram-share-btn i { color: #e1306c !important; }
+body.tukaram-aarti-page .tukaram-aarti-card .copy-link-share-btn,
+body.tukaram-aarti-page .tukaram-aarti-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .tukaram-aarti-card {
+    margin-bottom: 22px !important;
+    padding: 28px 16px 18px !important;
+  }
+}
+
+/* Shared card layout for every other Sant Aarti page. */
+.abhang-post-main .post-content .saint-aarti-cards {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card {
+  width: 100% !important;
+  margin: 0 auto 32px !important;
+  padding: 34px 30px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  scroll-margin-top: 110px !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card-title {
+  margin: 0 0 28px !important;
+  color: #000 !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card-content,
+.abhang-post-main .post-content .saint-aarti-card-content p {
+  width: 100% !important;
+  max-width: none !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  color: #000 !important;
+  font-size: 1.15rem !important;
+  font-weight: 300 !important;
+  line-height: 1.9 !important;
+  text-align: center !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card-content p {
+  margin-bottom: 24px !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.abhang-post-main .post-content .saint-aarti-card .abhang-card-footer {
+  display: flex !important;
+  width: 100% !important;
+  margin: 30px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+.saint-aarti-card .abhang-actions-left,
+.saint-aarti-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+.saint-aarti-card .abhang-btn {
+  width: 24px !important;
+  min-width: 24px !important;
+  height: 26px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+}
+
+.saint-aarti-card .copy-abhang-btn,
+.saint-aarti-card .copy-abhang-btn i { color: #607d8b !important; }
+.saint-aarti-card .whatsapp-share-btn,
+.saint-aarti-card .whatsapp-share-btn i { color: #00c853 !important; }
+.saint-aarti-card .facebook-share-btn,
+.saint-aarti-card .facebook-share-btn i { color: #1877f2 !important; }
+.saint-aarti-card .instagram-share-btn,
+.saint-aarti-card .instagram-share-btn i { color: #e1306c !important; }
+.saint-aarti-card .copy-link-share-btn,
+.saint-aarti-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  .abhang-post-main .post-content .saint-aarti-card {
+    margin-bottom: 22px !important;
+    padding: 28px 16px 18px !important;
+  }
+
+  .abhang-post-main .post-content .saint-aarti-card-content,
+  .abhang-post-main .post-content .saint-aarti-card-content p {
+    font-size: 1.05rem !important;
+  }
+}
+
+/* Final unified reading card for the complete Sant Dnyaneshwar Haripath. */
+body.haripath-meaning-normal-page .post-content .haripath-complete-card {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 30px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-list {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item {
+  position: static !important;
+  width: 100% !important;
+  margin: 0 0 38px !important;
+  padding: 0 0 38px !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 18px !important;
+  border-bottom: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .haripath-readable-verses {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .haripath-stanza {
+  margin-bottom: 16px !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .haripath-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card > .abhang-post-actions .abhang-actions-left {
+  justify-content: flex-start !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-btn {
+  width: 24px !important;
+  min-width: 24px !important;
+  height: 26px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+}
+
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .copy-abhang-btn,
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .copy-abhang-btn i { color: #607d8b !important; }
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .whatsapp-share-btn,
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .facebook-share-btn,
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .facebook-share-btn i { color: #1877f2 !important; }
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .instagram-share-btn,
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .instagram-share-btn i { color: #e1306c !important; }
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .copy-link-share-btn,
+body.haripath-meaning-normal-page .post-content .haripath-complete-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Unified book-reading card for Dnyaneshwari chapters. */
+body.dnyaneshwari-chapter-card-page .abhang-post-main .post-content {
+  width: 100% !important;
+  max-width: 1040px !important;
+  margin: 0 auto !important;
+}
+
+body.dnyaneshwari-chapter-card-page .post-content .dnyaneshwari-chapter-card {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 34px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi *,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi strong,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi span {
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.18rem !important;
+  font-weight: 900 !important;
+  font-synthesis: weight !important;
+  -webkit-text-stroke: 0.45px currentColor;
+  text-shadow: 0 0 0.01px currentColor;
+  line-height: 1.75 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi {
+  margin: 34px auto 12px !important;
+  padding: 0 !important;
+  scroll-margin-top: 110px !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar *,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar strong,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar span {
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar {
+  margin: 0 auto 34px !important;
+  padding: 0 !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 34px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .abhang-actions-left,
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .copy-abhang-btn i { color: #607d8b !important; }
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .facebook-share-btn i { color: #1877f2 !important; }
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .instagram-share-btn i { color: #e1306c !important; }
+body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Nine independent reading cards for Sant Dnyaneshwar Virani. */
+body.dnyaneshwar-virani-card-page .post-content .virani-card-list {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card {
+  width: 100% !important;
+  margin: 0 auto 32px !important;
+  padding: 36px 32px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  scroll-margin-top: 110px !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card-title {
+  margin: 0 0 28px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card-verse,
+body.dnyaneshwar-virani-card-page .post-content .virani-card-verse * {
+  margin: 0 auto 30px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.16rem !important;
+  font-weight: 900 !important;
+  font-synthesis: weight !important;
+  -webkit-text-stroke: 0.35px currentColor;
+  line-height: 1.9 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content p.virani-card-verse {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning,
+body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning * {
+  margin: 0 0 22px !important;
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card-closing {
+  margin: 26px 0 0 !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-virani-card-page .post-content .virani-card .abhang-card-footer {
+  display: flex !important;
+  width: 100% !important;
+  margin: 30px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.dnyaneshwar-virani-card-page .virani-card .abhang-actions-left,
+body.dnyaneshwar-virani-card-page .virani-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.dnyaneshwar-virani-card-page .virani-card .copy-abhang-btn i { color: #607d8b !important; }
+body.dnyaneshwar-virani-card-page .virani-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.dnyaneshwar-virani-card-page .virani-card .facebook-share-btn i { color: #1877f2 !important; }
+body.dnyaneshwar-virani-card-page .virani-card .instagram-share-btn i { color: #e1306c !important; }
+body.dnyaneshwar-virani-card-page .virani-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Single structured biography card for Sant Dnyaneshwar Charitra. */
+body.dnyaneshwar-charitra-page .post-content.charitra-content {
+  width: 100% !important;
+  max-width: 1040px !important;
+  margin: 0 auto !important;
+}
+
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-section-heading,
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-section-heading * {
+  margin: 38px 0 18px !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-section-heading:first-child {
+  margin-top: 0 !important;
+}
+
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-paragraph,
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-paragraph * {
+  margin: 0 0 22px !important;
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card p.charitra-quote,
+body.dnyaneshwar-charitra-page .post-content .charitra-reading-card p.charitra-quote * {
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 28px auto !important;
+  color: #000 !important;
+  font-weight: 900 !important;
+  font-synthesis: weight !important;
+  -webkit-text-stroke: 0.25px currentColor;
+  line-height: 1.8 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-charitra-page .charitra-reading-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 34px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.dnyaneshwar-charitra-page .charitra-reading-card .abhang-actions-left,
+body.dnyaneshwar-charitra-page .charitra-reading-card .abhang-share-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.dnyaneshwar-charitra-page .charitra-reading-card .copy-abhang-btn i { color: #607d8b !important; }
+body.dnyaneshwar-charitra-page .charitra-reading-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.dnyaneshwar-charitra-page .charitra-reading-card .facebook-share-btn i { color: #1877f2 !important; }
+body.dnyaneshwar-charitra-page .charitra-reading-card .instagram-share-btn i { color: #e1306c !important; }
+body.dnyaneshwar-charitra-page .charitra-reading-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Unified reading cards for Changdev Pasashti and Sarth Pasaydan. */
+/* Amrutanubhav keeps its existing text alignment; only the reading surface changes. */
+/* Reusable biography layout for every saint's /charitra/ page. */
+/* Sant Tukaram Gatha: one complete abhang per shareable card. */
+body.tukaram-gatha-card-page .post-content .abhang-verse,
+body.tukaram-gatha-card-page .post-content .entry-content.gatha-content {
+  width: 100% !important;
+  max-width: 1080px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card-list {
+  display: grid !important;
+  width: 100% !important;
+  gap: 36px !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card {
+  position: relative !important;
+  width: 100% !important;
+  padding: 68px 40px 30px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-number {
+  position: absolute !important;
+  top: 24px !important;
+  left: 30px !important;
+  display: inline-flex !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  color: #7b4a18 !important;
+  background: #fff4e6 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+}
+
+body.tukaram-gatha-card-page p.tukaram-gatha-card-verse {
+  display: inline-block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 18px auto 40px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 500 !important;
+  line-height: 1.9 !important;
+  text-align: left !important;
+}
+
+body.tukaram-gatha-card-page p.tukaram-gatha-card-verse * {
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  text-align: inherit !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card > .abhang-item-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 20px 0 6px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card .abhang-actions-left,
+body.tukaram-gatha-card-page .tukaram-gatha-card .abhang-share-group {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card .abhang-btn {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-card .copy-abhang-btn i { color: #607d8b !important; }
+body.tukaram-gatha-card-page .tukaram-gatha-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.tukaram-gatha-card-page .tukaram-gatha-card .facebook-share-btn i { color: #1877f2 !important; }
+body.tukaram-gatha-card-page .tukaram-gatha-card .instagram-share-btn i { color: #e1306c !important; }
+body.tukaram-gatha-card-page .tukaram-gatha-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.tukaram-gatha-card-page .tukaram-gatha-card {
+    padding: 60px 18px 22px !important;
+  }
+
+  body.tukaram-gatha-card-page .tukaram-gatha-number {
+    top: 20px !important;
+    left: 16px !important;
+  }
+
+  body.tukaram-gatha-card-page p.tukaram-gatha-card-verse {
+    width: auto !important;
+    margin: 16px auto 32px !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+}
+
+body.saint-charitra-card-page .post-content {
+  width: 100% !important;
+  max-width: 1040px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.saint-charitra-card-page .post-content .entry-content.charitra-reading-card {
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading,
+body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading * {
+  margin: 38px 0 18px !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading:first-child {
+  margin-top: 0 !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph,
+body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph * {
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+  text-align: left !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card p.charitra-paragraph {
+  margin: 0 0 22px !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card ul,
+body.saint-charitra-card-page .charitra-reading-card ol {
+  max-width: 100% !important;
+  margin: 0 0 24px 24px !important;
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 34px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.saint-charitra-card-page .charitra-reading-card .copy-abhang-btn i { color: #607d8b !important; }
+body.saint-charitra-card-page .charitra-reading-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.saint-charitra-card-page .charitra-reading-card .facebook-share-btn i { color: #1877f2 !important; }
+body.saint-charitra-card-page .charitra-reading-card .instagram-share-btn i { color: #e1306c !important; }
+body.saint-charitra-card-page .charitra-reading-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Legacy Sant Eknath literature: shared centered reading card and share footer. */
+body.eknath-literature-card-page .post-article,
+body.eknath-literature-card-page .abhang-post {
+  max-width: 1180px !important;
+  margin: 36px auto !important;
+  padding: 0 20px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.eknath-literature-card-page .eknath-reading-card {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 24px auto !important;
+  padding: 38px 42px 24px !important;
+  border: 1px solid #efd2b5 !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(74, 45, 20, 0.06) !important;
+  text-align: center !important;
+}
+
+body.eknath-literature-card-page .eknath-reading-paragraph,
+body.eknath-literature-card-page .eknath-reading-paragraph * {
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.15rem !important;
+  line-height: 1.9 !important;
+  font-weight: 400 !important;
+}
+
+body.eknath-literature-card-page .eknath-reading-card > .abhang-post-actions {
+  margin-top: 32px !important;
+}
+
+body.eknath-literature-card-page .copy-abhang-btn i { color: #607d8b !important; }
+body.eknath-literature-card-page .whatsapp-share-btn i { color: #00c853 !important; }
+body.eknath-literature-card-page .facebook-share-btn i { color: #1877f2 !important; }
+body.eknath-literature-card-page .instagram-share-btn i { color: #e1306c !important; }
+body.eknath-literature-card-page .copy-link-share-btn i { color: #a02020 !important; }
+
+body.eknath-literature-card-page .eknath-section-title {
+  margin: 0 0 24px !important;
+  color: #202020 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+body.eknath-literature-card-page .eknath-section-content {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+}
+
+body.eknath-literature-card-page .eknath-section-verse,
+body.eknath-literature-card-page .eknath-section-verse * {
+  color: #111 !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+body.eknath-literature-card-page .eknath-section-meaning,
+body.eknath-literature-card-page .eknath-section-meaning * {
+  color: #222 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair {
+  display: block !important;
+  min-height: 0 !important;
+  margin: 0 0 22px !important;
+  padding: 0 !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi,
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi * {
+  color: #090909 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi {
+  margin: 0 auto 7px !important;
+  padding: 0 !important;
+  line-height: 1.7 !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi > * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .oviar,
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .oviar * {
+  color: #222 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .oviar {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.7 !important;
+}
+
+body.eknathi-bhagwat-missing-page .eknathi-missing-card {
+  max-width: 900px !important;
+  margin: 30px auto !important;
+  padding: 38px !important;
+  border: 1px solid #efd2b5 !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  text-align: center !important;
+}
+
+body.eknathi-bhagwat-chapter-page .eknathi-source-note {
+  width: min(100% - 40px, 1040px) !important;
+  margin: 12px auto 32px !important;
+  color: #666 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 400 !important;
+  text-align: right !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-reading-card {
+  width: calc(100% - 40px) !important;
+  max-width: 1040px !important;
+  margin: 28px auto !important;
+  padding: 42px 48px 24px !important;
+  border: 1px solid #efd2b5 !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(74, 45, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+body.bhavarth-ramayan-chapter-page .post-title {
+  font-weight: 400 !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-source-heading {
+  margin: 8px auto 14px !important;
+  color: #202020 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  text-align: center !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-topic {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 18px auto 10px !important;
+  color: #222 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  text-align: center !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-ovi {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 20px !important;
+  padding: 0 !important;
+  color: #090909 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  text-align: left !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-ovi * {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-ovi br {
+  display: initial !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-missing-card {
+  text-align: center !important;
+}
+
+body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-reading-card > .abhang-post-actions {
+  margin-top: 34px !important;
+}
+
+@media (max-width: 700px) {
+  body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-reading-card {
+    width: calc(100% - 24px) !important;
+    padding: 28px 18px 20px !important;
+  }
+}
+
+body.eknath-haripath-page .post-content .eknath-haripath-card .haripath-readable-verses,
+body.eknath-haripath-page .post-content .eknath-haripath-card .haripath-stanza,
+body.eknath-haripath-page .post-content .eknath-haripath-card p.haripath-line,
+body.eknath-haripath-page .post-content .eknath-haripath-card p.haripath-line *,
+body.eknath-haripath-page .post-content .eknath-haripath-card .haripath-inline-number,
+body.eknath-haripath-page .post-content .eknath-haripath-card .verse-end {
+  font-family: "Nirmala UI Semilight", "Nirmala UI", "Segoe UI", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+body.eknath-haripath-page .post-article {
+  max-width: 1120px !important;
+  margin: 36px auto !important;
+  padding: 0 20px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body.eknath-haripath-page .post-header {
+  padding-top: 30px !important;
+  overflow: visible !important;
+}
+
+body.eknath-haripath-page .post-title {
+  margin: 0 0 30px !important;
+  padding: 8px 0 4px !important;
+  line-height: 1.35 !important;
+  overflow: visible !important;
+}
+
+body.eknath-haripath-page .eknath-haripath-card {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 24px auto 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 300 !important;
+  font-synthesis: none !important;
+}
+
+body.eknath-haripath-page .eknath-haripath-stanza,
+body.eknath-haripath-page .eknath-haripath-stanza * {
+  color: #111 !important;
+  font-family: "Nirmala UI", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  line-height: 1.75 !important;
+}
+
+body.eknath-haripath-page .eknath-haripath-stanza {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 30px !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+body.eknath-haripath-page .eknath-haripath-card > .abhang-post-actions {
+  margin-top: 8px !important;
+}
+
+@media (max-width: 700px) {
+  body.eknath-haripath-page .eknath-haripath-card {
+    padding: 30px 18px 20px !important;
+  }
+
+  body.eknath-haripath-page .eknath-haripath-stanza {
+    margin-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  body.eknath-literature-card-page .eknath-reading-card {
+    padding: 26px 18px 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.saint-charitra-card-page .post-content .entry-content.charitra-reading-card {
+    padding: 28px 16px 18px !important;
+  }
+
+  body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph,
+  body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph * {
+    font-size: 1rem !important;
+  }
+}
+
+body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card {
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 34px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card .copy-abhang-btn i { color: #607d8b !important; }
+body.amrutanubhav-page .amrutanubhav-reading-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.amrutanubhav-page .amrutanubhav-reading-card .facebook-share-btn i { color: #1877f2 !important; }
+body.amrutanubhav-page .amrutanubhav-reading-card .instagram-share-btn i { color: #e1306c !important; }
+body.amrutanubhav-page .amrutanubhav-reading-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card {
+    padding: 28px 16px 18px !important;
+  }
+}
+
+body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card,
+body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card {
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+}
+
+body.changdev-pasashti-page .changdev-reading-card .changdev-ovi-line,
+body.changdev-pasashti-page .changdev-reading-card .changdev-ovi-line *,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-verse-line,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-verse-line * {
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 900 !important;
+  font-synthesis: weight !important;
+  -webkit-text-stroke: 0.3px currentColor;
+}
+
+body.changdev-pasashti-page .changdev-reading-card .changdev-ovi-line {
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 30px auto 10px !important;
+  font-size: 1.08rem !important;
+  line-height: 1.8 !important;
+  text-align: center !important;
+}
+
+body.changdev-pasashti-page .changdev-reading-card .changdev-meaning-line,
+body.changdev-pasashti-page .changdev-reading-card .changdev-meaning-line * {
+  width: 100% !important;
+  max-width: 840px !important;
+  margin: 0 auto 26px !important;
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-main-centered {
+  width: 100% !important;
+  max-width: 880px !important;
+  margin: 0 auto 44px !important;
+}
+
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card p.pasaydan-verse-line {
+  width: 100% !important;
+  max-width: 880px !important;
+  margin: 30px auto 12px !important;
+  font-size: 1.08rem !important;
+  line-height: 1.8 !important;
+  text-align: center !important;
+}
+
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-main-centered p.pasaydan-main-line {
+  margin: 0 auto 24px !important;
+}
+
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-meaning-line,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-meaning-line * {
+  color: #333 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card p.pasaydan-meaning-line {
+  width: 100% !important;
+  max-width: 840px !important;
+  margin: 0 auto 26px !important;
+}
+
+body.changdev-pasashti-page .changdev-reading-card > .abhang-post-actions,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 34px 0 0 !important;
+  padding: 18px 0 10px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.changdev-pasashti-page .changdev-reading-card .copy-abhang-btn i,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .copy-abhang-btn i { color: #607d8b !important; }
+body.changdev-pasashti-page .changdev-reading-card .whatsapp-share-btn i,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.changdev-pasashti-page .changdev-reading-card .facebook-share-btn i,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .facebook-share-btn i { color: #1877f2 !important; }
+body.changdev-pasashti-page .changdev-reading-card .instagram-share-btn i,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .instagram-share-btn i { color: #e1306c !important; }
+body.changdev-pasashti-page .changdev-reading-card .copy-link-share-btn i,
+body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card,
+  body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card {
+    padding: 28px 16px 18px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwar-charitra-page .post-content .charitra-reading-card {
+    padding: 28px 16px 18px !important;
+  }
+
+  body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-paragraph,
+  body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-paragraph * {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwar-virani-card-page .post-content .virani-card {
+    margin-bottom: 22px !important;
+    padding: 28px 16px 18px !important;
+  }
+
+  body.dnyaneshwar-virani-card-page .post-content .virani-card-verse,
+  body.dnyaneshwar-virani-card-page .post-content .virani-card-verse * {
+    font-size: 1.06rem !important;
+  }
+
+  body.dnyaneshwar-virani-card-page .post-content p.virani-card-verse {
+    width: fit-content !important;
+  }
+
+  body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning,
+  body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning * {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.dnyaneshwari-chapter-card-page .post-content .dnyaneshwari-chapter-card {
+    padding: 28px 16px 18px !important;
+  }
+
+  body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi,
+  body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi * {
+    font-size: 1.08rem !important;
+  }
+
+  body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar,
+  body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar * {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body.haripath-meaning-normal-page .post-content .haripath-complete-card {
+    padding: 30px 16px 18px !important;
+  }
+
+  body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item {
+    margin-bottom: 30px !important;
+    padding-bottom: 30px !important;
+  }
+}
+
+/* Final Tukaram Gatha centering safeguard against legacy paragraph widths. */
+/* Namdev Gatha category pages: one centered reading card and one share footer. */
+body.namdev-gatha-card-page .post-content .abhang-verse,
+body.namdev-gatha-card-page .post-content .entry-content.namdev-gatha-reading-card {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  box-sizing: border-box !important;
+}
+
+body.namdev-gatha-multi-card-page .post-content .entry-content.namdev-gatha-card-list-host {
+  width: 100% !important;
+  max-width: 1040px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-list {
+  display: grid !important;
+  width: 100% !important;
+  gap: 34px !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card {
+  position: relative !important;
+  display: flex !important;
+  width: 100% !important;
+  padding: 68px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-number {
+  position: absolute !important;
+  top: 24px !important;
+  left: 30px !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  color: #7b4a18 !important;
+  background: #fff4e6 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-content {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-content p.namdev-gatha-verse-block {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 14px auto 30px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: left !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card > .abhang-item-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 8px 0 0 !important;
+  padding: 20px 0 6px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .abhang-actions-left,
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .abhang-share-group {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .copy-abhang-btn i { color: #607d8b !important; }
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .facebook-share-btn i { color: #1877f2 !important; }
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .instagram-share-btn i { color: #e1306c !important; }
+body.namdev-gatha-multi-card-page .namdev-gatha-section-card .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  body.namdev-gatha-multi-card-page .namdev-gatha-section-card {
+    padding: 60px 16px 20px !important;
+  }
+
+  body.namdev-gatha-multi-card-page .namdev-gatha-section-number {
+    top: 20px !important;
+    left: 16px !important;
+  }
+
+  body.namdev-gatha-multi-card-page .namdev-gatha-section-content p.namdev-gatha-verse-block {
+    display: block !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+}
+
+body.namdev-gatha-card-page .post-content .abhang-verse {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.namdev-gatha-card-page .post-content .entry-content.namdev-gatha-reading-card {
+  margin-bottom: 40px !important;
+  padding: 42px 38px 24px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card .ui-tabs,
+body.namdev-gatha-card-page .namdev-gatha-reading-card .ui-tabs-panel,
+body.namdev-gatha-card-page .namdev-gatha-reading-card .kDataPart {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card p.namdev-gatha-verse-block {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 30px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: left !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card p.namdev-gatha-verse-block * {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  text-align: inherit !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card > .abhang-post-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 36px 0 0 !important;
+  padding: 20px 0 8px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card .abhang-actions-left,
+body.namdev-gatha-card-page .namdev-gatha-reading-card .abhang-share-group {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+body.namdev-gatha-card-page .namdev-gatha-reading-card .copy-abhang-btn i { color: #607d8b !important; }
+body.namdev-gatha-card-page .namdev-gatha-reading-card .whatsapp-share-btn i { color: #00c853 !important; }
+body.namdev-gatha-card-page .namdev-gatha-reading-card .facebook-share-btn i { color: #1877f2 !important; }
+body.namdev-gatha-card-page .namdev-gatha-reading-card .instagram-share-btn i { color: #e1306c !important; }
+body.namdev-gatha-card-page .namdev-gatha-reading-card .copy-link-share-btn i { color: #a02020 !important; }
+
+/* Keep the solid link glyph available when global reading fonts target icons. */
+.abhang-card-footer .copy-link-share-btn i,
+.abhang-card-footer .copy-link-share-btn i::before {
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+}
+
+.abhang-card-footer i.far,
+.abhang-card-footer i.far::before {
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+}
+
+.abhang-card-footer i.fas,
+.abhang-card-footer i.fas::before {
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+}
+
+.abhang-card-footer i.fab,
+.abhang-card-footer i.fab::before {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+}
+
+@media (max-width: 576px) {
+  body.namdev-gatha-card-page .post-content .entry-content.namdev-gatha-reading-card {
+    padding: 28px 16px 18px !important;
+  }
+
+  body.namdev-gatha-card-page .namdev-gatha-reading-card p.namdev-gatha-verse-block {
+    display: block !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+}
+
+html body.tukaram-gatha-card-page .abhang-post .entry-content .tukaram-gatha-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+html body.tukaram-gatha-card-page .abhang-post .entry-content .tukaram-gatha-card > p.tukaram-gatha-card-verse {
+  display: inline-block !important;
+  align-self: center !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  max-width: calc(100% - 16px) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: left !important;
+}
+
+html body.tukaram-gatha-card-page .abhang-post .entry-content .tukaram-gatha-card > .abhang-item-actions {
+  align-self: stretch !important;
+  text-align: left !important;
+}
+
+/* Give Devanagari ascenders enough room in shared article headings. */
+body .post-main .post-header,
+body .abhang-post-main .post-header,
+body .post-article .post-header {
+  overflow: visible !important;
+}
+
+body .post-main .post-header .post-title,
+body .abhang-post-main .post-header .post-title,
+body .post-article .post-header .post-title {
+  box-sizing: border-box !important;
+  padding-top: 0.2em !important;
+  padding-bottom: 0.12em !important;
+  line-height: 1.3 !important;
+  overflow: visible !important;
+}
+
+/* Keep the complete Nivruttinath Haripath at the site's normal reading weight. */
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card,
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card .haripath-readable-verses,
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card .haripath-stanza,
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card p.haripath-line,
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card p.haripath-line *,
+html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card .haripath-inline-number {
+  font-family: Helvetica, Arial, "Nirmala UI", sans-serif !important;
+  font-size: 1rem !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-synthesis: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+
+body.rohidas-pothi-page .post-content .rohidas-pothi-card > p {
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto 18px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+body.rohidas-pothi-page .post-content .rohidas-pothi-card > .abhang-post-actions {
+  margin-top: 28px !important;
+}
+
+/* Nilobaray literature cards always keep all sharing controls on one line. */
+html body.nilobaray-literature-card-page .namdev-gatha-section-list {
+  gap: 0 !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-list > .namdev-gatha-section-card {
+  margin: 0 0 34px !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-list > .namdev-gatha-section-card:last-child {
+  margin-bottom: 0 !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-card > .abhang-item-actions,
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .abhang-actions-left,
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .abhang-share-group {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .abhang-actions-left,
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .abhang-share-group {
+  width: auto !important;
+  gap: 12px !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .abhang-btn {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+}
+
+/* Centre the verse block inside each Nilobaray literature card. */
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .namdev-gatha-section-content {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .nilobaray-centered-verse {
+  display: inline-block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+
+html body.nilobaray-literature-card-page .namdev-gatha-section-card .nilobaray-centered-verse > p.namdev-gatha-verse-block {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+}
+
+/* Nilobaray 21 contains one unusually long abhang: present it as a reading card. */
+html body.nilobaray-single-long-abhang-page .post-content > .entry-content.gatha-content {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 34px !important;
+  padding: 76px 46px 28px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 9px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
+  box-sizing: border-box !important;
+}
+
+html body.nilobaray-single-long-abhang-page .post-content > .entry-content.gatha-content > p.marathi-verse {
+  display: block !important;
+  width: 100% !important;
+  max-width: 880px !important;
+  margin: 0 auto 24px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, "Nirmala UI", sans-serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: left !important;
+  overflow-wrap: anywhere !important;
+}
+
+html body.nilobaray-single-long-abhang-page .namdev-gatha-section-list {
+  max-width: 980px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+html body.nilobaray-single-long-abhang-page .nilobaray-single-long-abhang-card {
+  padding: 76px 46px 28px !important;
+}
+
+html body.nilobaray-single-long-abhang-page .nilobaray-single-long-abhang-card .nilobaray-centered-verse {
+  display: block !important;
+  width: 100% !important;
+}
+
+html body.nilobaray-single-long-abhang-page .nilobaray-long-abhang-stanzas {
+  width: 100% !important;
+  max-width: 880px !important;
+  margin: 0 auto 32px !important;
+}
+
+html body.nilobaray-single-long-abhang-page p.nilobaray-long-abhang-stanza {
+  width: 100% !important;
+  margin: 0 0 24px !important;
+  color: #000 !important;
+  font-family: Helvetica, Arial, "Nirmala UI", sans-serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  text-align: left !important;
+  overflow-wrap: anywhere !important;
+}
+
+html body.nilobaray-single-long-abhang-page p.nilobaray-long-abhang-stanza:last-child {
+  margin-bottom: 0 !important;
+}
+
+html body.nilobaray-single-long-abhang-page .abhang-post-actions,
+html body.nilobaray-single-long-abhang-page .nilobaray-single-long-abhang-card > .abhang-item-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 28px 0 0 !important;
+  padding: 20px 0 6px !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  justify-content: flex-start !important;
+}
+
+html body.nilobaray-single-long-abhang-page .abhang-actions-left,
+html body.nilobaray-single-long-abhang-page .abhang-share-group {
+  display: flex !important;
+  width: auto !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+html body.nilobaray-single-long-abhang-page .abhang-btn {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+html body.nilobaray-single-long-abhang-page .copy-abhang-btn i { color: #607d8b !important; }
+html body.nilobaray-single-long-abhang-page .whatsapp-share-btn i { color: #00c853 !important; }
+html body.nilobaray-single-long-abhang-page .facebook-share-btn i { color: #1877f2 !important; }
+html body.nilobaray-single-long-abhang-page .instagram-share-btn i { color: #e1306c !important; }
+html body.nilobaray-single-long-abhang-page .copy-link-share-btn i { color: #a02020 !important; }
+
+@media (max-width: 576px) {
+  html body.nilobaray-single-long-abhang-page .post-content > .entry-content.gatha-content {
+    padding: 66px 16px 20px !important;
+  }
+
+  html body.nilobaray-single-long-abhang-page .nilobaray-single-long-abhang-card {
+    padding: 66px 16px 20px !important;
+  }
+
+  html body.nilobaray-single-long-abhang-page p.nilobaray-long-abhang-stanza {
+    margin-bottom: 20px !important;
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+  }
 }

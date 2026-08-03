@@ -27,20 +27,20 @@
     <% } else { %>
       <div class="blog-grid">
         <% posts.forEach((post, index) => { %>
-          <article class="arrival-card blog-card" id="blog-<%= post.id %>">
+          <article class="arrival-card blog-card" id="blog-<%= post.id %>" data-published-at="<%= post.published_at || post.created_at || '' %>">
             <a class="blog-card-media" href="<%= post.slug %>/index.html" aria-label="ब्लॉग प्रतिमा">
               <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
             </a>
             <div class="arrival-header">
               <span class="arrival-tag"><%= post.category %></span>
-              <span class="arrival-date"><%= post.card_label || (`लेख ${index + 1}`) %></span>
+              <span class="arrival-date">लेख <%= index + 1 %></span>
             </div>
             <h2 class="arrival-title">
               <a href="<%= post.slug %>/index.html"><%= post.title %></a>
             </h2>
             <p class="arrival-author"><%= post.author_name %></p>
             <p class="arrival-excerpt"><%= post.excerpt %></p>
-            <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="blog-<%= post.id %>" data-share-label="<%= post.card_label || (`लेख ${index + 1}`) %>">
+            <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="blog-<%= post.id %>" data-share-label="लेख <%= index + 1 %>">
               <div class="abhang-actions-left">
                 <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा">
                   <i class="far fa-copy"></i>
