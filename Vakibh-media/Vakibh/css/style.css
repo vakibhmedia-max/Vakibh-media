@@ -13,9 +13,9 @@
   --card-shadow: 0 10px 30px rgba(220, 180, 140, 0.15);
   --hover-shadow: 0 15px 35px rgba(230, 92, 0, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --font-body: Helvetica, Verdana, sans-serif;
-  --font-heading: Helvetica, Verdana, sans-serif;
-  --marathi-font: Helvetica, Verdana, sans-serif;
+  --font-body: Helvetica, Arial, sans-serif;
+  --font-heading: Helvetica, Arial, sans-serif;
+  --marathi-font: Helvetica, Arial, sans-serif;
   --content-text: var(--text-dark);
   --heading-text: var(--text-dark);
   --content-line-height: 1.95;
@@ -3255,5 +3255,5 @@ body :where(
 .article-body p * {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, "Kokila", "Mangal", Verdana, sans-serif !important;
+  font-family: Helvetica, Arial, sans-serif !important;
 }
