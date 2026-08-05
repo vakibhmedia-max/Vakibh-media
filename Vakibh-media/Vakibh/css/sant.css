@@ -257,6 +257,46 @@
   font-size: 0.9rem;
 }
 
+.blog-post-heading-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.blog-post-heading-row .post-title {
+  margin: 0;
+  color: #a02020;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.blog-post-date {
+  display: block;
+  margin: 0;
+  color: #777;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .blog-post-heading-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.45rem;
+  }
+
+  .blog-post-heading-row .post-title {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .blog-post-date {
+    justify-self: end;
+    font-size: 0.85rem;
+  }
+}
+
 .post-category-link {
   color: #777;
   text-decoration: none;
@@ -279,6 +319,10 @@
   background: #fff8ef;
   border: 1px solid #f0d5ab;
   border-radius: 12px;
+}
+
+.post-article > .abhang-post-actions {
+  margin: 1.5rem 0 0;
 }
 
 .abhang-item-actions {
@@ -7353,6 +7397,88 @@ body.amrutanubhav-page .amrutanubhav-reading-card .copy-link-share-btn i { color
   }
 }
 
+/* The final glossary and errata pages contain many short OCR rows. */
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-reference-page > p {
+  margin-block: 0 0.08rem !important;
+  line-height: 1.38 !important;
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+/* PDF transcription: retain the original book-like alignment. */
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page {
+  width: min(100%, 780px) !important;
+  max-width: 780px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 0.38rem !important;
+  color: #222 !important;
+  font-size: 1.08rem !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-synthesis: none !important;
+  line-height: 1.72 !important;
+  text-align: justify !important;
+  text-align-last: left !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-verse {
+  margin: 0.12rem auto 0.38rem !important;
+  font-weight: 400 !important;
+  line-height: 1.62 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr2,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr3,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-chapter-title {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 1.15rem auto 0.7rem !important;
+  color: #7f251c !important;
+  font-size: 1.28rem !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr2,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr2 *,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr3,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr3 *,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-chapter-title,
+body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-chapter-title * {
+  font-weight: 700 !important;
+}
+
+@media (max-width: 576px) {
+  body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p {
+    margin-bottom: 0.34rem !important;
+    font-size: 1rem !important;
+    line-height: 1.68 !important;
+  }
+
+  body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-verse {
+    font-size: 1.02rem !important;
+    line-height: 1.58 !important;
+  }
+
+  body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr2,
+  body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr3,
+  body.amrutanubhav-page .amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-chapter-title {
+    margin-top: 1rem !important;
+    font-size: 1.16rem !important;
+  }
+}
+
 body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card,
 body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card {
   width: min(100%, 980px) !important;
@@ -8005,5 +8131,121 @@ html body.nilobaray-single-long-abhang-page .copy-link-share-btn i { color: #a02
     margin-bottom: 20px !important;
     font-size: 1rem !important;
     line-height: 1.8 !important;
+  }
+}
+
+/* Final compact typesetting for the OCR-based Amrutanubhav transcription. */
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page {
+  display: block !important;
+  width: min(100%, 780px) !important;
+  max-width: 780px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p {
+  display: block !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 0.16rem !important;
+  padding: 0 !important;
+  font-size: 1.04rem !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 1.48 !important;
+  text-align: justify !important;
+  text-align-last: left !important;
+}
+
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-verse {
+  margin: 0 auto 0.12rem !important;
+  padding: 0 !important;
+  font-weight: 400 !important;
+  line-height: 1.44 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr2,
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p.hdr3,
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-chapter-title {
+  min-height: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0.65rem auto 0.28rem !important;
+  padding: 0 !important;
+  font-size: 1.18rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+@media (max-width: 576px) {
+  html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p {
+    margin-bottom: 0.14rem !important;
+    font-size: 0.98rem !important;
+    line-height: 1.52 !important;
+  }
+
+  html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p.amrutanubhav-verse {
+    margin-bottom: 0.1rem !important;
+    line-height: 1.48 !important;
+  }
+}
+
+/* Keep OCR glossary/errata rows dense, like the printed reference pages. */
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page.amrutanubhav-reference-page > p {
+  min-height: 0 !important;
+  margin: 0 0 0.08rem !important;
+  padding: 0 !important;
+  line-height: 1.38 !important;
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+/* Every numbered Haripath abhang is an independent, shareable card. */
+html body.haripath-meaning-normal-page .post-content .haripath-complete-card {
+  max-width: 980px !important;
+  margin: 0 auto 40px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item {
+  position: relative !important;
+  margin: 0 0 28px !important;
+  padding: 30px 28px 20px !important;
+  border: 1px solid #efd7bd !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 24px rgba(84, 51, 20, 0.07) !important;
+}
+
+html body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 20px !important;
+}
+
+html body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item > .abhang-item-actions {
+  display: flex !important;
+  width: 100% !important;
+  margin: 24px 0 0 !important;
+  padding: 15px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid #eadfd4 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  justify-content: flex-start !important;
+}
+
+@media (max-width: 576px) {
+  html body.haripath-meaning-normal-page .post-content .haripath-complete-card .abhang-readable-item {
+    margin-bottom: 20px !important;
+    padding: 24px 15px 16px !important;
   }
 }

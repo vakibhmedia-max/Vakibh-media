@@ -194,8 +194,10 @@ select {
 
 .admin-topbar h1 {
   margin: 0.2rem 0 0;
+  padding: 0.12em 0 0.08em;
   font-size: clamp(1.6rem, 3vw, 2.3rem);
-  line-height: 1.1;
+  line-height: 1.25;
+  overflow: visible;
 }
 
 .admin-breadcrumb {
@@ -263,8 +265,10 @@ select {
 
 .admin-hero-copy h2 {
   margin: 0.5rem 0 0.75rem;
+  padding-top: 0.08em;
   font-size: clamp(1.45rem, 2.8vw, 2.15rem);
-  line-height: 1.18;
+  line-height: 1.3;
+  overflow: visible;
 }
 
 .admin-hero-copy p {
@@ -329,6 +333,26 @@ select {
 .admin-panel-grid {
   grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.85fr);
   align-items: start;
+}
+
+/* Override only the frontend's generic section layout on dashboard rows. */
+.admin-main > .admin-hero-card,
+.admin-main > .admin-stats-grid,
+.admin-main > .admin-panel-grid {
+  width: 100%;
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.admin-main > .admin-stats-grid,
+.admin-main > .admin-panel-grid {
+  padding: 0;
+}
+
+.admin-main > .admin-hero-card,
+.admin-main > .admin-stats-grid {
+  margin-bottom: 1rem;
 }
 
 .admin-panel {
@@ -754,10 +778,24 @@ select {
   max-width: 620px;
 }
 
+.admin-login-hero .admin-eyebrow {
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff4d6;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: 0 1px 2px rgba(55, 18, 8, 0.35);
+}
+
 .admin-login-hero h1 {
   margin: 0.9rem 0 0.75rem;
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  line-height: 1.04;
+  font-size: clamp(2.15rem, 3.7vw, 3.8rem);
+  line-height: 1.18;
+  word-spacing: 0.14em;
 }
 
 .admin-login-hero p {
@@ -811,7 +849,7 @@ select {
 }
 
 .admin-login-card h2 {
-  margin: 0.85rem 0 0.45rem;
+  margin: 0.85rem 0 1.2rem;
   font-size: clamp(1.7rem, 3vw, 2.4rem);
 }
 

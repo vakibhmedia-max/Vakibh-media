@@ -25,6 +25,7 @@ const {
   getRecentPosts,
   listAllPosts,
   listPublishedPosts,
+  removeDuplicateFeaturedImage,
   updateBlogPost
 } = require('./backend/lib/blogs');
 const { renderPage } = require('./backend/lib/render');
@@ -735,7 +736,10 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
       {
         title: post.meta_title || `${post.title} - वाकीभ ब्लॉग`,
         description: post.meta_description || post.excerpt,
-        post,
+        post: {
+          ...post,
+          content_html: removeDuplicateFeaturedImage(post.content_html, post.featured_image)
+        },
         bodyClass: 'blog-post-page',
         formatDate
       },
