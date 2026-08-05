@@ -17,13 +17,12 @@
 
   <article class="post-article blog-post-card abhang-post" id="post-<%= post.id %>">
     <div class="blog-post-thumb">
-      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
+      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>" style="width: 100%; height: auto; object-fit: contain;">
     </div>
 
     <div class="blog-post-body">
       <header class="post-header">
         <div class="blog-post-kicker">
-          <a href="/blog/index.html" class="post-category-link"><%= post.category %></a>
           <span class="arrival-date"><%= formatDate(post.published_at) || post.card_label || 'वाकीभ ब्लॉग' %></span>
         </div>
         <h1 class="post-title"><%= post.title %></h1>

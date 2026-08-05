@@ -5,6 +5,7 @@ const { getPool } = require('./db');
 const { renderPage } = require('./render');
 const {
   ensureLeadingSlash,
+  formatDate,
   htmlPreviewText,
   normalizeSlug,
   stripHtml
@@ -84,6 +85,44 @@ function normalizeAssetUrl(value) {
     return raw;
   }
   return ensureLeadingSlash(raw.replace(/^\.\.\//, '').replace(/^\.\/+/, ''));
+}
+
+function decodeImageUrl(value) {
+  const decoded = String(value || '')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#38;/g, '&')
+    .trim();
+
+  if (/^https?:\/\//i.test(decoded) || decoded.startsWith('data:')) return decoded;
+  return decoded.replace(/^(?:(?:\.\.\/|\.\/|\/))+/, '');
+}
+
+function removeDuplicateFeaturedImage(contentHtml, featuredImage) {
+  const html = String(contentHtml || '');
+  const featuredUrl = decodeImageUrl(featuredImage);
+  if (!html || !featuredUrl) return html;
+
+  const imageMatch = html.match(/<img\b[^>]*\bsrc\s*=\s*(?:"([^"]+)"|'([^']+)')[^>]*>/i);
+  if (!imageMatch) return html;
+
+  const imageUrl = decodeImageUrl(imageMatch[1] || imageMatch[2]);
+  if (imageUrl !== featuredUrl) return html;
+
+  const imageStart = imageMatch.index;
+  const imageEnd = imageStart + imageMatch[0].length;
+  const paragraphStart = html.lastIndexOf('<p', imageStart);
+  const previousParagraphEnd = html.lastIndexOf('</p>', imageStart);
+  const paragraphEnd = html.indexOf('</p>', imageEnd);
+
+  if (paragraphStart > previousParagraphEnd && paragraphEnd !== -1) {
+    const paragraph = html.slice(paragraphStart, paragraphEnd + 4);
+    const withoutImage = paragraph.replace(imageMatch[0], '');
+    if (!stripHtml(withoutImage).replace(/[\u200B-\u200D\uFEFF]/g, '').trim()) {
+      return html.slice(0, paragraphStart) + html.slice(paragraphEnd + 4);
+    }
+  }
+
+  return html.slice(0, imageStart) + html.slice(imageEnd);
 }
 
 function toStaticAssetUrl(value, depth = 1) {
@@ -176,6 +215,8 @@ async function renderStaticBlogPosts(posts) {
           post: {
             ...post,
             featured_image: toStaticAssetUrl(post.featured_image, 2),
+            content_html: removeDuplicateFeaturedImage(post.content_html, post.featured_image),
+            published_label: formatDate(post.published_at),
             public_url: toStaticBlogUrl(post.slug, 2)
           },
           siteRootHref: '../..',
@@ -652,6 +693,7 @@ module.exports = {
   listAllPosts,
   listPublishedPosts,
   normalizeRow,
+  removeDuplicateFeaturedImage,
   seedStaticBlogPosts,
   sanitizeContentHtml,
   syncStaticBlogIndex,

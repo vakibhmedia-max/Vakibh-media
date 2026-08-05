@@ -17,12 +17,14 @@
 
   <article class="post-article" style="max-width: 960px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
     <div style="margin: -8px 0 28px; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 24px rgba(0,0,0,0.08);">
-      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>" style="width: 100%; height: 360px; object-fit: cover; display: block;">
+      <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>" style="width: 100%; height: auto; display: block;">
     </div>
-    <header class="post-header" style="text-align: center;">
-      <h1 class="post-title" style="color: #a02020; font-size: 2rem; margin-bottom: 20px;"><%= post.title %></h1>
-      <div class="post-meta">
-        <a href="<%= blogIndexHref %>" class="post-category-link"><%= post.category %></a>
+    <header class="post-header blog-post-heading">
+      <div class="blog-post-heading-row">
+        <h1 class="post-title"><%= post.title %></h1>
+      <% if (post.published_label) { %>
+        <time class="blog-post-date" datetime="<%= post.published_at instanceof Date ? post.published_at.toISOString() : post.published_at %>"><%= post.published_label %></time>
+      <% } %>
       </div>
     </header>
     <div class="post-content">

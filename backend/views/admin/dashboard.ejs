@@ -1,6 +1,5 @@
 <%
   const safeStats = typeof stats !== 'undefined' && stats ? stats : {};
-  const safeVisitorStats = typeof visitorStats !== 'undefined' && visitorStats ? visitorStats : {};
   const safeRecentPosts = typeof recentPosts !== 'undefined' && recentPosts ? recentPosts : [];
 %><div class="admin-shell">
   <aside class="admin-sidebar">
@@ -31,17 +30,9 @@
         <i class="fas fa-file-import"></i>
         Import from Blogger
       </a>
-      <a href="/admin/visitor-logins" class="<%= activeNav === 'visitor-logins' ? 'active' : '' %>">
-        <i class="fas fa-users-viewfinder"></i>
-        Visitor Logins
-      </a>
       <a href="/blog/index.html" target="_blank">
         <i class="fas fa-external-link-alt"></i>
         Public Blog
-      </a>
-      <a href="/index.html" target="_blank">
-        <i class="fas fa-home"></i>
-        Frontend Home
       </a>
     </nav>
 
@@ -118,32 +109,6 @@
       </article>
     </section>
 
-    <section class="admin-stats-grid admin-stats-grid-six">
-      <article class="admin-stat-card">
-        <span>Total visitors logged in</span>
-        <strong><%= safeVisitorStats.total_logins || 0 %></strong>
-      </article>
-      <article class="admin-stat-card">
-        <span>Today's logins</span>
-        <strong><%= safeVisitorStats.today_logins || 0 %></strong>
-      </article>
-      <article class="admin-stat-card">
-        <span>This week's logins</span>
-        <strong><%= safeVisitorStats.week_logins || 0 %></strong>
-      </article>
-      <article class="admin-stat-card">
-        <span>This month's logins</span>
-        <strong><%= safeVisitorStats.month_logins || 0 %></strong>
-      </article>
-      <article class="admin-stat-card">
-        <span>Repeat visitors</span>
-        <strong><%= safeVisitorStats.repeat_visitors || 0 %></strong>
-      </article>
-      <article class="admin-stat-card">
-        <span>Unique phone numbers</span>
-        <strong><%= safeVisitorStats.unique_phones || 0 %></strong>
-      </article>
-    </section>
     <section class="admin-panel-grid">
       <section class="admin-panel">
         <header class="admin-panel-header">
@@ -217,5 +182,3 @@
     </section>
   </main>
 </div>
-
-
