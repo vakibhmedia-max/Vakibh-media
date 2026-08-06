@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const slugInput = editor.querySelector('[data-autoslug-target]');
   const excerptInput = editor.querySelector('textarea[name="excerpt"]');
   const contentInput = editor.querySelector('textarea[name="content_html"]');
-  const categoryInput = editor.querySelector('input[name="category"]');
+  const categoryInput = editor.querySelector('[name="category"]');
   const authorInput = editor.querySelector('input[name="author_name"]');
   const labelInput = editor.querySelector('input[name="card_label"]');
   const imageUrlInput = editor.querySelector('input[name="featured_image"]');
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updatePreview = () => {
     const title = titleInput?.value?.trim() || 'लेख शीर्षक';
-    const category = categoryInput?.value?.trim() || 'वाकीभ ब्लॉग';
+    const category = categoryInput?.value?.trim() || 'संत साहित्य';
     const author = authorInput?.value?.trim() || 'वाकीभ संपादकीय मंडळ';
     const label = labelInput?.value?.trim() || getFallbackLabel();
     const excerpt = excerptInput?.value?.trim() || 'इथे excerpt preview दिसेल.';

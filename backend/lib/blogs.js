@@ -146,7 +146,10 @@ function toStaticBlogUrl(slug, depth = 1) {
 
 async function writeHtmlFile(filePath, html) {
   await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.promises.writeFile(filePath, html, 'utf8');
+  const normalizedHtml = String(html || '')
+    .replace(/\r\n?/g, '\n')
+    .replace(/[ \t]+$/gm, '');
+  await fs.promises.writeFile(filePath, normalizedHtml, 'utf8');
 }
 
 async function removeStaticBlogDirectory(slug) {
@@ -289,7 +292,7 @@ function normalizeRow(row) {
     id: row.id,
     title: row.title,
     slug: row.slug,
-    category: row.category || 'वाकीभ ब्लॉग',
+    category: row.category || 'संत साहित्य',
     author_name: row.author_name || 'वाकीभ संपादकीय मंडळ',
     card_label: cardLabel,
     excerpt: row.excerpt || '',
@@ -321,7 +324,7 @@ function buildPostPayload({ body = {}, filePath = '', existingPost = null } = {}
     normalizedSlug ||
     existingPost?.slug ||
     `post-${Date.now().toString(36)}`;
-  const category = String(body.category || 'वाकीभ ब्लॉग').trim() || 'वाकीभ ब्लॉग';
+  const category = String(body.category || 'संत साहित्य').trim() || 'संत साहित्य';
   const author_name =
     String(body.author_name || 'वाकीभ संपादकीय मंडळ').trim() || 'वाकीभ संपादकीय मंडळ';
   const content_html = sanitizeContentHtml(body.content_html || '');
@@ -661,7 +664,7 @@ async function seedStaticBlogPosts() {
       [
         title,
         seed.slug,
-        card.tag || detail.category || 'वाकीभ ब्लॉग',
+        card.tag || detail.category || 'संत साहित्य',
         card.author || 'वाकीभ संपादकीय मंडळ',
         card.cardLabel || `लेख ${seed.index}`,
         card.excerpt || htmlPreviewText(contentHtml, 220),

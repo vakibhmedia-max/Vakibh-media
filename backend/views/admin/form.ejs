@@ -19,6 +19,10 @@
         <i class="fas fa-newspaper"></i>
         Blogs
       </a>
+      <a href="/admin/categories" class="<%= activeNav === 'categories' ? 'active' : '' %>">
+        <i class="fas fa-tags"></i>
+        Categories
+      </a>
       <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
         <i class="fas fa-plus-circle"></i>
         Add Blog
@@ -94,7 +98,13 @@
 
             <label class="admin-field">
               <span>Category / Tag</span>
-              <input type="text" name="category" value="<%= post.category || 'वाकीभ ब्लॉग' %>" required data-preview-field="category">
+              <select name="category" required data-preview-field="category">
+                <% const categoryList = typeof categories !== 'undefined' && Array.isArray(categories) ? categories : []; %>
+                <% categoryList.forEach((category) => { %>
+                  <option value="<%= category.name %>" <%= (post.category || 'संत साहित्य') === category.name ? 'selected' : '' %>><%= category.name %></option>
+                <% }) %>
+              </select>
+              <small>नवीन category तयार करण्यासाठी sidebar मधील Categories वापरा.</small>
             </label>
 
             <label class="admin-field">
@@ -195,7 +205,7 @@
               <img src="<%= post.featured_image || '/assests/hero-bg.jpg' %>" alt="<%= post.featured_image_alt || post.title || 'Preview image' %>" data-preview-image>
             </a>
             <div class="arrival-header">
-              <span class="arrival-tag" data-preview-tag><%= post.category || 'वाकीभ ब्लॉग' %></span>
+              <span class="arrival-tag" data-preview-tag><%= post.category || 'संत साहित्य' %></span>
               <span class="arrival-date" data-preview-label><%= post.card_label || ('लेख ' + (post.sort_order || nextSortOrder || 1)) %></span>
             </div>
             <h2 class="arrival-title">
@@ -236,3 +246,4 @@
     </div>
   </main>
 </div>
+

@@ -3000,3 +3000,78 @@ body :where(
   font-synthesis: none !important;
   font-family: Helvetica, Arial, sans-serif !important;
 }
+/* Puravni abhang: preserve the source book's original line and stanza layout. */
+.puravni-page-main {
+  width: min(100% - 28px, 1040px);
+  margin: 0 auto;
+  padding: 52px 0 72px;
+}
+
+.puravni-page-heading {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.puravni-page-heading h1 {
+  margin: 4px 0 8px;
+  color: #172d47;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.puravni-page-heading p { margin: 0; color: #6f7f91; }
+.puravni-page-heading .puravni-eyebrow { color: #e85f00; font-weight: 700; }
+
+.puravni-reading-card {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.puravni-text-content {
+  padding: 0;
+  color: #172d47;
+  font-family: Helvetica, Arial, "Noto Sans Devanagari", Mangal, sans-serif;
+  font-size: clamp(1.05rem, 2.15vw, 1.32rem);
+  line-height: 1.9;
+}
+
+.puravni-abhang-group {
+  position: relative;
+  margin: 22px 0;
+  padding: clamp(58px, 7vw, 72px) clamp(28px, 7vw, 58px) 28px;
+  border: 1px solid #edcfaa;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 7px 22px rgba(67, 40, 19, 0.07);
+}
+
+.puravni-abhang-tag {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #fff0df;
+  color: #e16824;
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.puravni-abhang-group,
+.puravni-abhang-group .puravni-abhang-tag,
+.puravni-abhang-group h2,
+.puravni-abhang-group p,
+.puravni-abhang-group button {
+  font-family: Helvetica, Arial, sans-serif !important;
+}
+.puravni-abhang-group h2 { margin: 0 0 18px; color: #173451; font-size: clamp(1.35rem, 3vw, 1.75rem); text-align: center; }
+.puravni-abhang-group p { margin: 0 auto; max-width: 680px; white-space: pre-line; text-align: center; font-weight: 400; }
+.puravni-card-actions { display: flex; justify-content: flex-start; gap: 10px; margin: 28px 0 0; padding-top: 16px; border-top: 1px solid #ead7bc; }
+.puravni-link-btn { color: #b71c1c; }
+
+@media (max-width: 600px) {
+  .puravni-page-main { width: min(100% - 16px, 1040px); padding: 32px 0 48px; }
+  .puravni-page-heading { margin-bottom: 18px; }
+  .puravni-text-content { font-size: 1rem; line-height: 1.8; }
+  .puravni-abhang-group { margin: 14px 0; padding: 58px 16px 22px; border-radius: 11px; }
+  .puravni-abhang-tag { top: 20px; left: 18px; }
+}

@@ -1,0 +1,54 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div><strong>वाकीभ</strong><span>Admin Console</span></div>
+      </a>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin"><i class="fas fa-chart-line"></i>Dashboard</a>
+      <a href="/admin/posts"><i class="fas fa-newspaper"></i>Blogs</a>
+      <a href="/admin/categories" class="active"><i class="fas fa-tags"></i>Categories</a>
+      <a href="/admin/posts/new"><i class="fas fa-plus-circle"></i>Add Blog</a>
+      <a href="/admin/posts/import-blogger"><i class="fas fa-file-import"></i>Import from Blogger</a>
+      <a href="/blog/index.html" target="_blank"><i class="fas fa-external-link-alt"></i>Public Blog</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div><p class="admin-breadcrumb"><a href="/admin">Dashboard</a><span>/</span><span>Categories</span></p><h1>Blog Categories</h1></div>
+      <div class="admin-topbar-actions"><a class="admin-button admin-button-primary" href="/admin/posts/new"><i class="fas fa-plus"></i>नवीन लेख</a></div>
+    </header>
+
+    <% if (error) { %><div class="admin-alert admin-alert-error"><%= error %></div><% } %>
+    <% if (notice) { %><div class="admin-alert admin-alert-success"><%= notice %></div><% } %>
+
+    <div class="admin-editor-grid admin-category-grid">
+      <section class="admin-panel">
+        <header class="admin-panel-header"><div><h3>Create Category</h3><p>Blog add किंवा edit करताना ही category dropdown मध्ये दिसेल.</p></div></header>
+        <form class="admin-form" method="post" action="/admin/categories">
+          <label class="admin-field"><span>Category name</span><input type="text" name="name" maxlength="120" required placeholder="उदा. संत चरित्र"></label>
+          <div class="admin-form-actions"><button class="admin-button admin-button-primary" type="submit"><i class="fas fa-plus"></i>Create Category</button></div>
+        </form>
+      </section>
+
+      <section class="admin-panel">
+        <header class="admin-panel-header"><div><h3>Available Categories</h3><p>Default categories नेहमी उपलब्ध राहतील.</p></div></header>
+        <div class="admin-category-list">
+          <% categories.forEach((category) => { %>
+            <div class="admin-category-item">
+              <div><strong><%= category.name %></strong><span><%= category.is_default ? 'Default' : 'Custom' %></span></div>
+              <% if (!category.is_default) { %>
+                <form method="post" action="/admin/categories/<%= category.id %>/delete" onsubmit="return confirm('ही category delete करायची आहे का?');">
+                  <button class="admin-button admin-button-danger admin-button-small" type="submit"><i class="fas fa-trash"></i>Delete</button>
+                </form>
+              <% } %>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

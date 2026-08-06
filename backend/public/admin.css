@@ -930,6 +930,47 @@ select {
   }
 }
 
+.admin-category-grid {
+  grid-template-columns: minmax(280px, 0.75fr) minmax(360px, 1.25fr);
+  align-items: start;
+}
+
+.admin-category-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(141, 66, 31, 0.15);
+  border-radius: 14px;
+  background: #fffaf4;
+}
+
+.admin-category-item > div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.admin-category-item span {
+  color: var(--admin-muted);
+  font-size: 0.8rem;
+}
+
+.admin-button-small {
+  min-height: 36px;
+  padding: 0.48rem 0.72rem;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 900px) {
+  .admin-category-grid { grid-template-columns: 1fr; }
+}
+
 .admin-stats-grid-six {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   margin-bottom: 1rem;

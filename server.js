@@ -37,6 +37,7 @@ const {
 } = require('./backend/lib/visitors');
 const { formatDate, toDateTimeLocal } = require('./backend/lib/utils');
 const { buildImportPreview, importBloggerFeed } = require('./backend/lib/blogger-import');
+const { createCategory, deleteCategory, listCategories } = require('./backend/lib/categories');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
@@ -155,7 +156,7 @@ function makeDefaultPost(nextSortOrder) {
   return {
     title: '',
     slug: '',
-    category: 'वाकीभ ब्लॉग',
+    category: 'संत साहित्य',
     author_name: 'वाकीभ संपादकीय मंडळ',
     card_label: `लेख ${nextSortOrder}`,
     excerpt: '',
@@ -175,7 +176,7 @@ function prepareFormPost(post, nextSortOrder) {
     ...resolved,
     featured_image: resolved.featured_image || '/assests/hero-bg.jpg',
     featured_image_alt: resolved.featured_image_alt || resolved.title || '',
-    category: resolved.category || 'वाकीभ ब्लॉग',
+    category: resolved.category || 'संत साहित्य',
     author_name: resolved.author_name || 'वाकीभ संपादकीय मंडळ',
     card_label: resolved.card_label || (resolved.sort_order ? `लेख ${resolved.sort_order}` : `लेख ${nextSortOrder}`),
     excerpt: resolved.excerpt || '',
@@ -516,6 +517,48 @@ app.get('/admin/posts', requireAdmin, async (req, res, next) => {
   }
 });
 
+async function renderAdminCategoriesPage(req, res, next) {
+  try {
+    await render(
+      res,
+      'admin/categories.ejs',
+      {
+        title: 'Blog Categories - Vakibh Admin',
+        categories: await listCategories(),
+        currentUser: req.session.admin,
+        notice: getNotice(req),
+        error: getError(req),
+        activeNav: 'categories',
+        bodyClass: 'admin-categories-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    next(error);
+  }
+}
+
+app.get('/admin/categories', requireAdmin, renderAdminCategoriesPage);
+app.get('/admin/categories/', requireAdmin, renderAdminCategoriesPage);
+
+app.post('/admin/categories', requireAdmin, async (req, res) => {
+  try {
+    await createCategory(req.body.name);
+    res.redirect(`/admin/categories?notice=${encodeURIComponent('Category created successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/categories?error=${encodeURIComponent(error.message || 'Category तयार करता आली नाही.')}`);
+  }
+});
+
+app.post('/admin/categories/:id/delete', requireAdmin, async (req, res) => {
+  try {
+    await deleteCategory(req.params.id);
+    res.redirect(`/admin/categories?notice=${encodeURIComponent('Category deleted successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/categories?error=${encodeURIComponent(error.message || 'Category delete करता आली नाही.')}`);
+  }
+});
+
 app.get('/admin/posts/new', requireAdmin, async (req, res, next) => {
   try {
     const nextSortOrder = await getNextSortOrder();
@@ -536,6 +579,7 @@ app.get('/admin/posts/new', requireAdmin, async (req, res, next) => {
         error: getError(req),
         formatDate,
         toDateTimeLocal,
+        categories: await listCategories(),
         bodyClass: 'admin-editor-page'
       },
       'admin'
@@ -575,6 +619,7 @@ app.post('/admin/posts', requireAdmin, upload.single('featured_image_file'), asy
           error: error.message || 'Could not save the post.',
           formatDate,
           toDateTimeLocal,
+          categories: await listCategories(),
           bodyClass: 'admin-editor-page'
         },
         'admin'
@@ -608,6 +653,7 @@ app.get('/admin/posts/:id/edit', requireAdmin, async (req, res, next) => {
         error: getError(req),
         formatDate,
         toDateTimeLocal,
+        categories: await listCategories(),
         bodyClass: 'admin-editor-page'
       },
       'admin'
@@ -656,6 +702,7 @@ app.post('/admin/posts/:id', requireAdmin, upload.single('featured_image_file'),
           error: error.message || 'Could not update the post.',
           formatDate,
           toDateTimeLocal,
+          categories: await listCategories(),
           bodyClass: 'admin-editor-page'
         },
         'admin'
@@ -750,6 +797,10 @@ app.get('/blog/:slug/index.html', async (req, res, next) => {
   }
 });
 
+app.get('/sants/dnyaneshwar/amrut', (req, res) => {
+  res.redirect(301, '/sants/dnyaneshwar/amrutanubhav/index.html');
+});
+
 app.get('/sant/:santSlug/abhang/:range', (req, res, next) => {
   const santSlug = String(req.params.santSlug || '').toLowerCase();
   const range = String(req.params.range || '').toLowerCase();
@@ -837,6 +888,8 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
+
 
 
 

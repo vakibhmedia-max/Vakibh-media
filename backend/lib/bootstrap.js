@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const { getPool } = require('./db');
 const { seedStaticBlogPosts } = require('./blogs');
+const { syncStaticBlogPages } = require('./blogs');
+const { assignDefaultCategoriesToImportedPosts, seedDefaultCategories } = require('./categories');
 
 const TABLE_STATEMENTS = [
   `CREATE TABLE IF NOT EXISTS admin_users (
@@ -53,11 +55,25 @@ const TABLE_STATEMENTS = [
     PRIMARY KEY (id),
     KEY idx_otp_verifications_phone_created (phone, created_at),
     KEY idx_otp_verifications_expires (expires_at)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,  `CREATE TABLE IF NOT EXISTS blog_posts (
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS blog_categories (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    slug VARCHAR(191) NOT NULL,
+    is_default TINYINT(1) NOT NULL DEFAULT 0,
+    sort_order INT NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_blog_categories_name (name),
+    UNIQUE KEY uq_blog_categories_slug (slug),
+    KEY idx_blog_categories_sort (sort_order)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS blog_posts (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL,
-    category VARCHAR(120) NOT NULL DEFAULT 'वाकीभ ब्लॉग',
+    category VARCHAR(120) NOT NULL DEFAULT 'संत साहित्य',
     author_name VARCHAR(120) NOT NULL DEFAULT 'वाकीभ संपादकीय मंडळ',
     card_label VARCHAR(120) DEFAULT NULL,
     excerpt TEXT NOT NULL,
@@ -141,6 +157,13 @@ async function ensureBlogPostImportColumns() {
     await pool.query('ALTER TABLE blog_posts ADD KEY idx_blog_posts_original_url (original_url)');
   }
 }
+
+async function ensureBlogCategoryDefault() {
+  const pool = getPool();
+  await pool.query(
+    "ALTER TABLE blog_posts MODIFY category VARCHAR(120) NOT NULL DEFAULT 'संत साहित्य'"
+  );
+}
 async function seedDefaultAdmin() {
   const pool = getPool();
   const [rows] = await pool.query('SELECT COUNT(*) AS total FROM admin_users');
@@ -162,11 +185,21 @@ async function bootstrapDatabase() {
   await ensureSchema();
   await ensureBlogPostProtectionColumn();
   await ensureBlogPostImportColumns();
+  await ensureBlogCategoryDefault();
   await seedDefaultAdmin();
-  await seedStaticBlogPosts();
+  await seedDefaultCategories();
+  await assignDefaultCategoriesToImportedPosts();
+
+  try {
+    await seedStaticBlogPosts();
+    await syncStaticBlogPages();
+  } catch (error) {
+    console.warn('Static blog sync skipped during bootstrap:', error.message || error);
+  }
 }
 
 module.exports = {
   bootstrapDatabase
 };
+
 

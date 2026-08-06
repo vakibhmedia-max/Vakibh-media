@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const fs = require('fs');
+const { inferBlogCategory } = require('./categories');
 const http = require('http');
 const https = require('https');
 const path = require('path');
@@ -287,7 +288,7 @@ function parseBloggerFeed(xml) {
         updated_at: firstTag(entryXml, 'updated'),
         author_name: author,
         labels,
-        category: labels.join(', ') || 'Blogger Import',
+        category: inferBlogCategory(title, labels.join(' '), sanitizedContent),
         featured_image: imageUrls[0] || '',
         original_url: originalUrl,
         imageUrls,
