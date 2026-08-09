@@ -96,6 +96,26 @@ const TABLE_STATEMENTS = [
     KEY idx_blog_posts_original_url (original_url),
     KEY idx_blog_posts_updated_at (updated_at)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
+  ,
+  `CREATE TABLE IF NOT EXISTS blog_comments (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    post_id INT UNSIGNED DEFAULT NULL,
+    post_slug VARCHAR(255) NOT NULL,
+    author_name VARCHAR(120) NOT NULL,
+    author_contact VARCHAR(191) DEFAULT NULL,
+    comment_text TEXT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    ip_address VARCHAR(64) DEFAULT NULL,
+    user_agent VARCHAR(500) DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_blog_comments_post_status (post_slug, status, created_at),
+    KEY idx_blog_comments_status_created (status, created_at),
+    CONSTRAINT fk_blog_comments_post
+      FOREIGN KEY (post_id) REFERENCES blog_posts(id)
+      ON DELETE SET NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
 ];
 
 async function ensureSchema() {

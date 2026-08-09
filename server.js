@@ -38,6 +38,14 @@ const {
 const { formatDate, toDateTimeLocal } = require('./backend/lib/utils');
 const { buildImportPreview, importBloggerFeed } = require('./backend/lib/blogger-import');
 const { createCategory, deleteCategory, listCategories } = require('./backend/lib/categories');
+const {
+  createBlogComment,
+  deleteComment,
+  getCommentStats,
+  listApprovedCommentsBySlug,
+  listComments,
+  updateCommentStatus
+} = require('./backend/lib/comments');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
@@ -197,7 +205,8 @@ app.use(async (req, res, next) => {
   const needsBackend =
     req.path === '/admin' ||
     req.path.startsWith('/admin/') ||
-    req.path.startsWith('/api/visitor-login/');
+    req.path.startsWith('/api/visitor-login/') ||
+    req.path.startsWith('/api/blog-comments');
 
   if (!needsBackend) {
     return next();
@@ -259,6 +268,34 @@ app.post('/api/visitor-login/verify-otp', async (req, res, next) => {
     res.json({ ok: true, message: 'Login successful', visitor: { name: visitor.name } });
   } catch (error) {
     res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to verify OTP.' });
+  }
+});
+
+app.get('/api/blog-comments/:slug', async (req, res) => {
+  try {
+    const comments = await listApprovedCommentsBySlug(req.params.slug);
+    res.json({ ok: true, comments });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to load feedback.' });
+  }
+});
+
+app.post('/api/blog-comments', async (req, res) => {
+  try {
+    const comment = await createBlogComment({
+      slug: req.body.slug,
+      name: req.body.name,
+      contact: req.body.contact,
+      message: req.body.message,
+      req
+    });
+    res.status(201).json({
+      ok: true,
+      comment,
+      message: 'Feedback submitted. It will appear after approval.'
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to save feedback.' });
   }
 });
 
@@ -368,6 +405,62 @@ app.get('/admin/visitor-logins', requireAdmin, async (req, res, next) => {
     );
   } catch (error) {
     next(error);
+  }
+});
+
+app.get('/admin/comments', requireAdmin, async (req, res, next) => {
+  try {
+    const status = ['pending', 'approved', 'rejected'].includes(req.query.status)
+      ? req.query.status
+      : 'pending';
+    const [comments, commentStats] = await Promise.all([
+      listComments(status),
+      getCommentStats()
+    ]);
+
+    await render(
+      res,
+      'admin/comments.ejs',
+      {
+        title: 'Blog Feedback - Vakibh Admin',
+        comments,
+        commentStats,
+        selectedStatus: status,
+        currentUser: req.session.admin,
+        notice: getNotice(req),
+        error: getError(req),
+        activeNav: 'comments',
+        formatDate,
+        bodyClass: 'admin-comments-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/admin/comments/:id/status', requireAdmin, async (req, res) => {
+  const returnStatus = ['pending', 'approved', 'rejected'].includes(req.body.return_status)
+    ? req.body.return_status
+    : 'pending';
+  try {
+    await updateCommentStatus(req.params.id, req.body.status);
+    res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&notice=${encodeURIComponent('Feedback updated successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&error=${encodeURIComponent(error.message || 'Feedback update failed.')}`);
+  }
+});
+
+app.post('/admin/comments/:id/delete', requireAdmin, async (req, res) => {
+  const returnStatus = ['pending', 'approved', 'rejected'].includes(req.body.return_status)
+    ? req.body.return_status
+    : 'pending';
+  try {
+    await deleteComment(req.params.id);
+    res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&notice=${encodeURIComponent('Feedback deleted successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&error=${encodeURIComponent(error.message || 'Feedback delete failed.')}`);
   }
 });
 app.get('/admin/posts/import-blogger', requireAdmin, async (req, res, next) => {

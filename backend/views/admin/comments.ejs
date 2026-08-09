@@ -1,0 +1,132 @@
+<%
+  const stats = commentStats || {};
+  const tabs = [
+    { key: 'pending', label: 'Pending', count: stats.pending_comments || 0 },
+    { key: 'approved', label: 'Approved', count: stats.approved_comments || 0 },
+    { key: 'rejected', label: 'Rejected', count: stats.rejected_comments || 0 }
+  ];
+%>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div>
+          <strong>वाकीभ</strong>
+          <span>Admin Console</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="/admin" class="<%= activeNav === 'dashboard' ? 'active' : '' %>"><i class="fas fa-chart-line"></i>Dashboard</a>
+      <a href="/admin/posts" class="<%= activeNav === 'posts' ? 'active' : '' %>"><i class="fas fa-newspaper"></i>Blogs</a>
+      <a href="/admin/comments" class="<%= activeNav === 'comments' ? 'active' : '' %>"><i class="fas fa-comments"></i>Feedback</a>
+      <a href="/admin/categories" class="<%= activeNav === 'categories' ? 'active' : '' %>"><i class="fas fa-tags"></i>Categories</a>
+      <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>"><i class="fas fa-plus-circle"></i>Add Blog</a>
+      <a href="/admin/posts/import-blogger" class="<%= activeNav === 'import-blogger' ? 'active' : '' %>"><i class="fas fa-file-import"></i>Import from Blogger</a>
+      <a href="/blog/index.html" target="_blank"><i class="fas fa-external-link-alt"></i>Public Blog</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb"><a href="/admin">Dashboard</a><span>/</span><span>Feedback</span></p>
+        <h1>Blog Feedback</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <form method="post" action="/admin/logout">
+          <button class="admin-button admin-button-ghost" type="submit">
+            <i class="fas fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <% if (notice) { %><div class="admin-alert admin-alert-success"><%= notice %></div><% } %>
+    <% if (error) { %><div class="admin-alert admin-alert-error"><%= error %></div><% } %>
+
+    <section class="admin-stats-grid">
+      <article class="admin-stat-card"><span>Total</span><strong><%= stats.total_comments || 0 %></strong></article>
+      <article class="admin-stat-card"><span>Pending</span><strong><%= stats.pending_comments || 0 %></strong></article>
+      <article class="admin-stat-card"><span>Approved</span><strong><%= stats.approved_comments || 0 %></strong></article>
+      <article class="admin-stat-card"><span>Rejected</span><strong><%= stats.rejected_comments || 0 %></strong></article>
+    </section>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header">
+        <div>
+          <h3>Reader feedback</h3>
+          <p>Approve केलेले feedback public blog page खाली दिसतील.</p>
+        </div>
+        <div class="admin-row-actions">
+          <% tabs.forEach((tab) => { %>
+            <a class="admin-action-link <%= selectedStatus === tab.key ? 'active' : '' %>" href="/admin/comments?status=<%= tab.key %>"><%= tab.label %> (<%= tab.count %>)</a>
+          <% }) %>
+        </div>
+      </header>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table admin-table-large">
+          <thead>
+            <tr>
+              <th>Feedback</th>
+              <th>Blog</th>
+              <th>Contact</th>
+              <th>Date</th>
+              <th class="admin-actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!comments || !comments.length) { %>
+              <tr><td colspan="5"><div class="admin-empty-inline">या status मध्ये feedback नाही.</div></td></tr>
+            <% } else { %>
+              <% comments.forEach((comment) => { %>
+                <tr>
+                  <td>
+                    <div class="admin-post-cell">
+                      <div>
+                        <strong><%= comment.author_name %></strong>
+                        <small style="white-space: normal;"><%= comment.comment_text %></small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <strong><%= comment.post_title || comment.post_slug %></strong>
+                    <small><a class="admin-text-link" href="/blog/<%= comment.post_slug %>/index.html" target="_blank"><%= comment.post_slug %></a></small>
+                  </td>
+                  <td><%= comment.author_contact || '-' %></td>
+                  <td><%= formatDate(comment.created_at) %></td>
+                  <td>
+                    <div class="admin-row-actions">
+                      <% if (comment.status !== 'approved') { %>
+                        <form method="post" action="/admin/comments/<%= comment.id %>/status">
+                          <input type="hidden" name="status" value="approved">
+                          <input type="hidden" name="return_status" value="<%= selectedStatus %>">
+                          <button type="submit" class="admin-action-link">Approve</button>
+                        </form>
+                      <% } %>
+                      <% if (comment.status !== 'rejected') { %>
+                        <form method="post" action="/admin/comments/<%= comment.id %>/status">
+                          <input type="hidden" name="status" value="rejected">
+                          <input type="hidden" name="return_status" value="<%= selectedStatus %>">
+                          <button type="submit" class="admin-action-link danger">Reject</button>
+                        </form>
+                      <% } %>
+                      <form method="post" action="/admin/comments/<%= comment.id %>/delete" onsubmit="return confirm('हा feedback delete करायचा आहे का?');">
+                        <input type="hidden" name="return_status" value="<%= selectedStatus %>">
+                        <button type="submit" class="admin-action-link danger">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
