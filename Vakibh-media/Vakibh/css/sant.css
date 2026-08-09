@@ -8249,3 +8249,27 @@ html body.haripath-meaning-normal-page .post-content .haripath-complete-card .ab
     padding: 24px 15px 16px !important;
   }
 }
+
+/* Final abhang font lock: keep every saint abhang in Helvetica-style sans-serif. */
+body.abhang-list-page .abhang-content-block,
+body.abhang-list-page .abhang-content-block *,
+body.abhang-range-page .abhang-content-block,
+body.abhang-range-page .abhang-content-block *,
+body.abhang-post-page .post-article,
+body.abhang-post-page .post-article *,
+.abhang-readable-list,
+.abhang-readable-list *,
+.abhang-readable-item,
+.abhang-readable-item *,
+.abhang-readable-verses,
+.abhang-readable-verses *,
+.abhang-readable-meaning,
+.abhang-readable-meaning *,
+.abhang-verse,
+.abhang-verse *,
+.natache-verse,
+.natache-verse *,
+.natache-line,
+.natache-line * {
+  font-family: Helvetica, Arial, sans-serif !important;
+}
