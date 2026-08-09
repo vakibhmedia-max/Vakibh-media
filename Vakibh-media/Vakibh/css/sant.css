@@ -3900,7 +3900,7 @@ body.natache-abhang-detail-page .natache-line {
 
 /* Final Vaakibh typography standardization: uses Blog Detail Page as baseline. */
 :root {
-  --marathi-font: Helvetica, Arial, sans-serif;
+  --marathi-font: Helvetica, Arial, "Nirmala UI", sans-serif;
   --content-text: var(--text-dark, #2c3e50);
   --heading-text: var(--text-dark, #2c3e50);
   --content-line-height: 1.95;
@@ -8271,5 +8271,5 @@ body.abhang-post-page .post-article *,
 .natache-verse *,
 .natache-line,
 .natache-line * {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: Helvetica, Arial, "Nirmala UI", sans-serif !important;
 }
