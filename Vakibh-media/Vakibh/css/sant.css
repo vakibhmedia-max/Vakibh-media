@@ -9,7 +9,7 @@
 .sant-page-main {
   min-height: 80vh;
   background: #fff;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -35,7 +35,7 @@
   font-weight: 400;
   color: #ed8208;
   margin-bottom: 1.2rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 /* Three quick-links: centered, orange, no bullets */
@@ -104,7 +104,7 @@
   border: none;
   background: transparent;
   font-size: 1rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   color: #333;
   outline: none;
 }
@@ -137,7 +137,7 @@
   border-bottom: 1px solid #e0c89a;
   padding: 0.7rem 0;
   margin: 0 0 1.5rem 0;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 /* 6-column grid wrapper */
@@ -171,7 +171,7 @@
   font-weight: 600;
   line-height: 1.6;
   word-break: break-word;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   transition: color 0.12s;
 }
 
@@ -203,7 +203,7 @@
   border-bottom: 1px solid #ddd;
   font-size: 0.88rem;
   color: #777;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .sant-breadcrumb a {
@@ -250,7 +250,7 @@
   color: #1a1a1a;
   line-height: 1.3;
   margin-bottom: 0.5rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .post-meta {
@@ -337,7 +337,7 @@
 
 /* Ã¢â€â‚¬Ã¢â€â‚¬ Post content â€“ mirrors the source entry-content Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .post-content {
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   color: #333;
 }
 
@@ -364,7 +364,7 @@
   font-size: 1.05rem;
   line-height: 2.0;
   color: #1a1a1a;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   margin: 0.5rem 0;
 }
 
@@ -386,7 +386,7 @@
   background: #f9f5ef;
   color: #555;
   font-size: 0.9rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
@@ -422,7 +422,7 @@
   font-weight: 700;
   color: #ed8208;
   margin-bottom: 0.8rem;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .abhang-meaning-inner p {
@@ -430,7 +430,7 @@
   line-height: 1.8;
   color: #333;
   margin: 0;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 /* Ã¢â€â‚¬Ã¢â€â‚¬ Post Navigation Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
@@ -461,7 +461,7 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
-  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   transition: color 0.15s;
 }
 
@@ -676,7 +676,7 @@
 .sant-page-main h4,
 .sant-page-main input,
 .sant-page-main button {
-  font-family: Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 /* Full-width centered post layout */
@@ -1211,7 +1211,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   display: block !important;
   margin: 0 auto clamp(18px, 3vw, 32px) !important;
   color: #000 !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(32px, 3.4vw, 40px) !important;
   font-weight: 800 !important;
   line-height: 1.25 !important;
@@ -1246,7 +1246,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   max-width: 780px !important;
   margin: 0 auto 14px !important;
   color: #000 !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(1.2rem, 1.45vw, 1.45rem) !important;
   font-weight: 700 !important;
   line-height: 2.05 !important;
@@ -1270,7 +1270,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   margin: 0 0 clamp(38px, 5vw, 64px) !important;
   padding: 0 !important;
   color: #000 !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(1.06rem, 1.16vw, 1.18rem) !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -1287,7 +1287,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   padding-bottom: 10px;
   border-bottom: 2px solid #000;
   color: #000;
-  font-family: Helvetica, Verdana, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 800;
   line-height: 1.2;
@@ -1301,7 +1301,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   padding: 0 0 10px !important;
   border-bottom: 2px solid #000 !important;
   color: #000 !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(1.35rem, 2vw, 1.75rem) !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
@@ -5219,13 +5219,13 @@ body.has-inner-breadcrumb .sant-breadcrumb {
 .sant-page-main *,
 .abhang-post-main,
 .abhang-post-main * {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   letter-spacing: 0 !important;
 }
 
 .abhang-post-main .post-title,
 .abhang-post-main .post-title[style] {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(2rem, 4vw, 3.35rem) !important;
   font-weight: 800 !important;
   line-height: 1.16 !important;
@@ -5246,7 +5246,7 @@ body.has-inner-breadcrumb .sant-breadcrumb {
 .abhang-post-main .marathi-verse,
 .abhang-post-main .marathi-meaning,
 .abhang-post-main .marathi-paragraph {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: clamp(1.08rem, 1.3vw, 1.22rem) !important;
   line-height: 1.9 !important;
 }
@@ -5489,7 +5489,7 @@ body.gatha-typography-page .abhang-post .gatha-content span,
 body.gatha-typography-page .abhang-post .gatha-content div,
 body.gatha-typography-page .abhang-post .gatha-content strong,
 body.gatha-typography-page .abhang-post .gatha-content b {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
   font-synthesis: none !important;
@@ -5635,7 +5635,7 @@ body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-number 
 .marathi-verse,
 .marathi-meaning,
 .marathi-paragraph {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
 }
 
 /* Preserve Font Awesome glyphs inside reading pages after font overrides. */
@@ -5988,7 +5988,7 @@ body.savata-aarti-page .post-content .entry-content {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: 1.25rem !important;
   line-height: 2 !important;
 }
@@ -5996,7 +5996,7 @@ body.savata-aarti-page .post-content .entry-content {
 body.savata-aarti-page .post-content .entry-content p,
 body.savata-aarti-page .post-content .entry-content p * {
   text-align: center !important;
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: inherit !important;
   line-height: inherit !important;
 }
@@ -8272,4 +8272,199 @@ body.abhang-post-page .post-article *,
 .natache-line,
 .natache-line * {
   font-family: Helvetica, Arial, sans-serif !important;
+}
+
+/* Keep all saint, granth, ovi and article text in Hind. */
+html,
+body,
+body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
+  font-family: 'Hind', sans-serif !important;
+}
+
+/* Nilobaray chapters 1–5: one centred reading card for the complete text. */
+body.nilobaray-chapters-page .abhang-post {
+  width: min(100%, 1040px) !important;
+  max-width: 1040px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.nilobaray-chapters-page .post-content {
+  width: min(100%, 920px) !important;
+  max-width: 920px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding: 36px 48px !important;
+  background: #fff !important;
+  border: 1px solid #f0d5ab !important;
+  border-radius: 22px !important;
+  box-shadow: 0 12px 30px rgba(160, 32, 32, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+body.nilobaray-chapters-page .post-content .gatha-content {
+  display: block !important;
+  width: min(100%, 720px) !important;
+  max-width: 720px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.nilobaray-chapters-page .post-content .marathi-verse {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: left !important;
+}
+
+@media (max-width: 700px) {
+  body.nilobaray-chapters-page .abhang-post {
+    padding-right: 14px !important;
+    padding-left: 14px !important;
+  }
+
+  body.nilobaray-chapters-page .post-content {
+    padding: 24px 18px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* Build every Nilobaray chapter as its own centred card. */
+body.nilobaray-chapters-page .post-content {
+  width: 100% !important;
+  max-width: 1040px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.nilobaray-chapters-page .post-content .gatha-content {
+  width: 100% !important;
+  max-width: 920px !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapters-grid {
+  display: grid !important;
+  width: 100% !important;
+  max-width: 920px !important;
+  margin: 0 auto !important;
+  gap: 28px !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-card {
+  width: 100% !important;
+  padding: 34px 46px 22px !important;
+  background: #fff !important;
+  border: 1px solid #f0d5ab !important;
+  border-radius: 22px !important;
+  box-shadow: 0 12px 30px rgba(160, 32, 32, 0.08) !important;
+  box-sizing: border-box !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-title {
+  margin: 0 0 24px !important;
+  color: #a02020 !important;
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-content {
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-content .marathi-verse {
+  margin-bottom: 20px !important;
+  text-align: left !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  margin-top: 24px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid #f0d5ab !important;
+}
+
+@media (max-width: 700px) {
+  body.nilobaray-chapters-page .nilobaray-chapters-grid {
+    gap: 18px !important;
+  }
+
+  body.nilobaray-chapters-page .nilobaray-chapter-card {
+    padding: 26px 18px 18px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* Preserve the original coloured, horizontal action row on every chapter. */
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-card .nilobaray-chapter-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .nilobaray-chapter-actions .abhang-btn {
+  display: inline-flex !important;
+  flex: 0 0 36px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-actions .chapter-copy-btn {
+  color: #607d8b !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-actions .whatsapp-share-btn {
+  color: #25d366 !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-actions .facebook-share-btn {
+  color: #1877f2 !important;
+}
+
+body.nilobaray-chapters-page .nilobaray-chapter-actions .instagram-share-btn {
+  color: #e1306c !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-actions .chapter-copy-btn i {
+  color: #607d8b !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-actions .whatsapp-share-btn i {
+  color: #25d366 !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-actions .facebook-share-btn i {
+  color: #1877f2 !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-actions .instagram-share-btn i {
+  color: #e1306c !important;
+}
+
+body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-card + .nilobaray-chapter-card {
+  margin-top: 32px !important;
+}
+
+@media (max-width: 700px) {
+  body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-card + .nilobaray-chapter-card {
+    margin-top: 20px !important;
+  }
 }

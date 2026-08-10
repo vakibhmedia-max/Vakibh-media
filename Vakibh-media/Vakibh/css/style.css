@@ -1,4 +1,6 @@
 ﻿/* Design Tokens & Variables */
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap');
+
 :root {
   --primary: #ff7a00;
   --primary-dark: #e65c00;
@@ -13,9 +15,9 @@
   --card-shadow: 0 10px 30px rgba(220, 180, 140, 0.15);
   --hover-shadow: 0 15px 35px rgba(230, 92, 0, 0.2);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --font-body: Helvetica, Arial, sans-serif;
-  --font-heading: Helvetica, Arial, sans-serif;
-  --marathi-font: Helvetica, Arial, sans-serif;
+  --font-body: 'Hind', sans-serif;
+  --font-heading: 'Hind', sans-serif;
+  --marathi-font: 'Hind', sans-serif;
   --content-text: var(--text-dark);
   --heading-text: var(--text-dark);
   --content-line-height: 1.95;
@@ -27,7 +29,7 @@
 p,
 article p,
 main p {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Reset & Base Styles */
@@ -2937,7 +2939,7 @@ body :where(
   p, span, a, li, label, button, input, textarea, select, option,
   table, thead, tbody, tfoot, tr, th, td, blockquote, cite, small, strong, b, em
 ):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.material-icons):not(.material-symbols-outlined) {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
 }
 
 /* Final site-wide reading size for posts, blogs and long-form literature. */
@@ -2955,7 +2957,7 @@ body :where(
 .post-body p span,
 .article-body p,
 .article-body p span {
-  font-family: Helvetica, Verdana, sans-serif !important;
+  font-family: Helvetica, sans-serif !important;
   font-size: 1.25rem !important;
 }
 
@@ -3074,4 +3076,11 @@ body :where(
   .puravni-text-content { font-size: 1rem; line-height: 1.8; }
   .puravni-abhang-group { margin: 14px 0; padding: 58px 16px 22px; border-radius: 11px; }
   .puravni-abhang-tag { top: 20px; left: 18px; }
+}
+
+/* Site-wide typography: use Hind across every public page. */
+html,
+body,
+body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
+  font-family: 'Hind', sans-serif !important;
 }

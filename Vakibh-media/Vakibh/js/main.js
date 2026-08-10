@@ -4427,7 +4427,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
           'font-family',
           eknathHaripathReading
             ? '"Nirmala UI Semilight", "Nirmala UI", "Segoe UI", sans-serif'
-            : 'Helvetica, "Kokila", "Mangal", Verdana, sans-serif',
+            : 'Hind, sans-serif',
           'important'
         );
       });

@@ -933,8 +933,11 @@ app.use(async (err, req, res, next) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>${title}</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
           <style>
-            body { font-family: Arial, sans-serif; padding: 2rem; background: #f7ebda; color: #241a13; }
+            body { font-family: 'Hind', sans-serif; padding: 2rem; background: #f7ebda; color: #241a13; }
             .card { max-width: 720px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
             a { color: #8a3716; font-weight: 700; }
           </style>
@@ -957,8 +960,11 @@ app.use(async (err, req, res, next) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
       </head>
-      <body style="font-family: Arial, sans-serif; padding: 2rem; background: #fcf5eb; color: #241a13;">
+      <body style="font-family: 'Hind', sans-serif; padding: 2rem; background: #fcf5eb; color: #241a13;">
         <h1>${title}</h1>
         <p>${message}</p>
         <p><a href="/blog/index.html">Back to blog</a></p>
