@@ -1,4 +1,4 @@
-﻿/* Design Tokens & Variables */
+/* Design Tokens & Variables */
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap');
 
 :root {
@@ -25,7 +25,7 @@
   --verse-font-size: 1.25rem;
 }
 
-/* Use the requested Helvetica stack for every paragraph across the site. */
+/* Use Hind for every paragraph across the site. */
 p,
 article p,
 main p {
@@ -1365,6 +1365,37 @@ footer::before {
 
 .blog-card {
   gap: 1rem;
+  border: 1px solid #e7bd7f;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+body.blog-post-page .post-article {
+  border: 1px solid #e7bd7f !important;
+  border-radius: 24px !important;
+}
+
+body.blog-post-page .post-article > div:first-child:not(.post-content) {
+  width: fit-content;
+  max-width: 720px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.blog-post-page .post-article > div:first-child:not(.post-content) > img {
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: 405px;
+  height: auto !important;
+  margin: 0 auto;
+  object-fit: contain !important;
+}
+
+body.blog-post-page .post-content {
+  border: 1px solid #f0d5ab;
+  border-radius: 18px;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  background: #fffdfa;
 }
 
 .arrival-date {
@@ -2117,6 +2148,26 @@ footer::before {
   }
 }
 /* Premium Inner Breadcrumb Hero */
+/* Reserve the hero's final space before deferred JavaScript inserts it. */
+body:not(:has(.hero)):not(.has-inner-breadcrumb) > header + main::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 410px;
+  background: #243b5a;
+}
+
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .sant-title-section,
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .blog-hero,
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .sant-breadcrumb,
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .contact-hero-section .section-title-container {
+  display: none;
+}
+
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .blog-page-main {
+  padding-top: 0;
+}
+
 .inner-breadcrumb-hero {
   --breadcrumb-bg: url('../vaari.webp');
   position: relative;
@@ -2131,9 +2182,9 @@ footer::before {
   color: #ffffff;
   isolation: isolate;
   background-image: var(--breadcrumb-bg);
+  background-color: #243b5a;
   background-size: cover;
   background-position: center;
-  animation: breadcrumbFadeIn 0.9s ease both;
 }
 
 .inner-breadcrumb-hero::before {
@@ -2359,6 +2410,10 @@ body.has-inner-breadcrumb .contact-hero-section .section-title-container {
 }
 
 @media (max-width: 900px) {
+  body:not(:has(.hero)):not(.has-inner-breadcrumb) > header + main::before {
+    height: 300px;
+  }
+
   .inner-breadcrumb-hero {
     min-height: 300px;
   }
@@ -2380,6 +2435,10 @@ body.has-inner-breadcrumb .contact-hero-section .section-title-container {
 }
 
 @media (max-width: 600px) {
+  body:not(:has(.hero)):not(.has-inner-breadcrumb) > header + main::before {
+    height: 220px;
+  }
+
   .inner-breadcrumb-hero {
     min-height: 220px;
     padding: 0 1rem;
@@ -2930,7 +2989,7 @@ body.is-standard-granth-reading-page .floating-whatsapp {
   }
 }
 
-/* Helvetica is the single text font across the complete website. */
+/* Hind is the single text font across the complete website. */
 html,
 body,
 body :where(
@@ -2939,7 +2998,7 @@ body :where(
   p, span, a, li, label, button, input, textarea, select, option,
   table, thead, tbody, tfoot, tr, th, td, blockquote, cite, small, strong, b, em
 ):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad):not(.material-icons):not(.material-symbols-outlined) {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Final site-wide reading size for posts, blogs and long-form literature. */
@@ -2957,7 +3016,7 @@ body :where(
 .post-body p span,
 .article-body p,
 .article-body p span {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.25rem !important;
 }
 
@@ -3000,7 +3059,7 @@ body :where(
 .article-body p * {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 /* Puravni abhang: preserve the source book's original line and stanza layout. */
 .puravni-page-main {
@@ -3031,7 +3090,7 @@ body :where(
 .puravni-text-content {
   padding: 0;
   color: #172d47;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Hind', sans-serif;
   font-size: clamp(1.05rem, 2.15vw, 1.32rem);
   line-height: 1.9;
 }
@@ -3063,7 +3122,7 @@ body :where(
 .puravni-abhang-group h2,
 .puravni-abhang-group p,
 .puravni-abhang-group button {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 .puravni-abhang-group h2 { margin: 0 0 18px; color: #173451; font-size: clamp(1.35rem, 3vw, 1.75rem); text-align: center; }
 .puravni-abhang-group p { margin: 0 auto; max-width: 680px; white-space: pre-line; text-align: center; font-weight: 400; }

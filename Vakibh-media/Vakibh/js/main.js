@@ -1001,9 +1001,44 @@
     </div>
   `;
 
+  const formatComingSoonPage = () => {
+    const comingSoonPattern = /काम\s+(?:चालू|सुरू)\s+आहे[.!।]?/;
+    const placeholder = Array.from(document.querySelectorAll('main p'))
+      .find((node) => comingSoonPattern.test((node.textContent || '').trim()));
+
+    if (!placeholder) return;
+
+    const main = placeholder.closest('main');
+    if (!main) return;
+
+    const heading = main.querySelector('h1');
+    const title = (heading?.textContent || document.title.split(/[–|-]/)[0] || '').trim();
+
+    const card = document.createElement('div');
+    card.className = 'vakibh-coming-soon-card';
+    card.style.cssText = 'max-width:900px;margin:0 auto;background:#fff;border:1px solid #f0d5ab;border-radius:24px;padding:48px 24px;text-align:center;box-shadow:0 12px 30px rgba(160,32,32,.08);';
+
+    const cardTitle = document.createElement('h1');
+    cardTitle.textContent = title;
+    cardTitle.style.cssText = "font-family:'Hind',sans-serif;color:#a02020;font-size:2rem;margin:0 0 16px;";
+
+    const message = document.createElement('p');
+    message.textContent = 'काम चालू आहे.';
+    message.style.cssText = "font-family:'Hind',sans-serif;font-size:1.3rem;color:#444;font-weight:700;margin:0;";
+
+    card.append(cardTitle, message);
+    main.className = 'sant-page-main vakibh-coming-soon-page';
+    main.style.cssText = 'padding:80px 20px;';
+    main.replaceChildren(card);
+  };
+
+  formatComingSoonPage();
+
   const createAbhangPostActions = () => {
     const abhangPosts = document.querySelectorAll('.abhang-post, .post-article');
     abhangPosts.forEach((post) => {
+      if (post.dataset.shareActions === 'disabled') return;
+
       const existingActions = post.querySelector('.abhang-post-actions');
       const legacyActions = post.querySelector('.post-actions');
 
@@ -1531,7 +1566,12 @@
       verse.style.setProperty('max-width', '100%', 'important');
       verse.style.setProperty('margin-left', 'auto', 'important');
       verse.style.setProperty('margin-right', 'auto', 'important');
-      verse.style.setProperty('text-align', 'left', 'important');
+      verse.style.setProperty('text-align', 'center', 'important');
+      verse.style.setProperty('text-align-last', 'center', 'important');
+      verse.querySelectorAll('*').forEach((child) => {
+        child.style.setProperty('text-align', 'center', 'important');
+        child.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       const card = document.createElement('article');
       card.className = 'namdev-gatha-section-card';
@@ -1591,7 +1631,12 @@
       verse.style.setProperty('max-width', '100%', 'important');
       verse.style.setProperty('margin-left', 'auto', 'important');
       verse.style.setProperty('margin-right', 'auto', 'important');
-      verse.style.setProperty('text-align', 'left', 'important');
+      verse.style.setProperty('text-align', 'center', 'important');
+      verse.style.setProperty('text-align-last', 'center', 'important');
+      verse.querySelectorAll('*').forEach((child) => {
+        child.style.setProperty('text-align', 'center', 'important');
+        child.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       const card = document.createElement('article');
       card.className = 'namdev-gatha-section-card';
@@ -1880,6 +1925,20 @@
       if (/^माझा मराठाचि बोलू कौतुके/.test(text)) paragraph.classList.add('charitra-quote');
     });
 
+    if (document.body.classList.contains('tukaram-charitra-page')) {
+      entry.querySelectorAll('p, p *, h2, h2 *, h3, h3 *, li, li *').forEach((node) => {
+        node.style.setProperty('text-align', 'center', 'important');
+        node.style.setProperty('text-align-last', 'center', 'important');
+      });
+      entry.querySelectorAll('ul, ol').forEach((list) => {
+        list.style.setProperty('margin-left', 'auto', 'important');
+        list.style.setProperty('margin-right', 'auto', 'important');
+        list.style.setProperty('padding-left', '0', 'important');
+        list.style.setProperty('text-align', 'center', 'important');
+        list.style.setProperty('list-style-position', 'inside', 'important');
+      });
+    }
+
     if (actions) entry.appendChild(actions);
   };
 
@@ -1954,6 +2013,7 @@
     if (!article || !postContent || !entry || entry.dataset.rohidasFormatted === 'true') return;
     entry.dataset.rohidasFormatted = 'true';
     article.querySelector('.abhang-action-toolbar')?.remove();
+    article.querySelector(':scope > .abhang-post-actions')?.remove();
     postContent.querySelector(':scope > .abhang-post-actions')?.remove();
 
     if (slug === 'rohidas-pothi') {
@@ -2000,6 +2060,11 @@
         const content = document.createElement('div');
         content.className = 'namdev-gatha-section-content';
         content.appendChild(verse);
+        content.style.setProperty('text-align', 'center', 'important');
+        verse.style.setProperty('text-align', 'center', 'important');
+        verse.querySelectorAll('p, strong, span, div').forEach((element) => {
+          element.style.setProperty('text-align', 'center', 'important');
+        });
         card.append(badge, content);
         card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `दोहा ${number}`));
         list.appendChild(card);
@@ -3166,10 +3231,18 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     entry.dataset.amrutanubhavFormatted = 'true';
     document.body.classList.add('amrutanubhav-page');
     entry.classList.add('amrutanubhav-reading-card');
+    entry.style.setProperty('text-align', 'center', 'important');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
       if (!text) return;
+
+      paragraph.style.setProperty('text-align', 'center', 'important');
+      paragraph.style.setProperty('text-align-last', 'center', 'important');
+      paragraph.querySelectorAll('*').forEach((child) => {
+        child.style.setProperty('text-align', 'center', 'important');
+        child.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       if (paragraph.classList.contains('hdr2') || paragraph.classList.contains('hdr3')) {
         paragraph.classList.add('amrutanubhav-chapter-title');
@@ -3196,6 +3269,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     entry.dataset.changdevFormatted = 'true';
     document.body.classList.add('changdev-pasashti-page');
     entry.classList.add('changdev-reading-card');
+    entry.style.setProperty('text-align', 'center', 'important');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
@@ -3205,6 +3279,13 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         paragraph.remove();
         return;
       }
+
+      paragraph.style.setProperty('text-align', 'center', 'important');
+      paragraph.style.setProperty('text-align-last', 'center', 'important');
+      paragraph.querySelectorAll('*').forEach((child) => {
+        child.style.setProperty('text-align', 'center', 'important');
+        child.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       if (paragraph.querySelector('b, strong') && /॥\s*[०-९0-9]+\s*॥|।\s*[०-९0-9]+\s*॥/.test(text)) {
         paragraph.classList.add('changdev-ovi-line');
@@ -3229,6 +3310,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     entry.dataset.pasaydanFormatted = 'true';
     document.body.classList.add('dnyaneshwar-pasaydan-page');
     entry.classList.add('pasaydan-reading-card');
+    entry.style.setProperty('text-align', 'center', 'important');
 
     Array.from(entry.querySelectorAll('p')).forEach((paragraph) => {
       const text = normalizeText(paragraph.textContent || '');
@@ -3243,6 +3325,13 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         }
         return;
       }
+
+      paragraph.style.setProperty('text-align', 'center', 'important');
+      paragraph.style.setProperty('text-align-last', 'center', 'important');
+      paragraph.querySelectorAll('*').forEach((child) => {
+        child.style.setProperty('text-align', 'center', 'important');
+        child.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       if (/॥\s*[०-९0-9]+\s*॥/.test(text)) {
         paragraph.classList.add('pasaydan-verse-line');
@@ -4421,13 +4510,9 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         if (!(node instanceof HTMLElement) || node.matches(skipSelector)) return;
         node.style.setProperty('font-weight', '300', 'important');
         node.style.setProperty('font-synthesis', 'none', 'important');
-        const eknathHaripathReading = document.body.classList.contains('eknath-haripath-page')
-          && Boolean(node.closest('.eknath-haripath-card'));
         node.style.setProperty(
           'font-family',
-          eknathHaripathReading
-            ? '"Nirmala UI Semilight", "Nirmala UI", "Segoe UI", sans-serif'
-            : 'Hind, sans-serif',
+          'Hind, sans-serif',
           'important'
         );
       });

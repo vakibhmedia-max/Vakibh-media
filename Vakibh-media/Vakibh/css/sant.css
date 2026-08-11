@@ -1,4 +1,4 @@
-﻿
+
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    sant.css  â€“  Sant & Abhang Pages
    Layout matches source: orange headings, blue link columns,
@@ -9,7 +9,7 @@
 .sant-page-main {
   min-height: 80vh;
   background: #fff;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -35,7 +35,7 @@
   font-weight: 400;
   color: #ed8208;
   margin-bottom: 1.2rem;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 /* Three quick-links: centered, orange, no bullets */
@@ -104,7 +104,7 @@
   border: none;
   background: transparent;
   font-size: 1rem;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   color: #333;
   outline: none;
 }
@@ -137,7 +137,7 @@
   border-bottom: 1px solid #e0c89a;
   padding: 0.7rem 0;
   margin: 0 0 1.5rem 0;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 /* 6-column grid wrapper */
@@ -171,7 +171,7 @@
   font-weight: 600;
   line-height: 1.6;
   word-break: break-word;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   transition: color 0.12s;
 }
 
@@ -203,7 +203,7 @@
   border-bottom: 1px solid #ddd;
   font-size: 0.88rem;
   color: #777;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 .sant-breadcrumb a {
@@ -250,7 +250,7 @@
   color: #1a1a1a;
   line-height: 1.3;
   margin-bottom: 0.5rem;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 .post-meta {
@@ -337,7 +337,7 @@
 
 /* Ã¢â€â‚¬Ã¢â€â‚¬ Post content â€“ mirrors the source entry-content Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .post-content {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   color: #333;
 }
 
@@ -364,7 +364,7 @@
   font-size: 1.05rem;
   line-height: 2.0;
   color: #1a1a1a;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   margin: 0.5rem 0;
 }
 
@@ -386,7 +386,7 @@
   background: #f9f5ef;
   color: #555;
   font-size: 0.9rem;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
@@ -422,7 +422,7 @@
   font-weight: 700;
   color: #ed8208;
   margin-bottom: 0.8rem;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 .abhang-meaning-inner p {
@@ -430,7 +430,7 @@
   line-height: 1.8;
   color: #333;
   margin: 0;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 /* Ã¢â€â‚¬Ã¢â€â‚¬ Post Navigation Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
@@ -461,7 +461,7 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   transition: color 0.15s;
 }
 
@@ -676,7 +676,7 @@
 .sant-page-main h4,
 .sant-page-main input,
 .sant-page-main button {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 /* Full-width centered post layout */
@@ -1211,7 +1211,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   display: block !important;
   margin: 0 auto clamp(18px, 3vw, 32px) !important;
   color: #000 !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(32px, 3.4vw, 40px) !important;
   font-weight: 800 !important;
   line-height: 1.25 !important;
@@ -1246,7 +1246,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   max-width: 780px !important;
   margin: 0 auto 14px !important;
   color: #000 !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(1.2rem, 1.45vw, 1.45rem) !important;
   font-weight: 700 !important;
   line-height: 2.05 !important;
@@ -1270,7 +1270,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   margin: 0 0 clamp(38px, 5vw, 64px) !important;
   padding: 0 !important;
   color: #000 !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(1.06rem, 1.16vw, 1.18rem) !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -1287,7 +1287,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   padding-bottom: 10px;
   border-bottom: 2px solid #000;
   color: #000;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Hind', sans-serif;
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 800;
   line-height: 1.2;
@@ -1301,7 +1301,7 @@ body.is-dnyaneshwar-page .abhang-post-main .post-title,
   padding: 0 0 10px !important;
   border-bottom: 2px solid #000 !important;
   color: #000 !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(1.35rem, 2vw, 1.75rem) !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
@@ -2872,7 +2872,7 @@ body.haripath-meaning-normal-page .post-content .haripath-meaning .haripath-vers
 body.haripath-meaning-normal-page .post-content p.haripath-meaning,
 body.haripath-meaning-normal-page .post-content span.haripath-meaning,
 body.haripath-meaning-normal-page .post-content .haripath-meaning {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
   font-synthesis-weight: none;
@@ -3900,7 +3900,7 @@ body.natache-abhang-detail-page .natache-line {
 
 /* Final Vaakibh typography standardization: uses Blog Detail Page as baseline. */
 :root {
-  --marathi-font: Helvetica, Arial, sans-serif;
+  --marathi-font: 'Hind', sans-serif;
   --content-text: var(--text-dark, #2c3e50);
   --heading-text: var(--text-dark, #2c3e50);
   --content-line-height: 1.95;
@@ -5138,6 +5138,16 @@ body.dnyaneshwar-pasaydan-page .post-content .entry-content .pasaydan-main-cente
 
 
 /* Shared inner breadcrumb hero styles for sant-only pages. */
+body:not(:has(.hero)):not(.has-inner-breadcrumb) > header + main::before {
+  height: 410px !important;
+}
+
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .sant-title-section,
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .blog-hero,
+body:not(:has(.hero)):not(.has-inner-breadcrumb) .sant-breadcrumb {
+  display: none !important;
+}
+
 .inner-breadcrumb-hero {
   --breadcrumb-bg: url('../assests/vaari.webp');
   position: relative !important;
@@ -5208,6 +5218,10 @@ body.has-inner-breadcrumb .sant-breadcrumb {
 }
 
 @media (max-width: 768px) {
+  body:not(:has(.hero)):not(.has-inner-breadcrumb) > header + main::before {
+    height: 300px !important;
+  }
+
   .inner-breadcrumb-hero {
     min-height: 300px !important;
     padding: 0 1rem !important;
@@ -5219,13 +5233,13 @@ body.has-inner-breadcrumb .sant-breadcrumb {
 .sant-page-main *,
 .abhang-post-main,
 .abhang-post-main * {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   letter-spacing: 0 !important;
 }
 
 .abhang-post-main .post-title,
 .abhang-post-main .post-title[style] {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(2rem, 4vw, 3.35rem) !important;
   font-weight: 800 !important;
   line-height: 1.16 !important;
@@ -5246,7 +5260,7 @@ body.has-inner-breadcrumb .sant-breadcrumb {
 .abhang-post-main .marathi-verse,
 .abhang-post-main .marathi-meaning,
 .abhang-post-main .marathi-paragraph {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: clamp(1.08rem, 1.3vw, 1.22rem) !important;
   line-height: 1.9 !important;
 }
@@ -5489,7 +5503,7 @@ body.gatha-typography-page .abhang-post .gatha-content span,
 body.gatha-typography-page .abhang-post .gatha-content div,
 body.gatha-typography-page .abhang-post .gatha-content strong,
 body.gatha-typography-page .abhang-post .gatha-content b {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   font-style: normal !important;
   font-synthesis: none !important;
@@ -5635,7 +5649,7 @@ body.gatha-typography-page .abhang-post .gatha-content .devotional-verse-number 
 .marathi-verse,
 .marathi-meaning,
 .marathi-paragraph {
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Preserve Font Awesome glyphs inside reading pages after font overrides. */
@@ -5988,7 +6002,7 @@ body.savata-aarti-page .post-content .entry-content {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.25rem !important;
   line-height: 2 !important;
 }
@@ -5996,7 +6010,7 @@ body.savata-aarti-page .post-content .entry-content {
 body.savata-aarti-page .post-content .entry-content p,
 body.savata-aarti-page .post-content .entry-content p * {
   text-align: center !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: inherit !important;
   line-height: inherit !important;
 }
@@ -6009,7 +6023,7 @@ body.nivruttinath-aarti-page .abhang-post-actions {
 
 body.nivruttinath-haripath-page .nivruttinath-haripath-card .haripath-line,
 body.nivruttinath-haripath-page .nivruttinath-haripath-card .haripath-line * {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1rem !important;
   font-weight: 400 !important;
 }
@@ -6069,7 +6083,7 @@ body.nivruttinath-haripath-page .nivruttinath-haripath-card .haripath-line * {
 .sant-page-main .haripath-content * {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Preserve icon glyph weights inside reading components. */
@@ -6108,7 +6122,7 @@ body.is-standard-granth-reading-page main.abhang-post-main article.abhang-post d
 ):not(.post-title):not(.sant-title):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
   font-weight: 300 !important;
   font-synthesis: none !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Sant Namdev palne: keep every original and JS-transformed verse centered. */
@@ -6259,7 +6273,7 @@ body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .verse-end 
 /*
  * Final all-abhang normal-weight safeguard.
  * Keep card/page headings and controls emphasized, but render every actual
- * abhang verse in the same normal Helvetica reading weight.
+ * abhang verse in the same normal Hind reading weight.
  */
 .abhang-content-block .abhang-readable-verses,
 .abhang-content-block .abhang-readable-verses *,
@@ -6274,7 +6288,7 @@ body.tukaram-aarti-page .abhang-post-main .abhang-post.aarti-content .verse-end 
 .abhang-post .abhang-verse p *,
 .abhang-post .entry-content .devotional-verse-content,
 .abhang-post .entry-content .devotional-verse-content * {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 300 !important;
   font-synthesis: none !important;
 }
@@ -6596,7 +6610,7 @@ body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi *,
 body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi strong,
 body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .ovi span {
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.18rem !important;
   font-weight: 900 !important;
   font-synthesis: weight !important;
@@ -6617,7 +6631,7 @@ body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar *,
 body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar strong,
 body.dnyaneshwari-chapter-card-page .dnyaneshwari-chapter-card .oviar span {
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 400 !important;
   line-height: 1.8 !important;
@@ -6677,7 +6691,7 @@ body.dnyaneshwar-virani-card-page .post-content .virani-card {
 body.dnyaneshwar-virani-card-page .post-content .virani-card-title {
   margin: 0 0 28px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.4rem !important;
   font-weight: 700 !important;
   line-height: 1.45 !important;
@@ -6688,7 +6702,7 @@ body.dnyaneshwar-virani-card-page .post-content .virani-card-verse,
 body.dnyaneshwar-virani-card-page .post-content .virani-card-verse * {
   margin: 0 auto 30px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.16rem !important;
   font-weight: 900 !important;
   font-synthesis: weight !important;
@@ -6709,7 +6723,7 @@ body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning,
 body.dnyaneshwar-virani-card-page .post-content .virani-card-meaning * {
   margin: 0 0 22px !important;
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.06rem !important;
   font-weight: 400 !important;
   line-height: 1.85 !important;
@@ -6772,7 +6786,7 @@ body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-se
   margin: 38px 0 18px !important;
   padding: 0 !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.4rem !important;
   font-weight: 800 !important;
   line-height: 1.45 !important;
@@ -6787,7 +6801,7 @@ body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-pa
 body.dnyaneshwar-charitra-page .post-content .charitra-reading-card .charitra-paragraph * {
   margin: 0 0 22px !important;
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.06rem !important;
   font-weight: 400 !important;
   line-height: 1.85 !important;
@@ -6875,7 +6889,7 @@ body.tukaram-gatha-card-page .tukaram-gatha-number {
   border-radius: 999px !important;
   color: #7b4a18 !important;
   background: #fff4e6 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
 }
@@ -6886,7 +6900,7 @@ body.tukaram-gatha-card-page p.tukaram-gatha-card-verse {
   max-width: 100% !important;
   margin: 18px auto 40px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 500 !important;
   line-height: 1.9 !important;
@@ -6898,7 +6912,7 @@ body.tukaram-gatha-card-page p.tukaram-gatha-card-verse * {
   max-width: 100% !important;
   margin: 0 !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: inherit !important;
   font-weight: inherit !important;
   line-height: inherit !important;
@@ -6975,7 +6989,7 @@ body.saint-charitra-card-page .post-content .entry-content.charitra-reading-card
   background: #fff !important;
   box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
   box-sizing: border-box !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading,
@@ -6983,7 +6997,7 @@ body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading *
   margin: 38px 0 18px !important;
   padding: 0 !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.4rem !important;
   font-weight: 800 !important;
   line-height: 1.45 !important;
@@ -6997,7 +7011,7 @@ body.saint-charitra-card-page .charitra-reading-card .charitra-section-heading:f
 body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph,
 body.saint-charitra-card-page .charitra-reading-card .charitra-paragraph * {
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.06rem !important;
   font-weight: 400 !important;
   line-height: 1.85 !important;
@@ -7013,7 +7027,7 @@ body.saint-charitra-card-page .charitra-reading-card ol {
   max-width: 100% !important;
   margin: 0 0 24px 24px !important;
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   line-height: 1.8 !important;
   text-align: left !important;
@@ -7065,7 +7079,7 @@ body.eknath-literature-card-page .eknath-reading-card {
 
 body.eknath-literature-card-page .eknath-reading-paragraph,
 body.eknath-literature-card-page .eknath-reading-paragraph * {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.15rem !important;
   line-height: 1.9 !important;
   font-weight: 400 !important;
@@ -7084,7 +7098,7 @@ body.eknath-literature-card-page .copy-link-share-btn i { color: #a02020 !import
 body.eknath-literature-card-page .eknath-section-title {
   margin: 0 0 24px !important;
   color: #202020 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.35rem !important;
   font-weight: 700 !important;
   text-align: center !important;
@@ -7122,7 +7136,7 @@ body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair {
 body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi,
 body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi * {
   color: #090909 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 700 !important;
   text-align: center !important;
 }
@@ -7141,7 +7155,7 @@ body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .ovi > * {
 body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .oviar,
 body.eknathi-bhagwat-chapter-page .eknathi-ovi-pair .oviar * {
   color: #222 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   text-align: left !important;
 }
@@ -7167,7 +7181,7 @@ body.eknathi-bhagwat-chapter-page .eknathi-source-note {
   width: min(100% - 40px, 1040px) !important;
   margin: 12px auto 32px !important;
   color: #666 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 0.86rem !important;
   font-weight: 400 !important;
   text-align: right !important;
@@ -7192,7 +7206,7 @@ body.bhavarth-ramayan-chapter-page .post-title {
 body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-source-heading {
   margin: 8px auto 14px !important;
   color: #202020 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 400 !important;
   line-height: 1.55 !important;
@@ -7205,7 +7219,7 @@ body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-topic {
   max-width: 100% !important;
   margin: 18px auto 10px !important;
   color: #222 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 400 !important;
   line-height: 1.55 !important;
@@ -7219,7 +7233,7 @@ body.bhavarth-ramayan-chapter-page .bhavarth-ramayan-ovi {
   margin: 0 auto 20px !important;
   padding: 0 !important;
   color: #090909 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.15rem !important;
   font-weight: 400 !important;
   line-height: 1.65 !important;
@@ -7262,7 +7276,7 @@ body.eknath-haripath-page .post-content .eknath-haripath-card p.haripath-line,
 body.eknath-haripath-page .post-content .eknath-haripath-card p.haripath-line *,
 body.eknath-haripath-page .post-content .eknath-haripath-card .haripath-inline-number,
 body.eknath-haripath-page .post-content .eknath-haripath-card .verse-end {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1rem !important;
   font-weight: 300 !important;
   font-style: normal !important;
@@ -7302,7 +7316,7 @@ body.eknath-haripath-page .eknath-haripath-card {
   background: #fff !important;
   box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
   box-sizing: border-box !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 300 !important;
   font-synthesis: none !important;
 }
@@ -7310,7 +7324,7 @@ body.eknath-haripath-page .eknath-haripath-card {
 body.eknath-haripath-page .eknath-haripath-stanza,
 body.eknath-haripath-page .eknath-haripath-stanza * {
   color: #111 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.15rem !important;
   font-weight: 400 !important;
   font-style: normal !important;
@@ -7490,7 +7504,7 @@ body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-car
   background: #fff !important;
   box-shadow: 0 10px 28px rgba(84, 51, 20, 0.06) !important;
   box-sizing: border-box !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 body.changdev-pasashti-page .changdev-reading-card .changdev-ovi-line,
@@ -7498,7 +7512,7 @@ body.changdev-pasashti-page .changdev-reading-card .changdev-ovi-line *,
 body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-verse-line,
 body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-verse-line * {
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 900 !important;
   font-synthesis: weight !important;
   -webkit-text-stroke: 0.3px currentColor;
@@ -7519,7 +7533,7 @@ body.changdev-pasashti-page .changdev-reading-card .changdev-meaning-line * {
   max-width: 840px !important;
   margin: 0 auto 26px !important;
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   line-height: 1.8 !important;
   text-align: left !important;
@@ -7547,7 +7561,7 @@ body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-main-centered p.
 body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-meaning-line,
 body.dnyaneshwar-pasaydan-page .pasaydan-reading-card .pasaydan-meaning-line * {
   color: #333 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-weight: 400 !important;
   line-height: 1.8 !important;
   text-align: left !important;
@@ -7699,7 +7713,7 @@ body.namdev-gatha-multi-card-page .namdev-gatha-section-number {
   border-radius: 999px !important;
   color: #7b4a18 !important;
   background: #fff4e6 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
 }
@@ -7715,7 +7729,7 @@ body.namdev-gatha-multi-card-page .namdev-gatha-section-content p.namdev-gatha-v
   max-width: 100% !important;
   margin: 14px auto 30px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -7800,7 +7814,7 @@ body.namdev-gatha-card-page .namdev-gatha-reading-card p.namdev-gatha-verse-bloc
   max-width: 100% !important;
   margin: 0 auto 30px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.08rem !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -7932,7 +7946,7 @@ html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card .
 html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card p.haripath-line,
 html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card p.haripath-line *,
 html body.nivruttinath-haripath-page .post-content .nivruttinath-haripath-card .haripath-inline-number {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1rem !important;
   font-style: normal !important;
   font-weight: 400 !important;
@@ -7946,7 +7960,7 @@ body.rohidas-pothi-page .post-content .rohidas-pothi-card > p {
   max-width: 100% !important;
   margin: 0 auto 18px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1rem !important;
   font-weight: 400 !important;
   line-height: 1.8 !important;
@@ -8036,7 +8050,7 @@ html body.nilobaray-single-long-abhang-page .post-content > .entry-content.gatha
   max-width: 880px !important;
   margin: 0 auto 24px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.06rem !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -8069,7 +8083,7 @@ html body.nilobaray-single-long-abhang-page p.nilobaray-long-abhang-stanza {
   width: 100% !important;
   margin: 0 0 24px !important;
   color: #000 !important;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
   font-size: 1.06rem !important;
   font-weight: 400 !important;
   line-height: 1.9 !important;
@@ -8250,7 +8264,7 @@ html body.haripath-meaning-normal-page .post-content .haripath-complete-card .ab
   }
 }
 
-/* Final abhang font lock: keep every saint abhang in Helvetica-style sans-serif. */
+/* Final abhang font lock: keep every saint abhang in Hind. */
 body.abhang-list-page .abhang-content-block,
 body.abhang-list-page .abhang-content-block *,
 body.abhang-range-page .abhang-content-block,
@@ -8271,7 +8285,7 @@ body.abhang-post-page .post-article *,
 .natache-verse *,
 .natache-line,
 .natache-line * {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Keep all saint, granth, ovi and article text in Hind. */
@@ -8313,7 +8327,14 @@ body.nilobaray-chapters-page .post-content .gatha-content {
 body.nilobaray-chapters-page .post-content .marathi-verse {
   width: 100% !important;
   max-width: 100% !important;
-  text-align: left !important;
+  text-align: center !important;
+}
+
+body.changdev-pasashti-page .changdev-reading-card .changdev-meta-line,
+body.changdev-pasashti-page .changdev-reading-card .changdev-meta-line *,
+body.changdev-pasashti-page .changdev-reading-card > div,
+body.changdev-pasashti-page .changdev-reading-card > div[style] {
+  text-align: center !important;
 }
 
 @media (max-width: 700px) {
@@ -8467,4 +8488,94 @@ body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .
   body.gatha-typography-page.nilobaray-chapters-page .abhang-post .gatha-content .nilobaray-chapter-card + .nilobaray-chapter-card {
     margin-top: 20px !important;
   }
+}
+
+/* Changdev Pasashti is intentionally typeset as a fully centered reading page. */
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card > p,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card > p *,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-meta-line,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-meta-line *,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-ovi-line,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-ovi-line *,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-meaning-line,
+html body.changdev-pasashti-page .post-content .entry-content.changdev-reading-card .changdev-meaning-line * {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Amrutanubhav uses centered typesetting for its complete reading text. */
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card,
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page,
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p,
+html body.amrutanubhav-page .post-content .entry-content.amrutanubhav-reading-card .amrutanubhav-source-page > p * {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Pasaydan is intentionally typeset as a fully centered reading page. */
+html body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card,
+html body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card p,
+html body.dnyaneshwar-pasaydan-page .post-content .entry-content.pasaydan-reading-card p * {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Tukaram Haripath uses Hind for text; icon glyphs keep Font Awesome. */
+html body.tukaram-haripath-page,
+html body.tukaram-haripath-page :where(
+  h1, h2, h3, h4, h5, h6,
+  p, span, strong, b, em, div, section, article, header, footer, nav,
+  a, button, label, input, textarea, select, option, li
+):not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
+  font-family: 'Hind', sans-serif !important;
+}
+
+html body.tukaram-haripath-page .haripath-readable-verses,
+html body.tukaram-haripath-page .haripath-stanza,
+html body.tukaram-haripath-page p.haripath-line,
+html body.tukaram-haripath-page p.haripath-line > span,
+html body.tukaram-haripath-page .haripath-inline-number {
+  font-family: 'Hind', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-synthesis: none !important;
+  -webkit-text-stroke: 0 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.75 !important;
+  font-kerning: normal !important;
+  font-variant-ligatures: common-ligatures !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tukaram Charitra uses fully centered reading text. */
+html body.tukaram-charitra-page .charitra-reading-card,
+html body.tukaram-charitra-page .charitra-reading-card .charitra-section-heading,
+html body.tukaram-charitra-page .charitra-reading-card .charitra-section-heading *,
+html body.tukaram-charitra-page .charitra-reading-card .charitra-paragraph,
+html body.tukaram-charitra-page .charitra-reading-card .charitra-paragraph *,
+html body.tukaram-charitra-page .charitra-reading-card li,
+html body.tukaram-charitra-page .charitra-reading-card li * {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+html body.tukaram-charitra-page .charitra-reading-card ul,
+html body.tukaram-charitra-page .charitra-reading-card ol {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-left: 0 !important;
+  text-align: center !important;
+  list-style-position: inside !important;
+}
+
+/* Bhavarth Ramayan index: keep every Marathi label in the Hind typeface. */
+html body.bhavarth-ramayan-index-page,
+html body.bhavarth-ramayan-index-page :where(h1, h2, h3, p, a, span, div, button, input, label, li):not(.fas):not(.far):not(.fab):not(.fa) {
+  font-family: 'Hind', sans-serif !important;
+}
+
+html body.bhavarth-ramayan-index-page input::placeholder {
+  font-family: 'Hind', sans-serif !important;
 }
