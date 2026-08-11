@@ -1925,7 +1925,7 @@
       if (/^माझा मराठाचि बोलू कौतुके/.test(text)) paragraph.classList.add('charitra-quote');
     });
 
-    if (document.body.classList.contains('tukaram-charitra-page')) {
+    if (document.body.classList.contains('tukaram-charitra-page') || isEknathBiography) {
       entry.querySelectorAll('p, p *, h2, h2 *, h3, h3 *, li, li *').forEach((node) => {
         node.style.setProperty('text-align', 'center', 'important');
         node.style.setProperty('text-align-last', 'center', 'important');
