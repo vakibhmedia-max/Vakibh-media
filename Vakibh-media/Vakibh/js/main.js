@@ -1774,7 +1774,11 @@
     });
 
     postContent.querySelector('.abhang-post-actions')?.remove();
-    postContent.closest('.abhang-post, .post-article')?.querySelector('.abhang-action-toolbar')?.remove();
+    const article = postContent.closest('.abhang-post, .post-article');
+    article?.querySelector('.abhang-action-toolbar')?.remove();
+    Array.from(article?.children || []).forEach((child) => {
+      if (child.classList?.contains('abhang-post-actions')) child.remove();
+    });
     source.remove();
     postContent.appendChild(cards);
   };
@@ -1902,6 +1906,14 @@
       entry?.classList.add('entry-content', 'clear');
     }
     let actions = postContent?.querySelector('.abhang-post-actions');
+    if (!actions && article && postContent) {
+      // The generic post formatter runs before the biography formatter and
+      // places an action bar after `.post-content`. Biography pages add their
+      // action bar inside the reading card, so remove that earlier duplicate.
+      Array.from(article.children).forEach((child) => {
+        if (child.classList?.contains('abhang-post-actions')) child.remove();
+      });
+    }
     if (postContent && entry && !actions) {
       entry.insertAdjacentHTML('beforeend', getAbhangPostActionsMarkup());
       actions = entry.querySelector('.abhang-post-actions');
@@ -1915,6 +1927,9 @@
     if (isEknathBiography) document.body.classList.add('eknath-charitra-page');
     if (isNivruttinathBiography) document.body.classList.add('nivruttinath-charitra-page');
     if (isLegacySaintBiography) document.body.classList.add('legacy-saint-charitra-page');
+    if (path.includes('/sants/muktabai/sant-muktabai/')) {
+      document.body.classList.add('muktabai-charitra-page');
+    }
     entry.classList.add('charitra-reading-card');
 
     entry.querySelectorAll('hr').forEach((divider) => divider.remove());
@@ -1925,7 +1940,9 @@
       if (/^माझा मराठाचि बोलू कौतुके/.test(text)) paragraph.classList.add('charitra-quote');
     });
 
-    if (document.body.classList.contains('tukaram-charitra-page') || isEknathBiography) {
+    if (document.body.classList.contains('tukaram-charitra-page')
+      || document.body.classList.contains('muktabai-charitra-page')
+      || isEknathBiography) {
       entry.querySelectorAll('p, p *, h2, h2 *, h3, h3 *, li, li *').forEach((node) => {
         node.style.setProperty('text-align', 'center', 'important');
         node.style.setProperty('text-align-last', 'center', 'important');
@@ -2643,6 +2660,10 @@
     const path = location.pathname.replace(/\\/g, '/').toLowerCase();
     if (!path.includes('/sants/eknath/bhavarth-ramayan/')) return;
 
+    document.querySelector(
+      '.tukaram-landing-container .tukaram-col:first-child > .tukaram-heading'
+    )?.remove();
+
     const devanagariToAscii = (value = '') => Number(
       [...value].map((char) => {
         const index = '०१२३४५६७८९'.indexOf(char);
@@ -2803,6 +2824,9 @@
     card.className = 'haripath-complete-card nivruttinath-haripath-card';
     card.appendChild(list);
     article.querySelector('.abhang-action-toolbar')?.remove();
+    Array.from(article.children).forEach((child) => {
+      if (child.classList?.contains('abhang-post-actions')) child.remove();
+    });
     postContent.replaceChildren(card);
   };
 
@@ -3605,6 +3629,19 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   normalizeLegacyNumberedDevotionalBlocks();
   markDevotionalMeaningBlocks();
   wrapVerseEndMarkers();
+
+  const removeDuplicatePostShareBars = () => {
+    document.querySelectorAll('.abhang-post, .post-article').forEach((article) => {
+      const postContent = article.querySelector(':scope > .post-content');
+      if (!postContent?.querySelector('.abhang-post-actions, .abhang-item-actions')) return;
+
+      Array.from(article.children).forEach((child) => {
+        if (child.classList?.contains('abhang-post-actions')) child.remove();
+      });
+    });
+  };
+
+  removeDuplicatePostShareBars();
 
   const getPageShareUrl = () => window.location.href.split('#')[0];
 
