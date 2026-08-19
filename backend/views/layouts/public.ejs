@@ -4,6 +4,7 @@
   const pageTitle = typeof title !== 'undefined' ? title : 'वाकीभ';
   const pageDescription = typeof description !== 'undefined' ? description : '';
   const pageBodyClass = typeof bodyClass !== 'undefined' ? bodyClass : '';
+  const layoutExtraHead = typeof extraHead !== 'undefined' ? extraHead : '';
 %>
 <html lang="<%= pageLang %>">
 <head>
@@ -17,9 +18,10 @@
   <link rel="stylesheet" href="/Vakibh/css/style.css?v=40">
   <link rel="stylesheet" href="/Vakibh/css/sant.css?v=33">
   <link rel="stylesheet" href="/backend/blog.css?v=2">
+  <% if (layoutExtraHead) { %><%- layoutExtraHead %><% } %>
 </head>
 <body class="<%= pageBodyClass %>">
   <%- body %>
-  <script src="/Vakibh/js/main.js?v=55" defer></script>
+  <script src="/Vakibh/js/main.js?v=74" defer></script>
 </body>
 </html>

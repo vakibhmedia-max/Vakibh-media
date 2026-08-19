@@ -27,6 +27,10 @@
         <i class="fas fa-tags"></i>
         Categories
       </a>
+      <a href="/admin/audio" class="<%= activeNav === 'audio' ? 'active' : '' %>">
+        <i class="fas fa-music"></i>
+        ऑडिओ व्यवस्थापन
+      </a>
       <a href="/admin/posts/new" class="<%= activeNav === 'new-post' ? 'active' : '' %>">
         <i class="fas fa-plus-circle"></i>
         Add Blog
@@ -128,7 +132,7 @@
                   <td><%= formatDate(post.updated_at) %></td>
                   <td>
                     <div class="admin-row-actions">
-                      <a class="admin-action-link" href="/blog/<%= post.slug %>/index.html" target="_blank">View</a>
+                      <a class="admin-action-link" href="/blog/<%= post.slug %>/" target="_blank">View</a>
                       <a class="admin-action-link" href="/admin/posts/<%= post.id %>/edit">Edit</a>
                       <form method="post" action="/admin/posts/<%= post.id %>/delete" onsubmit="return confirm('हा लेख delete करायचा आहे का?');">
                         <button type="submit" class="admin-action-link danger">Delete</button>

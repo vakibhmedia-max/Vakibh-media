@@ -1,0 +1,136 @@
+<%
+  const safeTracks = Array.isArray(tracks) ? tracks : [];
+  const bytesLabel = (bytes) => {
+    const size = Number(bytes || 0);
+    if (!size) return '0 B';
+    if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
+    return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+  };
+%>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <a href="/admin" class="admin-brand-link">
+        <img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो">
+        <div><strong>वाकीभ</strong><span>Admin Console</span></div>
+      </a>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin"><i class="fas fa-chart-line"></i>Dashboard</a>
+      <a href="/admin/posts"><i class="fas fa-newspaper"></i>Blogs</a>
+      <a href="/admin/comments"><i class="fas fa-comments"></i>Feedback</a>
+      <a href="/admin/categories"><i class="fas fa-tags"></i>Categories</a>
+      <a href="/admin/audio" class="active"><i class="fas fa-music"></i>ऑडिओ व्यवस्थापन</a>
+      <a href="/admin/posts/new"><i class="fas fa-plus-circle"></i>Add Blog</a>
+      <a href="/admin/posts/import-blogger"><i class="fas fa-file-import"></i>Import from Blogger</a>
+      <a href="/" target="_blank"><i class="fas fa-external-link-alt"></i>Public Website</a>
+    </nav>
+    <div class="admin-sidebar-card">
+      <span class="admin-sidebar-label">Logged in as</span>
+      <strong><%= currentUser?.name || 'Admin' %></strong>
+      <small><%= currentUser?.email || '' %></small>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-breadcrumb"><a href="/admin">Dashboard</a><span>/</span><span>Audio Management</span></p>
+        <h1>ऑडिओ व्यवस्थापन</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <a class="admin-button admin-button-secondary" href="#upload-audio"><i class="fas fa-upload"></i>नवीन ऑडिओ</a>
+      </div>
+    </header>
+
+    <% if (error) { %><div class="admin-alert admin-alert-error"><%= error %></div><% } %>
+    <% if (notice) { %><div class="admin-alert admin-alert-success"><%= notice %></div><% } %>
+
+    <section class="admin-panel admin-audio-active-panel">
+      <header class="admin-panel-header">
+        <div><h3>सध्या सक्रिय ऑडिओ</h3><p>Floating Veena player पुढील fresh session मध्ये हा track वापरेल.</p></div>
+        <% if (activeTrack) { %><span class="admin-status-pill published">Active</span><% } %>
+      </header>
+      <% if (activeTrack) { %>
+        <div class="admin-audio-current">
+          <div class="admin-audio-current-copy">
+            <h2><%= activeTrack.title %></h2>
+            <% if (activeTrack.description) { %><p><%= activeTrack.description %></p><% } %>
+            <dl class="admin-audio-meta">
+              <div><dt>File</dt><dd><%= activeTrack.file_name %></dd></div>
+              <div><dt>Size</dt><dd><%= bytesLabel(activeTrack.file_size) %></dd></div>
+              <div><dt>Uploaded</dt><dd><%= formatDate(activeTrack.created_at) %></dd></div>
+              <div><dt>Volume</dt><dd><%= Math.round(Number(activeTrack.default_volume) * 100) %>%</dd></div>
+              <div><dt>Loop</dt><dd><%= activeTrack.loop_enabled ? 'Enabled' : 'Disabled' %></dd></div>
+            </dl>
+          </div>
+          <div class="admin-audio-preview-card">
+            <audio controls preload="metadata" src="<%= activeTrack.file_url %>">Your browser does not support audio playback.</audio>
+            <form class="admin-replace-form" method="post" action="/admin/audio/<%= activeTrack.id %>/replace" enctype="multipart/form-data">
+              <label class="admin-field"><span>Replace audio file</span><input type="file" name="replacement_audio_file" accept=".mp3,.wav,.ogg,.m4a,audio/*" required></label>
+              <button class="admin-button admin-button-secondary" type="submit"><i class="fas fa-arrows-rotate"></i>Replace Audio</button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="admin-empty-inline">सध्या कोणताही active audio नाही. खाली नवीन track upload करा किंवा existing track activate करा.</div>
+      <% } %>
+    </section>
+
+    <section class="admin-panel" id="upload-audio">
+      <header class="admin-panel-header"><div><h3>नवीन ऑडिओ अपलोड करा</h3><p>MP3 recommended. MP3, WAV, OGG किंवा M4A; maximum 20 MB.</p></div></header>
+      <form class="admin-form admin-audio-upload-form" method="post" action="/admin/audio" enctype="multipart/form-data">
+        <div class="admin-form-grid admin-audio-form-grid">
+          <label class="admin-field"><span>Audio Title</span><input type="text" name="title" maxlength="180" required placeholder="उदा. विठ्ठल भक्ती गीत"></label>
+          <label class="admin-field"><span>Audio File</span><input type="file" name="audio_file" accept=".mp3,.wav,.ogg,.m4a,audio/*" required></label>
+          <label class="admin-field admin-field-wide"><span>Description (optional)</span><textarea name="description" maxlength="1000" rows="3"></textarea></label>
+          <label class="admin-field"><span>Default Website Volume: <output data-volume-output>35%</output></span><input type="range" name="default_volume" min="0.05" max="1" step="0.05" value="0.35" data-volume-slider></label>
+          <div class="admin-audio-toggles">
+            <label class="admin-check"><input type="checkbox" name="loop_enabled" value="1" checked><span>Loop Audio</span></label>
+            <label class="admin-check"><input type="checkbox" name="is_active" value="1" checked><span>Upload & Activate</span></label>
+          </div>
+        </div>
+        <div class="admin-form-actions"><button class="admin-button admin-button-primary" type="submit"><i class="fas fa-cloud-arrow-up"></i>Upload Audio</button></div>
+      </form>
+    </section>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header"><div><h3>सर्व ऑडिओ Tracks</h3><p>Preview, edit, activate, deactivate किंवा inactive track delete करा.</p></div></header>
+      <div class="admin-audio-track-list">
+        <% safeTracks.forEach((track) => { %>
+          <article class="admin-audio-track <%= track.is_active ? 'is-active' : '' %>">
+            <div class="admin-audio-track-head">
+              <div><h4><%= track.title %></h4><small><%= track.file_name %> · <%= bytesLabel(track.file_size) %> · <%= formatDate(track.created_at) %></small></div>
+              <span class="admin-status-pill <%= track.is_active ? 'published' : 'draft' %>"><%= track.is_active ? 'Active' : 'Inactive' %></span>
+            </div>
+            <audio controls preload="none" src="<%= track.file_url %>"></audio>
+            <form class="admin-form admin-audio-edit-form" method="post" action="/admin/audio/<%= track.id %>/update">
+              <label class="admin-field"><span>Title</span><input type="text" name="title" maxlength="180" value="<%= track.title %>" required></label>
+              <label class="admin-field"><span>Volume</span><input type="range" name="default_volume" min="0.05" max="1" step="0.05" value="<%= Number(track.default_volume) %>"></label>
+              <label class="admin-check"><input type="checkbox" name="loop_enabled" value="1" <%= track.loop_enabled ? 'checked' : '' %>><span>Loop</span></label>
+              <input type="hidden" name="description" value="<%= track.description || '' %>">
+              <button class="admin-button admin-button-secondary admin-button-small" type="submit"><i class="fas fa-save"></i>Save</button>
+            </form>
+            <div class="admin-audio-actions">
+              <% if (track.is_active) { %>
+                <form method="post" action="/admin/audio/<%= track.id %>/deactivate"><button class="admin-button admin-button-ghost admin-button-small" type="submit">Deactivate</button></form>
+              <% } else { %>
+                <form method="post" action="/admin/audio/<%= track.id %>/activate"><button class="admin-button admin-button-primary admin-button-small" type="submit"><i class="fas fa-check"></i>Activate</button></form>
+                <form method="post" action="/admin/audio/<%= track.id %>/delete" onsubmit="return confirm('Delete this inactive audio permanently?');"><button class="admin-button admin-button-danger admin-button-small" type="submit"><i class="fas fa-trash"></i>Delete</button></form>
+              <% } %>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('[data-volume-slider]').forEach((slider) => {
+    const output = slider.closest('.admin-field')?.querySelector('[data-volume-output]');
+    const update = () => { if (output) output.value = `${Math.round(Number(slider.value) * 100)}%`; };
+    slider.addEventListener('input', update);
+    update();
+  });
+</script>

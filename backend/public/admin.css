@@ -930,6 +930,181 @@ select {
   }
 }
 
+/* Audio management */
+.admin-audio-active-panel {
+  margin-bottom: 1.25rem;
+}
+
+.admin-audio-current {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.admin-audio-current-copy h2 {
+  margin: 0 0 0.5rem;
+  color: var(--admin-primary-deep);
+}
+
+.admin-audio-current-copy > p {
+  margin: 0 0 1rem;
+  color: var(--admin-muted);
+}
+
+.admin-audio-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.admin-audio-meta div {
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: var(--admin-bg-alt);
+}
+
+.admin-audio-meta dt {
+  color: var(--admin-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-audio-meta dd {
+  margin: 0.2rem 0 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.admin-audio-preview-card,
+.admin-audio-track {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  background: var(--admin-surface-strong);
+  box-shadow: var(--admin-shadow-soft);
+}
+
+.admin-audio-preview-card audio,
+.admin-audio-track audio {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0.9rem;
+}
+
+.admin-replace-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-audio-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.admin-field-wide {
+  grid-column: 1 / -1;
+}
+
+.admin-audio-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem 0;
+}
+
+.admin-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--admin-primary);
+}
+
+.admin-audio-track-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-audio-track.is-active {
+  border-color: rgba(36, 115, 75, 0.4);
+  box-shadow: 0 12px 34px rgba(36, 115, 75, 0.1);
+}
+
+.admin-audio-track-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.admin-audio-track-head h4 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.admin-audio-track-head small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--admin-muted);
+  overflow-wrap: anywhere;
+}
+
+.admin-audio-edit-form {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(150px, 0.7fr) auto auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.admin-audio-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .admin-audio-current {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-audio-edit-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-audio-form-grid,
+  .admin-audio-edit-form,
+  .admin-audio-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-field-wide {
+    grid-column: auto;
+  }
+
+  .admin-audio-track-head {
+    flex-direction: column;
+  }
+}
+
 .admin-category-grid {
   grid-template-columns: minmax(280px, 0.75fr) minmax(360px, 1.25fr);
   align-items: start;
@@ -1014,3 +1189,4 @@ select {
     grid-template-columns: 1fr;
   }
 }
+.admin-feedback-list{display:grid;gap:1rem;padding:1rem}.admin-feedback-card{background:#fff;border:1px solid var(--admin-border);border-radius:16px;padding:1.15rem;box-shadow:0 8px 24px rgba(73,42,22,.06)}.admin-feedback-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.admin-feedback-head h2,.admin-feedback-head h3{margin:.15rem 0 0}.admin-feedback-id{color:var(--admin-muted);font-size:.78rem;font-weight:800}.admin-status{border-radius:999px;padding:.35rem .7rem;font-size:.76rem;font-weight:800;text-transform:capitalize}.admin-status-pending{background:#fff0c9;color:#8c5900}.admin-status-approved{background:#dff5e7;color:#17643a}.admin-status-rejected{background:#ffe0df;color:#9e2520}.admin-feedback-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.85rem;margin:1rem 0}.admin-feedback-meta div{min-width:0}.admin-feedback-meta dt{color:var(--admin-muted);font-size:.75rem;font-weight:800;text-transform:uppercase}.admin-feedback-meta dd{margin:.2rem 0 0;overflow-wrap:anywhere}.admin-feedback-message{background:#fff8ef;border-left:4px solid var(--admin-primary);padding:.85rem 1rem;border-radius:8px}.admin-feedback-message span{color:var(--admin-primary-deep);font-size:.75rem;font-weight:900;text-transform:uppercase}.admin-feedback-message p{white-space:pre-wrap;overflow-wrap:anywhere;margin:.4rem 0 0;line-height:1.65;color:var(--admin-ink)}.admin-feedback-actions{margin-top:1rem}@media(max-width:800px){.admin-feedback-meta{grid-template-columns:1fr 1fr}.admin-feedback-head{align-items:flex-start}}@media(max-width:520px){.admin-feedback-meta{grid-template-columns:1fr}.admin-feedback-list{padding:.7rem}.admin-feedback-card{padding:.9rem}}

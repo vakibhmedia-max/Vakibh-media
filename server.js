@@ -19,6 +19,7 @@ const {
   createBlogPost,
   deleteBlogPost,
   getDashboardStats,
+  getBlogSlugRedirect,
   getNextSortOrder,
   getPostById,
   getPostBySlug,
@@ -40,24 +41,56 @@ const { buildImportPreview, importBloggerFeed } = require('./backend/lib/blogger
 const { createCategory, deleteCategory, listCategories } = require('./backend/lib/categories');
 const {
   createBlogComment,
+  createFeedbackReply,
   deleteComment,
+  deleteReply,
   getCommentStats,
+  getCommentWithReplies,
   listApprovedCommentsBySlug,
   listComments,
-  updateCommentStatus
+  listPendingReplies,
+  updateCommentStatus,
+  updateReplyStatus
 } = require('./backend/lib/comments');
+const {
+  activateAudioTrack,
+  createAudioTrack,
+  deactivateAudioTrack,
+  deleteAudioTrack,
+  getActiveAudioTrack,
+  listAudioTracks,
+  replaceAudioFile,
+  updateAudioTrack
+} = require('./backend/lib/audio-tracks');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
 const UPLOAD_ROOT = path.join(ROOT, 'uploads', 'blog');
+const AUDIO_UPLOAD_ROOT = path.join(ROOT, 'uploads', 'audio');
 const BLOGGER_IMPORT_ROOT = path.join(ROOT, 'uploads', 'blogger-import');
 const PORT = Number(process.env.PORT || 3000);
 
 fs.mkdirSync(UPLOAD_ROOT, { recursive: true });
+fs.mkdirSync(AUDIO_UPLOAD_ROOT, { recursive: true });
 fs.mkdirSync(BLOGGER_IMPORT_ROOT, { recursive: true });
 
 const app = express();
 let backendReadyPromise = null;
+const publicSubmissionWindows = new Map();
+
+function rateLimitPublicSubmission(req, res, next) {
+  const now = Date.now();
+  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
+  const key = `${ip}:${req.path.includes('/replies') ? 'reply' : 'feedback'}`;
+  const recent = (publicSubmissionWindows.get(key) || []).filter((time) => now - time < 10 * 60 * 1000);
+  if (recent.length >= 5) {
+    res.status(429).json({ ok: false, message: 'Too many submissions. Please try again later.' });
+    return;
+  }
+  recent.push(now);
+  publicSubmissionWindows.set(key, recent);
+  next();
+}
 
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(compression());
@@ -96,6 +129,76 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+const AUDIO_EXTENSIONS = new Set(['.mp3', '.wav', '.ogg', '.m4a']);
+const AUDIO_MIME_TYPES = new Set([
+  'audio/mpeg',
+  'audio/mp3',
+  'audio/wav',
+  'audio/x-wav',
+  'audio/ogg',
+  'audio/mp4',
+  'audio/x-m4a'
+]);
+const audioUpload = multer({
+  storage: multer.diskStorage({
+    destination: (_, __, cb) => cb(null, AUDIO_UPLOAD_ROOT),
+    filename: (_, file, cb) => {
+      const extension = path.extname(file.originalname || '').toLowerCase();
+      const baseName = path.basename(file.originalname || 'audio', extension)
+        .normalize('NFKD')
+        .replace(/[^a-zA-Z0-9_-]+/g, '-')
+        .replace(/-{2,}/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .toLowerCase();
+      cb(null, `${Date.now()}-${baseName || 'devotional-audio'}${extension}`);
+    }
+  }),
+  limits: { fileSize: 20 * 1024 * 1024, files: 1 },
+  fileFilter: (_, file, cb) => {
+    const extension = path.extname(file.originalname || '').toLowerCase();
+    const mimeType = String(file.mimetype || '').toLowerCase();
+    if (!AUDIO_EXTENSIONS.has(extension) || !AUDIO_MIME_TYPES.has(mimeType)) {
+      cb(new Error('Only valid MP3, WAV, OGG, or M4A audio files up to 20 MB are allowed.'));
+      return;
+    }
+    cb(null, true);
+  }
+});
+
+function removeFailedUpload(file) {
+  if (!file?.path) return;
+  const resolved = path.resolve(file.path);
+  if (!resolved.startsWith(`${path.resolve(AUDIO_UPLOAD_ROOT)}${path.sep}`)) return;
+  try {
+    if (fs.existsSync(resolved)) fs.unlinkSync(resolved);
+  } catch (error) {
+    console.warn('Could not remove failed audio upload:', error.message || error);
+  }
+}
+
+function validateUploadedAudioSignature(file) {
+  if (!file?.path) throw new Error('Please select an audio file.');
+  const extension = path.extname(file.originalname || '').toLowerCase();
+  const descriptor = fs.openSync(file.path, 'r');
+  const header = Buffer.alloc(16);
+  try {
+    fs.readSync(descriptor, header, 0, header.length, 0);
+  } finally {
+    fs.closeSync(descriptor);
+  }
+
+  const isMp3 = header.subarray(0, 3).toString('ascii') === 'ID3' || (header[0] === 0xff && (header[1] & 0xe0) === 0xe0);
+  const isWav = header.subarray(0, 4).toString('ascii') === 'RIFF' && header.subarray(8, 12).toString('ascii') === 'WAVE';
+  const isOgg = header.subarray(0, 4).toString('ascii') === 'OggS';
+  const isM4a = header.subarray(4, 8).toString('ascii') === 'ftyp';
+  const valid = (extension === '.mp3' && isMp3)
+    || (extension === '.wav' && isWav)
+    || (extension === '.ogg' && isOgg)
+    || (extension === '.m4a' && isM4a);
+
+  if (!valid) throw new Error('The uploaded file content does not match a supported audio format.');
+}
 
 const bloggerImportUpload = multer({
   storage: multer.diskStorage({
@@ -205,8 +308,10 @@ app.use(async (req, res, next) => {
   const needsBackend =
     req.path === '/admin' ||
     req.path.startsWith('/admin/') ||
+    req.path.startsWith('/api/audio/') ||
     req.path.startsWith('/api/visitor-login/') ||
-    req.path.startsWith('/api/blog-comments');
+    req.path.startsWith('/api/blog-comments') ||
+    req.path.startsWith('/blog/');
 
   if (!needsBackend) {
     return next();
@@ -220,7 +325,7 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.get('/blog/', (req, res) => res.redirect('/blog/index.html'));
+app.get('/blog/', (req, res) => res.sendFile(path.join(SITE_ROOT, 'blog', 'index.html')));
 
 app.get('/api/visitor-login/status', (req, res) => {
   res.json({
@@ -280,22 +385,67 @@ app.get('/api/blog-comments/:slug', async (req, res) => {
   }
 });
 
-app.post('/api/blog-comments', async (req, res) => {
+app.post('/api/blog-comments', rateLimitPublicSubmission, async (req, res) => {
   try {
     const comment = await createBlogComment({
       slug: req.body.slug,
       name: req.body.name,
       contact: req.body.contact,
+      mobile: req.body.mobile,
+      email: req.body.email,
       message: req.body.message,
       req
     });
     res.status(201).json({
       ok: true,
       comment,
-      message: 'Feedback submitted. It will appear after approval.'
+      message: 'धन्यवाद!'
     });
   } catch (error) {
     res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to save feedback.' });
+  }
+});
+
+app.post('/api/feedback/:feedbackId/replies', rateLimitPublicSubmission, async (req, res) => {
+  try {
+    const reply = await createFeedbackReply({
+      feedbackId: req.params.feedbackId,
+      name: req.body.name,
+      mobile: req.body.mobile,
+      email: req.body.email,
+      message: req.body.message,
+      req
+    });
+    res.status(201).json({ ok: true, reply, message: 'धन्यवाद!' });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to save reply.' });
+  }
+});
+
+app.get('/api/audio/active', async (req, res) => {
+  try {
+    const track = await getActiveAudioTrack();
+    res.set('Cache-Control', 'no-store, max-age=0');
+    if (!track) {
+      res.status(404).json({ ok: false, message: 'No active audio is configured.' });
+      return;
+    }
+    res.json({
+      ok: true,
+      id: track.id,
+      title: track.title,
+      description: track.description || '',
+      fileUrl: track.file_url,
+      fileName: track.file_name,
+      mimeType: track.mime_type,
+      fileSize: Number(track.file_size || 0),
+      volume: Number(track.default_volume || 0.35),
+      loop: Boolean(track.loop_enabled),
+      updatedAt: track.updated_at
+    });
+  } catch (error) {
+    console.error('[api/audio/active] failed:', error);
+    res.status(500).json({ ok: false, message: 'Unable to load the active audio.' });
   }
 });
 
@@ -382,6 +532,100 @@ app.get('/admin', requireAdmin, async (req, res, next) => {
   }
 });
 
+app.get('/admin/audio', requireAdmin, async (req, res, next) => {
+  try {
+    const tracks = await listAudioTracks();
+    await render(
+      res,
+      'admin/audio.ejs',
+      {
+        title: 'Audio Management - Vaakibh Admin',
+        tracks,
+        activeTrack: tracks.find((track) => Boolean(track.is_active)) || null,
+        currentUser: req.session.admin,
+        notice: getNotice(req),
+        error: getError(req),
+        activeNav: 'audio',
+        formatDate,
+        bodyClass: 'admin-audio-page'
+      },
+      'admin'
+    );
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/admin/audio', requireAdmin, (req, res) => {
+  audioUpload.single('audio_file')(req, res, async (uploadError) => {
+    if (uploadError) {
+      res.redirect(`/admin/audio?error=${encodeURIComponent(uploadError.message || 'Audio upload failed.')}`);
+      return;
+    }
+    try {
+      validateUploadedAudioSignature(req.file);
+      await createAudioTrack({ body: req.body, file: req.file, uploadedBy: req.session.admin?.id });
+      res.redirect(`/admin/audio?notice=${encodeURIComponent('Audio uploaded successfully.')}`);
+    } catch (error) {
+      removeFailedUpload(req.file);
+      res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio upload failed.')}`);
+    }
+  });
+});
+
+app.post('/admin/audio/:id/update', requireAdmin, async (req, res) => {
+  try {
+    await updateAudioTrack(req.params.id, req.body);
+    res.redirect(`/admin/audio?notice=${encodeURIComponent('Audio details updated successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio update failed.')}`);
+  }
+});
+
+app.post('/admin/audio/:id/replace', requireAdmin, (req, res) => {
+  audioUpload.single('replacement_audio_file')(req, res, async (uploadError) => {
+    if (uploadError) {
+      res.redirect(`/admin/audio?error=${encodeURIComponent(uploadError.message || 'Audio replacement failed.')}`);
+      return;
+    }
+    try {
+      validateUploadedAudioSignature(req.file);
+      await replaceAudioFile(req.params.id, req.file, AUDIO_UPLOAD_ROOT);
+      res.redirect(`/admin/audio?notice=${encodeURIComponent('Audio file replaced successfully.')}`);
+    } catch (error) {
+      removeFailedUpload(req.file);
+      res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio replacement failed.')}`);
+    }
+  });
+});
+
+app.post('/admin/audio/:id/activate', requireAdmin, async (req, res) => {
+  try {
+    await activateAudioTrack(req.params.id);
+    res.redirect(`/admin/audio?notice=${encodeURIComponent('Website audio activated successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio activation failed.')}`);
+  }
+});
+
+app.post('/admin/audio/:id/deactivate', requireAdmin, async (req, res) => {
+  try {
+    await deactivateAudioTrack(req.params.id);
+    res.redirect(`/admin/audio?notice=${encodeURIComponent('Audio deactivated.')}`);
+  } catch (error) {
+    res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio deactivation failed.')}`);
+  }
+});
+
+app.post('/admin/audio/:id/delete', requireAdmin, async (req, res) => {
+  try {
+    await deleteAudioTrack(req.params.id, AUDIO_UPLOAD_ROOT);
+    res.redirect(`/admin/audio?notice=${encodeURIComponent('Audio deleted successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/audio?error=${encodeURIComponent(error.message || 'Audio delete failed.')}`);
+  }
+});
+
 app.get('/admin/visitor-logins', requireAdmin, async (req, res, next) => {
   try {
     const [visitorStats, visitors] = await Promise.all([
@@ -413,9 +657,10 @@ app.get('/admin/comments', requireAdmin, async (req, res, next) => {
     const status = ['pending', 'approved', 'rejected'].includes(req.query.status)
       ? req.query.status
       : 'pending';
-    const [comments, commentStats] = await Promise.all([
+    const [comments, commentStats, pendingReplies] = await Promise.all([
       listComments(status),
-      getCommentStats()
+      getCommentStats(),
+      listPendingReplies()
     ]);
 
     await render(
@@ -425,6 +670,7 @@ app.get('/admin/comments', requireAdmin, async (req, res, next) => {
         title: 'Blog Feedback - Vakibh Admin',
         comments,
         commentStats,
+        pendingReplies,
         selectedStatus: status,
         currentUser: req.session.admin,
         notice: getNotice(req),
@@ -438,6 +684,18 @@ app.get('/admin/comments', requireAdmin, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+app.get('/admin/comments/:id', requireAdmin, async (req, res, next) => {
+  try {
+    const comment = await getCommentWithReplies(req.params.id);
+    if (!comment) return res.redirect('/admin/comments?error=Feedback%20not%20found.');
+    await render(res, 'admin/comment-detail.ejs', {
+      title: `Feedback #${comment.id} - Vakibh Admin`, comment,
+      currentUser: req.session.admin, notice: getNotice(req), error: getError(req),
+      activeNav: 'comments', formatDate, bodyClass: 'admin-comments-page'
+    }, 'admin');
+  } catch (error) { next(error); }
 });
 
 app.post('/admin/comments/:id/status', requireAdmin, async (req, res) => {
@@ -461,6 +719,28 @@ app.post('/admin/comments/:id/delete', requireAdmin, async (req, res) => {
     res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&notice=${encodeURIComponent('Feedback deleted successfully.')}`);
   } catch (error) {
     res.redirect(`/admin/comments?status=${encodeURIComponent(returnStatus)}&error=${encodeURIComponent(error.message || 'Feedback delete failed.')}`);
+  }
+});
+
+app.post('/admin/replies/:id/status', requireAdmin, async (req, res) => {
+  const feedbackId = Number(req.body.feedback_id);
+  try {
+    await updateReplyStatus(req.params.id, req.body.status);
+    const returnTo = req.body.return_to === 'list' ? '/admin/comments' : `/admin/comments/${feedbackId}`;
+    res.redirect(`${returnTo}?notice=${encodeURIComponent('Reply updated successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/comments/${feedbackId}?error=${encodeURIComponent(error.message || 'Reply update failed.')}`);
+  }
+});
+
+app.post('/admin/replies/:id/delete', requireAdmin, async (req, res) => {
+  const feedbackId = Number(req.body.feedback_id);
+  try {
+    await deleteReply(req.params.id);
+    const returnTo = req.body.return_to === 'list' ? '/admin/comments' : `/admin/comments/${feedbackId}`;
+    res.redirect(`${returnTo}?notice=${encodeURIComponent('Reply deleted successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/comments/${feedbackId}?error=${encodeURIComponent(error.message || 'Reply delete failed.')}`);
   }
 });
 app.get('/admin/posts/import-blogger', requireAdmin, async (req, res, next) => {
@@ -821,14 +1101,23 @@ app.post('/admin/posts/:id/delete', requireAdmin, async (req, res, next) => {
 // Public blog pages are already generated in Vakibh-media/blog. Serve those
 // files directly so the footer link shows every imported/live blog, even when
 // the local admin database has not been populated from Blogger yet.
-app.get('/blog/index.html', (req, res) => {
-  res.sendFile(path.join(SITE_ROOT, 'blog', 'index.html'));
+app.get('/blog/index.html', (req, res) => res.redirect(301, '/blog/'));
+
+app.get('/blog/:slug/index.html', (req, res) => {
+  res.redirect(301, `/blog/${encodeURIComponent(req.params.slug)}/`);
 });
 
-app.get('/blog/:slug/index.html', (req, res, next) => {
+app.get('/blog/:slug/', async (req, res, next) => {
+  const slug = String(req.params.slug || '').toLowerCase();
+  if (!/^[a-z0-9-]+$/.test(slug)) return next();
+  if (!req.path.endsWith('/')) return res.redirect(301, `/blog/${slug}/`);
   const blogFile = path.join(SITE_ROOT, 'blog', req.params.slug, 'index.html');
-  if (!fs.existsSync(blogFile)) return next();
-  return res.sendFile(blogFile);
+  if (fs.existsSync(blogFile)) return res.sendFile(blogFile);
+  try {
+    const replacement = await getBlogSlugRedirect(slug);
+    if (replacement) return res.redirect(301, `/blog/${replacement}/`);
+    return next();
+  } catch (error) { return next(error); }
 });
 
 app.get('/blog/index.html', async (req, res, next) => {
@@ -912,7 +1201,7 @@ app.get('/sant/:santSlug/abhang/:range', (req, res, next) => {
 });
 
 app.get('/blog/:slug', (req, res) => {
-  res.redirect(`/blog/${req.params.slug}/index.html`);
+  res.redirect(301, `/blog/${req.params.slug}/`);
 });
 
 app.use(express.static(SITE_ROOT));

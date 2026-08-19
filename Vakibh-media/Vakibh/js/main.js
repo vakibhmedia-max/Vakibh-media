@@ -1,4 +1,20 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+  const toMarathiDigits = (value) => String(value ?? '').replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
+  window.VakibhText = Object.freeze({ toMarathiDigits });
+
+  const socialLinks = Object.freeze({
+    instagramUrl: 'https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr',
+    whatsappUrl: 'https://wa.me/919923916476',
+    youtubeUrl: 'https://www.youtube.com/',
+    facebookUrl: 'https://www.facebook.com/vaakibh'
+  });
+
+  if (!document.querySelector('script[data-blog-feedback-client]')) {
+    const feedbackClient = document.createElement('script');
+    feedbackClient.src = '/Vakibh/js/blog-feedback.js?v=4';
+    feedbackClient.dataset.blogFeedbackClient = 'true';
+    document.head.appendChild(feedbackClient);
+  }
   const cleanIndexUrl = () => {
     const pathname = window.location.pathname.replace(/\\/g, '/');
     if (!/\/index\.html$/i.test(pathname)) return;
@@ -23,6 +39,53 @@
   };
   removeUnwantedTranslationSections();
   const currentPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
+  if (currentPath.includes('/sants/')) {
+    document.body.classList.add('is-sant-site-page');
+  }
+  if (currentPath.includes('/sants/')) {
+    document.body.classList.add('is-sant-site-page');
+  }
+  if (/\/sants\/[^/]+\/?(?:index\.html)?$/.test(currentPath)) {
+    document.body.classList.add('is-sant-category-page');
+  }
+
+  const orderSantCategories = () => {
+    if (!/\/sants\/[^/]+\/?(?:index\.html)?$/.test(currentPath)) return;
+
+    const categoryLinks = Array.from(document.querySelectorAll([
+      '.dnyaneshwar-link',
+      '.tukaram-link',
+      '.sahitya-link',
+      '.remaining-sant-link',
+      '.rohidas-link'
+    ].join(',')));
+    if (!categoryLinks.length) return;
+
+    const groups = new Map();
+    categoryLinks.forEach((link) => {
+      const parent = link.parentElement;
+      if (!parent) return;
+      if (!groups.has(parent)) groups.set(parent, []);
+      groups.get(parent).push(link);
+    });
+
+    groups.forEach((links, parent) => {
+      const getCategoryIdentity = (link) => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        const label = (link.textContent || '').replace(/\s+/g, ' ').trim();
+        const isAarti = /(?:^|[\/_-])(?:aarti|arati|arti)(?:[\/_-]|$)/i.test(href) || /आरती/.test(label);
+        const isTirthakshetra = /(?:tirth|kshetra|mandir|samadhi|temple)/i.test(href)
+          || /(?:तीर्थक्षेत्र|मंदिर|समाधी)/.test(label);
+        return isTirthakshetra ? 'tirthakshetra' : (isAarti ? 'aarti' : 'normal');
+      };
+
+      const aartiLinks = links.filter((link) => getCategoryIdentity(link) === 'aarti');
+      const tirthakshetraLinks = links.filter((link) => getCategoryIdentity(link) === 'tirthakshetra');
+      parent.append(...aartiLinks, ...tirthakshetraLinks);
+    });
+  };
+
+  orderSantCategories();
   if (window.location.pathname.replace(/\\/g, '/').toLowerCase().includes('/sants/dnyaneshwar/')) {
     document.body.classList.add('is-dnyaneshwar-page');
   }
@@ -36,6 +99,129 @@
     document.body.classList.add('is-janabai-abhang-page');
   }
 
+  const initMarathiLiteratureDigits = () => {
+    if (/^\/admin(?:\/|$)/i.test(currentPath) || currentPath.includes('/blog/')) return;
+
+    const isLiteraturePage = /\/(?:sants|granth|abhangs?|puravni-abhang|aarti)(?:\/|$)/i.test(currentPath);
+    const excludedParentSelector = [
+      'script', 'style', 'noscript', 'template', 'code', 'pre',
+      'textarea', 'input', 'select', 'option',
+      '[contenteditable="true"]', '[data-keep-english-digits]', '.marathi-digit-glyph'
+    ].join(',');
+
+    const wrapMarathiDigitGlyphs = (root) => {
+      if (!root) return;
+      const textNodes = [];
+      if (root.nodeType === Node.TEXT_NODE) textNodes.push(root);
+      if (root.nodeType === Node.ELEMENT_NODE || root.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+      }
+
+      textNodes.forEach((node) => {
+        const parent = node.parentElement;
+        const value = node.nodeValue || '';
+        if (!parent || parent.closest(excludedParentSelector) || !/[०-९]/.test(value)) return;
+
+        const fragment = document.createDocumentFragment();
+        value.split(/([०-९]+)/).filter(Boolean).forEach((part) => {
+          if (!/^[०-९]+$/.test(part)) {
+            fragment.appendChild(document.createTextNode(part));
+            return;
+          }
+          const span = document.createElement('span');
+          span.className = 'marathi-digit-glyph';
+          span.textContent = part;
+          span.style.setProperty('font-family', "'Vakibh Devanagari Digits', serif", 'important');
+          span.style.setProperty('font-weight', '400', 'important');
+          span.style.setProperty('font-style', 'normal', 'important');
+          fragment.appendChild(span);
+        });
+        node.replaceWith(fragment);
+      });
+    };
+
+    const formatVisibleText = (root, normalizeVerseBars = isLiteraturePage) => {
+      if (!root) return;
+      const textNodes = [];
+      if (root.nodeType === Node.TEXT_NODE) textNodes.push(root);
+      if (root.nodeType === Node.ELEMENT_NODE || root.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+      }
+
+      textNodes.forEach((node) => {
+        const parent = node.parentElement;
+        if (!parent || parent.closest(excludedParentSelector)) return;
+        let displayText = node.nodeValue || '';
+        const isSearchResultText = Boolean(parent.closest(
+          '.search-results-panel, .header-search-results, .library-search-suggestions, [data-library-search-page="true"]'
+        ));
+        if (normalizeVerseBars) {
+          displayText = displayText.replace(/\|\|\s*([0-9०-९]+)\s*\|\|/g, '॥$1॥');
+        }
+        if (isSearchResultText) {
+          displayText = displayText
+            .replace(/\bAbhang(?=\s*[0-9०-९])/gi, 'अभंग')
+            .replace(/\bGatha(?=\s*[0-9०-९])/gi, 'गाथा')
+            .replace(/\bOvi(?=\s*[0-9०-९])/gi, 'ओवी');
+        }
+        displayText = toMarathiDigits(displayText);
+        if (displayText !== node.nodeValue) node.nodeValue = displayText;
+      });
+    };
+
+    const formatCurrentPage = () => {
+      const roots = document.querySelectorAll('main, footer');
+      roots.forEach((root) => {
+        formatVisibleText(root);
+        wrapMarathiDigitGlyphs(root);
+      });
+      document.querySelectorAll('.search-results-panel, .header-search-results, .library-search-suggestions')
+        .forEach((root) => formatVisibleText(root, false));
+    };
+
+    formatCurrentPage();
+    window.addEventListener('load', formatCurrentPage, { once: true });
+    [0, 100, 500, 1500, 4000].forEach((delay) => window.setTimeout(formatCurrentPage, delay));
+    if (isLiteraturePage) {
+      const startedAt = Date.now();
+      const postRenderGuard = window.setInterval(() => {
+        formatCurrentPage();
+        if (Date.now() - startedAt >= 30000) window.clearInterval(postRenderGuard);
+      }, 400);
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'characterData') {
+          const node = mutation.target;
+          const element = node.parentElement;
+          const insidePublicContent = element?.closest('main, footer');
+          const insideSearch = element?.closest('.search-results-panel, .header-search-results, .library-search-suggestions');
+          if (insidePublicContent || insideSearch) {
+            formatVisibleText(node, isLiteraturePage && Boolean(insidePublicContent));
+            wrapMarathiDigitGlyphs(node);
+          }
+          return;
+        }
+
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType !== Node.ELEMENT_NODE && node.nodeType !== Node.TEXT_NODE) return;
+          const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+          const insidePublicContent = element?.closest('main, footer');
+          const insideSearch = element?.closest('.search-results-panel, .header-search-results, .library-search-suggestions');
+          if (insidePublicContent || insideSearch) {
+            formatVisibleText(node, isLiteraturePage && Boolean(insidePublicContent));
+            wrapMarathiDigitGlyphs(node);
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, characterData: true, subtree: true });
+  };
+  initMarathiLiteratureDigits();
+
   if (!document.querySelector('link[data-font-awesome]')) {
     const fontAwesomeLink = document.createElement('link');
     fontAwesomeLink.rel = 'stylesheet';
@@ -43,6 +229,37 @@
     fontAwesomeLink.dataset.fontAwesome = 'true';
     document.head.appendChild(fontAwesomeLink);
   }
+
+  const initFloatingSocialBar = () => {
+    if (/^\/admin(?:\/|$)/i.test(window.location.pathname) || document.querySelector('.floating-social-bar')) return;
+
+    const currentWhatsApp = document.querySelector('a.floating-whatsapp');
+    const whatsappUrl = currentWhatsApp?.getAttribute('href') || socialLinks.whatsappUrl;
+    const items = [
+      { name: 'Instagram', url: socialLinks.instagramUrl, icon: 'fa-instagram', network: 'instagram' },
+      { name: 'WhatsApp', url: whatsappUrl, icon: 'fa-whatsapp', network: 'whatsapp' },
+      { name: 'YouTube', url: socialLinks.youtubeUrl, icon: 'fa-youtube', network: 'youtube' },
+      { name: 'Facebook', url: socialLinks.facebookUrl, icon: 'fa-facebook-f', network: 'facebook' }
+    ];
+    const bar = document.createElement('nav');
+    bar.className = 'floating-social-bar';
+    bar.setAttribute('aria-label', 'वाकीभ सोशल मीडिया');
+
+    items.forEach(({ name, url, icon, network }) => {
+      const link = document.createElement('a');
+      link.className = `floating-social-link floating-social-${network}`;
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', name);
+      link.innerHTML = `<span class="floating-social-tooltip" aria-hidden="true">${name}</span><i class="fab ${icon}" aria-hidden="true"></i>`;
+      bar.appendChild(link);
+    });
+
+    currentWhatsApp?.remove();
+    document.body.appendChild(bar);
+  };
+  initFloatingSocialBar();
 
   // --- Standardize Header Across All Pages ---
   const getRelativeSitePrefix = () => {
@@ -64,9 +281,9 @@
   };
 
   const sitePrefix = getRelativeSitePrefix();
-  const standardHomePath = `${sitePrefix}index.html`;
-  const standardLogoSrc = `${sitePrefix}Vakibh/vaakibh_logo.svg`;
-  const standardContactPath = `${sitePrefix}contact/index.html`;
+  const standardHomePath = '/';
+  const standardLogoSrc = '/Vakibh/vaakibh_logo.svg';
+  const standardContactPath = '/contact/';
 
   const standardizeHeader = () => {
     let header = document.querySelector('body > header');
@@ -113,13 +330,15 @@
   const logoSrc = logoImg ? logoImg.getAttribute('src') : 'Vakibh/vaakibh_logo.svg';
   const mediaBasePath = logoSrc.replace(/vaakibh_logo\.svg(?:\?.*)?$/, '');
   const siteBasePath = homePath.replace(/index\.html(?:#.*)?$/, '');
-  const sharedVeenaSrc = `${mediaBasePath}veena.svg`;
-  const sharedWhatsappSrc = `${mediaBasePath}whatsapp_icon.svg`;
+  const sharedVeenaSrc = `${siteBasePath}assets/veena.svg`;
+  const sharedWhatsappSrc = `${siteBasePath}assets/whatsapp_icon.svg`;
   const whatsappMessage = encodeURIComponent('\u0928\u092e\u0938\u094d\u0915\u093e\u0930, \u092e\u0932\u093e \u0935\u093e\u0915\u0940\u092d \u0935\u093f\u0937\u092f\u0940 \u092e\u093e\u0939\u093f\u0924\u0940 \u0939\u0935\u0940 \u0906\u0939\u0947.');
   const sharedWhatsappHref = `https://wa.me/919923916476?text=${whatsappMessage}`;
-  const blogPath = homePath.replace(/index\.html(?:#.*)?$/, 'blog/index.html');
-  const contactPath = homePath.replace(/index\.html(?:#.*)?$/, 'contact/index.html');
-  const assetBasePath = mediaBasePath.replace(/Vakibh\/?$/, 'assests/');
+  const blogPath = '/blog/';
+  const contactPath = '/contact/';
+  // Shared page assets live in the public `assests` directory.  This base is
+  // also used by the dynamically-created breadcrumb hero backgrounds.
+  const assetBasePath = `${siteBasePath}assests/`;
 
   // --- Premium Inner Page Breadcrumb Hero ---
   const createInnerBreadcrumbHero = () => {
@@ -153,14 +372,18 @@
       dnyaneshwar: '\u0938\u0902\u0924 \u091C\u094D\u091E\u093E\u0928\u0947\u0936\u094D\u0935\u0930 \u092E\u0939\u093E\u0930\u093E\u091C',
       namdev: '\u0938\u0902\u0924 \u0928\u093E\u092E\u0926\u0947\u0935 \u092E\u0939\u093E\u0930\u093E\u091C',
       eknath: '\u0938\u0902\u0924 \u090F\u0915\u0928\u093E\u0925 \u092E\u0939\u093E\u0930\u093E\u091C',
-      muktabai: '\u0938\u0902\u0924 \u0938\u094B\u092A\u093E\u0928\u0926\u0947\u0935',
-      janabai: '\u0938\u0902\u0924 \u091C\u0928\u093E\u092C\u093E\u0908',
-      sopandev: '\u0938\u0902\u0924 \u0938\u094B\u092A\u093E\u0928\u0926\u0947\u0935',
-      nivruttinath: '\u0938\u0902\u0924 \u0928\u093F\u0935\u0943\u0924\u094D\u0924\u093F\u0928\u093E\u0925',
+      muktabai: '\u0938\u0902\u0924 \u092E\u0941\u0915\u094D\u0924\u093E\u092C\u093E\u0908 \u092E\u0939\u093E\u0930\u093E\u091C',
+      janabai: '\u0938\u0902\u0924 \u091C\u0928\u093E\u092C\u093E\u0908 \u092E\u0939\u093E\u0930\u093E\u091C',
+      sopandev: '\u0938\u0902\u0924 \u0938\u094B\u092A\u093E\u0928\u0926\u0947\u0935 \u092E\u0939\u093E\u0930\u093E\u091C',
+      nivruttinath: '\u0938\u0902\u0924 \u0928\u093F\u0935\u0943\u0924\u094D\u0924\u093F\u0928\u093E\u0925 \u092E\u0939\u093E\u0930\u093E\u091C',
       chokhamela: '\u0938\u0902\u0924 \u091A\u094B\u0916\u093E\u092E\u0947\u0933\u093E \u092E\u0939\u093E\u0930\u093E\u091C',
-      savata: '\u0938\u0902\u0924 \u0938\u093E\u0935\u0924\u093E \u092E\u093E\u0933\u0940',
-      gora: '\u0938\u0902\u0924 \u0917\u094B\u0930\u093E \u0915\u0941\u0902\u092D\u093E\u0930',
-      narhari: '\u0938\u0902\u0924 \u0928\u0930\u0939\u0930\u0940 \u0938\u094B\u0928\u093E\u0930'
+      'savata-mali': '\u0938\u0902\u0924 \u0938\u093E\u0935\u0924\u093E \u092E\u093E\u0933\u0940 \u092E\u0939\u093E\u0930\u093E\u091C',
+      'gora-kumbhar': '\u0938\u0902\u0924 \u0917\u094B\u0930\u093E \u0915\u0941\u0902\u092D\u093E\u0930 \u092E\u0939\u093E\u0930\u093E\u091C',
+      'narhari-sonar': '\u0938\u0902\u0924 \u0928\u0930\u0939\u0930\u0940 \u0938\u094B\u0928\u093E\u0930 \u092E\u0939\u093E\u0930\u093E\u091C',
+      nilobaray: '\u0938\u0902\u0924 \u0928\u093F\u0933\u094B\u092C\u093E\u0930\u093E\u092F \u092E\u0939\u093E\u0930\u093E\u091C',
+      rohidas: '\u0938\u0902\u0924 \u0930\u094B\u0939\u093F\u0926\u093E\u0938 \u092E\u0939\u093E\u0930\u093E\u091C',
+      'santaji-jagnade': '\u0938\u0902\u0924 \u0938\u0902\u0924\u093E\u091C\u0940 \u091C\u0917\u0928\u093E\u0921\u0947 \u092E\u0939\u093E\u0930\u093E\u091C',
+      'visoba-khechar': '\u0938\u0902\u0924 \u0935\u093F\u0938\u094B\u092C\u093E \u0916\u0947\u091A\u0930 \u092E\u0939\u093E\u0930\u093E\u091C'
     };
 
     const segments = path.split('/').filter(Boolean);
@@ -215,6 +438,9 @@
           ? `${saintNames[saintSlug] || '\u0938\u0902\u0924'} - ${slugTitle(pageSlug)}`
           : (saintNames[saintSlug] || '\u0938\u0902\u0924');
       }
+      if (pageSlug === saintSlug && saintNames[saintSlug]) {
+        title = saintNames[saintSlug];
+      }
     } else if (!isReadableMarathi(title)) {
       title = pageSlug ? slugTitle(pageSlug) : '\u0935\u093E\u0915\u0940\u092D';
     }
@@ -246,10 +472,10 @@
     hero.innerHTML = `
       <div class="inner-breadcrumb-overlay" style="position:absolute;inset:0;z-index:0;background:linear-gradient(90deg, rgba(36,59,90,.84) 0%, rgba(36,59,90,.58) 45%, rgba(16,22,32,.58) 100%), rgba(0,0,0,.55);"></div>
       <div class="inner-breadcrumb-pattern" aria-hidden="true"></div>
-      <span class="devotional-float devotional-float-taal" aria-hidden="true"><img src="/assests/breadcrumb-harmonium.svg" alt=""></span>
-      <span class="devotional-float devotional-float-mridang" aria-hidden="true"><img src="/assests/breadcrumb-tabla.svg" alt=""></span>
-      <span class="devotional-float devotional-float-tulsi" aria-hidden="true"><i class="fas fa-leaf"></i></span>
-      <span class="devotional-float devotional-float-veena" aria-hidden="true"><img src="/assests/breadcrumb-veena.svg" alt=""></span>
+      <span class="devotional-float devotional-float-taal" aria-hidden="true"><img src="${assetBasePath}harmonium.png" alt=""></span>
+      <span class="devotional-float devotional-float-mridang" aria-hidden="true"><img src="${assetBasePath}mrudang.png" alt=""></span>
+      <span class="devotional-float devotional-float-tulsi" aria-hidden="true"><img src="${assetBasePath}tal.png" alt=""></span>
+      <span class="devotional-float devotional-float-veena" aria-hidden="true"><img src="${assetBasePath}veena.png" alt=""></span>
       <div class="inner-breadcrumb-content" style="position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;">
         <span class="inner-breadcrumb-eyebrow">${eyebrow}</span>
         <h1>${title}</h1>
@@ -290,11 +516,6 @@
   };
 
   standardizeAbhangRangeSelectors();
-  const socialProfiles = {
-    facebook: 'https://www.facebook.com/vaakibh',
-    instagram:
-      'https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr'
-  };
   let footer = document.querySelector('footer');
 
   if (!footer) {
@@ -318,9 +539,11 @@
           \u0938\u0902\u0924 \u0938\u093E\u0939\u093F\u0924\u094D\u092F, \u0905\u092D\u0902\u0917, \u0913\u0935\u094D\u092F\u093E \u0906\u0923\u093F \u0917\u094D\u0930\u0902\u0925\u093E\u0902\u091A\u093E \u0938\u092E\u0943\u0926\u094D\u0927 \u092E\u0930\u093E\u0920\u0940 \u0938\u0902\u0917\u094D\u0930\u0939.
           \u0935\u093E\u0930\u0915\u0930\u0940 \u092A\u0930\u0902\u092A\u0930\u0947\u091A\u0947 \u091C\u0924\u0928, \u0938\u0902\u0935\u0930\u094D\u0927\u0928 \u0906\u0923\u093F \u092A\u094D\u0930\u0938\u093E\u0930 \u0939\u093E \u0906\u092E\u091A\u093E \u092A\u094D\u0930\u092F\u0924\u094D\u0928.
         </p>
-        <div class="footer-socials">
-          <a href="${socialProfiles.facebook}" class="social-link" aria-label="\u092B\u0947\u0938\u092C\u0941\u0915" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-          <a href="${socialProfiles.instagram}" class="social-link" aria-label="\u0907\u0928\u094D\u0938\u094D\u091F\u093E\u0917\u094D\u0930\u093E\u092E" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <div class="footer-socials" aria-label="\u0935\u093E\u0915\u0940\u092D \u0938\u094B\u0936\u0932 \u092E\u0940\u0921\u093F\u092F\u093E">
+          <a href="${socialLinks.instagramUrl}" class="floating-social-link floating-social-instagram footer-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="${sharedWhatsappHref}" class="floating-social-link floating-social-whatsapp footer-social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          <a href="${socialLinks.youtubeUrl}" class="floating-social-link floating-social-youtube footer-social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+          <a href="${socialLinks.facebookUrl}" class="floating-social-link floating-social-facebook footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
         </div>
       </div>
 
@@ -338,10 +561,8 @@
 
       <div class="footer-links footer-blog-links">
         <h4>\u092C\u094D\u0932\u0949\u0917</h4>
-        <ul>
-          <li><a href="${blogPath.replace('index.html', 'namasmaran-mahatva/index.html')}">\u0928\u093E\u092E\u0938\u094D\u092E\u0930\u0923\u093E\u091A\u0947 \u092E\u0939\u0924\u094D\u0924\u094D\u0935</a></li>
-          <li><a href="${blogPath.replace('index.html', 'abhang-vachan-man-sthir/index.html')}">\u0905\u092D\u0902\u0917 \u0935\u093E\u091A\u0928\u093E\u0928\u0947 \u092E\u0928 \u0938\u094D\u0925\u093F\u0930 \u0915\u0938\u0947 \u0939\u094B\u0924\u0947</a></li>
-          <li><a href="${blogPath.replace('index.html', 'digital-sant-sahitya-jatan/index.html')}">\u0921\u093F\u091C\u093F\u091F\u0932 \u0938\u0902\u0924 \u0938\u093E\u0939\u093F\u0924\u094D\u092F \u091C\u0924\u0928 \u0915\u093E \u092E\u0939\u0924\u094D\u0924\u094D\u0935\u093E\u091A\u0947 \u0906\u0939\u0947</a></li>
+        <ul data-footer-recent-blogs>
+          <li><a href="${blogPath}">\u0928\u0935\u0940\u0928 \u0932\u0947\u0916 \u092A\u0939\u093E</a></li>
         </ul>
       </div>
 
@@ -362,30 +583,48 @@
       </button>
     </div>
   `;
+  const populateRecentFooterBlogs = async () => {
+    const list = footer.querySelector('[data-footer-recent-blogs]');
+    if (!list) return;
+
+    try {
+      let source = document;
+      if (!document.querySelector('.blog-grid .blog-card')) {
+        const response = await fetch('/blog/', { credentials: 'same-origin' });
+        if (!response.ok) return;
+        source = new DOMParser().parseFromString(await response.text(), 'text/html');
+      }
+
+      const recentPosts = Array.from(source.querySelectorAll('.blog-grid .blog-card'))
+        .slice(0, 3)
+        .map((card) => {
+          const link = card.querySelector('.arrival-title a[href]');
+          const href = link?.getAttribute('href');
+          return link && href
+            ? { title: link.textContent.trim(), href: new URL(href, `${window.location.origin}/blog/`).href }
+            : null;
+        })
+        .filter(Boolean);
+      if (!recentPosts.length) return;
+
+      list.textContent = '';
+      recentPosts.forEach(({ title, href }) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = title;
+        item.appendChild(link);
+        list.appendChild(item);
+      });
+    } catch (_) {
+      // Keep the link to the blog listing if the static page cannot be fetched.
+    }
+  };
+  populateRecentFooterBlogs();
+
   const ensureFloatingWhatsapp = () => {
-    let floatingWhatsapp = document.querySelector('.floating-whatsapp');
-
-    if (!floatingWhatsapp) {
-      floatingWhatsapp = document.createElement('a');
-      floatingWhatsapp.className = 'floating-whatsapp';
-      document.body.appendChild(floatingWhatsapp);
-    }
-
-    floatingWhatsapp.href = sharedWhatsappHref;
-    floatingWhatsapp.target = '_blank';
-    floatingWhatsapp.rel = 'noopener noreferrer';
-    floatingWhatsapp.setAttribute('aria-label', '\u0935\u094d\u0939\u0949\u091f\u094d\u0938\u0905\u0945\u092a \u0935\u0930 \u0938\u0902\u092a\u0930\u094d\u0915 \u0915\u0930\u093e');
-
-    let whatsappImg = floatingWhatsapp.querySelector('img');
-    if (!whatsappImg) {
-      whatsappImg = document.createElement('img');
-      floatingWhatsapp.textContent = '';
-      floatingWhatsapp.appendChild(whatsappImg);
-    }
-    whatsappImg.src = sharedWhatsappSrc;
-    whatsappImg.alt = '\u0935\u094d\u0939\u0949\u091f\u094d\u0938\u0905\u0945\u092a';
-
-    return floatingWhatsapp;
+    document.querySelectorAll('a.floating-whatsapp').forEach((link) => link.remove());
+    return document.querySelector('.floating-social-bar');
   };
 
   const floatingWhatsapp = ensureFloatingWhatsapp();
@@ -396,7 +635,13 @@
     floatingVeena.type = 'button';
     floatingVeena.className = 'floating-veena';
     floatingVeena.setAttribute('aria-label', 'Play music');
-    floatingVeena.innerHTML = `<img src="${sharedVeenaSrc}" alt="Veena">`;
+    floatingVeena.title = 'Play Veena Music';
+    floatingVeena.innerHTML = `
+      <img src="${sharedVeenaSrc}" alt="Veena">
+      <span class="veena-status-icon" aria-hidden="true">
+        <i class="fas fa-volume-up"></i>
+      </span>
+    `;
 
     if (floatingWhatsapp?.parentNode) {
       floatingWhatsapp.parentNode.insertBefore(floatingVeena, floatingWhatsapp);
@@ -409,31 +654,327 @@
       veenaImg.src = sharedVeenaSrc;
       veenaImg.alt = 'Veena';
     }
+    if (!floatingVeena.querySelector('.veena-status-icon')) {
+      const status = document.createElement('span');
+      status.className = 'veena-status-icon';
+      status.setAttribute('aria-hidden', 'true');
+      status.innerHTML = '<i class="fas fa-volume-up"></i>';
+      floatingVeena.appendChild(status);
+    }
   }
 
-  const devotionalAudio = new Audio(`${mediaBasePath}vaakibh_audio.mp3`);
-  devotionalAudio.loop = true;
-  devotionalAudio.preload = 'auto';
-  const updateVeenaState = () => {
-    floatingVeena.classList.toggle('is-playing', !devotionalAudio.paused);
-    floatingVeena.setAttribute('aria-pressed', devotionalAudio.paused ? 'false' : 'true');
-    floatingVeena.setAttribute('aria-label', devotionalAudio.paused ? 'Play music' : 'Pause music');
+  const AUDIO_STORAGE_KEYS = {
+    currentTime: 'vaakibhAudioTime',
+    isPlaying: 'vaakibhAudioPlaying',
+    volume: 'vaakibhAudioVolume',
+    source: 'vaakibhAudioSource'
   };
+  const savedAudioTime = Number(localStorage.getItem(AUDIO_STORAGE_KEYS.currentTime) || 0);
+  const savedAudioSource = localStorage.getItem(AUDIO_STORAGE_KEYS.source) || '';
+  const savedAudioVolumeValue = localStorage.getItem(AUDIO_STORAGE_KEYS.volume);
+  const savedAudioVolume = savedAudioVolumeValue === null ? 0.35 : Number(savedAudioVolumeValue);
+  const hasSavedAudioVolume = savedAudioVolumeValue !== null && Number.isFinite(savedAudioVolume) && savedAudioVolume > 0;
+  const devotionalAudio = new Audio();
+  let activeAudioConfig = null;
+  let shouldRestoreSavedTime = false;
+  devotionalAudio.loop = false;
+  devotionalAudio.preload = 'metadata';
+  devotionalAudio.volume = Number.isFinite(savedAudioVolume) && savedAudioVolume > 0
+    ? Math.min(1, Math.max(0, savedAudioVolume))
+    : 0.35;
+  devotionalAudio.muted = false;
+  devotionalAudio.autoplay = false;
+
+  const restoreSavedAudioTime = () => {
+    if (shouldRestoreSavedTime && Number.isFinite(savedAudioTime) && savedAudioTime > 0) {
+      const maximumTime = Number.isFinite(devotionalAudio.duration)
+        ? Math.max(0, devotionalAudio.duration - 0.25)
+        : savedAudioTime;
+      devotionalAudio.currentTime = Math.min(savedAudioTime, maximumTime);
+    }
+  };
+  devotionalAudio.addEventListener('loadedmetadata', restoreSavedAudioTime, { once: true });
+
+  let lastAudioSaveAt = 0;
+  const saveAudioState = () => {
+    localStorage.setItem(AUDIO_STORAGE_KEYS.currentTime, String(devotionalAudio.currentTime || 0));
+    localStorage.setItem(AUDIO_STORAGE_KEYS.isPlaying, String(!devotionalAudio.paused));
+    localStorage.setItem(AUDIO_STORAGE_KEYS.volume, String(devotionalAudio.volume));
+    if (activeAudioConfig?.fileUrl) {
+      localStorage.setItem(AUDIO_STORAGE_KEYS.source, activeAudioConfig.fileUrl);
+    }
+  };
+  devotionalAudio.addEventListener('timeupdate', () => {
+    const now = Date.now();
+    if (now - lastAudioSaveAt < 1000) return;
+    lastAudioSaveAt = now;
+    saveAudioState();
+  });
+  devotionalAudio.addEventListener('volumechange', saveAudioState);
+  window.addEventListener('pagehide', saveAudioState);
+
+  const statusIcon = floatingVeena.querySelector('.veena-status-icon i');
+  const statusBadge = floatingVeena.querySelector('.veena-status-icon');
+  const updateVeenaState = () => {
+    const isPlaying = !devotionalAudio.paused && !devotionalAudio.muted;
+    floatingVeena.classList.toggle('is-playing', isPlaying);
+    statusBadge?.classList.toggle('speaker-blinking', isPlaying);
+    floatingVeena.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+    floatingVeena.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
+    floatingVeena.title = isPlaying ? 'Pause Veena Music' : 'Play Veena Music';
+
+    if (statusIcon) {
+      statusIcon.className = isPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+    }
+  };
+
+  let autoplayWasBlocked = false;
+  const startAudioAutomatically = async () => {
+    if (!activeAudioConfig?.fileUrl || !devotionalAudio.src || !devotionalAudio.paused) return;
+    devotionalAudio.muted = false;
+    try {
+      await devotionalAudio.play();
+      autoplayWasBlocked = false;
+    } catch (error) {
+      // Audible autoplay is blocked by default in some Chrome/Edge sessions.
+      // The first user gesture below resumes playback without an error toast.
+      autoplayWasBlocked = error?.name === 'NotAllowedError';
+      if (!autoplayWasBlocked) console.error('[Vaakibh audio] Autoplay failed.', error);
+      updateVeenaState();
+    }
+  };
+
+  const resumeBlockedAutoplay = () => {
+    if (!autoplayWasBlocked) return;
+    startAudioAutomatically();
+  };
+  document.addEventListener('pointerdown', resumeBlockedAutoplay, { capture: true });
+  document.addEventListener('keydown', resumeBlockedAutoplay, { capture: true });
+
+  const loadActiveWebsiteAudio = async () => {
+    try {
+      const response = await fetch('/api/audio/active', {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store'
+      });
+      if (!response.ok) throw new Error(`Active audio request failed with ${response.status}`);
+      const config = await response.json();
+      if (!config.fileUrl || typeof config.fileUrl !== 'string') {
+        throw new Error('The active audio response has no valid file URL.');
+      }
+
+      activeAudioConfig = config;
+      shouldRestoreSavedTime = savedAudioSource === config.fileUrl;
+      devotionalAudio.src = new URL(config.fileUrl, window.location.origin).href;
+      devotionalAudio.loop = config.loop !== false;
+      if (!hasSavedAudioVolume) {
+        const configuredVolume = Number(config.volume);
+        devotionalAudio.volume = Number.isFinite(configuredVolume)
+          ? Math.min(1, Math.max(0.05, configuredVolume))
+          : 0.35;
+      }
+      devotionalAudio.load();
+      floatingVeena.dataset.audioReady = 'true';
+      floatingVeena.title = `Play ${config.title || 'Veena Music'}`;
+      updateVeenaState();
+      await startAudioAutomatically();
+    } catch (error) {
+      activeAudioConfig = null;
+      floatingVeena.dataset.audioReady = 'false';
+      console.error('[Vaakibh audio] Could not load active audio configuration.', error);
+      updateVeenaState();
+    }
+  };
+
+  loadActiveWebsiteAudio();
+
+  statusBadge?.setAttribute('role', 'button');
+  statusBadge?.setAttribute('aria-label', 'Mute or unmute Veena music');
+  statusBadge?.setAttribute('tabindex', '0');
+  const toggleAudioMute = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    devotionalAudio.muted = !devotionalAudio.muted;
+    if (!devotionalAudio.muted && devotionalAudio.paused && activeAudioConfig?.fileUrl) {
+      try { await devotionalAudio.play(); } catch (error) { console.error('[Vaakibh audio] Unmute playback failed.', error); }
+    }
+    updateVeenaState();
+  };
+  statusBadge?.addEventListener('click', toggleAudioMute);
+  statusBadge?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') toggleAudioMute(event);
+  });
+
   floatingVeena.addEventListener('click', async () => {
+    console.debug('[Vaakibh audio]', {
+      src: devotionalAudio.src,
+      paused: devotionalAudio.paused,
+      readyState: devotionalAudio.readyState
+    });
+
+    if (!activeAudioConfig?.fileUrl || !devotionalAudio.src) {
+      console.error('[Vaakibh audio] No active audio is ready.');
+      showToast('Audio is still loading or no active audio is configured.');
+      updateVeenaState();
+      return;
+    }
+
     try {
       if (devotionalAudio.paused) {
         await devotionalAudio.play();
       } else {
         devotionalAudio.pause();
       }
-      updateVeenaState();
     } catch (error) {
+      console.error('[Vaakibh audio] Playback failed.', {
+        error,
+        src: devotionalAudio.src,
+        readyState: devotionalAudio.readyState,
+        mediaError: devotionalAudio.error
+      });
       showToast('Audio could not start. Please try again.');
+      updateVeenaState();
     }
   });
+
   devotionalAudio.addEventListener('pause', updateVeenaState);
   devotionalAudio.addEventListener('play', updateVeenaState);
+  devotionalAudio.addEventListener('ended', updateVeenaState);
+  devotionalAudio.addEventListener('error', () => {
+    console.error('[Vaakibh audio] Unable to load audio.', {
+      src: devotionalAudio.src,
+      readyState: devotionalAudio.readyState,
+      mediaError: devotionalAudio.error
+    });
+    updateVeenaState();
+  });
+  devotionalAudio.addEventListener('pause', saveAudioState);
+  devotionalAudio.addEventListener('play', saveAudioState);
   updateVeenaState();
+
+  // Keep this document (and its single Audio instance) alive during internal navigation.
+  let renderedPageUrl = new URL(window.location.href);
+  const loadDestinationAssets = (nextDocument, targetUrl) => {
+    const loadedStyles = new Set(
+      Array.from(document.querySelectorAll('link[rel="stylesheet"][href]'))
+        .map((link) => new URL(link.href, window.location.href).pathname.toLowerCase())
+    );
+
+    nextDocument.querySelectorAll('link[rel="stylesheet"][href]').forEach((sourceLink) => {
+      const absoluteUrl = new URL(sourceLink.getAttribute('href'), targetUrl);
+      if (loadedStyles.has(absoluteUrl.pathname.toLowerCase())) return;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = absoluteUrl.href;
+      link.dataset.vaakibhPageAsset = 'true';
+      document.head.appendChild(link);
+      loadedStyles.add(absoluteUrl.pathname.toLowerCase());
+    });
+
+    document.querySelectorAll('script[data-vaakibh-page-script]').forEach((script) => script.remove());
+    nextDocument.querySelectorAll('script[src]').forEach((sourceScript) => {
+      const absoluteUrl = new URL(sourceScript.getAttribute('src'), targetUrl);
+      if (absoluteUrl.origin !== window.location.origin) return;
+      if (/\/Vakibh\/js\/main\.js$/i.test(absoluteUrl.pathname)) return;
+
+      const script = document.createElement('script');
+      script.src = absoluteUrl.href;
+      script.async = false;
+      script.dataset.vaakibhPageScript = 'true';
+      document.body.appendChild(script);
+    });
+  };
+
+  const navigateWithoutReload = async (destination, options = {}) => {
+    const targetUrl = new URL(destination, window.location.href);
+
+    if (targetUrl.origin !== renderedPageUrl.origin) return false;
+    if (targetUrl.pathname === renderedPageUrl.pathname && targetUrl.search === renderedPageUrl.search) {
+      if (targetUrl.hash) {
+        document.getElementById(decodeURIComponent(targetUrl.hash.slice(1)))?.scrollIntoView();
+        if (!options.fromPopState) history.pushState({}, '', targetUrl);
+      }
+      return true;
+    }
+
+    document.documentElement.classList.add('is-page-navigating');
+    try {
+      const response = await fetch(targetUrl, { headers: { 'X-Vaakibh-Navigation': 'partial' } });
+      if (!response.ok) throw new Error(`Navigation failed with ${response.status}`);
+
+      const nextDocument = new DOMParser().parseFromString(await response.text(), 'text/html');
+      const currentMain = document.querySelector('main');
+      const nextMain = nextDocument.querySelector('main');
+      if (!currentMain || !nextMain) throw new Error('The destination has no main content element');
+
+      if (!options.fromPopState) history.pushState({}, '', targetUrl);
+      document.querySelector('.inner-breadcrumb-hero')?.remove();
+      document.body.classList.remove('has-inner-breadcrumb');
+      currentMain.replaceWith(document.importNode(nextMain, true));
+      renderedPageUrl = targetUrl;
+      document.title = nextDocument.title || document.title;
+
+      const preservedClasses = ['menu-open'];
+      const nextClasses = Array.from(nextDocument.body.classList);
+      document.body.className = [...new Set([
+        ...nextClasses,
+        ...preservedClasses.filter((name) => document.body.classList.contains(name))
+      ])].join(' ');
+
+      document.querySelector('nav')?.classList.remove('active');
+      const menuIcon = document.querySelector('.menu-toggle i');
+      if (menuIcon) menuIcon.className = 'fas fa-bars';
+
+      createInnerBreadcrumbHero();
+      loadDestinationAssets(nextDocument, targetUrl);
+
+      if (targetUrl.hash) {
+        requestAnimationFrame(() => {
+          document.getElementById(decodeURIComponent(targetUrl.hash.slice(1)))?.scrollIntoView();
+        });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
+
+      document.dispatchEvent(new CustomEvent('vaakibh:navigation', { detail: { url: targetUrl.href } }));
+      return true;
+    } catch (error) {
+      console.warn('Falling back to full-page navigation:', error);
+      saveAudioState();
+      window.location.assign(targetUrl.href);
+      return false;
+    } finally {
+      document.documentElement.classList.remove('is-page-navigating');
+    }
+  };
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target && link.target !== '_self') return;
+    if (link.hasAttribute('download') || link.dataset.noClientNavigation !== undefined) return;
+
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+    const targetUrl = new URL(link.href, window.location.href);
+    if (targetUrl.origin !== window.location.origin || targetUrl.pathname.startsWith('/admin')) return;
+
+    // Sant literature pages are formatted by dedicated one-time initializers
+    // (Charitra, Haripath, Gatha, Aarti, Abhang ranges, Gaulani, etc.). A
+    // partial <main> swap skips those initializers and leaves the destination
+    // with raw/mixed markup. Use a normal document navigation so each content
+    // type restores its established layout and action rows on every visit.
+    if (targetUrl.pathname.startsWith('/sants/')) return;
+
+    event.preventDefault();
+    navigateWithoutReload(targetUrl);
+  });
+
+  window.addEventListener('popstate', () => {
+    navigateWithoutReload(window.location.href, { fromPopState: true });
+  });
 
   // --- Mobile Menu Toggle ---
   const menuToggle = document.querySelector('.menu-toggle');
@@ -852,16 +1393,15 @@
       }
     });
 
+    const footerContactValues = ['vakibhmedia@gmail.com', '9923916476', 'पुणे, महाराष्ट्र'];
     footerContactItems.forEach((item, index) => {
       const icon = item.querySelector('i');
-      const textNode = item.childNodes[item.childNodes.length - 1];
-      const currentText = (textNode?.textContent || '').trim();
-      const value = currentText.replace(/^[^:]+:\s*/, '');
-      if (textNode && languagePack.contactPrefix[index]) {
-        textNode.textContent = ` ${languagePack.contactPrefix[index]}: ${value}`;
-      } else if (!textNode && icon && languagePack.contactPrefix[index]) {
-        item.append(` ${languagePack.contactPrefix[index]}: ${value}`);
-      }
+      const prefix = languagePack.contactPrefix[index];
+      if (!icon || !prefix) return;
+
+      // Rebuild the row as one text node. This prevents the numeral formatter
+      // from leaving an old phone-number span behind on a repeated update.
+      item.replaceChildren(icon, document.createTextNode(` ${prefix}: ${footerContactValues[index]}`));
     });
 
     if (saintsHeading) saintsHeading.textContent = languagePack.saintsHeading;
@@ -955,21 +1495,21 @@
   const getAbhangPostActionsMarkup = () => `
     <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
       <div class="abhang-actions-left">
-        <button class="abhang-btn copy-abhang-btn" aria-label="???? ???? ???">
+        <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा" title="मजकूर कॉपी करा">
           <i class="far fa-copy"></i>
         </button>
         <div class="abhang-share-group">
-          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="??????????? ???? ???">
+          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा" title="व्हॉट्सॲपवर शेअर करा">
             <i class="fab fa-whatsapp"></i>
           </button>
-          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="???????? ???? ???">
+          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा" title="फेसबुकवर शेअर करा">
             <i class="fab fa-facebook-f"></i>
           </button>
-          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="??????????????? ???? ???">
+          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इन्स्टाग्रामवर शेअर करा" title="इन्स्टाग्रामवर शेअर करा">
             <i class="fab fa-instagram"></i>
           </button>
-          <button class="abhang-btn social-share-btn copy-link-share-btn" data-platform="copylink" aria-label="???? ???? ???? ???">
-            <i class="fas fa-link"></i>
+          <button class="abhang-btn social-share-btn native-share-btn" data-platform="native" aria-label="शेअर करा" title="शेअर करा">
+            <i class="fas fa-share-alt"></i>
           </button>
         </div>
       </div>
@@ -979,21 +1519,21 @@
   const getAbhangItemActionsMarkup = (targetId, itemLabel) => `
     <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="${targetId}" data-share-label="${itemLabel}">
       <div class="abhang-actions-left">
-        <button class="abhang-btn copy-abhang-btn" aria-label="????? ???? ???">
+        <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा" title="मजकूर कॉपी करा">
           <i class="far fa-copy"></i>
         </button>
         <div class="abhang-share-group">
-          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="??????????? ???? ???">
+          <button class="abhang-btn social-share-btn whatsapp-share-btn" data-platform="whatsapp" aria-label="व्हॉट्सॲपवर शेअर करा" title="व्हॉट्सॲपवर शेअर करा">
             <i class="fab fa-whatsapp"></i>
           </button>
-          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="???????? ???? ???">
+          <button class="abhang-btn social-share-btn facebook-share-btn" data-platform="facebook" aria-label="फेसबुकवर शेअर करा" title="फेसबुकवर शेअर करा">
             <i class="fab fa-facebook-f"></i>
           </button>
-          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="??????????????? ???? ???">
+          <button class="abhang-btn social-share-btn instagram-share-btn" data-platform="instagram" aria-label="इन्स्टाग्रामवर शेअर करा" title="इन्स्टाग्रामवर शेअर करा">
             <i class="fab fa-instagram"></i>
           </button>
-          <button class="abhang-btn social-share-btn copy-link-share-btn" data-platform="copylink" aria-label="???? ???? ???? ???">
-            <i class="fas fa-link"></i>
+          <button class="abhang-btn social-share-btn native-share-btn" data-platform="native" aria-label="शेअर करा" title="शेअर करा">
+            <i class="fas fa-share-alt"></i>
           </button>
         </div>
       </div>
@@ -1065,6 +1605,17 @@
   };
 
   createAbhangPostActions();
+
+  // Blog share icons belong to the end of the article content, not in a
+  // separate card between the article and feedback form.
+  if (document.body.classList.contains('blog-post-page')) {
+    document.querySelectorAll('.post-article').forEach((post) => {
+      const content = post.querySelector('.post-content');
+      const actions = post.querySelector(':scope > .abhang-post-actions');
+      if (post.querySelector('[data-blog-share]')) actions?.remove();
+      else if (content && actions) content.appendChild(actions);
+    });
+  }
 
   const formatSarthHaripathPage = () => {
     if (!location.pathname.includes('/sants/dnyaneshwar/sarth-haripath/')) return;
@@ -1677,6 +2228,11 @@
       entry.id = `tukaram-aarti-${number}`;
       entry.dataset.abhangItem = 'true';
       entry.dataset.abhangNumber = String(number);
+      entry.style.setProperty('margin-left', 'auto', 'important');
+      entry.style.setProperty('margin-right', 'auto', 'important');
+      entry.style.setProperty('text-align', 'center', 'important');
+      entry.style.setProperty('text-align-last', 'center', 'important');
+      entry.style.setProperty('display', 'block', 'important');
 
       let title = entry.querySelector('.aarti-subtitle');
       if (!title) {
@@ -1685,6 +2241,29 @@
         title.textContent = `श्री तुकारामांची आरती ${number}`;
         entry.prepend(title);
       }
+
+      // Devanagari numerals render visually smaller than the heading glyphs.
+      // Wrap only the Aarti card number so it can be sized independently.
+      if (!title.querySelector('.aarti-heading-number')) {
+        const titleText = title.textContent.trim();
+        const numberMatch = titleText.match(/\s([०-९]+)$/);
+        if (numberMatch) {
+          const numberElement = document.createElement('span');
+          numberElement.className = 'aarti-heading-number';
+          numberElement.textContent = numberMatch[1];
+          title.replaceChildren(
+            document.createTextNode(titleText.slice(0, numberMatch.index + 1)),
+            numberElement
+          );
+        }
+      }
+
+      entry.querySelectorAll('.aarti-stanza, .aarti-line, p').forEach((node) => {
+        node.style.setProperty('margin-left', 'auto', 'important');
+        node.style.setProperty('margin-right', 'auto', 'important');
+        node.style.setProperty('text-align', 'center', 'important');
+        node.style.setProperty('text-align-last', 'center', 'important');
+      });
 
       entry.insertAdjacentHTML(
         'beforeend',
@@ -1816,7 +2395,7 @@
 
       const title = document.createElement('h2');
       title.className = 'virani-card-title';
-      title.textContent = normalizeText(startNode.textContent || `विराणी ${number}`);
+      title.textContent = `विरहिणी ${toMarathiDigits(number)}`;
       card.appendChild(title);
 
       let node = startNode.nextElementSibling;
@@ -3260,6 +3839,22 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       const text = normalizeText(paragraph.textContent || '');
       if (!text) return;
 
+      // The source was transcribed from scanned PDF pages. Remove printed
+      // running headers (page number + book name + "प्रकरण") that OCR mixed
+      // into the literature. Real headings such as "प्रकरण दुसरें" do not
+      // contain the bracket/pipe page-header separators and remain visible.
+      const isPdfRunningHeader =
+        (paragraph.classList.contains('hdr2') || paragraph.classList.contains('hdr3')) &&
+        /प्रकरण/.test(text) &&
+        (
+          /[\[\]|_]/.test(text) ||
+          /(?:अमृत|अगृत|अग्रत|अंगृत|अम्त|अऱृत|अृंत|अमृता|अगरता|अग्ता)/.test(text)
+        );
+      if (isPdfRunningHeader) {
+        paragraph.remove();
+        return;
+      }
+
       paragraph.style.setProperty('text-align', 'center', 'important');
       paragraph.style.setProperty('text-align-last', 'center', 'important');
       paragraph.querySelectorAll('*').forEach((child) => {
@@ -3283,6 +3878,72 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   };
 
   formatAmrutanubhavPage();
+  const enforceAmrutanubhavVerseWeight = () => {
+    if (!document.body.classList.contains('amrutanubhav-page')) return;
+    document.querySelectorAll('.amrutanubhav-verse').forEach((verseNode) => {
+      verseNode.style.setProperty('font-weight', '700', 'important');
+      verseNode.style.setProperty('font-synthesis', 'none', 'important');
+    });
+  };
+  const observeAmrutanubhavVerseWeight = () => {
+    if (!document.body.classList.contains('amrutanubhav-page')) return;
+    const readingCard = document.querySelector('.amrutanubhav-reading-card');
+    if (!readingCard || readingCard.dataset.verseWeightObserved === 'true') return;
+    readingCard.dataset.verseWeightObserved = 'true';
+
+    const refreshVerseWeight = () => {
+      enforceAmrutanubhavVerseWeight();
+    };
+
+    refreshVerseWeight();
+    [0, 100, 500, 1500, 4000].forEach((delay) => window.setTimeout(refreshVerseWeight, delay));
+
+    const verseObserver = new MutationObserver(() => {
+      refreshVerseWeight();
+    });
+
+    verseObserver.observe(readingCard, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true
+    });
+  };
+
+  const removeObviousOcrArtifacts = () => {
+    const candidates = document.querySelectorAll([
+      '.post-content p',
+      '.entry-content p',
+      '.amrutanubhav-verse',
+      '.abhang-line',
+      '.ovi-line',
+      '.literature-line'
+    ].join(','));
+
+    candidates.forEach((element) => {
+      const text = normalizeText(element.textContent || '');
+      if (!text) return;
+
+      const hasScanSeparator = /_{5,}/.test(text);
+      const characters = Array.from(text);
+      const devanagariCount = characters.filter((character) => /[\u0900-\u097F]/.test(character)).length;
+      const devanagariRatio = characters.length ? devanagariCount / characters.length : 0;
+      const hasWhitespace = /\s/.test(text);
+      const repeatedPairs = (text.match(/(.)\1/gu) || []).length;
+      const hasLongRepeat = /(.)\1{2,}/u.test(text);
+      const isRepeatedOcrString =
+        characters.length >= 40 &&
+        !hasWhitespace &&
+        devanagariRatio >= 0.82 &&
+        (hasLongRepeat || repeatedPairs >= 3);
+
+      if (hasScanSeparator || isRepeatedOcrString) {
+        element.remove();
+      }
+    });
+  };
+
+  removeObviousOcrArtifacts();
   const formatChangdevPasashtiPage = () => {
     const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
     if (!path.includes('/sants/dnyaneshwar/changdev-pasashti/')) return;
@@ -3324,6 +3985,18 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   };
 
   formatChangdevPasashtiPage();
+  const enforceChangdevVerseWeight = () => {
+    if (!document.body.classList.contains('changdev-pasashti-page')) return;
+    document.querySelectorAll('.changdev-ovi-line').forEach((verseNode) => {
+      verseNode.style.setProperty('font-weight', '700', 'important');
+      verseNode.style.setProperty('font-synthesis', 'none', 'important');
+      verseNode.querySelectorAll('b, strong').forEach((child) => {
+        child.style.setProperty('font-weight', '700', 'important');
+      });
+    });
+  };
+  enforceChangdevVerseWeight();
+  [0, 100, 500, 1500, 4000].forEach((delay) => window.setTimeout(enforceChangdevVerseWeight, delay));
   const formatDnyaneshwarPasaydanPage = () => {
     const path = window.location.pathname.replace(/\\/g, '/').toLowerCase();
     if (!path.includes('/sants/dnyaneshwar/pasaydan/')) return;
@@ -3644,6 +4317,13 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
   const getPageShareUrl = () => window.location.href.split('#')[0];
 
+  const getShortShareExcerpt = (value, maxLength = 320) => {
+    const text = normalizeText(value).replace(/\s+/g, ' ');
+    if (text.length <= maxLength) return text;
+    const boundary = text.lastIndexOf(' ', maxLength - 1);
+    return `${text.slice(0, boundary > 80 ? boundary : maxLength).trim()}…`;
+  };
+
   const getPostVerseText = (scope) => {
     const verseStrongNodes = Array.from(scope.querySelectorAll('.abhang-verse p strong'));
     const verseLines = verseStrongNodes
@@ -3683,7 +4363,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       scope?.querySelector('.post-title')?.innerText ||
       '?????'
     );
-    const body = normalizeText(
+    const body = getShortShareExcerpt(
       shareTarget?.innerText ||
       scope?.querySelector('.abhang-content')?.innerText ||
       scope?.querySelector('.arrival-excerpt')?.innerText ||
@@ -3705,7 +4385,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       : (scope?.classList?.contains('abhang-post') || scope?.classList?.contains('post-article'))
       ? getPageShareUrl()
       : `${getPageShareUrl()}#abhangs`;
-    const formattedText = [title, author, body, '?????', pageUrl]
+    const formattedText = [title, author, body, pageUrl]
       .filter(Boolean)
       .join('\n\n');
 
@@ -3730,7 +4410,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
       const copied = await copyTextToClipboard(shareData.formattedText);
       if (copied) {
-        showToast('???? ????????? ???? ????.');
+        showToast('कॉपी झाले!');
         const icon = btn.querySelector('i');
         if (icon) {
           icon.className = 'fas fa-check';
@@ -3741,7 +4421,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
           }, 2000);
         }
       } else {
-        showToast('???? ???? ??? ????. ????? ?????? ??????? ???.');
+        showToast('कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
       }
     });
   });
@@ -3766,9 +4446,9 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   });
 
   // --- Abhang Social Share Buttons ---
-  const shareBtns = document.querySelectorAll('.social-share-btn');
-  shareBtns.forEach(btn => {
-    btn.addEventListener('click', async () => {
+  document.addEventListener('click', async (event) => {
+      const btn = event.target.closest('.social-share-btn');
+      if (!btn) return;
       const scope = resolveShareScope(btn);
       if (!scope) return;
 
@@ -3781,27 +4461,52 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       }
 
       if (platform === 'facebook') {
-        const facebookQuote = [shareData.title, shareData.author, shareData.body]
-          .filter(Boolean)
-          .join('\n\n');
         window.open(
-          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.pageUrl)}&quote=${encodeURIComponent(facebookQuote)}`,
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.pageUrl)}`,
           '_blank',
-          'noopener'
+          'noopener,noreferrer'
         );
         return;
       }
 
       if (platform === 'instagram') {
-        const copied = await copyTextToClipboard(shareData.formattedText);
-        if (copied) {
-          showToast('??????????????? ????? ???? ????.');
-        } else {
-          showToast('??????????? ????? ???? ????? ????? ???.');
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: shareData.title,
+              text: [shareData.author, shareData.body].filter(Boolean).join('\n\n'),
+              url: shareData.pageUrl
+            });
+            return;
+          } catch (error) {
+            if (error?.name === 'AbortError') return;
+          }
         }
-        window.open('https://www.instagram.com/', '_blank', 'noopener');
+
+        const copied = await copyTextToClipboard(shareData.formattedText);
+        showToast(copied
+          ? 'लिंक कॉपी झाले. Instagram वर शेअर करा.'
+          : 'लिंक कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
+        return;
       }
-    });
+
+      if (platform === 'native') {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: shareData.title,
+              text: [shareData.author, shareData.body].filter(Boolean).join('\n\n'),
+              url: shareData.pageUrl
+            });
+            return;
+          } catch (error) {
+            if (error?.name === 'AbortError') return;
+          }
+        }
+
+        const copied = await copyTextToClipboard(shareData.formattedText);
+        showToast(copied ? 'कॉपी झाले!' : 'कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
+      }
   });
 
 
@@ -4197,10 +4902,19 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
 
   document.querySelectorAll('.abhang-share-group').forEach((group) => {
-    if (group.querySelector('.copy-link-share-btn')) return;
+    const legacyCopyLinkButton = group.querySelector('.copy-link-share-btn');
+    if (legacyCopyLinkButton) {
+      legacyCopyLinkButton.classList.replace('copy-link-share-btn', 'native-share-btn');
+      legacyCopyLinkButton.dataset.platform = 'native';
+      legacyCopyLinkButton.setAttribute('aria-label', 'शेअर करा');
+      legacyCopyLinkButton.setAttribute('title', 'शेअर करा');
+      legacyCopyLinkButton.innerHTML = '<i class="fas fa-share-alt"></i>';
+      return;
+    }
+    if (group.querySelector('.native-share-btn')) return;
     group.insertAdjacentHTML('beforeend', `
-      <button class="abhang-btn social-share-btn copy-link-share-btn" data-platform="copylink" aria-label="लिंक कॉपी करा">
-        <i class="fas fa-link"></i>
+      <button class="abhang-btn social-share-btn native-share-btn" data-platform="native" aria-label="शेअर करा" title="शेअर करा">
+        <i class="fas fa-share-alt"></i>
       </button>
     `);
   });
@@ -4544,11 +5258,13 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       const readingNodes = [root, ...root.querySelectorAll('*')];
       readingNodes.forEach((node) => {
         if (!(node instanceof HTMLElement) || node.matches(skipSelector)) return;
+        if (document.body.classList.contains('amrutanubhav-page') && node.closest('.amrutanubhav-verse')) return;
+        if (document.body.classList.contains('changdev-pasashti-page') && node.closest('.changdev-ovi-line')) return;
         node.style.setProperty('font-weight', '300', 'important');
         node.style.setProperty('font-synthesis', 'none', 'important');
         node.style.setProperty(
           'font-family',
-          'Hind, sans-serif',
+          "'Vakibh Devanagari Digits', Hind, sans-serif",
           'important'
         );
       });
@@ -4701,7 +5417,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
         left.originalIndex - right.originalIndex
       )
       .forEach(({ card }, index) => {
-        const label = `लेख ${index + 1}`;
+        const label = `लेख ${cards.length - index}`;
         const dateLabel = card.querySelector('.arrival-date');
         const shareFooter = card.querySelector('[data-share-label]');
         if (dateLabel) dateLabel.textContent = label;
@@ -4718,6 +5434,8 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   wrapDevotionalVerseEndings();
   removeDuplicateAbhangOpeningNumbers();
   enforceNormalReadingWeight();
+  enforceAmrutanubhavVerseWeight();
+  observeAmrutanubhavVerseWeight();
   sortBlogCardsNewestFirst();
   libraryInitSearchBars();
   libraryInitSearchPage();});

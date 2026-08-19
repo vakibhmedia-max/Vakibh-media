@@ -3,6 +3,7 @@ const { getPool } = require('./db');
 const { seedStaticBlogPosts } = require('./blogs');
 const { syncStaticBlogPages } = require('./blogs');
 const { assignDefaultCategoriesToImportedPosts, seedDefaultCategories } = require('./categories');
+const { seedDefaultAudioTrack } = require('./audio-tracks');
 
 const TABLE_STATEMENTS = [
   `CREATE TABLE IF NOT EXISTS admin_users (
@@ -116,6 +117,64 @@ const TABLE_STATEMENTS = [
       FOREIGN KEY (post_id) REFERENCES blog_posts(id)
       ON DELETE SET NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
+  ,
+  `CREATE TABLE IF NOT EXISTS blog_slug_redirects (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    post_id INT UNSIGNED NOT NULL,
+    old_slug VARCHAR(255) NOT NULL,
+    new_slug VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_blog_slug_redirects_old_slug (old_slug),
+    KEY idx_blog_slug_redirects_post (post_id),
+    CONSTRAINT fk_blog_slug_redirects_post FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS feedback_replies (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    feedback_id INT UNSIGNED NOT NULL,
+    post_id INT UNSIGNED NOT NULL,
+    post_slug VARCHAR(255) NOT NULL,
+    author_name VARCHAR(120) NOT NULL,
+    author_mobile VARCHAR(20) NOT NULL,
+    author_email VARCHAR(191) NOT NULL,
+    reply_text TEXT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    ip_address VARCHAR(64) DEFAULT NULL,
+    user_agent VARCHAR(500) DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_feedback_replies_feedback_status (feedback_id, status, created_at),
+    KEY idx_feedback_replies_status_created (status, created_at),
+    CONSTRAINT fk_feedback_replies_feedback
+      FOREIGN KEY (feedback_id) REFERENCES blog_comments(id)
+      ON DELETE CASCADE,
+    CONSTRAINT fk_feedback_replies_post
+      FOREIGN KEY (post_id) REFERENCES blog_posts(id)
+      ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
+  ,
+  `CREATE TABLE IF NOT EXISTS audio_tracks (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title VARCHAR(180) NOT NULL,
+    description VARCHAR(1000) DEFAULT NULL,
+    file_url VARCHAR(500) NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    file_size BIGINT UNSIGNED NOT NULL DEFAULT 0,
+    mime_type VARCHAR(120) NOT NULL,
+    is_active TINYINT(1) NOT NULL DEFAULT 0,
+    default_volume DECIMAL(4,3) NOT NULL DEFAULT 0.350,
+    loop_enabled TINYINT(1) NOT NULL DEFAULT 1,
+    uploaded_by INT UNSIGNED DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_audio_tracks_active_updated (is_active, updated_at),
+    KEY idx_audio_tracks_uploaded_by (uploaded_by),
+    CONSTRAINT fk_audio_tracks_uploaded_by
+      FOREIGN KEY (uploaded_by) REFERENCES admin_users(id)
+      ON DELETE SET NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
 ];
 
 async function ensureSchema() {
@@ -184,6 +243,30 @@ async function ensureBlogCategoryDefault() {
     "ALTER TABLE blog_posts MODIFY category VARCHAR(120) NOT NULL DEFAULT 'संत साहित्य'"
   );
 }
+
+async function ensureBlogCommentContactColumns() {
+  const pool = getPool();
+  const columns = [
+    { name: 'author_mobile', sql: 'ADD COLUMN author_mobile VARCHAR(20) DEFAULT NULL AFTER author_contact' },
+    { name: 'author_email', sql: 'ADD COLUMN author_email VARCHAR(191) DEFAULT NULL AFTER author_mobile' }
+  ];
+  for (const column of columns) {
+    const [rows] = await pool.query(
+      `SELECT COUNT(*) AS total FROM information_schema.columns
+       WHERE table_schema = DATABASE() AND table_name = 'blog_comments' AND column_name = ?`,
+      [column.name]
+    );
+    if (Number(rows[0]?.total || 0) === 0) await pool.query(`ALTER TABLE blog_comments ${column.sql}`);
+  }
+}
+
+async function enableDirectReplyPublishing() {
+  const pool = getPool();
+  await pool.query(
+    "ALTER TABLE feedback_replies MODIFY status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'approved'"
+  );
+  await pool.query("UPDATE feedback_replies SET status = 'approved' WHERE status = 'pending'");
+}
 async function seedDefaultAdmin() {
   const pool = getPool();
   const [rows] = await pool.query('SELECT COUNT(*) AS total FROM admin_users');
@@ -206,7 +289,10 @@ async function bootstrapDatabase() {
   await ensureBlogPostProtectionColumn();
   await ensureBlogPostImportColumns();
   await ensureBlogCategoryDefault();
+  await ensureBlogCommentContactColumns();
+  await enableDirectReplyPublishing();
   await seedDefaultAdmin();
+  await seedDefaultAudioTrack();
   await seedDefaultCategories();
   await assignDefaultCategoriesToImportedPosts();
 

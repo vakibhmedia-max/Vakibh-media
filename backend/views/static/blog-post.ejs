@@ -31,6 +31,8 @@
       <%- post.content_html %>
     </div>
 
+    <section class="blog-share-section" data-blog-share data-share-title="<%= post.title %>" data-share-excerpt="<%= post.excerpt || post.meta_description || '' %>"><h2>हा लेख शेअर करा</h2><div class="blog-share-actions"><button type="button" class="blog-share-button whatsapp" data-share-platform="whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button><button type="button" class="blog-share-button facebook" data-share-platform="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></button><button type="button" class="blog-share-button instagram" data-share-platform="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></button><button type="button" class="blog-share-button copy-link" data-share-platform="copy"><i class="far fa-copy"></i><span>Copy Link</span></button></div><p class="blog-share-status" data-blog-share-status aria-live="polite"></p></section>
+
     <section class="blog-feedback-section" data-blog-feedback data-post-slug="<%= post.slug %>" style="margin-top: 34px; border-top: 1px solid #f0d5ab; padding-top: 28px;">
       <div style="background: #fffaf3; border: 1px solid #f0d5ab; border-radius: 18px; padding: 24px; box-shadow: 0 10px 24px rgba(160, 32, 32, 0.06);">
         <h2 style="margin: 0 0 8px; color: #a02020; font-size: 1.45rem;">अभिप्राय</h2>
@@ -88,7 +90,7 @@
             .then(function (result) {
               if (!result.ok || !result.data.ok) throw new Error(result.data.message || 'अभिप्राय पाठवता आला नाही.');
               form.reset();
-              status.textContent = 'धन्यवाद. तुमचा अभिप्राय approval नंतर दिसेल.';
+              status.textContent = 'धन्यवाद!';
             })
             .catch(function (error) {
               status.textContent = error.message || 'अभिप्राय पाठवता आला नाही.';

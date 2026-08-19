@@ -10,7 +10,7 @@
   <nav class="sant-breadcrumb" aria-label="Breadcrumb">
     <a href="/index.html">गृहपृष्ठ</a>
     <span class="bc-sep"> &rsaquo; </span>
-    <a href="/blog/index.html">ब्लॉग</a>
+    <a href="/blog/">ब्लॉग</a>
     <span class="bc-sep"> &rsaquo; </span>
     <span><%= post.title %></span>
   </nav>
@@ -32,6 +32,8 @@
       <div class="post-content blog-post-content">
         <%- post.content_html %>
       </div>
+
+      <section class="blog-share-section" data-blog-share data-share-title="<%= post.title %>" data-share-excerpt="<%= post.excerpt || post.meta_description || '' %>"><h2>हा लेख शेअर करा</h2><div class="blog-share-actions"><button type="button" class="blog-share-button whatsapp" data-share-platform="whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button><button type="button" class="blog-share-button facebook" data-share-platform="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></button><button type="button" class="blog-share-button instagram" data-share-platform="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></button><button type="button" class="blog-share-button copy-link" data-share-platform="copy"><i class="far fa-copy"></i><span>Copy Link</span></button></div><p class="blog-share-status" data-blog-share-status aria-live="polite"></p></section>
 
       <div class="abhang-post-actions abhang-card-footer" data-share-scope="post">
         <div class="abhang-actions-left">
@@ -109,7 +111,7 @@
               .then(function (result) {
                 if (!result.ok || !result.data.ok) throw new Error(result.data.message || 'अभिप्राय पाठवता आला नाही.');
                 form.reset();
-                status.textContent = 'धन्यवाद. तुमचा अभिप्राय approval नंतर दिसेल.';
+                status.textContent = 'धन्यवाद!';
               })
               .catch(function (error) {
                 status.textContent = error.message || 'अभिप्राय पाठवता आला नाही.';
@@ -120,7 +122,7 @@
       </script>
 
       <div class="blog-post-footer">
-        <a class="blog-back-link" href="/blog/index.html">
+        <a class="blog-back-link" href="/blog/">
           <i class="fas fa-arrow-left"></i>
           ब्लॉगवर परत
         </a>

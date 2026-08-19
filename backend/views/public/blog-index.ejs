@@ -28,35 +28,20 @@
       <div class="blog-grid">
         <% posts.forEach((post, index) => { %>
           <article class="arrival-card blog-card" id="blog-<%= post.id %>" data-published-at="<%= post.published_at || post.created_at || '' %>">
-            <a class="blog-card-media" href="/blog/<%= post.slug %>/index.html" aria-label="ब्लॉग प्रतिमा">
+            <a class="blog-card-media" href="/blog/<%= post.slug %>/" aria-label="ब्लॉग प्रतिमा">
               <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
             </a>
             <div class="arrival-header">
               <span class="arrival-tag"><%= post.category %></span>
-              <span class="arrival-date">लेख <%= index + 1 %></span>
+              <span class="arrival-date">लेख <%= posts.length - index %></span>
             </div>
             <h2 class="arrival-title">
-              <a href="/blog/<%= post.slug %>/index.html"><%= post.title %></a>
+              <a href="/blog/<%= post.slug %>/"><%= post.title %></a>
             </h2>
             <p class="arrival-author"><%= post.author_name %></p>
             <p class="arrival-excerpt"><%= post.excerpt %></p>
-            <div class="abhang-item-actions abhang-card-footer" data-share-scope="item" data-share-target="blog-<%= post.id %>" data-share-label="लेख <%= index + 1 %>">
-              <div class="abhang-actions-left">
-                <button class="abhang-btn copy-abhang-btn" aria-label="मजकूर कॉपी करा">
-                  <i class="far fa-copy"></i>
-                </button>
-                <div class="abhang-share-group">
-                  <a class="abhang-btn whatsapp-share-btn" href="https://wa.me/919923916476" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅपवर संपर्क करा">
-                    <i class="fab fa-whatsapp"></i>
-                  </a>
-                  <a class="abhang-btn facebook-share-btn" href="https://www.facebook.com/vaakibh" target="_blank" rel="noopener noreferrer" aria-label="फेसबुक पेजला भेट द्या">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a class="abhang-btn instagram-share-btn" href="https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="इंस्टाग्राम प्रोफाइलला भेट द्या">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                </div>
-              </div>
+            <div class="blog-card-read-more-wrap">
+              <a class="blog-card-read-more" href="/blog/<%= post.slug %>/">Read More</a>
             </div>
           </article>
         <% }) %>

@@ -19,6 +19,7 @@ const STATIC_BLOG_INDEX_TEMPLATE = 'static/blog-index.ejs';
 const STATIC_BLOG_POST_TEMPLATE = 'static/blog-post.ejs';
 const STATIC_BLOG_LAYOUT = 'static-blog';
 const IS_VERCEL = process.env.VERCEL === '1';
+const PUBLIC_SITE_URL = String(process.env.PUBLIC_SITE_URL || 'https://vakibh.com').replace(/\/$/, '');
 
 const SANITIZE_OPTIONS = {
   allowedTags: [
@@ -141,7 +142,52 @@ function toStaticAssetUrl(value, depth = 1) {
 
 function toStaticBlogUrl(slug, depth = 1) {
   const prefix = '../'.repeat(Math.max(1, depth));
-  return `${prefix}${slug}/index.html`;
+  return `${prefix}${slug}/`;
+}
+
+function escapeMeta(value) {
+  return String(value || '').replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[character]);
+}
+
+function absolutePublicUrl(value, fallback = '/Vakibh/vaakibh_logo.svg') {
+  const source = String(value || fallback).trim() || fallback;
+  try { return new URL(source, `${PUBLIC_SITE_URL}/`).href; } catch (_) { return `${PUBLIC_SITE_URL}${fallback}`; }
+}
+
+function socialPreviewImage(value) {
+  const source = String(value || '').trim();
+  if (!source || /^https?:\/\//i.test(source) || !/\.webp(?:[?#]|$)/i.test(source)) return source;
+
+  const cleanSource = source.replace(/[?#].*$/, '');
+  const jpegSource = cleanSource.replace(/\.webp$/i, '-social-preview.jpg');
+  const relativePath = jpegSource.replace(/^(?:(?:\.\.\/|\.\/|\/))+/, '');
+  return fs.existsSync(path.join(SITE_ROOT, relativePath)) ? jpegSource : source;
+}
+
+function blogMetaHead(post) {
+  const title = escapeMeta(post.meta_title || post.title);
+  const description = escapeMeta((post.meta_description || post.excerpt || htmlPreviewText(post.content_html, 155)).slice(0, 160));
+  const cleanUrl = `${PUBLIC_SITE_URL}/blog/${encodeURIComponent(post.slug)}/`;
+  const previewImage = socialPreviewImage(post.featured_image);
+  const imageUrl = absolutePublicUrl(previewImage);
+  const imageType = /\.jpe?g(?:[?#]|$)/i.test(previewImage) ? 'image/jpeg' : 'image/webp';
+  return `<link rel="canonical" href="${cleanUrl}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="${title}">
+  <meta property="og:description" content="${description}">
+  <meta property="og:image" content="${escapeMeta(imageUrl)}">
+  <meta property="og:image:secure_url" content="${escapeMeta(imageUrl)}">
+  <meta property="og:image:type" content="${imageType}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="${cleanUrl}">
+  <meta property="og:site_name" content="वाकीभ">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${title}">
+  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:image" content="${escapeMeta(imageUrl)}">`;
 }
 
 async function writeHtmlFile(filePath, html) {
@@ -223,7 +269,8 @@ async function renderStaticBlogPosts(posts) {
             public_url: toStaticBlogUrl(post.slug, 2)
           },
           siteRootHref: '../..',
-          blogIndexHref: '../index.html',
+          blogIndexHref: '../',
+          extraHead: blogMetaHead(post),
           bodyClass: 'blog-post-page',
           bodyStyle: 'background-color: #fcfaf5; color: #333;'
         },
@@ -308,7 +355,7 @@ function normalizeRow(row) {
     is_protected: Number(row.is_protected || 0) === 1,
     created_at: row.created_at,
     updated_at: row.updated_at,
-    public_url: `/blog/${row.slug}/index.html`
+    public_url: `/blog/${row.slug}/`
   };
 }
 
@@ -602,6 +649,16 @@ async function updateBlogPost(id, input) {
     ]
   );
 
+  if (uniqueSlug !== existingPost.slug) {
+    await pool.query(
+      `INSERT INTO blog_slug_redirects (post_id, old_slug, new_slug)
+       VALUES (?, ?, ?)
+       ON DUPLICATE KEY UPDATE post_id = VALUES(post_id), new_slug = VALUES(new_slug)`,
+      [id, existingPost.slug, uniqueSlug]
+    );
+    await pool.query('UPDATE blog_slug_redirects SET new_slug = ? WHERE new_slug = ?', [uniqueSlug, existingPost.slug]);
+  }
+
   if (payload.featured_image !== existingPost.featured_image) {
     deleteManagedUpload(existingPost.featured_image);
   }
@@ -609,6 +666,12 @@ async function updateBlogPost(id, input) {
   const updatedPost = await getPostById(id);
   await syncStaticBlogPages();
   return updatedPost;
+}
+
+async function getBlogSlugRedirect(oldSlug) {
+  const pool = getPool();
+  const [rows] = await pool.query('SELECT new_slug FROM blog_slug_redirects WHERE old_slug = ? LIMIT 1', [oldSlug]);
+  return rows[0]?.new_slug || '';
 }
 
 async function deleteBlogPost(id) {
@@ -691,6 +754,7 @@ module.exports = {
   getNextSortOrder,
   getPostById,
   getPostByOriginalUrl,
+  getBlogSlugRedirect,
   getPostBySlug,
   getRecentPosts,
   listAllPosts,

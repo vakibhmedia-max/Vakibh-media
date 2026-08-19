@@ -11,6 +11,27 @@ function escapeHtml(value) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+const categories = [
+  { id: 'rupapar', label: 'रूपपर', start: 4401, end: 4404 },
+  { id: 'namapar', label: 'नामपर', start: 4405, end: 4412 },
+  { id: 'kirtanapar', label: 'कीर्तनपर', start: 4413, end: 4413 },
+  { id: 'ekavidh', label: 'एकविध', start: 4414, end: 4415 },
+  { id: 'karunapar', label: 'करुणापर', start: 4416, end: 4416 },
+  { id: 'bhetipar', label: 'भेटीपर', start: 4417, end: 4417 },
+  { id: 'bhupali', label: 'भूपाळी', start: 4418, end: 4418 },
+  { id: 'gaulan', label: 'गौळण', start: 4419, end: 4419 },
+  { id: 'upadeshpar', label: 'उपदेशपर', start: 4420, end: 4420 }
+];
+
+function fromMarathiNumber(value) {
+  return Number(String(value).replace(/[०-९]/g, (digit) => String('०१२३४५६७८९'.indexOf(digit))));
+}
+
+function categoryFor(number) {
+  const numeric = fromMarathiNumber(number);
+  return categories.find((category) => numeric >= category.start && numeric <= category.end);
+}
+
 function cleanPage(text, page) {
   let lines = text.replace(/\r/g, '').split('\n').map((line) => line.replace(/[ \t]+/g, ' ').trim());
   if (page === 661) {
@@ -58,16 +79,28 @@ if (groups.length !== 20) throw new Error(`Expected 20 abhangs but detected ${gr
 
 const toMarathiNumber = (value) => String(value).replace(/\d/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
 
-const groupHtml = groups.map(({ number, text }, index) => {
+const preparedGroups = groups.map(({ number, text }, index) => {
   const cleaned = text
-    .replace(/\n([^\n]+पर[ः:]?--?)\n/g, '\n\n$1\n')
+    .replace(/\n(?:रूपपर|नामपर|कीर्तनपर|कर्तिलपर|एकविध|पकविघ|करुणापर|भेटीपर|भूपाळी|गौळण|उपदेशपर)[^\n]*/gu, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   const firstLine = cleaned.split('\n').find(Boolean) || `अभंग ${number}`;
   const title = firstLine.split('।')[0].trim().replace(/[|॥]+$/g, '').trim();
   const displayNumber = toMarathiNumber(index + 1);
+  const category = categoryFor(number);
+  if (!category) throw new Error(`Category was not found for abhang ${number}.`);
+  return { number, cleaned, title, displayNumber, category };
+});
+
+const categoryButtons = categories.map((category, index) => {
+  const count = preparedGroups.filter((group) => group.category.id === category.id).length;
+  return `          <button type="button" class="puravni-index-button${index === 0 ? ' is-active' : ''}" data-category="${category.id}" aria-pressed="${index === 0 ? 'true' : 'false'}">` +
+    `<span>${category.label}</span><small>${toMarathiNumber(count)} अभंग</small></button>`;
+}).join('\n');
+
+const groupHtml = preparedGroups.map(({ number, cleaned, title, displayNumber, category }) => {
   const shareUrl = `location.href.split('#')[0] + '#puravni-${number}'`;
-  return `        <section class="puravni-abhang-group" aria-labelledby="puravni-${number}">\n` +
+  return `        <section class="puravni-abhang-group" data-category="${category.id}" aria-labelledby="puravni-${number}" hidden>\n` +
     `          <span class="puravni-abhang-tag">अभंग ${displayNumber}</span>\n` +
     `          <h2 id="puravni-${number}">${escapeHtml(title)}</h2>\n` +
     `          <p>${escapeHtml(cleaned)}</p>\n` +
@@ -82,6 +115,11 @@ const groupHtml = groups.map(({ number, text }, index) => {
 }).join('\n');
 
 const fragment = `${startMarker}\n` +
+  `      <div class="puravni-browser">\n` +
+  `        <section class="puravni-index-panel" aria-label="अभंग विषय">\n` +
+  `          <div class="puravni-index-grid">\n${categoryButtons}\n          </div>\n` +
+  `        </section>\n` +
+  `      </div>\n` +
   `      <div class="puravni-text-content">\n` +
   `${groupHtml}\n` +
   `      </div>\n` +
