@@ -849,7 +849,7 @@ section {
 .saint-img-wrap {
   width: 140px;
   height: 140px;
-  border-radius: 50%;
+  border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1.2rem;
   border: 3px solid var(--border-color);
@@ -863,43 +863,13 @@ section {
 }
 
 .saint-img-wrap img {
-  width: 100%;
-  height: 100%;
+  width: 122%;
+  height: 122%;
   object-fit: cover;
+  border-radius: 12px;
+  object-position: center 34%;
+  transform: none;
   transition: var(--transition);
-}
-
-.specific-sant-square-card .specific-sant-square-wrapper {
-  border-radius: 12px !important;
-  overflow: hidden;
-  background: #f7f0e8;
-  display: block;
-  border: 1px solid #d8d0c4 !important;
-}
-
-.specific-sant-square-card .specific-sant-square-image {
-  width: 118% !important;
-  height: 118% !important;
-  display: block;
-  border-radius: 12px !important;
-  object-fit: cover !important;
-  object-position: center 34% !important;
-  transform: none !important;
-  transform-origin: center 20% !important;
-  transition: none;
-}
-
-.specific-sant-square-card:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08) !important;
-  border-color: #d8d0c4 !important;
-}
-
-.specific-sant-square-card:hover .specific-sant-square-image,
-.specific-sant-square-card:hover .specific-sant-square-wrapper,
-.specific-sant-square-card:hover .saint-img-wrap {
-  transform: none !important;
-  box-shadow: none !important;
 }
 
 .saint-name {
