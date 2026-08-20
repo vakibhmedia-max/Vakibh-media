@@ -1839,7 +1839,7 @@ body.blog-post-page .post-content {
     display: block;
   }
 
-  nav {
+  body > header nav {
     position: absolute;
     top: 100%;
     left: 0;
@@ -1852,11 +1852,11 @@ body.blog-post-page .post-content {
     transition: max-height 0.4s ease-in-out;
   }
 
-  nav.active {
+  body > header nav.active {
     max-height: 400px;
   }
 
-  nav ul {
+  body > header nav ul {
     flex-direction: column;
     padding: 1.5rem;
     gap: 1.2rem;
@@ -3395,6 +3395,9 @@ body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  /* Do not inherit the collapsed mobile header-nav state. */
+  max-height: none;
+  overflow: visible;
 }
 
 .floating-social-link {
@@ -3455,6 +3458,8 @@ body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    max-height: none;
+    overflow: visible;
     gap: 8px;
   }
   .floating-social-link { width: 42px; height: 42px; }
