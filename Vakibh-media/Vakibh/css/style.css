@@ -3389,7 +3389,8 @@ body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
   position: fixed;
   right: 20px;
   bottom: 92px;
-  z-index: 900;
+  /* Keep the actions above mobile page controls and transformed content. */
+  z-index: 1200;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3446,8 +3447,17 @@ body *:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) {
 .floating-social-link:focus-visible .floating-social-tooltip { opacity: 1; transform: translate(0, -50%); }
 
 @media (max-width: 768px) {
-  .floating-social-bar { right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); gap: 8px; }
-  .floating-social-link { width: 38px; height: 38px; }
+  .floating-social-bar {
+    right: 12px;
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    z-index: 1200;
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    gap: 8px;
+  }
+  .floating-social-link { width: 42px; height: 42px; }
   .floating-social-link i { font-size: 1.08rem; }
   .floating-social-tooltip { display: none; }
 }
