@@ -55,6 +55,16 @@
       box-shadow: 0 16px 34px rgba(165, 93, 18, 0.14);
     }
 
+    /* Keep every Nivruttinath abhang centred inside its reading card. */
+    body.natache-abhang-page .abhang-content-block .abhang-readable-verses,
+    body.natache-abhang-page .abhang-content-block .abhang-readable-verses .abhang-verse,
+    body.natache-abhang-page .abhang-content-block .abhang-readable-verses .abhang-verse > div,
+    body.natache-abhang-page .abhang-content-block .abhang-readable-verses p,
+    body.natache-abhang-page .abhang-content-block .abhang-readable-verses span {
+      text-align: center !important;
+      text-align-last: center !important;
+    }
+
     @media (max-width: 1100px) {
       .sahitya-links-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }

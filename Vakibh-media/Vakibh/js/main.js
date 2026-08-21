@@ -38,6 +38,35 @@
     });
   };
   removeUnwantedTranslationSections();
+
+  const normalizeMarathiNumberSpacing = () => {
+    const marathiLetter = '[\\u0900-\\u0939\\u0958-\\u0961]';
+    const letterBeforeNumber = new RegExp(`(${marathiLetter})(?=[०-९0-9])`, 'g');
+    const numberBeforeLetter = new RegExp(`([०-९0-9])(?=${marathiLetter})`, 'g');
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      if (node.parentElement?.closest('script, style, textarea, input, select, .fa, .fas, .far, .fab')) return;
+      node.nodeValue = node.nodeValue
+        .replace(letterBeforeNumber, '$1 ')
+        .replace(numberBeforeLetter, '$1 ');
+    });
+  };
+  normalizeMarathiNumberSpacing();
+
+  const removeAbhangCollectionBreadcrumbs = () => {
+    document.querySelectorAll('.sant-breadcrumb a').forEach((link) => {
+      const label = (link.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!/अभंग/.test(label)) return;
+
+      const separator = link.nextElementSibling;
+      link.remove();
+      if (separator?.classList.contains('bc-sep')) separator.remove();
+    });
+  };
+  removeAbhangCollectionBreadcrumbs();
   const currentPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
   if (currentPath.includes('/sants/')) {
     document.body.classList.add('is-sant-site-page');
@@ -133,8 +162,17 @@
           span.className = 'marathi-digit-glyph';
           span.textContent = part;
           span.style.setProperty('font-family', "'Vakibh Devanagari Digits', serif", 'important');
-          span.style.setProperty('font-weight', '400', 'important');
-          span.style.setProperty('font-style', 'normal', 'important');
+          span.style.setProperty('font-size', '1em', 'important');
+          span.style.setProperty('line-height', 'inherit', 'important');
+          span.style.setProperty('font-weight', parent.closest('.abhang-range-label') ? '700' : 'inherit', 'important');
+          span.style.setProperty('font-style', 'inherit', 'important');
+          span.style.setProperty('vertical-align', 'baseline', 'important');
+          if (
+            parent.matches('.sahitya-link, .tukaram-link, .dnyaneshwar-link, .remaining-sant-link, .rohidas-link') &&
+            !parent.closest('.abhang-range-label')
+          ) {
+            span.style.setProperty('margin-left', '0.32em', 'important');
+          }
           fragment.appendChild(span);
         });
         node.replaceWith(fragment);
@@ -430,7 +468,7 @@
 
       if (pageSlug.includes('haripath') || pageSlug.includes('abhang') || pageSlug.includes('gatha') || path.includes('abhang')) {
         image = path.includes('/dnyaneshwar/') ? `${assetBasePath}sant/sant-dnyaneshwar-abhang.jpg` : `${assetBasePath}sant/haripath-banner.jpg`;
-        eyebrow = '\u0905\u092D\u0902\u0917 \u0917\u093E\u092F\u0928';
+        eyebrow = '';
       }
 
       if (!isReadableMarathi(title)) {
@@ -447,6 +485,41 @@
 
     if (isAbhangRangePage) {
       title = path.includes('/dnyaneshwar/') ? 'संत ज्ञानेश्वर गाथा' : cleanAbhangRangeTitle(title);
+    }
+
+    const namdevGathaCategorySlugs = new Set([
+      'aatmsukh', 'balkrida-2', 'bhaktwatsalta', 'dhruvcharitra',
+      'dronparw-katha', 'dyaneshwar-samadhi', 'dyaneshwarsamadhi-mahima',
+      'gatha-1-2', 'gatha-1to25', 'gavlan', 'karuna', 'muktabai-samadhi-2',
+      'naammahima', 'naamsankirtan-mahatmya', 'naamdev-charitra',
+      'nivruttinath-samadhi-2', 'pandharimahatmya', 'pouranik-charitra',
+      'rupke', 'santcharitra', 'santmahima', 'shrichangdewanchi-samadhi',
+      'shridyaneshwaranchi-samadhi', 'shrikrushnlila', 'shrirammahatmya',
+      'shivratrmahatmya', 'shukakhyan', 'shrivitthalmahatmya',
+      'sopan-samadhi', 'sudamcharitra', 'tirthawali', 'updesh', 'updesh-2',
+      'vitthache-abhang'
+    ]);
+
+    if (
+      saintSlug === 'namdev' &&
+      (/^संत नामदेव गाथा/.test(title) || namdevGathaCategorySlugs.has(pageSlug))
+    ) {
+      const categoryHeading = document.querySelector('.abhang-post-main .post-title');
+      if (categoryHeading) {
+        const categoryTitle = pageSlug === 'updesh-2'
+          ? 'उपदेश'
+          : categoryHeading.textContent
+            .replace(/^संत नामदेव(?:ांची)?\s+(?:गाथा|अभंग)\s*/u, '')
+            .trim();
+        if (categoryTitle) categoryHeading.textContent = categoryTitle;
+      }
+      title = 'संत नामदेव गाथा';
+    }
+
+    if (saintSlug === 'tukaram' && pageSlug === 'aarti') {
+      const categoryHeading = document.querySelector('.abhang-post-main .post-title');
+      if (categoryHeading) categoryHeading.textContent = 'आरती';
+      title = 'संत तुकाराम महाराज';
     }
 
     if (/\/sants\/tukaram\/gatha-\d+(?:\/|\.html|$)/.test(normalizedPath)) {
@@ -477,7 +550,7 @@
       <span class="devotional-float devotional-float-tulsi" aria-hidden="true"><img src="${assetBasePath}tal.png" alt=""></span>
       <span class="devotional-float devotional-float-veena" aria-hidden="true"><img src="${assetBasePath}veena.png" alt=""></span>
       <div class="inner-breadcrumb-content" style="position:relative;z-index:1;width:min(100%,1120px);margin:0 auto;">
-        <span class="inner-breadcrumb-eyebrow">${eyebrow}</span>
+        ${eyebrow ? `<span class="inner-breadcrumb-eyebrow">${eyebrow}</span>` : ''}
         <h1>${title}</h1>
         <nav class="inner-breadcrumb-nav" aria-label="Breadcrumb">
           <a href="${homePath}">\u092E\u0941\u0916\u094D\u092F\u092A\u0943\u0937\u094D\u0920</a>
@@ -508,6 +581,26 @@
 
       grid.classList.add('abhang-range-selector-grid');
       document.body.classList.add('abhang-range-selector-page');
+
+      rangeLinks.forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        const rangeMatch = href.match(/abhang-(\d+)(?:-to-|-)(\d+)/i);
+        if (!rangeMatch) return;
+
+        const label = document.createElement('span');
+        label.className = 'abhang-range-label';
+        ['अभंग', toMarathiDigits(rangeMatch[1]), 'ते', toMarathiDigits(rangeMatch[2])]
+          .forEach((part) => {
+            const segment = document.createElement('span');
+            segment.textContent = part;
+            label.appendChild(segment);
+          });
+        link.replaceChildren(label);
+        link.dataset.rangeStart = rangeMatch[1];
+        link.dataset.rangeEnd = rangeMatch[2];
+        link.dataset.mrText = `अभंग ${toMarathiDigits(rangeMatch[1])} ते ${toMarathiDigits(rangeMatch[2])}`;
+        link.setAttribute('aria-label', link.dataset.mrText);
+      });
 
       const section = grid.closest('.abhang-grid-section, section, main');
       const heading = section?.querySelector('.abhang-grid-heading, .dnyaneshwar-heading, h2');
@@ -1219,6 +1312,11 @@
   };
 
   const devanagariToEnglishDigits = (value = '') => value.replace(/[०-९]/g, (digit) => '०१२३४५६७८९'.indexOf(digit));
+  const normalizeLabelNumberSpacing = (value = '') => value
+    .replace(/([ऀ-हक़-ॡ])(?=[०-९0-9])/gu, '$1 ')
+    .replace(/([०-९0-9])(?=[ऀ-हक़-ॡ])/gu, '$1 ')
+    .replace(/\s+/g, ' ')
+    .trim();
 
   const englishUiLabel = (value = '') => {
     const clean = value.replace(/\s+/g, ' ').trim();
@@ -1244,8 +1342,28 @@
 
   const restoreOrTranslateUiText = (selector, selectedLanguage) => {
     document.querySelectorAll(selector).forEach((node) => {
-      if (!node.dataset.mrText) node.dataset.mrText = node.textContent.trim();
-      node.textContent = selectedLanguage === 'english' ? englishUiLabel(node.dataset.mrText) : node.dataset.mrText;
+      if (node.dataset.rangeStart && node.dataset.rangeEnd) {
+        const start = node.dataset.rangeStart;
+        const end = node.dataset.rangeEnd;
+        if (selectedLanguage === 'english') {
+          node.textContent = `Abhang ${start} to ${end}`;
+        } else {
+          const label = document.createElement('span');
+          label.className = 'abhang-range-label';
+          ['अभंग', toMarathiDigits(start), 'ते', toMarathiDigits(end)].forEach((part) => {
+            const segment = document.createElement('span');
+            segment.textContent = part;
+            label.appendChild(segment);
+          });
+          node.replaceChildren(label);
+        }
+        return;
+      }
+      if (!node.dataset.mrText) node.dataset.mrText = normalizeLabelNumberSpacing(node.textContent);
+      node.dataset.mrText = normalizeLabelNumberSpacing(node.dataset.mrText);
+      node.textContent = selectedLanguage === 'english'
+        ? englishUiLabel(node.dataset.mrText)
+        : node.dataset.mrText;
     });
   };
 
@@ -1480,9 +1598,13 @@
       textArea.value = text;
       textArea.setAttribute('readonly', '');
       textArea.style.position = 'fixed';
+      textArea.style.top = '0';
+      textArea.style.left = '-9999px';
       textArea.style.opacity = '0';
       document.body.appendChild(textArea);
+      textArea.focus();
       textArea.select();
+      textArea.setSelectionRange(0, textArea.value.length);
       const copied = document.execCommand('copy');
       document.body.removeChild(textArea);
       return copied;
@@ -4398,32 +4520,92 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
     };
   };
 
-  // --- Copy Abhang Content ---
-  const copyBtns = document.querySelectorAll('.copy-abhang-btn');
-  copyBtns.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const scope = resolveShareScope(btn);
-      if (!scope) return;
+  // --- Copy only the complete literature text (never the page URL). ---
+  const getCopyContentText = (button) => {
+    const actions = button.closest('.abhang-item-actions, .abhang-post-actions, .abhang-card-footer');
+    const targetId = actions?.dataset?.shareTarget;
+    const explicitTarget = targetId ? document.getElementById(targetId) : null;
+    const contentRoot = explicitTarget || actions?.closest([
+      '.abhang-content-block',
+      '.abhang-readable-item',
+      '.abhang-card',
+      '.nilobaray-chapter-card',
+      '.haripath-complete-card',
+      '.post-content',
+      '.abhang-post',
+      '.post-article'
+    ].join(', '));
+    if (!contentRoot) return '';
 
-      const shareData = getAbhangShareData(scope);
-      if (!shareData.body) return;
+    const preferredContent = contentRoot.matches([
+      '.abhang-readable-verses',
+      '.abhang-verse',
+      '.devotional-verse-content',
+      '.haripath-readable-verses',
+      '.gatha-content',
+      '.marathi-verse',
+      '.ovi-content',
+      '.verse_style',
+      '.entry-content'
+    ].join(', '))
+      ? contentRoot
+      : contentRoot.querySelector([
+        '.abhang-readable-verses',
+        '.haripath-readable-verses',
+        '.devotional-verse-content',
+        '.abhang-verse',
+        '.gatha-content',
+        '.marathi-verse',
+        '.ovi-content',
+        '.verse_style',
+        '.entry-content'
+      ].join(', '));
 
-      const copied = await copyTextToClipboard(shareData.formattedText);
-      if (copied) {
-        showToast('कॉपी झाले!');
-        const icon = btn.querySelector('i');
-        if (icon) {
-          icon.className = 'fas fa-check';
-          icon.style.color = '#25d366';
-          setTimeout(() => {
-            icon.className = 'far fa-copy';
-            icon.style.color = '';
-          }, 2000);
-        }
-      } else {
-        showToast('कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
+    const copySource = preferredContent || contentRoot;
+    const cleanClone = copySource.cloneNode(true);
+    cleanClone.querySelectorAll([
+      '.abhang-item-actions',
+      '.abhang-post-actions',
+      '.abhang-card-footer',
+      '.share-buttons',
+      'button',
+      'script',
+      'style',
+      '[hidden]'
+    ].join(', ')).forEach((node) => node.remove());
+
+    return normalizeText(cleanClone.innerText || cleanClone.textContent || '')
+      .replace(/\n{3,}/g, '\n\n');
+  };
+
+  document.addEventListener('click', async (event) => {
+    const btn = event.target.closest('.copy-abhang-btn');
+    if (!btn) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    const contentText = getCopyContentText(btn);
+    if (!contentText) {
+      showToast('कॉपी करण्यासाठी मजकूर सापडला नाही.');
+      return;
+    }
+
+    const copied = await copyTextToClipboard(contentText);
+    if (copied) {
+      showToast('मजकूर कॉपी झाला!');
+      const icon = btn.querySelector('i');
+      if (icon) {
+        const originalClass = icon.className;
+        icon.className = 'fas fa-check';
+        icon.style.color = '#25d366';
+        setTimeout(() => {
+          icon.className = originalClass || 'far fa-copy';
+          icon.style.color = '';
+        }, 2000);
       }
-    });
+    } else {
+      showToast('कॉपी करता आली नाही. कृपया पुन्हा प्रयत्न करा.');
+    }
   });
 
   // --- Like Button Toggle ---
@@ -5228,6 +5410,28 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       }
     });
   };
+  const removeStrayLeadingVerseDots = () => {
+    const verseRoots = document.querySelectorAll([
+      '.abhang-readable-verses',
+      '.abhang-verse',
+      '.natache-verse',
+      '.natache-line',
+      '.devotional-verse-content',
+      '.gatha-verse',
+      '.marathi-verse',
+      '.ovi'
+    ].join(', '));
+    const leadingDotPattern = /^(\s*)[.\u00b7\u2022]\s*(?=[\u0900-\u097F])/u;
+
+    verseRoots.forEach((root) => {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.nodeValue) continue;
+        node.nodeValue = node.nodeValue.replace(leadingDotPattern, '$1');
+      }
+    });
+  };
   const enforceNormalReadingWeight = () => {
     const roots = document.querySelectorAll([
       '.abhang-post-main .post-content',
@@ -5251,7 +5455,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'button', 'input', 'select', 'textarea',
       'i', '.fa', '.fas', '.far', '.fab', '.fal', '.fad',
-      '.post-title', '.sant-title'
+      '.post-title', '.sant-title', '.marathi-digit-glyph'
     ].join(', ');
 
     roots.forEach((root) => {
@@ -5433,6 +5637,7 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
   wrapDevotionalVerseEndings();
   removeDuplicateAbhangOpeningNumbers();
+  removeStrayLeadingVerseDots();
   enforceNormalReadingWeight();
   enforceAmrutanubhavVerseWeight();
   observeAmrutanubhavVerseWeight();

@@ -308,8 +308,8 @@ function head({ title, description, depth }) {
   <meta name="description" content="${escapeHtml(description)}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="${prefix}Vakibh/css/style.css?v=43">
-  <link rel="stylesheet" href="${prefix}Vakibh/css/sant.css?v=74">
-  <script src="${prefix}Vakibh/js/main.js?v=62" defer></script>
+  <link rel="stylesheet" href="${prefix}Vakibh/css/sant.css?v=79">
+  <script src="${prefix}Vakibh/js/main.js?v=87" defer></script>
 </head>`;
 }
 
@@ -484,7 +484,6 @@ function abhangDetail({ saintName, saintSlug, collectionLabel, item, index, item
   <nav class="sant-breadcrumb" aria-label="Breadcrumb">
     <a href="../../../../index.html">गृहपृष्ठ</a><span class="bc-sep"> &rsaquo; </span>
     <a href="../../index.html">${escapeHtml(saintName)}</a><span class="bc-sep"> &rsaquo; </span>
-    <a href="../index.html">${escapeHtml(collectionLabel)}</a><span class="bc-sep"> &rsaquo; </span>
     <span>अभंग ${escapeHtml(number)}</span>
   </nav>
   <article class="abhang-post">
@@ -596,7 +595,6 @@ function categoryDetail({ saintName, saintSlug, item, slug }) {
   <nav class="sant-breadcrumb" aria-label="Breadcrumb">
     <a href="../../../../index.html">गृहपृष्ठ</a><span class="bc-sep"> &rsaquo; </span>
     <a href="../../index.html">${escapeHtml(saintName)}</a><span class="bc-sep"> &rsaquo; </span>
-    <a href="../../abhang-gatha/index.html">अभंग गाथा</a><span class="bc-sep"> &rsaquo; </span>
     <span>${escapeHtml(item.title)}</span>
   </nav>
   <article class="abhang-post">
