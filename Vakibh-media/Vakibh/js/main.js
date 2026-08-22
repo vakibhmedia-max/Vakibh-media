@@ -9,6 +9,30 @@
     facebookUrl: 'https://www.facebook.com/vaakibh'
   });
 
+  const initGoogleAnalytics = () => {
+    const measurementId = 'G-B04XVXPJ3M';
+    if (/^\/admin(?:\/|$)/i.test(window.location.pathname)) return;
+    if (document.documentElement.dataset.ga4Initialized === measurementId) return;
+
+    if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${measurementId}"]`)) {
+      const analyticsScript = document.createElement('script');
+      analyticsScript.async = true;
+      analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      analyticsScript.dataset.ga4 = measurementId;
+      document.head.appendChild(analyticsScript);
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId);
+    document.documentElement.dataset.ga4Initialized = measurementId;
+  };
+
+  initGoogleAnalytics();
+
   if (!document.querySelector('script[data-blog-feedback-client]')) {
     const feedbackClient = document.createElement('script');
     feedbackClient.src = '/Vakibh/js/blog-feedback.js?v=4';
