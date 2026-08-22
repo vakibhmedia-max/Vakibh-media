@@ -27,10 +27,13 @@ function clientIp(req) {
 }
 
 async function createInquiry({ name, email, phone, subject, message, req }) {
+  const normalizedPhone = String(phone || '').replace(/[०-९]/g, (digit) =>
+    String('०१२३४५६७८९'.indexOf(digit))
+  );
   const values = {
     name: cleanText(name, 120),
     email: cleanText(email, 191).toLowerCase(),
-    phone: cleanText(phone, 30),
+    phone: cleanText(normalizedPhone, 30),
     subject: cleanText(subject, 255),
     message: cleanText(message, 5000, true)
   };

@@ -356,7 +356,6 @@
         <nav id="navMenu" aria-label="\u092e\u0941\u0916\u094d\u092f \u092e\u0947\u0928\u0942">
           <ul>
             <li><a href="${standardHomePath}">\u092e\u0941\u0916\u092a\u0943\u0937\u094d\u0920</a></li>
-            <li><a href="${standardHomePath}#abhangs">\u0905\u092d\u0902\u0917/\u092d\u091c\u0928</a></li>
             <li><a href="${standardHomePath}#saints">\u0938\u0902\u0924</a></li>
             <li><a href="${standardHomePath}#categories">\u0935\u093f\u092d\u093e\u0917</a></li>
             <li><a href="${standardContactPath}">\u0938\u0902\u092a\u0930\u094d\u0915</a></li>
@@ -765,7 +764,6 @@
         <h4>\u092E\u0947\u0928\u094D\u092F\u0942</h4>
         <ul>
           <li><a href="${homePath}">\u092E\u0941\u0916\u092A\u0943\u0937\u094D\u0920</a></li>
-          <li><a href="${homePath}#abhangs">\u0905\u092D\u0902\u0917/\u092D\u091C\u0928</a></li>
           <li><a href="${homePath}#saints">\u0938\u0902\u0924</a></li>
           <li><a href="${homePath}#categories">\u0935\u093F\u092D\u093E\u0917</a></li>
           <li><a href="${blogPath}">\u092C\u094D\u0932\u0949\u0917</a></li>
@@ -1272,9 +1270,9 @@
     marathi: {
       nav: [
         '\u092E\u0941\u0916\u092A\u0943\u0937\u094D\u0920',
-        '\u0905\u092D\u0902\u0917/\u092D\u091C\u0928',
         '\u0938\u0902\u0924',
-        '\u0935\u093F\u092D\u093E\u0917'
+        '\u0935\u093F\u092D\u093E\u0917',
+        '\u0938\u0902\u092A\u0930\u094D\u0915'
       ],
       searchLabel: '\u0936\u094B\u0927',
       footerMenu: '\u092E\u0947\u0928\u094D\u092F\u0942',
@@ -1283,10 +1281,10 @@
       footerText: '\u0938\u0902\u0924 \u0938\u093E\u0939\u093F\u0924\u094D\u092F, \u0905\u092D\u0902\u0917, \u0913\u0935\u094D\u092F\u093E \u0906\u0923\u093F \u0917\u094D\u0930\u0902\u0925\u093E\u0902\u091A\u093E \u0938\u092E\u0943\u0926\u094D\u0927 \u092E\u0930\u093E\u0920\u0940 \u0938\u0902\u0917\u094D\u0930\u0939. \u0935\u093E\u0930\u0915\u0930\u0940 \u092A\u0930\u0902\u092A\u0930\u0947\u091A\u0947 \u091C\u0924\u0928, \u0938\u0902\u0935\u0930\u094D\u0927\u0928 \u0906\u0923\u093F \u092A\u094D\u0930\u0938\u093E\u0930 \u0939\u093E \u0906\u092E\u091A\u093E \u092A\u094D\u0930\u092F\u0924\u094D\u0928.',
       footerLinks: [
         '\u092E\u0941\u0916\u092A\u0943\u0937\u094D\u0920',
-        '\u0905\u092D\u0902\u0917/\u092D\u091C\u0928',
         '\u0938\u0902\u0924',
         '\u0935\u093F\u092D\u093E\u0917',
-        '\u092C\u094D\u0932\u0949\u0917'
+        '\u092C\u094D\u0932\u0949\u0917',
+        '\u0938\u0902\u092A\u0930\u094D\u0915'
       ],
       footerBlogLinks: [
         '\u0928\u093E\u092E\u0938\u094D\u092E\u0930\u0923\u093E\u091A\u0947 \u092E\u0939\u0924\u094D\u0924\u094D\u0935',
@@ -1343,13 +1341,13 @@
       blogAuthor: '\u0935\u093E\u0915\u0940\u092D \u0938\u0902\u092A\u093E\u0926\u0915',
       selectedToast: '\u092E\u0930\u093E\u0920\u0940 \u092D\u093E\u0937\u093E \u0928\u093F\u0935\u0921\u0932\u0940 \u0906\u0939\u0947.'
     },    english: {
-      nav: ['Home', 'Abhang/Bhajan', 'Saints', 'Categories', 'Contact'],
+      nav: ['Home', 'Saints', 'Categories', 'Contact'],
       searchLabel: 'Search',
       footerMenu: 'Menu',
       footerBlog: 'Blog',
       footerContact: 'Contact',
       footerText: 'A rich Marathi collection of saint literature, abhangs, ovis and sacred texts. Our effort is to preserve, nurture and share the Warkari tradition.',
-      footerLinks: ['Home', 'Abhang/Bhajan', 'Saints', 'Categories', 'Blog', 'Contact'],
+      footerLinks: ['Home', 'Saints', 'Categories', 'Blog', 'Contact'],
       footerBlogLinks: [
         'The Importance of Namasmaran in the Warkari Tradition',
         'How Abhang Reading Steadies the Mind',
@@ -1612,11 +1610,15 @@
     document.documentElement.lang = selectedLanguage === 'english' ? 'en' : 'mr';
     document.body.dataset.language = selectedLanguage;
 
-    const navLinks = Array.from(document.querySelectorAll('#navMenu ul li a')).slice(0, 5);
-    navLinks.forEach((link, index) => {
-      if (languagePack.nav[index]) {
-        link.textContent = languagePack.nav[index];
-      }
+    const navLabels = selectedLanguage === 'english'
+      ? { home: 'Home', saints: 'Saints', categories: 'Categories', contact: 'Contact' }
+      : { home: 'मुख्यपृष्ठ', saints: 'संत', categories: 'विभाग', contact: 'संपर्क' };
+    document.querySelectorAll('#navMenu ul li a').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      if (href.includes('#saints')) link.textContent = navLabels.saints;
+      else if (href.includes('#categories')) link.textContent = navLabels.categories;
+      else if (/\/contact\/?(?:$|[?#])|contact\/index\.html/i.test(href)) link.textContent = navLabels.contact;
+      else link.textContent = navLabels.home;
     });
 
     const searchButton = document.getElementById('searchTrigger');
@@ -1629,7 +1631,7 @@
     const footerBlogHeading = Array.from(document.querySelectorAll('.footer-links h4'))[1];
     const footerContactHeading = document.querySelector('.footer-contact h4');
     const footerBrandText = document.querySelector('.footer-brand p');
-    const footerMenuLinks = Array.from(document.querySelectorAll('.footer-links ul li a')).slice(0, 6);
+    const footerMenuLinks = Array.from(document.querySelectorAll('.footer-links:not(.footer-blog-links) ul li a'));
     const footerBlogLinks = Array.from(document.querySelectorAll('.footer-blog-links ul li a')).slice(0, 3);
     const footerContactItems = Array.from(document.querySelectorAll('.footer-contact-list li'));
     const saintsHeading = document.querySelector('.saints-section .section-title-container h2');
@@ -1646,10 +1648,13 @@
     if (footerContactHeading) footerContactHeading.textContent = languagePack.footerContact;
     if (footerBrandText) footerBrandText.textContent = languagePack.footerText;
 
-    footerMenuLinks.forEach((link, index) => {
-      if (languagePack.footerLinks[index]) {
-        link.textContent = languagePack.footerLinks[index];
-      }
+    footerMenuLinks.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      if (href.includes('#saints')) link.textContent = navLabels.saints;
+      else if (href.includes('#categories')) link.textContent = navLabels.categories;
+      else if (/\/blog\/?(?:$|[?#])|blog\/index\.html/i.test(href)) link.textContent = selectedLanguage === 'english' ? 'Blog' : 'ब्लॉग';
+      else if (/\/contact\/?(?:$|[?#])|contact\/index\.html/i.test(href)) link.textContent = navLabels.contact;
+      else link.textContent = navLabels.home;
     });
 
     footerBlogLinks.forEach((link, index) => {
@@ -1658,7 +1663,11 @@
       }
     });
 
-    const footerContactValues = ['vakibhmedia@gmail.com', '9923916476', 'पुणे, महाराष्ट्र'];
+    const footerContactValues = [
+      'vakibhmedia@gmail.com',
+      '9923916476',
+      selectedLanguage === 'english' ? 'Pune, Maharashtra' : 'पुणे, महाराष्ट्र'
+    ];
     footerContactItems.forEach((item, index) => {
       const icon = item.querySelector('i');
       const prefix = languagePack.contactPrefix[index];
@@ -1668,6 +1677,17 @@
       // from leaving an old phone-number span behind on a repeated update.
       item.replaceChildren(icon, document.createTextNode(` ${prefix}: ${footerContactValues[index]}`));
     });
+
+    const visitorLabels = document.querySelectorAll('[data-footer-visitor-stats] > div > span');
+    if (visitorLabels[0]) visitorLabels[0].textContent = selectedLanguage === 'english' ? 'Total Visitors:' : 'एकूण भेटी:';
+    if (visitorLabels[1]) visitorLabels[1].textContent = selectedLanguage === 'english' ? 'Today Visitors:' : 'आजच्या भेटी:';
+
+    const copyright = document.querySelector('.footer-bottom p');
+    if (copyright) {
+      copyright.innerHTML = selectedLanguage === 'english'
+        ? '&copy; 2026 Vaakibh. All rights reserved. Website designed and developed by <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer">Webakoof</a>.'
+        : '&copy; २०२६ वाकीभ. सर्व हक्क राखीव. संकेतस्थळाची रचना व विकास <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer">वेबकूफ</a>.';
+    }
 
     if (saintsHeading) saintsHeading.textContent = languagePack.saintsHeading;
     if (saintsSubtitle) saintsSubtitle.textContent = languagePack.saintsSubtitle;
@@ -5238,8 +5258,9 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
   };
 
   if (heroVideo) {
+    heroVideo.defaultMuted = true;
     heroVideo.muted = true;
-    heroVideo.volume = 0;
+    heroVideo.volume = 1;
     heroVideo.play().catch(() => {
       heroVideo.setAttribute('controls', 'controls');
     });
@@ -5248,9 +5269,17 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
   heroSoundToggle?.addEventListener('click', async () => {
     if (!heroVideo) return;
-    const shouldUnmute = heroVideo.muted || heroVideo.volume === 0;
-    heroVideo.muted = !shouldUnmute;
-    heroVideo.volume = shouldUnmute ? 1 : 0;
+    const shouldUnmute = heroVideo.muted;
+
+    if (shouldUnmute) {
+      heroVideo.removeAttribute('muted');
+      heroVideo.defaultMuted = false;
+      heroVideo.muted = false;
+      heroVideo.volume = 1;
+    } else {
+      heroVideo.defaultMuted = true;
+      heroVideo.muted = true;
+    }
 
     try {
       await heroVideo.play();

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../Vakibh/css/style.css?v=47">
-  <script src="../Vakibh/js/main.js?v=52" defer></script>
+  <script src="../Vakibh/js/main.js?v=105" defer></script>
   <!-- Vaakibh favicon and normalized SEO metadata -->
   <link rel="icon" type="image/svg+xml" href="/Vakibh/vaakibh_logo.svg">
   <link rel="shortcut icon" href="/Vakibh/vaakibh_logo.svg">
@@ -42,7 +42,6 @@
       <nav id="navMenu" aria-label="&#x092E;&#x0941;&#x0916;&#x094D;&#x092F; &#x092E;&#x0947;&#x0928;&#x0942;">
         <ul>
           <li><a href="../index.html">&#x092E;&#x0941;&#x0916;&#x092A;&#x0943;&#x0937;&#x094D;&#x0920;</a></li>
-          <li><a href="../index.html#abhangs">&#x0905;&#x092D;&#x0902;&#x0917;/&#x092D;&#x091C;&#x0928;</a></li>
           <li><a href="../index.html#saints">&#x0938;&#x0902;&#x0924;</a></li>
           <li><a href="../index.html#categories">&#x0935;&#x093F;&#x092D;&#x093E;&#x0917;</a></li>
           <li><a href="../contact/index.html">&#x0938;&#x0902;&#x092A;&#x0930;&#x094D;&#x0915;</a></li>
@@ -82,7 +81,7 @@
               </a>
               <a class="contact-method" href="https://wa.me/919923916476" target="_blank" rel="noopener noreferrer">
                 <span class="contact-method-icon"><i class="fab fa-whatsapp"></i></span>
-                <span><strong>&#x0935;&#x094D;&#x0939;&#x0949;&#x091F;&#x094D;&#x0938;&#x0905;&#x0945;&#x092A;</strong><em>+91 99239 16476</em></span>
+                <span><strong>व्हाट्सअँप</strong><em>+91 99239 16476</em></span>
               </a>
             </div>
           </section>
@@ -90,7 +89,7 @@
           <section class="contact-panel contact-note-panel" aria-labelledby="contactFormTitle">
             <div class="contact-form-panel" aria-labelledby="contactFormTitle">
           <h2 id="contactFormTitle">&#x0938;&#x0902;&#x0926;&#x0947;&#x0936; &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</h2>
-          <form class="contact-form" id="contactForm" novalidate onsubmit="return false;">
+          <form class="contact-form" id="contactForm">
             <div class="form-field">
               <label for="contactName">&#x0928;&#x093E;&#x0935;</label>
               <input type="text" id="contactName" name="name" autocomplete="name" required>
@@ -155,20 +154,34 @@
         statusBox.hideTimer = window.setTimeout(() => statusBox.classList.remove('success', 'error'), 6000);
       };
       closeButton.onclick = () => statusBox.classList.remove('success', 'error');
+      const requestController = new AbortController();
+      const requestTimeout = window.setTimeout(() => requestController.abort(), 15000);
       try {
         const response = await fetch('/api/contact-inquiries', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          credentials: 'same-origin',
+          signal: requestController.signal
         });
-        const result = await response.json().catch(() => ({}));
+        const responseText = await response.text();
+        let result = {};
+        try {
+          result = responseText ? JSON.parse(responseText) : {};
+        } catch (parseError) {
+          if (!response.ok) throw new Error('सर्व्हरकडून योग्य प्रतिसाद मिळाला नाही. कृपया पुन्हा प्रयत्न करा.');
+        }
         if (!response.ok) throw new Error(result.message || 'संदेश पाठवता आला नाही.');
         form.reset();
         showStatus('success', result.message || 'तुमचा संदेश यशस्वीरित्या पाठवला गेला आहे.');
-        window.scrollTo({ top: scrollPosition, left: window.scrollX, behavior: 'instant' });
+        window.scrollTo({ top: scrollPosition, left: window.scrollX, behavior: 'auto' });
       } catch (error) {
-        showStatus('error', error.message || 'संदेश पाठवता आला नाही. कृपया पुन्हा प्रयत्न करा.');
+        const message = error.name === 'AbortError'
+          ? 'सर्व्हरकडून प्रतिसाद मिळाला नाही. कृपया पुन्हा प्रयत्न करा.'
+          : error.message || 'संदेश पाठवता आला नाही. कृपया पुन्हा प्रयत्न करा.';
+        showStatus('error', message);
       } finally {
+        window.clearTimeout(requestTimeout);
         submitButton.disabled = false;
         submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> पाठवा';
       }

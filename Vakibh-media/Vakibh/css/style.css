@@ -112,6 +112,10 @@ img {
   background-size: contain;
 }
 
+.saints-section .section-title-container::after {
+  display: none;
+}
+
 /* Header & Sticky Navigation */
 body > header {
   background-color: var(--bg-white);
