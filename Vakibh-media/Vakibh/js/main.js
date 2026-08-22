@@ -3,7 +3,7 @@
   window.VakibhText = Object.freeze({ toMarathiDigits });
 
   const socialLinks = Object.freeze({
-    instagramUrl: 'https://www.instagram.com/_vaakibh?igsh=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr',
+    instagramUrl: 'https://www.instagram.com/_vakibh?igsi=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr',
     whatsappUrl: 'https://wa.me/919923916476',
     youtubeUrl: 'https://www.youtube.com/',
     facebookUrl: 'https://www.facebook.com/vaakibh'
@@ -929,12 +929,14 @@
   const AUDIO_STORAGE_KEYS = {
     currentTime: 'vaakibhAudioTime',
     isPlaying: 'vaakibhAudioPlaying',
+    muted: 'vaakibhAudioMuted',
     volume: 'vaakibhAudioVolume',
     source: 'vaakibhAudioSource'
   };
   const savedAudioTime = Number(localStorage.getItem(AUDIO_STORAGE_KEYS.currentTime) || 0);
   const savedAudioSource = localStorage.getItem(AUDIO_STORAGE_KEYS.source) || '';
   const savedAudioVolumeValue = localStorage.getItem(AUDIO_STORAGE_KEYS.volume);
+  const savedAudioMuted = localStorage.getItem(AUDIO_STORAGE_KEYS.muted) === 'true';
   const savedAudioVolume = savedAudioVolumeValue === null ? 0.35 : Number(savedAudioVolumeValue);
   const hasSavedAudioVolume = savedAudioVolumeValue !== null && Number.isFinite(savedAudioVolume) && savedAudioVolume > 0;
   const devotionalAudio = new Audio();
@@ -945,7 +947,7 @@
   devotionalAudio.volume = Number.isFinite(savedAudioVolume) && savedAudioVolume > 0
     ? Math.min(1, Math.max(0, savedAudioVolume))
     : 0.35;
-  devotionalAudio.muted = false;
+  devotionalAudio.muted = savedAudioMuted;
   devotionalAudio.autoplay = false;
 
   const restoreSavedAudioTime = () => {
@@ -962,6 +964,7 @@
   const saveAudioState = () => {
     localStorage.setItem(AUDIO_STORAGE_KEYS.currentTime, String(devotionalAudio.currentTime || 0));
     localStorage.setItem(AUDIO_STORAGE_KEYS.isPlaying, String(!devotionalAudio.paused));
+    localStorage.setItem(AUDIO_STORAGE_KEYS.muted, String(devotionalAudio.muted));
     localStorage.setItem(AUDIO_STORAGE_KEYS.volume, String(devotionalAudio.volume));
     if (activeAudioConfig?.fileUrl) {
       localStorage.setItem(AUDIO_STORAGE_KEYS.source, activeAudioConfig.fileUrl);
@@ -993,8 +996,7 @@
 
   let autoplayWasBlocked = false;
   const startAudioAutomatically = async () => {
-    if (!activeAudioConfig?.fileUrl || !devotionalAudio.src || !devotionalAudio.paused) return;
-    devotionalAudio.muted = false;
+    if (document.hidden || !document.hasFocus() || devotionalAudio.muted || !activeAudioConfig?.fileUrl || !devotionalAudio.src || !devotionalAudio.paused) return;
     try {
       await devotionalAudio.play();
       autoplayWasBlocked = false;
@@ -1058,6 +1060,7 @@
     event.preventDefault();
     event.stopPropagation();
     devotionalAudio.muted = !devotionalAudio.muted;
+    saveAudioState();
     if (!devotionalAudio.muted && devotionalAudio.paused && activeAudioConfig?.fileUrl) {
       try { await devotionalAudio.play(); } catch (error) { console.error('[Vaakibh audio] Unmute playback failed.', error); }
     }
@@ -1113,6 +1116,48 @@
   });
   devotionalAudio.addEventListener('pause', saveAudioState);
   devotionalAudio.addEventListener('play', saveAudioState);
+
+  let resumeAudioWhenVisible = false;
+  const pauseAudioForBackground = () => {
+    if (!devotionalAudio.paused && !devotionalAudio.muted) resumeAudioWhenVisible = true;
+    if (!devotionalAudio.paused) devotionalAudio.pause();
+    saveAudioState();
+    updateVeenaState();
+  };
+  const resumeAudioAfterBackground = async () => {
+    if (document.hidden || !document.hasFocus()) return;
+    const shouldResume = resumeAudioWhenVisible;
+    resumeAudioWhenVisible = false;
+    if (!shouldResume || devotionalAudio.muted || !activeAudioConfig?.fileUrl) return;
+    try {
+      await devotionalAudio.play();
+    } catch (error) {
+      console.error('[Vaakibh audio] Resume after visibility change failed.', error);
+      updateVeenaState();
+    }
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) pauseAudioForBackground();
+    else resumeAudioAfterBackground();
+  });
+  window.addEventListener('blur', pauseAudioForBackground);
+  window.addEventListener('focus', resumeAudioAfterBackground);
+  window.addEventListener('pagehide', pauseAudioForBackground);
+
+  // Some browsers delay visibility events when a whole window is minimized.
+  window.setInterval(() => {
+    if ((document.hidden || !document.hasFocus()) && !devotionalAudio.paused) {
+      pauseAudioForBackground();
+    }
+  }, 500);
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== AUDIO_STORAGE_KEYS.muted) return;
+    devotionalAudio.muted = event.newValue === 'true';
+    if (devotionalAudio.muted && !devotionalAudio.paused) devotionalAudio.pause();
+    updateVeenaState();
+  });
   updateVeenaState();
 
   // Keep this document (and its single Audio instance) alive during internal navigation.
