@@ -792,6 +792,7 @@
           <li><a href="${homePath}#categories">\u0935\u093F\u092D\u093E\u0917</a></li>
           <li><a href="${blogPath}">\u092C\u094D\u0932\u0949\u0917</a></li>
           <li><a href="${contactPath}">\u0938\u0902\u092A\u0930\u094D\u0915</a></li>
+          <li><a href="/sitemap.xml" data-footer-sitemap>\u0938\u093E\u0907\u091F\u092E\u0945\u092A</a></li>
         </ul>
       </div>
 
@@ -1678,6 +1679,7 @@
       else if (href.includes('#categories')) link.textContent = navLabels.categories;
       else if (/\/blog\/?(?:$|[?#])|blog\/index\.html/i.test(href)) link.textContent = selectedLanguage === 'english' ? 'Blog' : 'ब्लॉग';
       else if (/\/contact\/?(?:$|[?#])|contact\/index\.html/i.test(href)) link.textContent = navLabels.contact;
+      else if (/\/sitemap\.xml(?:$|[?#])/i.test(href)) link.textContent = selectedLanguage === 'english' ? 'Sitemap' : 'साइटमॅप';
       else link.textContent = navLabels.home;
     });
 
