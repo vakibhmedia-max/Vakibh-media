@@ -223,7 +223,8 @@ async function renderStaticBlogIndex(posts) {
   <style>
     .blog-card-media {
       width: 100%;
-      height: 220px;
+      height: auto;
+      aspect-ratio: 3 / 2;
       overflow: hidden;
       border-radius: 22px 22px 0 0;
       margin-bottom: 1.2rem;

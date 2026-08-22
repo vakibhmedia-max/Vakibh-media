@@ -25,6 +25,9 @@ function inferBlogCategory(...parts) {
 
 async function seedDefaultCategories() {
   const pool = getPool();
+  const [existing] = await pool.query('SELECT COUNT(*) AS total FROM blog_categories');
+  if (Number(existing[0]?.total || 0) > 0) return;
+
   for (let index = 0; index < DEFAULT_CATEGORIES.length; index += 1) {
     const name = DEFAULT_CATEGORIES[index];
     await pool.query(
@@ -66,7 +69,6 @@ async function deleteCategory(id) {
   const [rows] = await pool.query('SELECT * FROM blog_categories WHERE id = ? LIMIT 1', [id]);
   const category = rows[0];
   if (!category) return false;
-  if (category.is_default) throw new Error('Default category delete करता येणार नाही.');
   const [usage] = await pool.query('SELECT COUNT(*) AS total FROM blog_posts WHERE category = ?', [category.name]);
   if (Number(usage[0]?.total || 0) > 0) throw new Error('ही category blog posts मध्ये वापरली आहे; आधी त्या posts ची category बदला.');
   await pool.query('DELETE FROM blog_categories WHERE id = ?', [id]);

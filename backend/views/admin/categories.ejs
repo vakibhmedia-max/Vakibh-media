@@ -37,16 +37,14 @@
       </section>
 
       <section class="admin-panel">
-        <header class="admin-panel-header"><div><h3>Available Categories</h3><p>Default categories नेहमी उपलब्ध राहतील.</p></div></header>
+        <header class="admin-panel-header"><div><h3>Available Categories</h3><p>वापरात नसलेली कोणतीही category delete करता येईल.</p></div></header>
         <div class="admin-category-list">
           <% categories.forEach((category) => { %>
             <div class="admin-category-item">
               <div><strong><%= category.name %></strong><span><%= category.is_default ? 'Default' : 'Custom' %></span></div>
-              <% if (!category.is_default) { %>
-                <form method="post" action="/admin/categories/<%= category.id %>/delete" onsubmit="return confirm('ही category delete करायची आहे का?');">
-                  <button class="admin-button admin-button-danger admin-button-small" type="submit"><i class="fas fa-trash"></i>Delete</button>
-                </form>
-              <% } %>
+              <form method="post" action="/admin/categories/<%= category.id %>/delete" onsubmit="return confirm('ही category delete करायची आहे का?');">
+                <button class="admin-button admin-button-primary admin-button-small" type="submit"><i class="fas fa-trash"></i>Delete</button>
+              </form>
             </div>
           <% }) %>
         </div>
