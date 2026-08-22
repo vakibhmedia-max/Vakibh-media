@@ -89,7 +89,7 @@
           <section class="contact-panel contact-note-panel" aria-labelledby="contactFormTitle">
             <div class="contact-form-panel" aria-labelledby="contactFormTitle">
           <h2 id="contactFormTitle">&#x0938;&#x0902;&#x0926;&#x0947;&#x0936; &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</h2>
-          <form class="contact-form" id="contactForm" novalidate>
+          <form class="contact-form" id="contactForm" novalidate onsubmit="event.preventDefault(); return false;">
             <div class="form-field">
               <label for="contactName">&#x0928;&#x093E;&#x0935;</label>
               <input type="text" id="contactName" name="name" autocomplete="name" required>
@@ -112,7 +112,7 @@
               <textarea id="contactMessage" name="message" rows="6" required></textarea>
             </div>
             <div class="contact-form-actions">
-              <button class="contact-submit-btn" type="submit"><i class="fas fa-paper-plane"></i> &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</button>
+              <button class="contact-submit-btn" id="contactSubmitButton" type="button"><i class="fas fa-paper-plane"></i> &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</button>
             </div>
             <div class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite" aria-atomic="true">
               <i class="contact-form-status-icon fas fa-circle-check" aria-hidden="true"></i>
@@ -143,15 +143,20 @@
       contactPhone.setCustomValidity('');
     });
 
-    contactForm?.addEventListener('submit', async (event) => {
+    contactForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      document.getElementById('contactSubmitButton')?.click();
+    });
+
+    document.getElementById('contactSubmitButton')?.addEventListener('click', async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      const form = event.currentTarget;
+      const form = contactForm;
       const statusBox = document.getElementById('contactFormStatus');
       const statusText = document.getElementById('contactFormStatusText');
       const statusIcon = statusBox.querySelector('.contact-form-status-icon');
       const closeButton = statusBox.querySelector('.contact-form-status-close');
-      const submitButton = form.querySelector('button[type="submit"]');
+      const submitButton = document.getElementById('contactSubmitButton');
       const phone = contactPhone.value.trim();
       if (phone && !/^[6-9]\d{9}$/.test(phone)) {
         contactPhone.setCustomValidity('कृपया ६ ते ९ ने सुरू होणारा १० अंकी फोन नंबर लिहा.');
