@@ -33,13 +33,13 @@ async function createInquiry({ name, email, phone, subject, message, req }) {
   const values = {
     name: cleanText(name, 120),
     email: cleanText(email, 191).toLowerCase(),
-    phone: cleanText(normalizedPhone, 30),
+    phone: cleanText(normalizedPhone, 10),
     subject: cleanText(subject, 255),
     message: cleanText(message, 5000, true)
   };
   if (values.name.length < 2) throw httpError('कृपया तुमचे पूर्ण नाव लिहा.');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) throw httpError('कृपया वैध ईमेल लिहा.');
-  if (values.phone && !/^[+\d][\d\s()-]{6,24}$/.test(values.phone)) throw httpError('कृपया वैध फोन नंबर लिहा.');
+  if (values.phone && !/^[6-9]\d{9}$/.test(values.phone)) throw httpError('कृपया ६ ते ९ ने सुरू होणारा १० अंकी फोन नंबर लिहा.');
   if (values.subject.length < 3) throw httpError('कृपया विषय लिहा.');
   if (values.message.length < 5) throw httpError('कृपया संपूर्ण संदेश लिहा.');
 

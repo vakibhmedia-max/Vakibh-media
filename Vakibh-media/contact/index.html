@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../Vakibh/css/style.css?v=47">
+  <link rel="stylesheet" href="../Vakibh/css/style.css?v=48">
   <script src="../Vakibh/js/main.js?v=106" defer></script>
   <!-- Vaakibh favicon and normalized SEO metadata -->
   <link rel="icon" type="image/svg+xml" href="/Vakibh/vaakibh_logo.svg">
@@ -89,7 +89,7 @@
           <section class="contact-panel contact-note-panel" aria-labelledby="contactFormTitle">
             <div class="contact-form-panel" aria-labelledby="contactFormTitle">
           <h2 id="contactFormTitle">&#x0938;&#x0902;&#x0926;&#x0947;&#x0936; &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</h2>
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" novalidate>
             <div class="form-field">
               <label for="contactName">&#x0928;&#x093E;&#x0935;</label>
               <input type="text" id="contactName" name="name" autocomplete="name" required>
@@ -100,7 +100,8 @@
             </div>
             <div class="form-field">
               <label for="contactPhone">&#x092B;&#x094B;&#x0928; <span>(&#x0910;&#x091A;&#x094D;&#x091B;&#x093F;&#x0915;)</span></label>
-              <input type="tel" id="contactPhone" name="phone" autocomplete="tel">
+              <input type="tel" id="contactPhone" name="phone" autocomplete="tel" inputmode="numeric" minlength="10" maxlength="10" pattern="[6-9][0-9]{9}" aria-describedby="contactPhoneHint">
+              <small id="contactPhoneHint">फोन नंबर भरल्यास १० अंकी नंबर लिहा.</small>
             </div>
             <div class="form-field form-field-full">
               <label for="contactSubject">&#x0935;&#x093F;&#x0937;&#x092F;</label>
@@ -130,16 +131,34 @@
 
   <footer></footer>
   <script>
-    document.getElementById('contactForm')?.addEventListener('submit', async (event) => {
+    const contactForm = document.getElementById('contactForm');
+    const contactPhone = document.getElementById('contactPhone');
+
+    contactPhone?.addEventListener('input', () => {
+      const marathiDigits = '०१२३४५६७८९';
+      contactPhone.value = contactPhone.value
+        .replace(/[०-९]/g, (digit) => String(marathiDigits.indexOf(digit)))
+        .replace(/\D/g, '')
+        .slice(0, 10);
+      contactPhone.setCustomValidity('');
+    });
+
+    contactForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
+      event.stopPropagation();
       const form = event.currentTarget;
       const statusBox = document.getElementById('contactFormStatus');
       const statusText = document.getElementById('contactFormStatusText');
       const statusIcon = statusBox.querySelector('.contact-form-status-icon');
       const closeButton = statusBox.querySelector('.contact-form-status-close');
       const submitButton = form.querySelector('button[type="submit"]');
+      const phone = contactPhone.value.trim();
+      if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+        contactPhone.setCustomValidity('कृपया ६ ते ९ ने सुरू होणारा १० अंकी फोन नंबर लिहा.');
+      } else {
+        contactPhone.setCustomValidity('');
+      }
       if (!form.reportValidity()) return;
-      const scrollPosition = window.scrollY;
       const data = new FormData(form);
       const payload = Object.fromEntries(data.entries());
       statusBox.className = 'contact-form-status';
@@ -150,8 +169,6 @@
         statusBox.className = `contact-form-status ${type}`;
         statusIcon.className = `contact-form-status-icon fas ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}`;
         statusText.textContent = message;
-        window.clearTimeout(statusBox.hideTimer);
-        statusBox.hideTimer = window.setTimeout(() => statusBox.classList.remove('success', 'error'), 6000);
       };
       closeButton.onclick = () => statusBox.classList.remove('success', 'error');
       const requestController = new AbortController();
@@ -174,7 +191,6 @@
         if (!response.ok) throw new Error(result.message || 'संदेश पाठवता आला नाही.');
         form.reset();
         showStatus('success', result.message || 'तुमचा संदेश यशस्वीरित्या पाठवला गेला आहे.');
-        window.scrollTo({ top: scrollPosition, left: window.scrollX, behavior: 'auto' });
       } catch (error) {
         const message = error.name === 'AbortError'
           ? 'सर्व्हरकडून प्रतिसाद मिळाला नाही. कृपया पुन्हा प्रयत्न करा.'
