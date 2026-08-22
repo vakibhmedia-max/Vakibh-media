@@ -1,0 +1,66 @@
+<%
+  const labels = { all: 'सर्व', new: 'नवीन', contacted: 'संपर्क केला', in_progress: 'प्रक्रियेत', resolved: 'निराकरण', closed: 'बंद' };
+  const counts = { all: inquiryStats.total, new: inquiryStats.new_count, contacted: inquiryStats.contacted_count, in_progress: inquiryStats.in_progress_count, resolved: inquiryStats.resolved_count, closed: inquiryStats.closed_count };
+  const queryFor = (status) => {
+    const params = new URLSearchParams();
+    if (status !== 'all') params.set('status', status);
+    if (filters.search) params.set('search', filters.search);
+    if (filters.range !== 'all') params.set('range', filters.range);
+    if (filters.from) params.set('from', filters.from);
+    if (filters.to) params.set('to', filters.to);
+    return params.toString();
+  };
+%>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><a href="/admin" class="admin-brand-link"><img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो"><div><strong>वाकीभ</strong><span>Admin Console</span></div></a></div>
+    <nav class="admin-nav">
+      <a href="/admin"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="/admin/posts"><i class="fas fa-newspaper"></i> Blogs</a>
+      <a href="/admin/comments"><i class="fas fa-comments"></i> Feedback</a>
+      <a href="/admin/contact-inquiries" class="active"><i class="fas fa-envelope-open-text"></i> संपर्क चौकशी</a>
+      <a href="/admin/categories"><i class="fas fa-tags"></i> Categories</a>
+      <a href="/admin/audio"><i class="fas fa-music"></i> ऑडिओ व्यवस्थापन</a>
+      <a href="/admin/posts/new"><i class="fas fa-plus-circle"></i> Add Blog</a>
+    </nav>
+    <div class="admin-sidebar-card"><span class="admin-sidebar-label">Logged in as</span><strong><%= currentUser?.name || 'Admin' %></strong><small><%= currentUser?.email || '' %></small></div>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-topbar"><div><p class="admin-breadcrumb">Admin / Contact Inquiries</p><h1>संपर्क चौकशी</h1></div><form method="post" action="/admin/logout"><button class="admin-button admin-button-ghost"><i class="fas fa-right-from-bracket"></i> Logout</button></form></header>
+    <% if (notice) { %><div class="admin-alert admin-alert-success"><%= notice %></div><% } %>
+    <% if (error) { %><div class="admin-alert admin-alert-error"><%= error %></div><% } %>
+
+    <section class="admin-inquiry-stats">
+      <% ['all','new','contacted','in_progress','resolved','closed'].forEach((status) => { %>
+        <a href="/admin/contact-inquiries?<%= queryFor(status) %>" class="admin-inquiry-stat <%= filters.status === status ? 'active' : '' %>"><span><%= labels[status] %></span><strong><%= Number(counts[status] || 0) %></strong></a>
+      <% }) %>
+    </section>
+
+    <section class="admin-panel admin-inquiry-filter-panel">
+      <form method="get" action="/admin/contact-inquiries" class="admin-inquiry-filters">
+        <label><span>Search inquiries</span><input type="search" name="search" value="<%= filters.search %>" placeholder="Name, email, phone, subject, message, ID"></label>
+        <label><span>Status</span><select name="status"><option value="all">All</option><% statuses.forEach((status) => { %><option value="<%= status %>" <%= filters.status === status ? 'selected' : '' %>><%= labels[status] %></option><% }) %></select></label>
+        <label><span>Date</span><select name="range" data-date-range><option value="all">All dates</option><option value="today" <%= filters.range === 'today' ? 'selected' : '' %>>Today</option><option value="7" <%= filters.range === '7' ? 'selected' : '' %>>Last 7 days</option><option value="30" <%= filters.range === '30' ? 'selected' : '' %>>Last 30 days</option><option value="custom" <%= filters.range === 'custom' ? 'selected' : '' %>>Custom range</option></select></label>
+        <label class="admin-custom-date"><span>From</span><input type="date" name="from" value="<%= filters.from %>"></label>
+        <label class="admin-custom-date"><span>To</span><input type="date" name="to" value="<%= filters.to %>"></label>
+        <button class="admin-button admin-button-primary" type="submit"><i class="fas fa-search"></i> शोधा</button>
+        <a class="admin-button admin-button-secondary" href="/admin/contact-inquiries">Reset</a>
+      </form>
+    </section>
+
+    <section class="admin-panel">
+      <header class="admin-panel-header"><div><h3>All Inquiries</h3><p>Status बदलल्यानंतरही चौकशी येथे कायम दिसेल.</p></div><strong><%= inquiries.length %> results</strong></header>
+      <div class="admin-table-wrap"><table class="admin-table admin-inquiry-table"><thead><tr><th>ID</th><th>Name</th><th>Contact</th><th>Subject</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+        <% if (!inquiries.length) { %><tr><td colspan="7"><div class="admin-empty-inline">या filters साठी चौकशी उपलब्ध नाही.</div></td></tr><% } %>
+        <% inquiries.forEach((item) => { %><tr>
+          <td data-label="ID"><strong>#<%= item.id %></strong></td>
+          <td data-label="Name"><strong><%= item.name %></strong></td>
+          <td data-label="Contact"><a href="mailto:<%= item.email %>"><%= item.email %></a><small class="admin-muted-block"><%= item.phone || 'फोन उपलब्ध नाही' %></small></td>
+          <td data-label="Subject"><%= item.subject %></td><td data-label="Date"><%= formatDate(item.created_at) %></td>
+          <td data-label="Status"><span class="admin-inquiry-status status-<%= item.status %>"><%= labels[item.status] %></span></td>
+          <td data-label="Actions"><a class="admin-action-link" href="/admin/contact-inquiries/<%= item.id %>">View</a></td>
+        </tr><% }) %>
+      </tbody></table></div>
+    </section>
+  </main>
+</div>

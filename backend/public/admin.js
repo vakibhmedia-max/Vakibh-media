@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const adminNav = document.querySelector('.admin-nav');
+  if (adminNav && !adminNav.querySelector('a[href="/admin/contact-inquiries"]')) {
+    const inquiryLink = document.createElement('a');
+    inquiryLink.href = '/admin/contact-inquiries';
+    inquiryLink.className = document.body.classList.contains('admin-contact-inquiries-page') ? 'active' : '';
+    inquiryLink.innerHTML = '<i class="fas fa-envelope-open-text"></i> संपर्क चौकशी';
+    const feedbackLink = adminNav.querySelector('a[href="/admin/comments"]');
+    feedbackLink?.insertAdjacentElement('afterend', inquiryLink);
+  }
+
+  const dateRange = document.querySelector('[data-date-range]');
+  const customDates = document.querySelectorAll('.admin-custom-date');
+  const syncCustomDates = () => customDates.forEach((field) => {
+    field.hidden = dateRange?.value !== 'custom';
+  });
+  dateRange?.addEventListener('change', syncCustomDates);
+  syncCustomDates();
+
   const editor = document.querySelector('[data-blog-editor]');
   if (!editor) return;
 

@@ -128,6 +128,21 @@
     document.body.classList.add('is-janabai-abhang-page');
   }
 
+  const removeRepeatedNatacheAbhangNumbers = () => {
+    if (!currentPath.includes('/sants/tukaram/natache-abhang/')) return;
+
+    document.querySelectorAll('.abhang-content-block .natache-verse').forEach((verse) => {
+      const firstLine = verse.querySelector('.natache-stanza:first-child .natache-line');
+      if (!firstLine) return;
+
+      const originalText = firstLine.textContent || '';
+      const cleanedText = originalText.replace(/^\s*[०-९0-9]+\s*[.)]\s*/u, '');
+      if (cleanedText !== originalText) firstLine.textContent = cleanedText;
+    });
+  };
+
+  removeRepeatedNatacheAbhangNumbers();
+
   const initMarathiLiteratureDigits = () => {
     if (/^\/admin(?:\/|$)/i.test(currentPath) || currentPath.includes('/blog/')) return;
 
@@ -484,7 +499,7 @@
     }
 
     if (isAbhangRangePage) {
-      title = path.includes('/dnyaneshwar/') ? 'संत ज्ञानेश्वर गाथा' : cleanAbhangRangeTitle(title);
+      title = path.includes('/dnyaneshwar/') ? 'संत ज्ञानेश्वर अभंग' : cleanAbhangRangeTitle(title);
     }
 
     const namdevGathaCategorySlugs = new Set([
@@ -520,6 +535,112 @@
       const categoryHeading = document.querySelector('.abhang-post-main .post-title');
       if (categoryHeading) categoryHeading.textContent = 'आरती';
       title = 'संत तुकाराम महाराज';
+    }
+
+    const dnyaneshwariChapterMatch = normalizedPath.match(/\/sants\/dnyaneshwar\/adhyay-(\d+)(?:\/|\.html|$)/);
+    if (dnyaneshwariChapterMatch) {
+      const chapterNumber = Number(dnyaneshwariChapterMatch[1]);
+      const chapterOrdinals = [
+        '', 'पहिला', 'दुसरा', 'तिसरा', 'चौथा', 'पाचवा', 'सहावा',
+        'सातवा', 'आठवा', 'नववा', 'दहावा', 'अकरावा', 'बारावा',
+        'तेरावा', 'चौदावा', 'पंधरावा', 'सोळावा', 'सतरावा', 'अठरावा'
+      ];
+      const chapterLabel = chapterOrdinals[chapterNumber] || toMarathiDigits(chapterNumber);
+      const contentHeading = document.querySelector('.abhang-post-main .post-title');
+      if (contentHeading) contentHeading.textContent = `अध्याय ${chapterLabel}`;
+
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'सार्थ ज्ञानेश्वरी';
+      title = 'सार्थ ज्ञानेश्वरी';
+    }
+
+    if (saintSlug === 'dnyaneshwar' && pageSlug === 'sarth-dnyaneshwari') {
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'सार्थ ज्ञानेश्वरी';
+      title = 'सार्थ ज्ञानेश्वरी';
+    }
+
+    if (saintSlug === 'eknath' && /^rukminiswayamwar-prasang-/.test(pageSlug)) {
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'रुक्मिणी स्वयंवर';
+      title = 'रुक्मिणी स्वयंवर';
+    }
+
+    if (
+      saintSlug === 'narhari-sonar'
+      && new Set(['mandir-samadhi', 'aarti', 'abhang', 'charitra']).has(pageSlug)
+    ) {
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'संत नरहरी सोनार महाराज';
+      title = 'संत नरहरी सोनार महाराज';
+    }
+
+    if (
+      saintSlug === 'santaji-jagnade'
+      && new Set(['mandir-samadhi', 'aarti', 'abhang', 'charitra']).has(pageSlug)
+    ) {
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'संत संताजी जगनाडे महाराज';
+      title = 'संत संताजी जगनाडे महाराज';
+    }
+
+    if (
+      saintSlug === 'nilobaray'
+      && new Set(['charitra', 'abhang-gatha', 'aarti']).has(pageSlug)
+    ) {
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'संत निळोबाराय महाराज';
+      title = 'संत निळोबाराय महाराज';
+    }
+
+    const eknathiChapterSlugs = [
+      'adhyay-pahila', 'eknathi-bhagvat-adhyay-dusra', 'adhyay-tisara',
+      'adhyay-choutha', 'adhyay-pachava', 'adhyay-sahava', 'adhyay-satava',
+      'adhyay-athva', 'chapter-nine', 'adhyay-dahava', 'chapter-eleven',
+      'adhyay-barava', 'adhyay-tera', 'adhyay-chaudava', 'adhyay-pandhrava',
+      'adhyay-solava', 'adhyay-satrava', 'adhyay-athrava', 'adhyay-ekunvis',
+      'adhyay-vis', 'adhyay-ekvis', 'adhyay-bavis', 'adhyay-teviswa',
+      'adhyay-chovis', 'adhyay-panchvis', 'adhyay-savvis', 'adhyay-sattavis',
+      'adhyay-atthavis', 'adhyay-ekuntees', 'adhyay-tisawa', 'adhyay-ektisawa'
+    ];
+    const eknathiChapterIndex = eknathiChapterSlugs.indexOf(pageSlug);
+    if (saintSlug === 'eknath' && eknathiChapterIndex >= 0) {
+      const chapterOrdinals = [
+        'पहिला', 'दुसरा', 'तिसरा', 'चौथा', 'पाचवा', 'सहावा', 'सातवा',
+        'आठवा', 'नववा', 'दहावा', 'अकरावा', 'बारावा', 'तेरावा', 'चौदावा',
+        'पंधरावा', 'सोळावा', 'सतरावा', 'अठरावा', 'एकोणिसावा', 'विसावा',
+        'एकविसावा', 'बाविसावा', 'तेविसावा', 'चोविसावा', 'पंचविसावा',
+        'सव्विसावा', 'सत्ताविसावा', 'अठ्ठाविसावा', 'एकोणतिसावा', 'तिसावा',
+        'एकतिसावा'
+      ];
+      const contentHeading = document.querySelector('.post-main .post-title, .post-article .post-title');
+      if (contentHeading) contentHeading.textContent = `अध्याय ${chapterOrdinals[eknathiChapterIndex]}`;
+
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = 'एकनाथी भागवत';
+      title = 'एकनाथी भागवत';
+    }
+
+    const bhavarthChapterMatch = normalizedPath.match(
+      /\/sants\/eknath\/bhawarth-ramayan-(?:(kishkindhakand|sundarkand|yudhkand|uttarkand)-)?adhyay-[^/]+(?:\/|\.html|$)/
+    );
+    if (bhavarthChapterMatch) {
+      const workTitles = {
+        kishkindhakand: 'किष्किंधाकाण्ड',
+        sundarkand: 'सुंदरकाण्ड',
+        yudhkand: 'युद्धकाण्ड',
+        uttarkand: 'उत्तरकाण्ड'
+      };
+      const workTitle = workTitles[bhavarthChapterMatch[1]] || 'भावार्थ रामायण';
+      const sourceChapterHeading = Array.from(document.querySelectorAll('.bhavarth-ramayan-source-heading'))
+        .map((heading) => (heading.textContent || '').replace(/\s+/g, ' ').replace(/॥/g, '').trim())
+        .find((heading) => /^अध्याय\s+/u.test(heading));
+      const contentHeading = document.querySelector('.post-main .post-title, .post-article .post-title');
+      if (contentHeading && sourceChapterHeading) contentHeading.textContent = sourceChapterHeading;
+
+      const sourceBreadcrumbCurrent = document.querySelector('.sant-breadcrumb span:last-child');
+      if (sourceBreadcrumbCurrent) sourceBreadcrumbCurrent.textContent = workTitle;
+      title = workTitle;
     }
 
     if (/\/sants\/tukaram\/gatha-\d+(?:\/|\.html|$)/.test(normalizedPath)) {
@@ -669,6 +790,12 @@
       </div>
     </div>
 
+    <div class="footer-visitor-stats" data-footer-visitor-stats aria-label="भेटींची आकडेवारी">
+      <div><span>एकूण भेटी:</span> <strong data-total-visitors>०</strong></div>
+      <span class="visitor-divider" aria-hidden="true">|</span>
+      <div><span>आजच्या भेटी:</span> <strong data-today-visitors>०</strong></div>
+    </div>
+
     <div class="footer-bottom">
       <p>&copy; \u0968\u0966\u0968\u096C \u0935\u093E\u0915\u0940\u092D. \u0938\u0930\u094D\u0935 \u0939\u0915\u094D\u0915 \u0930\u093E\u0916\u0940\u0935. \u0938\u0902\u0915\u0947\u0924\u0938\u094D\u0925\u0933\u093E\u091A\u0940 \u0930\u091A\u0928\u093E \u0935 \u0935\u093F\u0915\u093E\u0938 <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer">\u0935\u0947\u092C\u0915\u0942\u092B</a>.</p>
       <button class="scroll-top-btn" id="scrollTopBtn" aria-label="\u0935\u0930 \u091C\u093E">
@@ -676,6 +803,26 @@
       </button>
     </div>
   `;
+  const loadFooterVisitorStats = async () => {
+    const stats = footer.querySelector('[data-footer-visitor-stats]');
+    if (!stats) return;
+    try {
+      const page = `${window.location.pathname}${window.location.search}`;
+      const response = await fetch(`/api/visitor-stats?page=${encodeURIComponent(page)}`, {
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('Visitor stats unavailable');
+      const values = await response.json();
+      const formatCount = (value) => toMarathiDigits(Number(value || 0).toLocaleString('en-IN'));
+      stats.querySelector('[data-total-visitors]').textContent = formatCount(values.totalVisitors);
+      stats.querySelector('[data-today-visitors]').textContent = formatCount(values.todayVisitors);
+    } catch (error) {
+      stats.hidden = true;
+    }
+  };
+  loadFooterVisitorStats();
+
   const populateRecentFooterBlogs = async () => {
     const list = footer.querySelector('[data-footer-recent-blogs]');
     if (!list) return;
@@ -2458,15 +2605,27 @@
       const title = document.createElement('h2');
       title.className = 'saint-aarti-card-title';
       title.textContent = groups.length === 1 ? pageTitle : `आरती ${number}`;
-      const hideDuplicateCardTitle = path.includes('/nivruttinath/nivruttinath-arti/')
-        || path.includes('/eknath/sant-eknath-arti/')
-        || path.includes('/muktabai/muktabai-aarti/')
-        || path.includes('/savata-mali/savata-maharaj-arati/')
-        || path.includes('/rohidas/ravidas-aarti/');
+      const hideDuplicateCardTitle = groups.length === 1;
       if (!hideDuplicateCardTitle) card.appendChild(title);
 
       const content = document.createElement('div');
       content.className = 'saint-aarti-card-content';
+      const firstParagraph = group[0];
+      const leadingNumber = (firstParagraph?.textContent || '')
+        .match(/^\s*[०-९0-9]+\s*[.)।-]?\s*/u)?.[0] || '';
+      if (firstParagraph && leadingNumber) {
+        let charactersToRemove = leadingNumber.length;
+        const textWalker = document.createTreeWalker(firstParagraph, NodeFilter.SHOW_TEXT);
+        let textNode = textWalker.nextNode();
+        while (textNode && charactersToRemove > 0) {
+          const text = textNode.nodeValue || '';
+          const removeCount = Math.min(charactersToRemove, text.length);
+          textNode.nodeValue = text.slice(removeCount);
+          charactersToRemove -= removeCount;
+          textNode = textWalker.nextNode();
+        }
+        firstParagraph.querySelectorAll('.marathi-digit-glyph:empty').forEach((element) => element.remove());
+      }
       group.forEach((paragraph) => content.appendChild(paragraph));
       card.appendChild(content);
       card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `आरती ${number}`));
@@ -2923,11 +3082,19 @@
       verse.className = 'namdev-gatha-verse-block';
       verse.removeAttribute('style');
       verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
-      const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
-      let firstTextNode = walker.nextNode();
-      while (firstTextNode && !normalizeText(firstTextNode.textContent || '')) firstTextNode = walker.nextNode();
-      if (firstTextNode) {
-        firstTextNode.textContent = (firstTextNode.textContent || '').replace(/^\s*[०-९0-9]+[.)]?\s*/, '');
+      const leadingNumber = (verse.textContent || '').match(/^\s*[०-९0-9]+\s*[.)]?\s*/u)?.[0] || '';
+      if (leadingNumber) {
+        let charactersToRemove = leadingNumber.length;
+        const walker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+        let textNode = walker.nextNode();
+        while (textNode && charactersToRemove > 0) {
+          const nodeText = textNode.nodeValue || '';
+          const removeCount = Math.min(charactersToRemove, nodeText.length);
+          textNode.nodeValue = nodeText.slice(removeCount);
+          charactersToRemove -= removeCount;
+          textNode = walker.nextNode();
+        }
+        verse.querySelectorAll('.marathi-digit-glyph:empty').forEach((element) => element.remove());
       }
 
       const card = document.createElement('article');
@@ -3037,8 +3204,20 @@
         verse.className = 'namdev-gatha-verse-block eknath-gaulani-verse';
         verse.removeAttribute('style');
         verse.querySelectorAll('[style]').forEach((element) => element.removeAttribute('style'));
-        const firstTextNode = Array.from(verse.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
-        if (firstTextNode) firstTextNode.nodeValue = firstTextNode.nodeValue.replace(/^\s*[०-९0-9]+\s*[.)।-]?\s*/, '');
+        const leadingNumber = (verse.textContent || '').match(/^\s*[०-९0-9]+\s*[.)।-]?\s*/u)?.[0] || '';
+        if (leadingNumber) {
+          let charactersToRemove = leadingNumber.length;
+          const textWalker = document.createTreeWalker(verse, NodeFilter.SHOW_TEXT);
+          let textNode = textWalker.nextNode();
+          while (textNode && charactersToRemove > 0) {
+            const text = textNode.nodeValue || '';
+            const removeCount = Math.min(charactersToRemove, text.length);
+            textNode.nodeValue = text.slice(removeCount);
+            charactersToRemove -= removeCount;
+            textNode = textWalker.nextNode();
+          }
+          verse.querySelectorAll('.marathi-digit-glyph:empty').forEach((element) => element.remove());
+        }
         content.appendChild(verse);
 
         card.append(badge, content);
@@ -3895,7 +4074,13 @@ const standaloneNumberPattern = /^[०-९0-9]+[.)]?$/u;
 
       const badge = document.createElement('span');
       badge.className = 'tukaram-gatha-number';
-      badge.textContent = `गाथा ${number}`;
+      const badgeText = document.createElement('span');
+      badgeText.className = 'tukaram-gatha-label-text';
+      badgeText.textContent = 'गाथा';
+      const badgeNumber = document.createElement('span');
+      badgeNumber.className = 'tukaram-gatha-label-number';
+      badgeNumber.textContent = number;
+      badge.replaceChildren(badgeText, badgeNumber);
       card.append(badge, cardVerse);
       card.insertAdjacentHTML('beforeend', getAbhangItemActionsMarkup(card.id, `गाथा ${number}`));
       list.appendChild(card);

@@ -175,6 +175,51 @@ const TABLE_STATEMENTS = [
       FOREIGN KEY (uploaded_by) REFERENCES admin_users(id)
       ON DELETE SET NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
+  ,
+  `CREATE TABLE IF NOT EXISTS contact_inquiries (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(191) NOT NULL,
+    phone VARCHAR(30) DEFAULT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM('new','contacted','in_progress','resolved','closed') NOT NULL DEFAULT 'new',
+    admin_notes TEXT DEFAULT NULL,
+    ip_address VARCHAR(64) DEFAULT NULL,
+    user_agent VARCHAR(500) DEFAULT NULL,
+    contacted_at DATETIME DEFAULT NULL,
+    resolved_at DATETIME DEFAULT NULL,
+    is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+    deleted_at DATETIME DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_contact_inquiries_status_created (status, created_at),
+    KEY idx_contact_inquiries_deleted_created (is_deleted, created_at),
+    KEY idx_contact_inquiries_email (email)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS contact_inquiry_status_history (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    inquiry_id INT UNSIGNED NOT NULL,
+    old_status ENUM('new','contacted','in_progress','resolved','closed') NOT NULL,
+    new_status ENUM('new','contacted','in_progress','resolved','closed') NOT NULL,
+    changed_by INT UNSIGNED DEFAULT NULL,
+    changed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY idx_contact_history_inquiry_changed (inquiry_id, changed_at),
+    CONSTRAINT fk_contact_history_inquiry FOREIGN KEY (inquiry_id) REFERENCES contact_inquiries(id) ON DELETE CASCADE,
+    CONSTRAINT fk_contact_history_admin FOREIGN KEY (changed_by) REFERENCES admin_users(id) ON DELETE SET NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS website_visits (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    session_id CHAR(36) NOT NULL,
+    ip_hash CHAR(64) NOT NULL,
+    page_url VARCHAR(500) NOT NULL DEFAULT '/',
+    visited_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_website_visits_session (session_id),
+    KEY idx_website_visits_visited_at (visited_at)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
 ];
 
 async function ensureSchema() {

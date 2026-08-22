@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../Vakibh/css/style.css?v=45">
+  <link rel="stylesheet" href="../Vakibh/css/style.css?v=47">
   <script src="../Vakibh/js/main.js?v=52" defer></script>
   <!-- Vaakibh favicon and normalized SEO metadata -->
   <link rel="icon" type="image/svg+xml" href="/Vakibh/vaakibh_logo.svg">
@@ -90,7 +90,7 @@
           <section class="contact-panel contact-note-panel" aria-labelledby="contactFormTitle">
             <div class="contact-form-panel" aria-labelledby="contactFormTitle">
           <h2 id="contactFormTitle">&#x0938;&#x0902;&#x0926;&#x0947;&#x0936; &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</h2>
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" novalidate onsubmit="return false;">
             <div class="form-field">
               <label for="contactName">&#x0928;&#x093E;&#x0935;</label>
               <input type="text" id="contactName" name="name" autocomplete="name" required>
@@ -114,6 +114,11 @@
             <div class="contact-form-actions">
               <button class="contact-submit-btn" type="submit"><i class="fas fa-paper-plane"></i> &#x092A;&#x093E;&#x0920;&#x0935;&#x093E;</button>
             </div>
+            <div class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite" aria-atomic="true">
+              <i class="contact-form-status-icon fas fa-circle-check" aria-hidden="true"></i>
+              <span id="contactFormStatusText"></span>
+              <button type="button" class="contact-form-status-close" aria-label="संदेश बंद करा"><i class="fas fa-xmark"></i></button>
+            </div>
           </form>
 
             </div>
@@ -126,23 +131,47 @@
 
   <footer></footer>
   <script>
-    document.getElementById('contactForm')?.addEventListener('submit', (event) => {
+    document.getElementById('contactForm')?.addEventListener('submit', async (event) => {
       event.preventDefault();
       const form = event.currentTarget;
+      const statusBox = document.getElementById('contactFormStatus');
+      const statusText = document.getElementById('contactFormStatusText');
+      const statusIcon = statusBox.querySelector('.contact-form-status-icon');
+      const closeButton = statusBox.querySelector('.contact-form-status-close');
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (!form.reportValidity()) return;
+      const scrollPosition = window.scrollY;
       const data = new FormData(form);
-      const name = String(data.get('name') || '').trim();
-      const email = String(data.get('email') || '').trim();
-      const phone = String(data.get('phone') || '').trim();
-      const subject = String(data.get('subject') || '').trim();
-      const message = String(data.get('message') || '').trim();
-      const body = [
-        `\u0928\u093E\u0935: ${name}`,
-        `\u0908\u092E\u0947\u0932: ${email}`,
-        phone ? `\u092B\u094B\u0928: ${phone}` : '',
-        '',
-        message
-      ].filter(Boolean).join('\n');
-      window.location.href = `mailto:vakibhmedia@gmail.com?subject=${encodeURIComponent(subject || 'Vakibh contact')}&body=${encodeURIComponent(body)}`;
+      const payload = Object.fromEntries(data.entries());
+      statusBox.className = 'contact-form-status';
+      statusText.textContent = '';
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> पाठवत आहे...';
+      const showStatus = (type, message) => {
+        statusBox.className = `contact-form-status ${type}`;
+        statusIcon.className = `contact-form-status-icon fas ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}`;
+        statusText.textContent = message;
+        window.clearTimeout(statusBox.hideTimer);
+        statusBox.hideTimer = window.setTimeout(() => statusBox.classList.remove('success', 'error'), 6000);
+      };
+      closeButton.onclick = () => statusBox.classList.remove('success', 'error');
+      try {
+        const response = await fetch('/api/contact-inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.message || 'संदेश पाठवता आला नाही.');
+        form.reset();
+        showStatus('success', result.message || 'तुमचा संदेश यशस्वीरित्या पाठवला गेला आहे.');
+        window.scrollTo({ top: scrollPosition, left: window.scrollX, behavior: 'instant' });
+      } catch (error) {
+        showStatus('error', error.message || 'संदेश पाठवता आला नाही. कृपया पुन्हा प्रयत्न करा.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> पाठवा';
+      }
     });
   </script>
   <a href="https://wa.me/919923916476" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅप वर संपर्क करा">

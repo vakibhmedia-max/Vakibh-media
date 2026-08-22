@@ -1,0 +1,28 @@
+<% const labels = { new: 'नवीन', contacted: 'संपर्क केला', in_progress: 'प्रक्रियेत', resolved: 'निराकरण', closed: 'बंद' }; %>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><a href="/admin" class="admin-brand-link"><img src="/Vakibh/vaakibh_logo.svg" alt="वाकीभ लोगो"><div><strong>वाकीभ</strong><span>Admin Console</span></div></a></div>
+    <nav class="admin-nav"><a href="/admin"><i class="fas fa-chart-line"></i> Dashboard</a><a href="/admin/posts"><i class="fas fa-newspaper"></i> Blogs</a><a href="/admin/comments"><i class="fas fa-comments"></i> Feedback</a><a href="/admin/contact-inquiries" class="active"><i class="fas fa-envelope-open-text"></i> संपर्क चौकशी</a><a href="/admin/categories"><i class="fas fa-tags"></i> Categories</a><a href="/admin/audio"><i class="fas fa-music"></i> ऑडिओ व्यवस्थापन</a></nav>
+    <div class="admin-sidebar-card"><span class="admin-sidebar-label">Logged in as</span><strong><%= currentUser?.name || 'Admin' %></strong><small><%= currentUser?.email || '' %></small></div>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-topbar"><div><p class="admin-breadcrumb"><a href="/admin/contact-inquiries">Contact Inquiries</a> / #<%= inquiry.id %></p><h1><%= inquiry.subject %></h1></div><a class="admin-button admin-button-secondary" href="/admin/contact-inquiries"><i class="fas fa-arrow-left"></i> Back</a></header>
+    <% if (notice) { %><div class="admin-alert admin-alert-success"><%= notice %></div><% } %><% if (error) { %><div class="admin-alert admin-alert-error"><%= error %></div><% } %>
+    <div class="admin-inquiry-detail-grid">
+      <section class="admin-panel admin-inquiry-detail">
+        <header class="admin-panel-header"><div><h3>Inquiry #<%= inquiry.id %></h3><p>Submitted <%= formatDate(inquiry.created_at) %></p></div><span class="admin-inquiry-status status-<%= inquiry.status %>"><%= labels[inquiry.status] %></span></header>
+        <dl class="admin-inquiry-meta"><div><dt>Name</dt><dd><%= inquiry.name %></dd></div><div><dt>Email</dt><dd><a href="mailto:<%= inquiry.email %>"><%= inquiry.email %></a></dd></div><div><dt>Phone</dt><dd><%= inquiry.phone || '—' %></dd></div><div><dt>Submitted</dt><dd><%= formatDate(inquiry.created_at) %></dd></div><div><dt>Contacted</dt><dd><%= formatDate(inquiry.contacted_at) || '—' %></dd></div><div><dt>Resolved</dt><dd><%= formatDate(inquiry.resolved_at) || '—' %></dd></div></dl>
+        <div class="admin-inquiry-message"><span>Message</span><p><%= inquiry.message %></p></div>
+      </section>
+      <aside class="admin-panel admin-inquiry-actions-panel">
+        <h3>Update Status</h3><form method="post" action="/admin/contact-inquiries/<%= inquiry.id %>/status"><label class="admin-field"><span>Current status</span><select name="status"><% statuses.forEach((status) => { %><option value="<%= status %>" <%= inquiry.status === status ? 'selected' : '' %>><%= labels[status] %></option><% }) %></select></label><button class="admin-button admin-button-primary" type="submit">Save Status</button></form>
+        <hr><h3>Admin Notes</h3><form method="post" action="/admin/contact-inquiries/<%= inquiry.id %>/notes"><label class="admin-field"><span>Only admins can see these notes</span><textarea name="admin_notes" rows="7" maxlength="5000"><%= inquiry.admin_notes || '' %></textarea></label><button class="admin-button admin-button-primary" type="submit">Save Notes</button></form>
+        <hr><form method="post" action="/admin/contact-inquiries/<%= inquiry.id %>/delete" onsubmit="return confirm('ही चौकशी कायमची delete करायची आहे का?');"><button class="admin-button admin-button-danger" type="submit"><i class="fas fa-trash"></i> Delete Inquiry</button></form>
+      </aside>
+    </div>
+    <section class="admin-panel admin-inquiry-history"><header class="admin-panel-header"><div><h3>Status History</h3><p>प्रत्येक status change चा timestamp.</p></div></header><div class="admin-history-list">
+      <% if (!inquiry.history.length) { %><div class="admin-empty-inline">Status अजून बदललेला नाही.</div><% } %>
+      <% inquiry.history.forEach((entry) => { %><div class="admin-history-item"><i class="fas fa-clock-rotate-left"></i><div><strong><%= labels[entry.old_status] %> → <%= labels[entry.new_status] %></strong><span><%= formatDate(entry.changed_at) %> · <%= entry.changed_by_name || 'Admin' %></span></div></div><% }) %>
+    </div></section>
+  </main>
+</div>

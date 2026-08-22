@@ -62,6 +62,17 @@ const {
   replaceAudioFile,
   updateAudioTrack
 } = require('./backend/lib/audio-tracks');
+const {
+  STATUSES: CONTACT_STATUSES,
+  createInquiry,
+  deleteInquiry,
+  getInquiry,
+  getInquiryStats,
+  listInquiries,
+  updateInquiryNotes,
+  updateInquiryStatus
+} = require('./backend/lib/contact-inquiries');
+const { getWebsiteVisitorStats } = require('./backend/lib/website-visits');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
@@ -81,7 +92,10 @@ const publicSubmissionWindows = new Map();
 function rateLimitPublicSubmission(req, res, next) {
   const now = Date.now();
   const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
-  const key = `${ip}:${req.path.includes('/replies') ? 'reply' : 'feedback'}`;
+  const submissionType = req.path.includes('contact-inquiries')
+    ? 'contact-inquiry'
+    : req.path.includes('/replies') ? 'reply' : 'feedback';
+  const key = `${ip}:${submissionType}`;
   const recent = (publicSubmissionWindows.get(key) || []).filter((time) => now - time < 10 * 60 * 1000);
   if (recent.length >= 5) {
     res.status(429).json({ ok: false, message: 'Too many submissions. Please try again later.' });
@@ -311,6 +325,9 @@ app.use(async (req, res, next) => {
     req.path.startsWith('/api/audio/') ||
     req.path.startsWith('/api/visitor-login/') ||
     req.path.startsWith('/api/blog-comments') ||
+    req.path.startsWith('/api/contact-inquiries') ||
+    req.path.startsWith('/api/visitor-stats') ||
+    req.path.startsWith('/api/admin/contact-inquiries') ||
     req.path.startsWith('/blog/');
 
   if (!needsBackend) {
@@ -376,6 +393,21 @@ app.post('/api/visitor-login/verify-otp', async (req, res, next) => {
   }
 });
 
+app.get('/api/visitor-stats', async (req, res) => {
+  try {
+    const stats = await getWebsiteVisitorStats({
+      req,
+      res,
+      pageUrl: req.query.page,
+      track: true
+    });
+    res.set('Cache-Control', 'private, max-age=15');
+    res.json(stats);
+  } catch (error) {
+    res.status(500).json({ totalVisitors: 0, todayVisitors: 0 });
+  }
+});
+
 app.get('/api/blog-comments/:slug', async (req, res) => {
   try {
     const comments = await listApprovedCommentsBySlug(req.params.slug);
@@ -403,6 +435,21 @@ app.post('/api/blog-comments', rateLimitPublicSubmission, async (req, res) => {
     });
   } catch (error) {
     res.status(error.statusCode || 500).json({ ok: false, message: error.message || 'Unable to save feedback.' });
+  }
+});
+
+app.post('/api/contact-inquiries', rateLimitPublicSubmission, async (req, res) => {
+  try {
+    await createInquiry({ ...req.body, req });
+    res.status(201).json({
+      ok: true,
+      message: 'तुमचा संदेश यशस्वीरित्या पाठवला गेला आहे.'
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      ok: false,
+      message: error.message || 'संदेश पाठवता आला नाही. कृपया पुन्हा प्रयत्न करा.'
+    });
   }
 });
 
@@ -505,10 +552,12 @@ app.post('/admin/logout', requireAdmin, async (req, res) => {
 
 app.get('/admin', requireAdmin, async (req, res, next) => {
   try {
-    const [stats, recentPosts, visitorStats] = await Promise.all([
+    const [stats, recentPosts, visitorStats, inquiryStats, websiteVisitorStats] = await Promise.all([
       getDashboardStats(),
       getRecentPosts(5),
-      getVisitorStats()
+      getVisitorStats(),
+      getInquiryStats(),
+      getWebsiteVisitorStats({ track: false })
     ]);
 
     await render(
@@ -518,6 +567,8 @@ app.get('/admin', requireAdmin, async (req, res, next) => {
         title: 'वाकीभ Admin Dashboard',
         stats,
         visitorStats,
+        inquiryStats,
+        websiteVisitorStats,
         recentPosts,
         currentUser: req.session.admin,
         notice: getNotice(req),
@@ -530,6 +581,97 @@ app.get('/admin', requireAdmin, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+function contactFilters(query = {}) {
+  return {
+    status: CONTACT_STATUSES.includes(query.status) ? query.status : 'all',
+    search: String(query.search || '').trim(),
+    range: ['today', '7', '30', 'custom'].includes(query.range) ? query.range : 'all',
+    from: String(query.from || '').trim(),
+    to: String(query.to || '').trim()
+  };
+}
+
+app.get('/admin/contact-inquiries', requireAdmin, async (req, res, next) => {
+  try {
+    const filters = contactFilters(req.query);
+    const [inquiries, inquiryStats] = await Promise.all([listInquiries(filters), getInquiryStats()]);
+    await render(res, 'admin/contact-inquiries.ejs', {
+      title: 'Contact Inquiries - Vaakibh Admin', inquiries, inquiryStats, filters,
+      statuses: CONTACT_STATUSES, currentUser: req.session.admin,
+      notice: getNotice(req), error: getError(req), activeNav: 'contact-inquiries',
+      formatDate, bodyClass: 'admin-contact-inquiries-page'
+    }, 'admin');
+  } catch (error) { next(error); }
+});
+
+app.get('/admin/contact-inquiries/:id', requireAdmin, async (req, res, next) => {
+  try {
+    const inquiry = await getInquiry(req.params.id);
+    if (!inquiry) return res.redirect('/admin/contact-inquiries?error=Inquiry%20not%20found.');
+    await render(res, 'admin/contact-inquiry-detail.ejs', {
+      title: `Inquiry #${inquiry.id} - Vaakibh Admin`, inquiry,
+      statuses: CONTACT_STATUSES, currentUser: req.session.admin,
+      notice: getNotice(req), error: getError(req), activeNav: 'contact-inquiries',
+      formatDate, bodyClass: 'admin-contact-inquiries-page'
+    }, 'admin');
+  } catch (error) { next(error); }
+});
+
+app.post('/admin/contact-inquiries/:id/status', requireAdmin, async (req, res) => {
+  try {
+    await updateInquiryStatus(req.params.id, req.body.status, req.session.admin?.id);
+    res.redirect(`/admin/contact-inquiries/${req.params.id}?notice=${encodeURIComponent('Inquiry status updated successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/contact-inquiries/${req.params.id}?error=${encodeURIComponent(error.message || 'Status update failed.')}`);
+  }
+});
+
+app.post('/admin/contact-inquiries/:id/notes', requireAdmin, async (req, res) => {
+  try {
+    await updateInquiryNotes(req.params.id, req.body.admin_notes);
+    res.redirect(`/admin/contact-inquiries/${req.params.id}?notice=${encodeURIComponent('Admin notes saved successfully.')}`);
+  } catch (error) {
+    res.redirect(`/admin/contact-inquiries/${req.params.id}?error=${encodeURIComponent(error.message || 'Notes update failed.')}`);
+  }
+});
+
+app.post('/admin/contact-inquiries/:id/delete', requireAdmin, async (req, res) => {
+  try {
+    await deleteInquiry(req.params.id);
+    res.redirect(`/admin/contact-inquiries?notice=${encodeURIComponent('Inquiry deleted from the active list.')}`);
+  } catch (error) {
+    res.redirect(`/admin/contact-inquiries/${req.params.id}?error=${encodeURIComponent(error.message || 'Inquiry delete failed.')}`);
+  }
+});
+
+app.get('/api/admin/contact-inquiries', requireAdmin, async (req, res) => {
+  try { res.json({ ok: true, inquiries: await listInquiries(contactFilters(req.query)), stats: await getInquiryStats() }); }
+  catch (error) { res.status(error.statusCode || 500).json({ ok: false, message: error.message }); }
+});
+
+app.get('/api/admin/contact-inquiries/:id', requireAdmin, async (req, res) => {
+  try {
+    const inquiry = await getInquiry(req.params.id);
+    if (!inquiry) return res.status(404).json({ ok: false, message: 'Inquiry not found.' });
+    res.json({ ok: true, inquiry });
+  } catch (error) { res.status(error.statusCode || 500).json({ ok: false, message: error.message }); }
+});
+
+app.patch('/api/admin/contact-inquiries/:id/status', requireAdmin, async (req, res) => {
+  try { await updateInquiryStatus(req.params.id, req.body.status, req.session.admin?.id); res.json({ ok: true }); }
+  catch (error) { res.status(error.statusCode || 500).json({ ok: false, message: error.message }); }
+});
+
+app.patch('/api/admin/contact-inquiries/:id/notes', requireAdmin, async (req, res) => {
+  try { await updateInquiryNotes(req.params.id, req.body.admin_notes); res.json({ ok: true }); }
+  catch (error) { res.status(error.statusCode || 500).json({ ok: false, message: error.message }); }
+});
+
+app.delete('/api/admin/contact-inquiries/:id', requireAdmin, async (req, res) => {
+  try { await deleteInquiry(req.params.id); res.json({ ok: true }); }
+  catch (error) { res.status(error.statusCode || 500).json({ ok: false, message: error.message }); }
 });
 
 app.get('/admin/audio', requireAdmin, async (req, res, next) => {

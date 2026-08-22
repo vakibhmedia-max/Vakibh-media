@@ -7093,6 +7093,8 @@ body.tukaram-gatha-card-page .tukaram-gatha-number {
   top: 24px !important;
   left: 30px !important;
   display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 0.38em !important;
   padding: 5px 12px !important;
   border-radius: 999px !important;
   color: #7b4a18 !important;
@@ -7100,6 +7102,14 @@ body.tukaram-gatha-card-page .tukaram-gatha-number {
   font-family: 'Hind', sans-serif !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
+}
+
+body.tukaram-gatha-card-page .tukaram-gatha-number > span,
+body.tukaram-gatha-card-page .tukaram-gatha-number .marathi-digit-glyph {
+  color: #7b4a18 !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
 }
 
 body.tukaram-gatha-card-page p.tukaram-gatha-card-verse {
@@ -9117,6 +9127,14 @@ html body .marathi-digit-glyph {
 }
 
 /* Uniform bold labels with guaranteed spacing: "अभंग १ ते १००". */
+/* Marathi digits in bold post titles must look as bold as the surrounding text. */
+html body .post-title .marathi-digit-glyph {
+  font-weight: 700 !important;
+  font-synthesis: weight !important;
+  -webkit-text-stroke: 0.45px currentColor !important;
+  text-shadow: 0 0 0 currentColor !important;
+}
+
 html body .abhang-range-selector-grid a {
   font-weight: 700 !important;
 }

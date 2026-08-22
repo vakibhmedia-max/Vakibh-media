@@ -1,6 +1,8 @@
 <%
   const safeStats = typeof stats !== 'undefined' && stats ? stats : {};
   const safeRecentPosts = typeof recentPosts !== 'undefined' && recentPosts ? recentPosts : [];
+  const safeInquiryStats = typeof inquiryStats !== 'undefined' && inquiryStats ? inquiryStats : {};
+  const safeWebsiteVisitorStats = typeof websiteVisitorStats !== 'undefined' && websiteVisitorStats ? websiteVisitorStats : {};
 %><div class="admin-shell">
   <aside class="admin-sidebar">
     <div class="admin-brand">
@@ -25,6 +27,10 @@
       <a href="/admin/comments" class="<%= activeNav === 'comments' ? 'active' : '' %>">
         <i class="fas fa-comments"></i>
         Feedback
+      </a>
+      <a href="/admin/contact-inquiries" class="<%= activeNav === 'contact-inquiries' ? 'active' : '' %>">
+        <i class="fas fa-envelope-open-text"></i>
+        संपर्क चौकशी
       </a>
       <a href="/admin/categories" class="<%= activeNav === 'categories' ? 'active' : '' %>">
         <i class="fas fa-tags"></i>
@@ -119,6 +125,22 @@
         <span>Last Update</span>
         <strong><%= formatDate(safeStats.last_updated) || 'N/A' %></strong>
       </article>
+    </section>
+
+    <section class="admin-stats-grid admin-website-visitor-summary">
+      <article class="admin-stat-card"><span>Total Website Visitors</span><strong><%= Number(safeWebsiteVisitorStats.totalVisitors || 0) %></strong></article>
+      <article class="admin-stat-card"><span>Today Website Visitors</span><strong><%= Number(safeWebsiteVisitorStats.todayVisitors || 0) %></strong></article>
+    </section>
+
+    <section class="admin-panel admin-dashboard-inquiries">
+      <header class="admin-panel-header"><div><h3>Contact Inquiry Summary</h3><p>Public contact form मधून आलेल्या सर्व चौकशींची स्थिती.</p></div><a href="/admin/contact-inquiries" class="admin-text-link">Manage inquiries</a></header>
+      <div class="admin-inquiry-stats">
+        <a class="admin-inquiry-stat" href="/admin/contact-inquiries"><span>Total Inquiries</span><strong><%= Number(safeInquiryStats.total || 0) %></strong></a>
+        <a class="admin-inquiry-stat" href="/admin/contact-inquiries?status=new"><span>New</span><strong><%= Number(safeInquiryStats.new_count || 0) %></strong></a>
+        <a class="admin-inquiry-stat" href="/admin/contact-inquiries?status=contacted"><span>Contacted</span><strong><%= Number(safeInquiryStats.contacted_count || 0) %></strong></a>
+        <a class="admin-inquiry-stat" href="/admin/contact-inquiries?status=in_progress"><span>In Progress</span><strong><%= Number(safeInquiryStats.in_progress_count || 0) %></strong></a>
+        <a class="admin-inquiry-stat" href="/admin/contact-inquiries?status=resolved"><span>Resolved</span><strong><%= Number(safeInquiryStats.resolved_count || 0) %></strong></a>
+      </div>
     </section>
 
     <section class="admin-panel-grid">

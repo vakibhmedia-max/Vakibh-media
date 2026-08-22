@@ -1703,6 +1703,47 @@ body.blog-post-page .post-content {
   pointer-events: none;
 }
 
+.footer-visitor-stats {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: center;
+}
+
+.footer-visitor-stats > div {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.footer-visitor-stats strong {
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.visitor-divider {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 640px) {
+  .footer-visitor-stats {
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 12px;
+  }
+
+  .visitor-divider {
+    display: none;
+  }
+}
+
 .floating-veena:hover,
 .floating-whatsapp:hover {
   transform: translateY(-2px) scale(1.02);
@@ -2746,6 +2787,83 @@ section:not(.hero):not(.inner-breadcrumb-hero) {
   width: min(860px, 100%);
   max-width: 860px;
   margin: 0 auto;
+}
+
+.contact-submit-btn:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.contact-form-status {
+  display: none;
+  position: fixed;
+  top: 110px;
+  right: 24px;
+  z-index: 10050;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(390px, calc(100vw - 32px));
+  padding: 1rem;
+  border-radius: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  box-shadow: 0 16px 42px rgba(37, 26, 19, 0.2);
+  animation: contact-toast-in 220ms ease-out;
+}
+
+.contact-form-status.success,
+.contact-form-status.error {
+  display: block;
+}
+
+.contact-form-status.success {
+  color: #17643a;
+  background: #e4f7eb;
+  border: 1px solid #a8ddbb;
+}
+
+.contact-form-status.error {
+  color: #9e2520;
+  background: #fff0ef;
+  border: 1px solid #efb7b4;
+}
+
+.contact-form-status.success,
+.contact-form-status.error {
+  display: flex;
+}
+
+.contact-form-status-icon {
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+}
+
+.contact-form-status-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  color: inherit;
+  cursor: pointer;
+}
+
+@keyframes contact-toast-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 640px) {
+  .contact-form-status {
+    top: 82px;
+    right: 16px;
+  }
 }
 
 .library-search-results-section {
