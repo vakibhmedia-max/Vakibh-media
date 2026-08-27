@@ -1009,6 +1009,10 @@ app.post('/admin/posts/import-blogger/run', requireAdmin, async (req, res, next)
     }
   }
 });
+// Backward-compatible alias for the admin sidebar's Blogs tab.
+app.get(['/admin/blogs', '/admin/blogs/'], requireAdmin, (req, res) => {
+  res.redirect('/admin/posts');
+});
 app.get('/admin/posts', requireAdmin, async (req, res, next) => {
   try {
     const posts = await listAllPosts();
