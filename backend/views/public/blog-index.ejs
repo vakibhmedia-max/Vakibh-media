@@ -29,7 +29,7 @@
         <% posts.forEach((post, index) => { %>
           <article class="arrival-card blog-card" id="blog-<%= post.id %>" data-published-at="<%= post.published_at || post.created_at || '' %>">
             <a class="blog-card-media" href="/blog/<%= post.slug %>/" aria-label="ब्लॉग प्रतिमा">
-              <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>">
+              <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt || post.title %>" onerror="this.onerror=null;this.src='/assests/hero-bg.jpg';">
             </a>
             <div class="arrival-header">
               <span class="arrival-tag"><%= post.category %></span>
