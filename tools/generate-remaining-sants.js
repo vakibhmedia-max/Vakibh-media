@@ -362,7 +362,7 @@ function siteFooter(depth) {
     </ul></div>
     <div class="footer-contact"><h4>संपर्क</h4><ul class="footer-contact-list">
       <li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li>
-      <li><i class="fas fa-phone"></i> +91 99239 16476</li>
+      <li><i class="fas fa-phone"></i> +91 92253 54427</li>
       <li><i class="fas fa-map-marker-alt"></i> पुणे, महाराष्ट्र</li>
     </ul></div>
   </div>
@@ -370,7 +370,7 @@ function siteFooter(depth) {
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="वर जा"><i class="fas fa-chevron-up"></i></button>
   </div>
 </footer>
-<a href="https://wa.me/919923916476" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅप वर संपर्क करा">
+<a href="https://wa.me/919225354427" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="व्हॉट्सअॅप वर संपर्क करा">
   <img src="${prefix}Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
 </a>`;
 }

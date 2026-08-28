@@ -1,10 +1,10 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const toMarathiDigits = (value) => String(value ?? '').replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
   window.VakibhText = Object.freeze({ toMarathiDigits });
 
   const socialLinks = Object.freeze({
     instagramUrl: 'https://www.instagram.com/_vakibh?igsi=MWJyYndzc3Rzc2k3MQ%3D%3D&utm_source=qr',
-    whatsappUrl: 'https://wa.me/919923916476',
+    whatsappUrl: 'https://wa.me/919225354427',
     youtubeUrl: 'https://www.youtube.com/',
     facebookUrl: 'https://www.facebook.com/vaakibh'
   });
@@ -409,7 +409,7 @@
   const sharedVeenaSrc = `${siteBasePath}assets/veena.svg`;
   const sharedWhatsappSrc = `${siteBasePath}assets/whatsapp_icon.svg`;
   const whatsappMessage = encodeURIComponent('\u0928\u092e\u0938\u094d\u0915\u093e\u0930, \u092e\u0932\u093e \u0935\u093e\u0915\u0940\u092d \u0935\u093f\u0937\u092f\u0940 \u092e\u093e\u0939\u093f\u0924\u0940 \u0939\u0935\u0940 \u0906\u0939\u0947.');
-  const sharedWhatsappHref = `https://wa.me/919923916476?text=${whatsappMessage}`;
+  const sharedWhatsappHref = `https://wa.me/919225354427?text=${whatsappMessage}`;
   const blogPath = '/blog/';
   const contactPath = '/contact/';
   // Shared page assets live in the public `assests` directory.  This base is
@@ -807,7 +807,7 @@
         <h4>\u0938\u0902\u092A\u0930\u094D\u0915</h4>
         <ul class="footer-contact-list">
           <li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li>
-          <li><i class="fas fa-phone"></i> +91 99239 16476</li>
+          <li><i class="fas fa-phone"></i> +91 92253 54427</li>
           <li><i class="fas fa-map-marker-alt"></i> \u092A\u0941\u0923\u0947, \u092E\u0939\u093E\u0930\u093E\u0937\u094D\u091F\u094D\u0930</li>
         </ul>
       </div>
