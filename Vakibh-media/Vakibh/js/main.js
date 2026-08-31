@@ -1344,7 +1344,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // The public site is Marathi-first. Keep the language control Marathi-only
   // so a previously stored English preference cannot leave mixed labels.
-  document.querySelectorAll('.lang-switch[data-language-option="english"], .lang-switch[data-language="english"]').forEach((button) => button.remove());
+  document.querySelectorAll('.lang-switch[data-language-option="english"], .lang-switch[data-language="english"]').forEach((button) => {
+    button.disabled = true;
+    button.setAttribute('aria-disabled', 'true');
+    button.title = 'English translation लवकरच उपलब्ध होईल';
+  });
   localStorage.setItem('vakibh-language', 'marathi');
   const languageButtons = Array.from(document.querySelectorAll('.lang-switch'));
   const translations = {
@@ -1814,6 +1818,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     languageButtons.forEach((button) => {
       button.addEventListener('click', () => {
+        if (button.dataset.languageOption === 'english' || button.dataset.language === 'english') return;
         applyLanguageSelection('marathi');
         localStorage.setItem('vakibh-language', 'marathi');
         showToast(translations.marathi.selectedToast);
