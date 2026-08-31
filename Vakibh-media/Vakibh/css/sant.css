@@ -6032,6 +6032,17 @@ body.namdev-gatha-page .post-content .entry-content strong {
   font-weight: 400 !important;
 }
 
+/* Present every Namdev Gatha abhang as its own readable card. */
+body.namdev-gatha-page .post-content .entry-content > p {
+  box-sizing: border-box;
+  border: 1px solid #e7c79d;
+  border-radius: 14px;
+  background: #fffdf9;
+  padding: 1.25rem 1.5rem;
+  margin: 0 0 1.25rem;
+  box-shadow: 0 3px 10px rgba(120, 72, 24, 0.08);
+}
+
 body.namdev-karuna-page .post-content .entry-content,
 body.namdev-karuna-page .post-content .entry-content * {
   font-weight: 400 !important;
