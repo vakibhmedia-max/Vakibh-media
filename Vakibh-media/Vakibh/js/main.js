@@ -243,6 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/\bGatha(?=\s*[0-9०-९])/gi, 'गाथा')
             .replace(/\bOvi(?=\s*[0-9०-९])/gi, 'ओवी');
         }
+        // Remove legacy English fragments left in older generated labels.
+        displayText = displayText
+          .replace(/\bGatha\b/gi, '\u0917\u093e\u0925\u093e')
+          .replace(/\bBiography\b/gi, '\u091a\u0930\u093f\u0924\u094d\u0930')
+          .replace(/\bAbhangs?\b/gi, '\u0905\u092d\u0902\u0917')
+          .replace(/\bSant\b/gi, '\u0938\u0902\u0924')
+          .replace(/\bPauranik\b/gi, '\u092a\u094c\u0930\u093e\u0923\u093f\u0915');
         displayText = toMarathiDigits(displayText);
         if (displayText !== node.nodeValue) node.nodeValue = displayText;
       });
@@ -1335,6 +1342,10 @@ document.addEventListener('DOMContentLoaded', () => {
       group.appendChild(englishButton);
     }
   });
+  // The public site is Marathi-first. Keep the language control Marathi-only
+  // so a previously stored English preference cannot leave mixed labels.
+  document.querySelectorAll('.lang-switch[data-language-option="english"], .lang-switch[data-language="english"]').forEach((button) => button.remove());
+  localStorage.setItem('vakibh-language', 'marathi');
   const languageButtons = Array.from(document.querySelectorAll('.lang-switch'));
   const translations = {
     marathi: {
@@ -1798,21 +1809,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (languageButtons.length) {
-    const storedLanguage = localStorage.getItem('vakibh-language');
-    applyLanguageSelection(storedLanguage === 'english' ? 'english' : 'marathi');
-    loadBilingualData().then(() => applyLanguageSelection(localStorage.getItem('vakibh-language') === 'english' ? 'english' : 'marathi'));
+    applyLanguageSelection('marathi');
+    loadBilingualData().then(() => applyLanguageSelection('marathi'));
 
     languageButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const nextLanguage = button.dataset.languageOption || (button.dataset.language === 'english' ? 'marathi' : 'english');
-        applyLanguageSelection(nextLanguage);
-        localStorage.setItem('vakibh-language', nextLanguage);
-
-        if (nextLanguage === 'english') {
-          showToast(translations.english.selectedToast);
-        } else {
-          showToast(translations.marathi.selectedToast);
-        }
+        applyLanguageSelection('marathi');
+        localStorage.setItem('vakibh-language', 'marathi');
+        showToast(translations.marathi.selectedToast);
       });
     });
   }
