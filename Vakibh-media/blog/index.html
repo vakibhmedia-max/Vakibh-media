@@ -579,5 +579,18 @@
   <img src="../Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
 </a>
 
+<!-- Some static hosts do not resolve directory URLs (for example, /post/).
+     Point each local card link directly at its index document so every blog
+     card remains openable on both Apache and static hosting. -->
+<script>
+  document.querySelectorAll('.blog-card a[href]').forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    if (!href || href.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(href)) return;
+    if (href.endsWith('/') && !href.endsWith('../')) {
+      link.setAttribute('href', `${href}index.html`);
+    }
+  });
+</script>
+
 </body>
 </html>

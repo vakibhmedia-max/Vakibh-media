@@ -851,15 +851,26 @@ section {
 }
 
 .saint-img-wrap {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.45rem;
   border: 3px solid var(--border-color);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
   transition: var(--transition);
+  position: relative;
 }
+
+.saint-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 17%;
+  background: #f3f3f3;
+  pointer-events: none;
+}
+
 
 .saint-card:hover .saint-img-wrap {
   border-color: #9ca3af;
@@ -867,13 +878,17 @@ section {
 }
 
 .saint-img-wrap img {
-  width: 122%;
-  height: 122%;
-  object-fit: cover;
+  /* Do not upscale the source artwork: enlarging it beyond the wrapper
+     causes interpolation blur on desktop displays. */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   border-radius: 12px;
-  object-position: center 34%;
+  object-position: center top;
   transform: none;
   transition: var(--transition);
+  image-rendering: auto;
+  filter: contrast(1.12);
 }
 
 .saint-name {

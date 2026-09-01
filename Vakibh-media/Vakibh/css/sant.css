@@ -7906,6 +7906,26 @@ body.amrutanubhav-page .amrutanubhav-source-page > p * {
 
 /* Final Tukaram Gatha centering safeguard against legacy paragraph widths. */
 /* Namdev Gatha category pages: one centered reading card and one share footer. */
+/* Each numbered abhang on Gatha 1–25 is displayed as its own card. */
+html body.namdev-gatha-page .post-content .abhang-verse > .entry-content > p {
+  box-sizing: border-box;
+  width: 100% !important;
+  margin: 0 0 22px !important;
+  padding: 22px 24px !important;
+  border: 1px solid #edcfaa !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  box-shadow: 0 5px 16px rgba(67, 40, 19, 0.07) !important;
+  line-height: 1.9;
+}
+html body.namdev-gatha-page .post-content .abhang-verse > .entry-content > p:last-child { margin-bottom: 0 !important; }
+@media (max-width: 600px) {
+  html body.namdev-gatha-page .post-content .abhang-verse > .entry-content > p {
+    margin-bottom: 16px !important;
+    padding: 16px 14px !important;
+    line-height: 1.8;
+  }
+}
 body.namdev-gatha-card-page .post-content .abhang-verse,
 body.namdev-gatha-card-page .post-content .entry-content.namdev-gatha-reading-card {
   width: 100% !important;
