@@ -3445,7 +3445,7 @@ body :where(
   font-family: 'Hind', sans-serif !important;
 }
 .puravni-abhang-group h2 { margin: 0 0 18px; color: #173451; font-size: clamp(1.35rem, 3vw, 1.75rem); text-align: center; }
-.puravni-abhang-group p { margin: 0 auto; max-width: 680px; white-space: pre-line; text-align: center; font-weight: 400; }
+.puravni-abhang-group p { margin: 0 auto; max-width: 680px; white-space: normal; text-align: center; font-weight: 400; }
 .puravni-card-actions { display: flex; justify-content: flex-start; gap: 10px; margin: 28px 0 0; padding-top: 16px; border-top: 1px solid #ead7bc; }
 .puravni-link-btn { color: #b71c1c; }
 
