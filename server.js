@@ -76,7 +76,9 @@ const { getWebsiteVisitorStats } = require('./backend/lib/website-visits');
 
 const ROOT = __dirname;
 const SITE_ROOT = path.join(ROOT, 'Vakibh-media');
-const UPLOAD_ROOT = path.join(ROOT, 'uploads', 'blog');
+// Keep blog uploads under the deployed site tree so static deployments retain
+// the files instead of losing them from the gitignored runtime uploads folder.
+const UPLOAD_ROOT = path.join(SITE_ROOT, 'uploads', 'blog');
 const AUDIO_UPLOAD_ROOT = path.join(ROOT, 'uploads', 'audio');
 const BLOGGER_IMPORT_ROOT = path.join(ROOT, 'uploads', 'blogger-import');
 const PORT = Number(process.env.PORT || 3000);
@@ -127,6 +129,8 @@ app.use(
 
 app.use('/backend', express.static(path.join(ROOT, 'backend/public')));
 app.use('/uploads', express.static(path.join(ROOT, 'uploads')));
+// Also serve uploads bundled with the static site (used by deployed blog pages).
+app.use('/uploads', express.static(path.join(SITE_ROOT, 'uploads')));
 
 const storage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, UPLOAD_ROOT),

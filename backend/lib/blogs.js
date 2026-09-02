@@ -435,10 +435,14 @@ function deleteManagedUpload(publicUrl) {
   const normalized = String(publicUrl || '').trim();
   if (!normalized.startsWith('/uploads/')) return;
 
-  const diskPath = path.join(PROJECT_ROOT, normalized.replace(/^\//, ''));
-  if (fs.existsSync(diskPath)) {
-    fs.unlinkSync(diskPath);
-  }
+  const relativePath = normalized.replace(/^\//, '');
+  // New uploads live under the static site tree; retain compatibility with
+  // legacy runtime uploads that were stored at the project root.
+  [path.join(SITE_ROOT, relativePath), path.join(PROJECT_ROOT, relativePath)]
+    .filter((diskPath, index, paths) => paths.indexOf(diskPath) === index)
+    .forEach((diskPath) => {
+      if (fs.existsSync(diskPath)) fs.unlinkSync(diskPath);
+    });
 }
 
 async function ensureUniqueSlug(baseSlug, excludeId = null) {
