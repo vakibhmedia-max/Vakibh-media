@@ -1752,7 +1752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const footerContactValues = [
       'vakibhmedia@gmail.com',
-      '9225354427',
+      toMarathiDigits('9225354427'),
       selectedLanguage === 'english' ? 'Pune, Maharashtra' : 'पुणे, महाराष्ट्र'
     ];
     footerContactItems.forEach((item, index) => {
