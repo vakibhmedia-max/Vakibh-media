@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (node.parentElement?.closest('script, style, textarea, input, select, .fa, .fas, .far, .fab')) return;
       node.nodeValue = node.nodeValue
         .replace(letterBeforeNumber, '$1 ')
-        .replace(numberBeforeLetter, '$1 ');
+        .replace(numberBeforeLetter, '$1 ')
+        .replace(/[0-9]/g, (digit) => '०१२३४५६७८९'[Number(digit)]);
     });
   };
   normalizeMarathiNumberSpacing();
