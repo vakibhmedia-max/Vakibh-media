@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../Vakibh/css/style.css?v=40">
   <link rel="stylesheet" href="../Vakibh/css/sant.css?v=36">
-  <script src="../Vakibh/js/main.js?v=74" defer></script>
+  <script src="../Vakibh/js/main.js?v=108" defer></script>
 
 
   <style>
@@ -578,19 +578,6 @@
 <a href="https://wa.me/919225354427" class="floating-whatsapp" target="_blank" aria-label="व्हॉट्सअॅप वर संपर्क करा">
   <img src="../Vakibh/whatsapp_icon.svg" alt="व्हॉट्सअॅप">
 </a>
-
-<!-- Some static hosts do not resolve directory URLs (for example, /post/).
-     Point each local card link directly at its index document so every blog
-     card remains openable on both Apache and static hosting. -->
-<script>
-  document.querySelectorAll('.blog-card a[href]').forEach((link) => {
-    const href = link.getAttribute('href') || '';
-    if (!href || href.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(href)) return;
-    if (href.endsWith('/') && !href.endsWith('../')) {
-      link.setAttribute('href', `${href}index.html`);
-    }
-  });
-</script>
 
 </body>
 </html>
