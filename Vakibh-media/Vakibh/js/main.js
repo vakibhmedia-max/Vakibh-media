@@ -318,7 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (/^\/admin(?:\/|$)/i.test(window.location.pathname) || document.querySelector('.floating-social-bar')) return;
 
     const currentWhatsApp = document.querySelector('a.floating-whatsapp');
-    const whatsappUrl = currentWhatsApp?.getAttribute('href') || socialLinks.whatsappUrl;
+    // Keep every page on the single official contact number.
+    const whatsappUrl = socialLinks.whatsappUrl;
     const items = [
       { name: 'Instagram', url: socialLinks.instagramUrl, icon: 'fa-instagram', network: 'instagram' },
       { name: 'WhatsApp', url: whatsappUrl, icon: 'fa-whatsapp', network: 'whatsapp' },
@@ -814,7 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h4>\u0938\u0902\u092A\u0930\u094D\u0915</h4>
         <ul class="footer-contact-list">
           <li><i class="fas fa-envelope"></i> vakibhmedia@gmail.com</li>
-          <li><i class="fas fa-phone"></i> +91 92253 54427</li>
+          <li><i class="fas fa-phone"></i> 9225354427</li>
           <li><i class="fas fa-map-marker-alt"></i> \u092A\u0941\u0923\u0947, \u092E\u0939\u093E\u0930\u093E\u0937\u094D\u091F\u094D\u0930</li>
         </ul>
       </div>
@@ -1751,7 +1752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const footerContactValues = [
       'vakibhmedia@gmail.com',
-      '9923916476',
+      '9225354427',
       selectedLanguage === 'english' ? 'Pune, Maharashtra' : 'पुणे, महाराष्ट्र'
     ];
     footerContactItems.forEach((item, index) => {
